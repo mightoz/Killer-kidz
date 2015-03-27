@@ -1,0 +1,87 @@
+Möte 1, 23 mars.
+
+Närvarande: Oscar Beronius, Matilda Horppu, Kim Berger, Marie Klevedal
+Mötesordförande: Oscar 
+
+1. Syfte
+Komma fram till vad vi vill göra med vårt projekt. Diskutera ambitionsnivå, lära känna varandra.
+
+2. Rapporter
+-
+
+3. Diskussion
+Kom fram till en spelidé vi vill implementera:
+
+Spelidé, Killer kidz! Går ut på att man ska försvara en leksaksbutik från giriga barn. Styr gubbe med tangentbordet, kan kasta godis på kommande barn. Spelet ska ha flera nivåer, där varje nivå representerar en bana. 
+
+NPCs rör sig från höger till vänster. Spelaren hindrar dem från att ta sig till andra sidan. Det är begränsat hur många som får komma förbi. Spelaren har liv också, kan bli attackerad av en viss typ av fiende. Finns flera typer av fienden samt flera typer av attacker(godis att kasta) som är olika bra på olika fienden. 
+
+Poäng samlas under spelets gång, man kan få "combos" av att träffa flera barn irad/på olika ställen(headshot). Ger olika mycket poäng. Idé om att "spara" sina poäng, få multiplier till nästa bana/få bättre highscore.
+
+Efter varje bana: Använd samlad poäng för att köpa/uppgradera attacker. Inför nästa bana: info om vad för fienden man har att vänta.
+
+
+4. Resultat
+Spelidén valdes då alla i gruppen kände att det var något kul att göra och något som alla kan bidra till.
+
+5. Till nästa möte
+Fundera mer om vad/hur vi vill lägga till, vad för features etc. Fundera lite på vilka klasser vi kan behöva. Nästa möte 25/3, 13:15, 3217 Edithuset.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Meeting 2: Agenda
+
+  Date: 2015-03-25
+  Time: 13:00 - 17:45
+  Participants: Kim Berger, Matilda Horppu, Marie Klevedal
+  Facilitator: Kim
+1. Objectives
+
+Get Maven working.
+Decide features of the game that we didn’t decide last time.
+Decide what to write in the parts of RAD that we are supposed to finish this week (week 13 in the roadmap).
+
+2. Reports
+
+NA.
+
+3. Discussion
+
+As we had had troubles trying to install Maven in Windows and get all the environment variables correct, the first half of the meeting was spent on trying to fix that.
+
+The following game features were discussed:
+Whether the player should be able to save the game or not. Also if he/she would have to start from the very beginning of the game if failing a level, or be able to replay the level.
+If one would get different amounts of money depending on where at the child the candy hits (more for head/mouth).
+What would happen if a child is hit by a type of candy that is neither its favourite, nor the kind that triggers its inner monster. Should the child disappear but the player get fewer points than with the favourite candy, or would it take more candy hits to make the child disappear? 
+Should there be some kind of visual indicator on how efficient a type of candy is on a specific child?
+
+We also discussed what to write in section 1 and 2.3 (except 2.3.3) in RAD.
+
+4. Outcomes and assignments
+
+Everyone got Maven to work, but encountered other problems related to the first workshop.
+
+This was decided about the game features:
+We will give the player the opportunity to save the game.
+We will implement critical hits, but it will not be our first priority.
+The children will have some kind of meter attached to them, indicating how much thirst for candy they have left, and different kinds of candy will decrease the meter with different amounts. This will also be something we implement in case of time.
+We want to indicate the efficiency of the candy in some way.
+All the above was decided because we thought it would make the game funnier to play. As we didn’t know how hard or time consuming it would be to implement it all, some of the things we will do in case of time.
+
+We made a list of what we wanted to write in section 1.1-1.3 in RAD. We also made a sketch on how the game interface would look, for the main menu, the game and the candy store, and started on the user cases.
+
+Assignments to next meeting:
+Marie will write a text from the points we listed for section 1.1-1.3 in RAD.
+Kim will make an UML and a list of use case names (2.3.1 in RAD).
+Oscar will make a list of use case priorities (2.3.2 in RAD).
+Matilda will make a nicer sketch of the interfaces and write a text to them (2.3.4 in RAD).
+
+5. Wrap up
+
+Next meeting we will:
+Decide the contents of the rest of RAD (or perhaps leave some part of it to the meeting after that). 
+Start planning the class structure and who implements what.
+
+Next meeting is Monday the 30th of March, 1 pm in 5215, EDIT house.
+
+-------------------------------------------------------------------------------------------------------------------
