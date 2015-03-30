@@ -1,0 +1,45 @@
+Meeting 3 Agenda
+
+  Date: 2015-03-30
+  Facilitator: Marie
+  Participants: Kim, Marie, Matilda, Oscar
+
+1. Objectives 
+Kim explained what had been said at today's lecture, as none of the others was able to attend it.
+
+2. Reports 
+Matilda has written the user interface section in the RAD and added sketches into an appendix. Oscar has written 
+the priority list for the use cases. Kim has completed  the “rough” UseCases diagram and the UseCases list. Marie 
+has written section 1.1-1.3 in RAD.
+
+3. Discussion items 
+The following subjects were discussed:
+   - What motor we want to use for the GUI
+   - The domain model
+   - If we should change properties of the candy
+
+4. Outcomes and assignments
+Outcomes:
+   - We made a sketch of the domain model, to get a better overview of the classes we will need and how they 
+     would be related.
+   - We decided that instead of buying more copies of the candy in the candy shop, the player would be able to 
+     upgrade the properties (e.g. speed) of the different candy types. This was done to prevent the risk that 
+     the player would run out of candy, and as it seemed like an overall more reasonable way to implement the 
+     game. 
+
+Assignments:
+   - Everyone: Learn more about different GUI motors
+   - Everyone: Start to think of (and draw) an idea of the UML diagram (with MVC)
+   - Oscar: Write in RAD about changes in candy properties 
+   - Matilda: Draw new interface for candyshop
+   - Marie: Make a better picture of the domain model and write some text about it (2.3.3)
+   - Kim: RAD 1.4-1.5, 2.1, 2.2.1, look at 2.3.4
+
+5. Wrap up
+Unresolved issues for next meeting
+   - What GUI motor to use
+   - What to do during holidays and who does what
+
+Time and location for next meeting: Wednesday 2015-04-01, 13:15 in M1222B.
+
+
