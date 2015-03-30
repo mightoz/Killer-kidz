@@ -1,0 +1,30 @@
+Möte 1, 23 mars.
+
+Närvarande: Oscar Beronius, Matilda Horppu, Kim Berger, Marie Klevedal
+Mötesordförande: Oscar 
+
+1. Syfte
+Komma fram till vad vi vill göra med vårt projekt. Diskutera ambitionsnivå, lära känna varandra.
+
+2. Rapporter
+-
+
+3. Diskussion
+Kom fram till en spelidé vi vill implementera:
+
+Spelidé, Killer kidz! Går ut på att man ska försvara en leksaksbutik från giriga barn. Styr gubbe med tangentbordet, kan kasta godis på kommande barn. Spelet ska ha flera nivåer, där varje nivå representerar en bana. 
+
+NPCs rör sig från höger till vänster. Spelaren hindrar dem från att ta sig till andra sidan. Det är begränsat hur många som får komma förbi. Spelaren har liv också, kan bli attackerad av en viss typ av fiende. Finns flera typer av fienden samt flera typer av attacker(godis att kasta) som är olika bra på olika fienden. 
+
+Poäng samlas under spelets gång, man kan få "combos" av att träffa flera barn irad/på olika ställen(headshot). Ger olika mycket poäng. Idé om att "spara" sina poäng, få multiplier till nästa bana/få bättre highscore.
+
+Efter varje bana: Använd samlad poäng för att köpa/uppgradera attacker. Inför nästa bana: info om vad för fienden man har att vänta.
+
+
+4. Resultat
+Spelidén valdes då alla i gruppen kände att det var något kul att göra och något som alla kan bidra till.
+
+5. Till nästa möte
+Fundera mer om vad/hur vi vill lägga till, vad för features etc. Fundera lite på vilka klasser vi kan behöva. Nästa möte 25/3, 13:15, 3217 Edithuset.
+
+
