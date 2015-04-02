@@ -1,0 +1,165 @@
+Requirements and Analysis Document (RAD) for Killer Kidz
+
+Contents
+1 Introduction
+1.1 Purpose of application
+1.2 General characteristics of application
+1.3 Scope of application
+1.4 Objectives and success criteria of the project
+2 Requirements
+2.1 Functional requirements
+2.2 Non-functional requirements
+2.4 References
+
+
+  Version: 1.0 
+  Date: 
+  Author: 
+
+This version overrides all previous versions.
+
+
+
+
+1 Introduction
+
+This section gives a brief overview of the project.
+
+1.1 Purpose of application 
+
+The purpose of this application is to entertain the player. In some extent, it would also improve the player’s strategic skills.
+
+1.2 General characteristics of application
+
+The application is a single-player action game with a graphical interface, played on computers.
+
+The goal is to protect a toy store from greedy children who want to invade the store. Each level will permit a certain number of children to enter the store before failing. The player throws candy at the children to make them disappear and gain money. If the number of allowed children in the toy store hasn’t been exceeded when there are no more children, the player completes the level and can continue to the next.
+
+The player has several attacks, represented by different types of candies he can throw. When a level is finished, the money collected by the player can be spent to upgrade or buy new attacks. To create variation and make the game more fun, the player has different options in how he can upgrade his candies. The idea is that each candy four different upgrades that can be bought. Buying one of these upgrades unlocks another specific upgrade for that branch. The further down in a branch, the more expensive the upgrade. The branch extends to 2-4 new upgrades. Upgrading in several branches is possible. Unused money will be saved to the next level.
+
+1.3 Scope of application 
+
+The game will have four levels, four kinds of children and four kinds of candy. All candy sorts will not be available from the beginning, but will appear successively when the player has made some progress. The estimated time to complete the game is thirty minutes. When completing the game, the amount of money left will be saved in a high score table. The player (or other players) can then choose to play the game again, to try to beat the current high score.
+
+There will be sound effects and music in the game. The volume of these can be modified from a main menu. In the main menu, the player can also choose to see instructions on how to play the game.
+
+If the player hits a child with some candy, he will get equally many points no matter where at the child the candy hits, i.e. there are no critical hits. The game will not be saved if interrupted. If the player fails a level, it will have to start the game from the beginning. (Might change this.)
+
+1.4 Objectives and success criteria of the project 
+
+We are having plans of implementing KillerKidz to be able to play in multiplayer, but only on the same computer(local) i.e. someone is using keys W,A,S,D to move instead of the arrow-keys.
+We will have a high replay-value(see Definitions) of the game because you won’t have money to upgrade all CandyTypes and we also have “randomness” witihin the game.
+We will have a HighScore(see Definition) for competitive players.
+
+
+1.5 Definitions, acronyms and abbreviations 
+Levels - the game is consisted of multiple levels which you progress through to finish them all to complete the game
+Waves - each level will exisit of a certain number of waves which will arrive within certain timeframe for each level.
+Candy - a projectile you can throw at kids to nullify them
+CandyType - there exist a number of candy types the player can buy to unlock and even upgrade, and each type have unique attributes you can spend money to upgrade to alter them to stronger types.
+KidzTypes - there exist different kids with unique attributes (not all of them will be easy to stop) which also will have a minor randomised speed to add a more interactive touch to the game (they are not robots).
+Replay-value - after finishing the game, you could replay the game multiple times with different playstyles and encounter.
+HighScore - after you lost/won the game, you will be able to see the a list of people with highest score.
+KeyBindings - The set of keys you use to play the game (arrows and Space as default)
+CandyShop - a window(area) you will arrive after completing each level, where you can spend money to unlock and upgrade your candy, and also see your current balance, see KidzTypes which will arrive next level.
+2 Requirements
+
+In this section we specify all requirements
+
+2.1 Functional requirements
+
+The player(s) should be able to;
+Change SoundEffects Volume (also mute)
+Change Music Volume (also mute)
+Customise keyBindings(see Definition)
+Read an ingame help how to play the game
+Start a new game
+Play a game until the player wins or lose
+See statistics after won or lost level
+If the player won, be able to move on to the CandyShop(see definition).
+If the player lost, return to the MainMenu.
+After playthrough see their Score(see definition) and also see the HighScore(see definition), and add the player name to the HighScore if the player got good score (formulera bättre, “utmananade” poäng eller dyl.).
+During the action-part of the game, the player can:
+Move the Player around in the levels
+Choose candyType the Player have unlocked
+Throw chosen candyType
+Exit the application.
+
+2.2 Non-functional requirements 
+
+
+Possible NA (not applicable).
+
+2.2.1 Usability 
+Usability and interaction is a high priority. So anyone should be able to understand and play the game, by simple interaction from the game to the Player, or i.e. you want to play the game with one hand for an example by change KeyBindings(see Definition) to be closer to each other handwise.
+There should also exist an ReadMe file for more specific information how to play the game then the HelpWindow reached from the MainMenu.
+
+
+2.2.2 Reliability 
+
+2.2.3 Performance 
+
+2.2.4 Supportability
+
+2.2.5 Implementation 
+
+2.2.6 Packaging and installation
+
+2.2.7 Legal 
+
+2.3 Application models
+
+2.3.1 Use case model 
+
+
+UML and a list of UC names (text for all in appendix)
+
+
+
+2.3.2 Use cases priority
+Top priority use cases(must be implemented asap)
+1.TheGame
+2.MovePlayer
+3.ThrowCandy
+High priority use cases(goal is to implement all these)
+1.ChangeCandyType
+2.StartWave
+3.GameOver
+4.CompleteLevel
+5.KillerKidzMainMenu
+6.StartNewGame
+7.ExitGame
+Low priority use cases(implemented if time is available)
+1.GoToCandyShop
+2.BuyCandyType
+3.ChangeSettings
+4.ViewHelp
+
+2.3.3 Domain model
+
+To begin with, there will only be one player. However, the game will be implemented in a way that makes it easy to add more players, which also will be done it case of time.
+
+See appendix for a graph of the domain model.
+
+2.3.4 User interface 
+
+The goal is to make the user interface easy to understand and naturalpart of the application, i.e it should not take unnecessary attention from the game itself. Since it is a fun game there will be bright colours and a quite childish design on all components. 
+
+The GUI will consist of a main menu from which you can navigate to the game, a help section or a settings menu(Appendix, figure 1). There will be a background picture with three buttons in the middle. When clicking either the help button or the settings button there will appear a pop-up window with help text and setting controls respectively. To start the game you click the Play button. 
+
+When playing the game there will be a static background with the toy storeguard and the childring moving around infront of it (Appendix, figure 2). On the left side the toy store, which the player is supposed to protect, will be and the children will be running into the screen from the right. In the top part of the screen there will be a bar of different information. In the top left corner the level on which the player is on will be stated along with the number of kids that are allowed in the store before you fail the level. Beside the level information all the candy sorts that you have bought will be shown, each one in a box. In each box you will be able to see which key to press in order to choose that specific candy and also how many of that kind you have left. The candy sort you have activated will be shown in color while the others will be black and white. This is becase it should be easy to see which candy you will throw. In the top right corner you will be able to see how much money you have earned at this level so far.
+
+When you have completed a level, or failed it, you will get to the candy shop where you can upgrade your candy (Appendix, figure 3). In the middle of this view the amount of money you have for you disposal will be shown. Underneath the money all candy types will be shown. The ones that you have not unlocked yet will be in gray scale while the others will be in colour. All upgrades you can buy for every candy will be shown underneath each candy sort. When hovering over a candy or an upgrade a panel will pop up with all information regarding that item. You upgrade your candy by clicking on a upgrade. At the bottom of the view there will be a play button and a button that takes the player back to main menu.
+
+2.4 References
+
+
+
+
+  APPENDIX 
+
+  GUI
+
+  Domain model
+
+  Use case texts
