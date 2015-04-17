@@ -1,0 +1,46 @@
+Meeting 5
+
+  Date: 17/4-15
+  Facilitator: Oscar
+  Participants: All
+
+1. Objectives (5 min). Resolve any issues preventing the team to 
+  continue
+-
+
+2. Reports (15 min) from previous meeting
+
+We have finished the domain model and the uml diagram that we are going to present next week. We reached the conclusion that we are NOT going to use slick2d as graphic engine but instead use libGDX(which is more modern).
+
+
+3. Discussion items (35 min) 
+
+-Decide who says what about the domain model/uml during the presentation next week. Generally decide how we want to organize the presentation. 
+
+-Decide if we will have enough time to start working on the code and if so, decide what can be done and by who.
+
+
+4. Outcomes and assignments (5 min) 
+
+We decided that Kim is going to explain briefly what our project is and what its about. Matilda is going to talk about the graphical interface. Oscar is going to talk about some details about the project. Marie will talk about the domain model.
+
+We decided that the minimum code needed is a circle that moves on a background for the meeting. To implement this, we need to make gameController with a keylistener, gameModel, playerModel(getPos), gameView and playerView.
+
+The code demo has been moved to 20/4 from 23/4, and we agreed that we don't have time to start working on this during the weekend. Kim is going to send an e-mail to the supervisor about this. 
+
+When we have time we are going to start working on these classes. Kim is going to make the playerView and gameView, Marie will make the gameController, Matilda will make the  playerModel and Oscar will make the gameModel.
+
+Assignments:
+Kim: Decide what to say for the presentation.
+Matilda: Decide what to say and make a picture for the presentation.
+Oscar Decide what to say and make a/some pictures if needed, for he presentation.
+Marie: Decide what to say about the domain model.
+
+All: Make a pp presentation, add picture(s).
+Oscar(not urgent): Make a git-project when he has time.
+
+5. Wrap up
+
+
+Next meeting 21/4, 15.30. In ED-5215.
+We will discuss our progress and make new plans based on how things have gone.
