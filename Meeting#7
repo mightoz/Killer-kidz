@@ -1,0 +1,43 @@
+Meeting Agenda
+
+  Date: 2015-04-23
+  Facilitator: Marie
+  Participants: All
+
+1. Objectives 
+NA.
+
+2. Reports 
+Kim has made a picture of the view components we need, and a sketch of a new UML class diagram with MVC. 
+Oscar has made an MVC UML class diagram. He has also created a project at Github.
+Everyone have read about the MVC design pattern to improve their understanding of it.
+
+3. Discussion items 
+Decide the UML containing all the classes that we need for the first version. 
+Decide what code we want for the first version, except the one we have already agreed on.
+Decide who writes what code (not just for the first version).
+
+4. Outcomes and assignments
+Outcomes:
+We agreed on a general UML of how the components of MVC interact.
+Except the code we have already agreed on, we will also implement candy throwing and perhaps child spawning. 
+So the classes we need are:
+  Controller (with timer)
+  Model
+  Player
+  Candy
+  (Level)
+  (Kid)
+  GameView
+  PlayFiedView
+  PlayerView
+  CandyView
+  (KidView)
+
+Assignments: Everyone writes their bit of the first version of the game.
+
+5. Wrap up
+Unresolved issues for next meeting: NA.
+
+Time and place for next meeting: Monday 27 of April, 13:15 in 5215.
+
