@@ -1,4 +1,4 @@
-package edu.chl.killerKidz.controller;
+package controller;
 
 import edu.chl.change2projectname.model.Project;
 import edu.chl.change2projectname.view.ProjectView;

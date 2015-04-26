@@ -1,4 +1,4 @@
-package edu.chl.killerKidz.view;
+package view;
 
 import edu.chl.change2projectname.model.Project;
 import java.awt.GridLayout;

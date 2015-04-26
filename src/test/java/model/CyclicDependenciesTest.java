@@ -1,4 +1,4 @@
-package edu.chl.killerKidz;
+package model;
 
 import java.io.IOException;
 import jdepend.framework.JDepend;

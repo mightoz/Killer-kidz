@@ -1,4 +1,4 @@
-package edu.chl.killerKidz.model;
+package model;
 
 import edu.chl.change2projectname.model.Project;
 import org.junit.Assert;

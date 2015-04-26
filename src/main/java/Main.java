@@ -1,5 +1,3 @@
-package edu.chl.killerKidz;
-
 import edu.chl.change2projectname.controller.ProjectController;
 import edu.chl.change2projectname.model.Project;
 import edu.chl.change2projectname.view.ProjectView;
