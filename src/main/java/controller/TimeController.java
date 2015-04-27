@@ -2,6 +2,10 @@ package controller;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import model.Model;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TimeController {
 	private Model model;

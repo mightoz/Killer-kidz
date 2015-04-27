@@ -2,54 +2,65 @@ package controller;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import model.Model;
 
 public class GameController implements KeyListener{
     
     private Model model;
+    private boolean[] p1Moves = {false, false, false, false};
+    private boolean[] p2Moves = {false, false, false, false};
     
-    private final int P1_UP = KeyEvent.VK_UP;
-    private final int P1_DOWN = KeyEvent.VK_DOWN;
-    private final int P1_LEFT = KeyEvent.VK_LEFT;
-    private final int P1_RIGHT = KeyEvent.VK_RIGHT;
+    private final int[] P1_LURD = {KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN};
     private final int P1_THROW = KeyEvent.VK_SPACE;
+    private final int[] P2_LURD = {KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S};
+    private final int P2_THROW = KeyEvent.VK_CONTROL;
 
     public GameController(Model model) {
         this.model = model;
-        TimeController tc = new TimeController(model);
+        new TimeController(model);
     }
 
+	// skicka array[4] med booleans LURD ist for direction
     public void keyPressed(KeyEvent e) {
-    	switch (e.getKeyCode()) {
-    	case P1_UP:
-    		model.movePlayer(1, Direction.UP);
-    		break;
-    	case P1_DOWN:
-        	model.movePlayer(1, Direction.DOWN);
-    		break;
-    	case P1_LEFT:
-        	model.movePlayer(1, Direction.LEFT);
-    		break;
-    	case P1_RIGHT:
-        	model.movePlayer(1, Direction.RIGHT);
-    		break;
-    	default:
-    		// do nothing
+    	int key = e.getKeyCode();
+    	for (int i = 0; i < 4; i++) {
+    		if (P1_LURD[i] == key) {
+    			p1Moves[i] = true;
+    			model.movePlayer(1, p1Moves);
+    		}
+    	}
+    	for (int i = 0; i < 4; i++) {
+    		if (P2_LURD[i] == key) {
+    			p2Moves[i] = true;
+    			model.movePlayer(2, p2Moves);
+    		}
     	}
     }
     
     public void	keyReleased(KeyEvent e) {
-    	switch (e.getKeyCode()) {
-    	case P1_THROW:
-    		model.throwCandy();
-    		break;
-    	// TODO: case changeCandy
-    	default:
-    		// do nothing
+    	int key = e.getKeyCode();
+    	for (int i = 0; i < 4; i++) {
+    		if (P1_LURD[i] == key) {
+    			p1Moves[i] = false;
+    			model.movePlayer(1, p1Moves);
+    		}
+    	}
+    	for (int i = 0; i < 4; i++) {
+    		if (P2_LURD[i] == key) {
+    			p2Moves[i] = false;
+    			model.movePlayer(2, p2Moves);
+    		}
+    	}
+    	
+    	if (key == P1_THROW) {
+    		model.throwCandy(1);
+    	}
+    	if (key == P2_THROW) {
+    		model.throwCandy(2);
     	}
     }
     
     public void keyTyped(KeyEvent e) {
     	// do nothing
     }
-
 }
