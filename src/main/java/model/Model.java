@@ -7,6 +7,8 @@ public class Model {
 
     private Player player1;
     private Player player2;
+    private Candy selectedCandy1;
+    private Candy selectedCandy2;
 
     public Model(String playerName){
         player1 = new Player(0, 0, playerName);
@@ -25,11 +27,18 @@ public class Model {
             player2.updatePos(directions);
         }
 
-
-
     }
 
-    public void throwCandy(int player, int candyType){
+    public void throwCandy(int player){
+
+        Candy candy;
+
+        if(player == 1){
+            candy = player1.getSelectedCandy();
+            //Hur skapar man rätt candy?
+            selectedCandy1 = new Candy();
+            selectedCandy1.update(player1.getX(), player1.getY());
+        }
 
     }
 
