@@ -1,0 +1,23 @@
+Meeting Agenda
+
+  Date: 2015-04-27
+  Facilitator: Matilda
+  Participants: All
+
+1. Objectives 
+NA.
+2. Reports 
+Kim has made a view for the game and a player. He has also done a main menu and some classes to facilitate the work with libGDX.
+Marie has made a controller that listens to keyevents and another controller that has a timer.
+Oscar has implemented the class player.
+Matilda has started thinking about how to implement the Model class.
+	
+3. Discussion items 
+How to continue working with the project
+Start discussing the SDD	
+
+4. Outcomes and assignments
+	We decided to work together in order to have some working code to show the supervisor on the supervision. This is something we will continue doing in the future as well. We also decided that we will start working on the SDD on the next meeting.
+
+5. Wrap up
+	Next meeting will be on Thursday 30/4 10.00 in 4205.
