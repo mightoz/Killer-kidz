@@ -18,8 +18,8 @@ public abstract class GameState {
 	public abstract void update(float dt);
 	public abstract void draw();
 	
-	// handleinput is update help method to do stuff with gamekeys
-	public abstract void handleInput();
+	// handleinput is an help method for update, to do stuff with gamekeys
+	public abstract void handleInput(int playerX, int newPosX, int newPosY);
 	
 	// we want to remove current window and show new one.
 	public abstract void dispose();

@@ -1,7 +1,5 @@
 package com.edu.guchl.killerKids.view.gameStates;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.edu.guchl.killerKids.view.ViewGameStateManager;
 import com.edu.guchl.killerKids.view.inGameEntities.PlayerView;
@@ -17,21 +15,14 @@ public class PlayfieldView extends GameState {
 
 	@Override
 	public void init() {
-		
 		sr = new ShapeRenderer();
 		player = new PlayerView();
-		
 	}
-	
-	
 
-	// for now, only paints the player and updates 
-	@Override
-	public void update(float dt) {
-		
-		handleInput();
-		
-		player.update(dt);
+	// Paints the player and updates for now (later it will also update arrays
+	// with kids and candy)
+	public void update(float dt, int newPosX, int newPosY) {
+		player.update(dt, newPosX, newPosY);
 	}
 
 	@Override
@@ -39,19 +30,22 @@ public class PlayfieldView extends GameState {
 		player.draw(sr);
 	}
 
-	/*
-	 * Temporärt bara lyssnar på key-events, får flytta bort hel senare
-	 * 
-	 */
+//	// Forwards the new playerPos to given player.
+//	@Override
+//	public void handleInput(int playerX, int newPosX, int newPosY) {
+//		player.update(newPosX, newPosY);
+//	}
+
 	@Override
-	public void handleInput() {
-		player.setUp(Gdx.input.isKeyPressed(Keys.UP));
-		player.setDown(Gdx.input.isKeyPressed(Keys.DOWN));
-		player.setLeft(Gdx.input.isKeyPressed(Keys.LEFT));
-		player.setRight(Gdx.input.isKeyPressed(Keys.RIGHT));
+	public void dispose() { }
+
+	@Override
+	public void update(float dt) {
+		player.update(dt);
 	}
 
-	@Override
-	public void dispose() {}
-
+//	@Override
+	public void handleInput(int playerX, int newPosX, int newPosY) {
+		update(1, newPosX, newPosY);
+	}
 }

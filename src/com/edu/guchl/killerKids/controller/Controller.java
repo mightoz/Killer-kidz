@@ -1,90 +1,181 @@
 package com.edu.guchl.killerKids.controller;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-//import com.edu.guchl.killerKids.view.gameStates.PlayfieldView;
+import com.badlogic.gdx.InputProcessor;
 import com.edu.guchl.killerKids.model.Model;
-import com.edu.guchl.killerKids.model.Player;
+import com.edu.guchl.killerKids.view.GameView;
 
-public class Controller implements KeyListener {
-	Model model = new Model();
+public class Controller implements InputProcessor {
 	
-	public void KeyEvent() {
-		if(Gdx.input.isKeyPressed(Keys.UP)){;
-		model.movePlayer(Player.UP, 1);
-			
-		}
-		if(Gdx.input.isKeyPressed(Keys.DOWN)){
-			model.movePlayer(Player.DOWN, 1);
+	Model model;
+	GameView gv;
+//	LwjglApplication app;
+	
+	/*
+	 * Temporary fields, that controller (or model) will send to view, because
+	 * view should not do calculations.
+	 */
+	private int x = 0;
+	private int y = 0;
+	private int player = 1;
+	
+	public Controller() {
+		
+	}
+	
+	public Controller(Model model, GameView gv) {
+		this.model = model;
+//		this.gv = gv;
+		this.gv = gv;
+//		new LwjglApplication(new GameView(), cfg);
+		System.out.println("Controller:created");
+	}
+
+	
+	
+//	public void KeyEvent() {
+//		if(player == 1) {
+//			
+//			if(Gdx.input.isKeyPressed(Keys.UP)){;
+//			y += 1;
+//				System.out.println("1");
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.DOWN)){
+//				y -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.LEFT)){
+//				x -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.RIGHT)){
+//				x += 1;
+//			}
+//			
+//			gv.movePlayer(player, x, y);
+//		}
+//		
+//	}
+
+	public boolean keyDown(int keycode) {
+		if (player == 1) {
+
+			if (keycode == Keys.UP) {
+				y += 1;
+				System.out.println("u");
+			}
+
+			if (keycode == Keys.DOWN) {
+				y -= 1;
+				System.out.println("d");
+			}
+
+			if (keycode == Keys.LEFT) {
+				x -= 1;
+				System.out.println("l");
+			}
+
+			if (keycode == Keys.RIGHT) {				
+				x += 1;
+				System.out.println("r");
+			}
+
+//			System.out.println("test");
+//			System.out.println("x,y = " + x + ", " + y);
+//			System.out.println("Player: " + player);
+//			System.out.println("gv: " + gv);
+//			gv.movePlayer(player, x, y);
 		}
 		
-		if(Gdx.input.isKeyPressed(Keys.LEFT)){
-			model.movePlayer(Player.LEFT, 1);
-		}
-		
-		if(Gdx.input.isKeyPressed(Keys.RIGHT)){
-			model.movePlayer(Player.RIGHT, 1);
-		}
+		return true;
+	}
+
+	public boolean keyTyped(char arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean keyUp(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean mouseMoved(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean scrolled(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean touchDown(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean touchDragged(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean touchUp(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	
-	// We have pressed a key.
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-
-		switch (key) {
-		case KeyEvent.VK_UP:
-			System.out.println("UP");
-			model.movePlayer(Player.UP, 1);
-			break;
-
-		case KeyEvent.VK_DOWN:
-			System.out.println("DOWN");
-			model.movePlayer(Player.DOWN, 1);
-			break;
-
-		case KeyEvent.VK_LEFT:
-			System.out.println("LEFT");
-			model.movePlayer(Player.LEFT, 1);
-			break;
-
-		case KeyEvent.VK_RIGHT:
-			System.out.println("Right");
-			model.movePlayer(Player.RIGHT, 1);
-			break;
-		}
-	}
-
-	// We have released a key.
-	public void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
-
-		switch (key) {
-		case KeyEvent.VK_UP:
-			System.out.println("UP");
-			model.movePlayer(Player.UP, 0);
-			break;
-
-		case KeyEvent.VK_DOWN:
-			System.out.println("DOWN");
-			model.movePlayer(Player.DOWN, 0);
-			break;
-
-		case KeyEvent.VK_LEFT:
-			System.out.println("LEFT");
-			model.movePlayer(Player.LEFT, 0);
-			break;
-
-		case KeyEvent.VK_RIGHT:
-			System.out.println("Right");
-			model.movePlayer(Player.RIGHT, 0);
-			break;
-		}
-	}
-	
-	public void keyTyped(KeyEvent e) {}
+//	// We have pressed a key.
+//	public void keyPressed(KeyEvent e) {
+//			if(player == 1) {
+//			
+//			if(Gdx.input.isKeyPressed(Keys.UP)){;
+//			y += 1;
+//				System.out.println("1");
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.DOWN)){
+//				y -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.LEFT)){
+//				x -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.RIGHT)){
+//				x += 1;
+//			}
+//			
+//			gv.movePlayer(player, x, y);
+//		}
+//	}
+//
+//	// We have released a key.
+//	public void keyReleased(KeyEvent e) {
+//			if(player == 1) {
+//			
+//			if(Gdx.input.isKeyPressed(Keys.UP)){;
+//			y += 1;
+//				System.out.println("1");
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.DOWN)){
+//				y -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.LEFT)){
+//				x -= 1;
+//			}
+//			
+//			if(Gdx.input.isKeyPressed(Keys.RIGHT)){
+//				x += 1;
+//			}
+//			
+//			gv.movePlayer(player, x, y);
+//		}
+//	}
+//	
+//	public void keyTyped(KeyEvent e) {}
 }

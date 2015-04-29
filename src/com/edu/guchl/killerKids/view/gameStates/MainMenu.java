@@ -80,14 +80,6 @@ public class MainMenu extends GameState {
 		
 	}
 
-	/*
-	 * Temporärt bara lyssnar på key-events, får flytta bort hel senare
-	 * 
-	 */
-	@Override
-	public void handleInput() {
-	}
-
 	@Override
 	public void dispose() {}
 	
@@ -104,4 +96,7 @@ public class MainMenu extends GameState {
 	    generator.dispose();
 		return generator.generateFont(parameter);
     }
+
+	@Override
+	public void handleInput(int playerX, int newPosX, int newPosY) {}
 }

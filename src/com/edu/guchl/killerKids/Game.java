@@ -2,12 +2,16 @@ package com.edu.guchl.killerKids;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.edu.guchl.killerKids.controller.Controller;
+import com.edu.guchl.killerKids.model.Model;
 import com.edu.guchl.killerKids.view.GameView;
 
 public class Game {
+	
+	
 
 	public static void main(String[] args) {
-		
+		System.out.println("Start");
 		LwjglApplicationConfiguration cfg =
 				new LwjglApplicationConfiguration();
 		
@@ -16,6 +20,12 @@ public class Game {
 		cfg.height = GameView.W_HEIGHT;
 		cfg.resizable = false;
 		
-		new LwjglApplication(new GameView(), cfg);
+		Model model = new Model();
+		GameView gv = new GameView();
+		
+		new LwjglApplication(gv, cfg);
+//		LwjglApplication app = new LwjglApplication(gv, cfg);
+		
+		new Controller(model, gv);
 	}
 }

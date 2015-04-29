@@ -19,16 +19,17 @@ public class ViewGameStateManager {
 	// current game state
 	private GameState gameState;
 	
-	public static final int MAIN_MENU = 0;
-	public static final int PLAY = 1;
-	public static final int SHOP = 2;
-	public static final int MENU_HELP = 3;
-	public static final int MENU_SETTINGS = 4;
+	public static final int MAIN_MENU = 1;
+	public static final int PLAY = 2;
+	public static final int SHOP = 3;
+	public static final int MENU_HELP = 4;
+	public static final int MENU_SETTINGS = 5;
 	
+	private int currentState = 0;
 	
 	// Have Play as default for now (later we want to start in MainMenu)
 	public ViewGameStateManager() {
-		setState(MAIN_MENU);
+		setState(PLAY);
 	}
 	
 	// Switch between states if we change view to i.e. enter shop, mainMenu.
@@ -41,8 +42,10 @@ public class ViewGameStateManager {
 		switch(state) {
 		case MAIN_MENU:		// switch to mainMenu state.
 							gameState = new MainMenu(this);
+							currentState = MAIN_MENU;
 							break;
 		case PLAY:			gameState = new PlayfieldView(this);
+							currentState = PLAY;
 							break;
 		case SHOP:			// switch to shop state.
 							break;
@@ -60,6 +63,12 @@ public class ViewGameStateManager {
 	 */
 	public void update(float dt) {
 		gameState.update(dt);
+	}
+	
+	public void updatePlayerPos(int playerX, int newPosX, int newPosY) {
+		if(currentState == PLAY){
+			gameState.handleInput(playerX, newPosX, newPosY);
+		}
 	}
 	
 	public void draw() {

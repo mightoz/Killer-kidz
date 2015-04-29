@@ -13,10 +13,10 @@ import com.edu.guchl.killerKids.view.GameView;
 
 public class PlayerView extends VisibleObjects {
 
-	private boolean up;
-	private boolean down;
-	private boolean left;
-	private boolean right;
+//	private boolean up;
+//	private boolean down;
+//	private boolean left;
+//	private boolean right;
 	
 	public PlayerView() {
 		
@@ -42,27 +42,26 @@ public class PlayerView extends VisibleObjects {
 		shapeY[2] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 32;
 	}
 	
-	public void setUp(boolean b) { up = b; }
-	public void setDown(boolean b) { down = b; }
-	public void setLeft(boolean b) { left = b; }
-	public void setRight(boolean b) { right = b; }
+//	public void setUp(boolean b) { up = b; }
+//	public void setDown(boolean b) { down = b; }
+//	public void setLeft(boolean b) { left = b; }
+//	public void setRight(boolean b) { right = b; }
+	
+	public void update(float dt, int newPosX, int newPosY) {
+		
+		// setting new position for player
+		x = newPosX;
+		y = newPosY;
+		System.out.println("NewPosition: (" + x + ", " + y + ")");
+		
+		// set shape
+		setShape();
+	}
 	
 	public void update(float dt) {
 		
-		// setting new position for player
-		if(up) {
-			y += 1*speed; // * dt?
-		} else if(down) {
-			y -= 1*speed;
-		} else if(left) {
-			x -= 1*speed;
-		} else if(right) {
-			x += 1*speed;
-		}
-
 		// set shape
 		setShape();
-		
 	}
 	
 	public void draw(ShapeRenderer sr) {
@@ -81,25 +80,4 @@ public class PlayerView extends VisibleObjects {
 		
 		sr.end();
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
