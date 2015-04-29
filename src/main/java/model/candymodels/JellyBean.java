@@ -3,15 +3,15 @@ package model.candymodels;
 /**
  * Created by Oscar on 28/04/15.
  */
-public class JellyBean implements Candy {
+public class JellyBean extends Candy {
 
     int[]candyStatus;
-    int xPos;
-    int yPos;
+    float xPos;
+    float yPos;
 
     int damage;
 
-    public JellyBean(int[]candyStatus, int x, int y){
+    public JellyBean(int[]candyStatus, float x, float y){
 
         this.candyStatus = candyStatus;
         xPos = x;
@@ -34,30 +34,25 @@ public class JellyBean implements Candy {
 
     }
 
-
-
     @Override
-    public void update() {
+    public void update(int delta) {
 
         switch(candyStatus[1]){
             case 0:
-                for(int i = 0; i < 500; i++)
                     xPos += 3*delta;
                 break;
             case 1:
-                for(int i = 0; i < 800; i++)
                     xPos += 3*delta;
                 break;
             case 2:
-                for(int i = 0; i < 1200; i++)
                     xPos += 3*delta;
                 break;
             case 3:
-                for(int i = 0; i < 1700; i++)
                     xPos += 3*delta;
                 break;
 
         }
+
 
     }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import model.candymodels.Candy;
+
 /**
  * Created by Oscar on 24/04/15.
  */
@@ -22,9 +24,9 @@ public class Model {
     public void movePlayer(boolean[] directions, int player){
 
         if(player == 1) {
-            player1.updatePos(directions);
+            player1.updateDir(directions);
         }else{
-            player2.updatePos(directions);
+            player2.updateDir(directions);
         }
 
     }
@@ -34,12 +36,31 @@ public class Model {
         Candy candy;
 
         if(player == 1){
-            candy = player1.getSelectedCandy();
             //Hur skapar man rätt candy?
-            selectedCandy1 = new Candy();
-            selectedCandy1.update(player1.getX(), player1.getY());
+            candy = player1.getNewCandy(player1.getSelectedCandy());
+
+            //shouldnt we have one giant List containing all currently existing candy object
+            selectedCandy1 = candy;
         }
 
+    }
+
+    public void updateGame(){
+        // assuming delta is one second
+        int delta = 1000;
+        player1.update(delta);
+
+        if(selectedCandy1 != null){
+            selectedCandy1.update(delta);
+        }
+    }
+    //returns selectedCandy1, currently this is the only way to access our candy.
+    public Candy getSelectedCandy1(){
+        return selectedCandy1;
+    }
+    //returns player1, currently this is the only way to access our player.
+    public Player getPlayer1(){
+        return player1;
     }
 
 }

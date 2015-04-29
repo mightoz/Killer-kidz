@@ -1,8 +1,10 @@
 package model;
 
-import java.awt.event.KeyEvent;
+import model.candymodels.JellyBean;
+import model.candymodels.Candy;
+
 import java.util.ArrayList;
-import java.util.BitSet;
+
 
 /**
  * Created by Oscar on 24/04/15.
@@ -11,8 +13,14 @@ public class Player {
 
     private float x, y;
     private String name;
-    private ArrayList candyData = new ArrayList();
+    private ArrayList candyData = new ArrayList<int[]>();
 
+    private boolean leftKeyPressed;
+    private boolean upKeyPressed;
+    private boolean rightKeyPressed;
+    private boolean downKeyPressed;
+
+    int selectedCandy;
 
 
     public Player(float x, float y, String name){
@@ -20,6 +28,13 @@ public class Player {
         this.x = x;
         this.y = y;
         this.name = name;
+
+        leftKeyPressed = false;
+        upKeyPressed = false;
+        rightKeyPressed = false;
+        downKeyPressed = false;
+
+        selectedCandy = 0;
 
     }
 
@@ -59,12 +74,16 @@ public class Player {
      * Updates the position of the player.
      * @param directions array of booleans that tells what keys are pressed. Index 0 - 4 corresponds to the keys: left, up, right and down.
      */
-    public void updatePos(boolean[] directions){
+    public void updateDir(boolean[] directions){
 
-        boolean leftKeyPressed = directions[0];
-        boolean upKeyPressed = directions[1];
-        boolean rightKeyPressed = directions[2];
-        boolean downKeyPressed = directions[3];
+        leftKeyPressed = directions[0];
+        upKeyPressed = directions[1];
+        rightKeyPressed = directions[2];
+        downKeyPressed = directions[3];
+
+    }
+    public void update(int delta){
+
         boolean leftAndRight = (!leftKeyPressed && !rightKeyPressed) || (leftKeyPressed && rightKeyPressed);
         boolean upAndDown = (!upKeyPressed && !downKeyPressed) || (upKeyPressed && downKeyPressed);
 
@@ -87,22 +106,35 @@ public class Player {
         //moves player diagonally at the same speed as all other axis.
         if(!leftAndRight && !upAndDown){
             if(upKeyPressed && rightKeyPressed){
-                x += sqrt(2 * Math.pow(delta, 2));
-                y += sqrt(2 * Math.pow(delta, 2));
+                x += Math.sqrt(2 * Math.pow(delta, 2));
+                y += Math.sqrt(2 * Math.pow(delta, 2));
             }else if(upKeyPressed){
-                x -= sqrt(2 * Math.pow(delta, 2));
-                y += sqrt(2 * Math.pow(delta, 2));
+                x -= Math.sqrt(2 * Math.pow(delta, 2));
+                y += Math.sqrt(2 * Math.pow(delta, 2));
             }else if(rightKeyPressed){
-                x += sqrt(2 * Math.pow(delta, 2));
-                y -= sqrt(2 * Math.pow(delta, 2));
+                x += Math.sqrt(2 * Math.pow(delta, 2));
+                y -= Math.sqrt(2 * Math.pow(delta, 2));
             }else{
-                x -= sqrt(2 * Math.pow(delta, 2));
-                y -= sqrt(2 * Math.pow(delta, 2));
+                x -= Math.sqrt(2 * Math.pow(delta, 2));
+                y -= Math.sqrt(2 * Math.pow(delta, 2));
             }
-
         }
-
     }
+
+    public int getSelectedCandy(){
+        return selectedCandy;
+    }
+
+    //is this really the best way to return candy object?
+    public Candy getNewCandy(int selectedCandy){
+        if(selectedCandy == 0){
+            //should really take candyData.get(0), but how do we do that?
+            return new JellyBean(new int[]{1,2,3}, x, y);
+        }else{
+            return null;
+        }
+    }
+
 
 
 
