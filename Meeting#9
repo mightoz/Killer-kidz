@@ -1,0 +1,40 @@
+Meeting Agenda
+
+  Date: 2015-04-30
+  Facilitator: Oscar
+  Participants: All
+
+1. Objectives 
+Before the meeting we had to look at Kims work and find out what had to be fixed with his git to merge it with the rest of the project.
+2. Reports 
+Kim has continued his work on the views.
+Marie has made a controller for key events and a controller for timer. The controllers are ready to run the program. The work has been submitted and merged into the master branch.
+Oscar has finished the implementation of the player class, made an abstract class for candies, implemented a new basic candy JellyBean, made some changes to the model and connected the classes so that they work with the controller. The work has been submitted and merged into the master branch.
+Matilda has been working on the model.
+	
+3. Discussion items 
+What our next steps will be to further increase our progress with the project.
+Briefly discuss the SDD and make sure we know what should be done and make some plans for starting the work on it.	
+
+4. Outcomes and assignments
+Before we can start working on new things we need to finish what we had planned for the meeting. Kim has to merge his views with the master branch and connect them to the rest of the program, and make it runnable.
+
+Everyone will help to make sure the program works. When this is done we can start working on some new things:
+
+Marie will work on kid models, continue the work with the controller so that it can listen to events from the view.
+
+Kim will start to get the main menu to work, i.e. make the view and model as well as connecting these with the controller.
+
+Matilda will start working on levels.
+
+Everyone will take a look at the SDD and add things if they have time.
+
+Oscar will continue working on candy, add functionality to JellyBean and maybe add a new candy.
+
+
+
+5. Wrap up
+
+Next meeting will be on Tuesday 5/5, 12.00 in 4205.
+
+
