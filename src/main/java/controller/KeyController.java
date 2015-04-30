@@ -25,13 +25,13 @@ public class KeyController implements KeyListener{
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = true;
-    			model.movePlayer(1, p1Moves);
+    			model.movePlayer(p1Moves, 1);
     		}
     	}
     	for (int i = 0; i < 4; i++) {
     		if (P2_LURD[i] == key) {
     			p2Moves[i] = true;
-    			model.movePlayer(2, p2Moves);
+    			model.movePlayer(p2Moves, 1);
     		}
     	}
     }
@@ -41,13 +41,13 @@ public class KeyController implements KeyListener{
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = false;
-    			model.movePlayer(1, p1Moves);
+    			model.movePlayer(p1Moves, 1);
     		}
     	}
     	for (int i = 0; i < 4; i++) {
     		if (P2_LURD[i] == key) {
     			p2Moves[i] = false;
-    			model.movePlayer(2, p2Moves);
+    			model.movePlayer(p2Moves, 2);
     		}
     	}
     	

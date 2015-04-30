@@ -24,14 +24,14 @@
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
 import controller.Controller;
+import controller.ViewController;
 import model.Model;
 import view.GameView;
 
 public class Main {
 	
-	
-
 	public static void main(String[] args) {
 		System.out.println("Start");
 		LwjglApplicationConfiguration cfg =
@@ -48,6 +48,6 @@ public class Main {
 		new LwjglApplication(gv, cfg);
 //		LwjglApplication app = new LwjglApplication(gv, cfg);
 		
-		new Controller(model, gv);
+		new ViewController(model, gv);
 	}
 }
