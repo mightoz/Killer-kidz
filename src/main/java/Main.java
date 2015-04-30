@@ -1,3 +1,37 @@
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+//import controller.Controller;
+import controller.ViewController;
+import model.Model;
+import view.GameView;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.out.println("Start");
+		LwjglApplicationConfiguration cfg =
+				new LwjglApplicationConfiguration();
+		
+		cfg.title = GameView.TITLE;
+		cfg.width = GameView.W_WIDTH;
+		cfg.height = GameView.W_HEIGHT;
+		cfg.resizable = false;
+		
+		Model model = new Model("Player1"); // default constructor is missing.
+		GameView gv = new GameView();
+		
+		new LwjglApplication(gv, cfg);
+//		LwjglApplication app = new LwjglApplication(gv, cfg);
+		
+		new ViewController(model, gv);
+	}
+}
+
+/*
+ * Den gamla Mainmetoden som användes i Workshop 1.b
+ */
+
 //import edu.chl.change2projectname.controller.ProjectController;
 //import edu.chl.change2projectname.model.Project;
 //import edu.chl.change2projectname.view.ProjectView;
@@ -22,32 +56,3 @@
 //	}
 //}
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-
-import controller.Controller;
-import controller.ViewController;
-import model.Model;
-import view.GameView;
-
-public class Main {
-	
-	public static void main(String[] args) {
-		System.out.println("Start");
-		LwjglApplicationConfiguration cfg =
-				new LwjglApplicationConfiguration();
-		
-		cfg.title = GameView.TITLE;
-		cfg.width = GameView.W_WIDTH;
-		cfg.height = GameView.W_HEIGHT;
-		cfg.resizable = false;
-		
-		Model model = new Model(); // default constructor is missing.
-		GameView gv = new GameView();
-		
-		new LwjglApplication(gv, cfg);
-//		LwjglApplication app = new LwjglApplication(gv, cfg);
-		
-		new ViewController(model, gv);
-	}
-}

@@ -3,10 +3,9 @@ package view;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import controller.Controller;
+//import controller.Controller;
 
 
 public class GameView implements ApplicationListener {
@@ -15,7 +14,7 @@ public class GameView implements ApplicationListener {
 	public static int W_WIDTH = 640;
 	public static int W_HEIGHT = 480;
 	
-	Controller controller = new Controller(); // buttonlistener-handling.
+//	Controller controller = new Controller(); // buttonlistener-handling.
 	
 	// change gameStates
 	private ViewGameStateManager gsm;
@@ -43,7 +42,7 @@ public class GameView implements ApplicationListener {
 		// initiate our GameStateManager
 		gsm = new ViewGameStateManager();
 		
-		Gdx.input.setInputProcessor(controller);
+//		Gdx.input.setInputProcessor(controller);
 		
 	}
 
@@ -59,41 +58,41 @@ public class GameView implements ApplicationListener {
 		gsm.update(Gdx.graphics.getDeltaTime());
 		
 		gsm.draw();
-		tempMove();
+//		tempMove();
 //		controller.KeyEvent();
 		
 	}
 	
-	// takes new position for the player, and forwards it through the "Pipe"
-	// to the Player object.
-	public void movePlayer(int playerX, int newPosX, int newPosY) {
-		gsm.updatePlayerPos(playerX, newPosX, newPosY);
-	}
+//	// takes new position for the player, and forwards it through the "Pipe"
+//	// to the Player object.
+//	public void movePlayer(int playerX, int newPosX, int newPosY) {
+//		gsm.updatePlayerPos(playerX, newPosX, newPosY);
+//	}
 	
-	/*
-	 * Temporary until rest is working
-	 */
-	int playerPosX = W_WIDTH/3;
-	int playerPosY = W_HEIGHT/2;
-	public void tempMove() {
-		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			playerPosY += 3;
-		}
-
-		if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			playerPosY -= 3;
-
-		}
-		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			playerPosX -= 3;
-
-		}
-		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			playerPosX += 3;
-
-		}
-		movePlayer(1, playerPosX, playerPosY);
-	}
+//	/*
+//	 * Temporary until rest is working
+//	 */
+//	int playerPosX = W_WIDTH/3;
+//	int playerPosY = W_HEIGHT/2;
+//	public void tempMove() {
+//		if (Gdx.input.isKeyPressed(Keys.UP)) {
+//			playerPosY += 3;
+//		}
+//
+//		if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+//			playerPosY -= 3;
+//
+//		}
+//		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+//			playerPosX -= 3;
+//
+//		}
+//		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+//			playerPosX += 3;
+//
+//		}
+//		movePlayer(1, playerPosX, playerPosY);
+//	}
 
 	public void pause() {}
 	public void resume() {}

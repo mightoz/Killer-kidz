@@ -65,12 +65,6 @@ public class ViewGameStateManager {
 		gameState.update(dt);
 	}
 	
-	public void updatePlayerPos(int playerX, int newPosX, int newPosY) {
-		if(currentState == PLAY){
-			gameState.handleInput(playerX, newPosX, newPosY);
-		}
-	}
-	
 	public void draw() {
 		gameState.draw();
 	}
