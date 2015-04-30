@@ -1,4 +1,4 @@
-package com.edu.guchl.killerKids.view;
+package view;
 
 
 import com.badlogic.gdx.ApplicationListener;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.edu.guchl.killerKids.controller.Controller;
+import controller.Controller;
 
 
 public class GameView implements ApplicationListener {

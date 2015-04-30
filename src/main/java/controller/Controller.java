@@ -1,9 +1,9 @@
-package com.edu.guchl.killerKids.controller;
+package controller;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
-import com.edu.guchl.killerKids.model.Model;
-import com.edu.guchl.killerKids.view.GameView;
+import model.Model;
+import view.GameView;
 
 public class Controller implements InputProcessor {
 	

@@ -1,4 +1,4 @@
-package com.edu.guchl.killerKids.view.inGameEntities;
+package view.inGameEntities;
 
 public class VisibleObjects {
 

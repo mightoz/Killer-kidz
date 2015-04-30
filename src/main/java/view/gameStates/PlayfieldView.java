@@ -1,8 +1,8 @@
-package com.edu.guchl.killerKids.view.gameStates;
+package view.gameStates;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.edu.guchl.killerKids.view.ViewGameStateManager;
-import com.edu.guchl.killerKids.view.inGameEntities.PlayerView;
+import view.ViewGameStateManager;
+import view.inGameEntities.PlayerView;
 
 public class PlayfieldView extends GameState {
 

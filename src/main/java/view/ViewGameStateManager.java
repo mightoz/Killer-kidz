@@ -1,13 +1,13 @@
-package com.edu.guchl.killerKids.view;
+package view;
 
-import com.edu.guchl.killerKids.view.gameStates.GameState;
-import com.edu.guchl.killerKids.view.gameStates.MainMenu;
-import com.edu.guchl.killerKids.view.gameStates.PlayfieldView;
+import view.gameStates.GameState;
+import view.gameStates.MainMenu;
+import view.gameStates.PlayfieldView;
 
 /*
- * Denna koden skall anropas i någon ModelGameStateManager som avgör om vi klarat 
- * en runda eller liknande, eller kanske i kontrollern, men lekte lite med den för att
- * få kontroll på hur den fungerar. 
+ * Denna koden skall anropas i nï¿½gon ModelGameStateManager som avgï¿½r om vi klarat 
+ * en runda eller liknande, eller kanske i kontrollern, men lekte lite med den fï¿½r att
+ * fï¿½ kontroll pï¿½ hur den fungerar. 
  * ------------------------------------------------------------------------------------------------------------------------- OBS!
  */
 

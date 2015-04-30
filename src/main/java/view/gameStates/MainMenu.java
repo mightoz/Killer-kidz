@@ -1,4 +1,4 @@
-package com.edu.guchl.killerKids.view.gameStates;
+package view.gameStates;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.edu.guchl.killerKids.view.GameView;
-import com.edu.guchl.killerKids.view.ViewGameStateManager;
+import view.GameView;
+import view.ViewGameStateManager;
 
 public class MainMenu extends GameState {
 

@@ -1,12 +1,12 @@
-package com.edu.guchl.killerKids.view.inGameEntities;
+package view.inGameEntities;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
-import com.edu.guchl.killerKids.view.GameView;
+import view.GameView;
 
 /*
- * Slog ihop denna med Models temporärt, så den kunde läsa korrekt data för
+ * Slog ihop denna med Models temporï¿½rt, sï¿½ den kunde lï¿½sa korrekt data fï¿½r
  * visa spelarens nya koordinater.
  */
 

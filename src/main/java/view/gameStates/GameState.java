@@ -1,6 +1,6 @@
-package com.edu.guchl.killerKids.view.gameStates;
+package view.gameStates;
 
-import com.edu.guchl.killerKids.view.ViewGameStateManager;
+import view.ViewGameStateManager;
 
 public abstract class GameState {
 
