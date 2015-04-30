@@ -3,7 +3,6 @@ package view;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 //import controller.Controller;
@@ -64,11 +63,11 @@ public class GameView implements ApplicationListener {
 		
 	}
 	
-	// takes new position for the player, and forwards it through the "Pipe"
-	// to the Player object.
-	public void movePlayer(int playerX, int newPosX, int newPosY) {
-		gsm.updatePlayerPos(playerX, newPosX, newPosY);
-	}
+//	// takes new position for the player, and forwards it through the "Pipe"
+//	// to the Player object.
+//	public void movePlayer(int playerX, int newPosX, int newPosY) {
+//		gsm.updatePlayerPos(playerX, newPosX, newPosY);
+//	}
 	
 //	/*
 //	 * Temporary until rest is working
