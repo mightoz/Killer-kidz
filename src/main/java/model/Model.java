@@ -5,7 +5,7 @@ import model.candymodels.Candy;
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Model {
+public class Model{
 
     private Player player1;
     private Player player2;
