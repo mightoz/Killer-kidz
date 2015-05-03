@@ -13,8 +13,8 @@ public class Main {
 				new LwjglApplicationConfiguration();
 		
 		cfg.title = GameView.TITLE;
-		cfg.width = GameView.W_WIDTH;
-		cfg.height = GameView.W_HEIGHT;
+		cfg.width = GameView.WIDTH;
+		cfg.height = GameView.HEIGHT;
 		cfg.resizable = false;
 		
 		Model model = new Model("Player1"); // default constructor is missing.

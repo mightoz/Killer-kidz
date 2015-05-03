@@ -20,16 +20,18 @@ public class ViewGameStateManager {
 	private GameState gameState;
 	
 	public static final int MAIN_MENU = 1;
-	public static final int PLAY = 2;
-	public static final int SHOP = 3;
-	public static final int MENU_HELP = 4;
-	public static final int MENU_SETTINGS = 5;
+	public static final int MENU_HELP = 2;
+	public static final int MENU_SETTINGS = 3;
+	public static final int HIGHSCORE = 3;
+	public static final int PLAY = 4;
+	public static final int SHOP = 5;
+	
 	
 	private int currentState = 0;
 	
 	// Have Play as default for now (later we want to start in MainMenu)
 	public ViewGameStateManager() {
-		setState(PLAY);
+		setState(MAIN_MENU);
 	}
 	
 	// Switch between states if we change view to i.e. enter shop, mainMenu.
@@ -39,6 +41,8 @@ public class ViewGameStateManager {
 			gameState.dispose();
 		}
 		
+		// Using currentState to avoid moving the non-existing-character when 
+		// you are in a menu.
 		switch(state) {
 		case MAIN_MENU:		// switch to mainMenu state.
 							gameState = new MainMenu(this);

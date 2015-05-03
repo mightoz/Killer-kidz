@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class GameView implements ApplicationListener {
 
 	public static final String TITLE = "KillerKids";
-	public static int W_WIDTH = 640;
-	public static int W_HEIGHT = 480;
+	public static int WIDTH = 640;
+	public static int HEIGHT = 480;
 	
 //	Controller controller = new Controller(); // buttonlistener-handling.
 	
@@ -26,8 +26,8 @@ public class GameView implements ApplicationListener {
 	// Called one time at startup
 	public void create() {
 		
-		W_WIDTH = Gdx.graphics.getWidth();
-		W_HEIGHT = Gdx.graphics.getHeight();
+		WIDTH = Gdx.graphics.getWidth();
+		HEIGHT = Gdx.graphics.getHeight();
 		
 		/*
 		 *  default cam look at origo with a box: (-1, -1) to (1, 1)
@@ -35,8 +35,8 @@ public class GameView implements ApplicationListener {
 		 *  and then move camera to center of our window with translate,
 		 *  and lastly we have to update camera to see the change.
 		 */
-		cam = new OrthographicCamera(W_WIDTH, W_HEIGHT);
-		cam.translate(W_WIDTH / 2, W_HEIGHT / 2);
+		cam = new OrthographicCamera(WIDTH, HEIGHT);
+		cam.translate(WIDTH / 2, HEIGHT / 2);
 		cam.update();
 		
 		// initiate our GameStateManager

@@ -14,8 +14,8 @@ public class PlayerView extends VisibleObjects {
 	
 	public PlayerView() {
 		
-		x = GameView.W_WIDTH / 4;
-		y = GameView.W_HEIGHT / 2;
+		x = GameView.WIDTH / 4;
+		y = GameView.HEIGHT / 2;
 		
 		shapeX = new float[3];
 		shapeY = new float[3];
