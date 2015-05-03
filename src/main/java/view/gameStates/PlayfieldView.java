@@ -39,7 +39,7 @@ public class PlayfieldView extends GameState {
 	}
 	
 	// Gives the player a new position, and then update the view.
-	public void updatePlayer(int playerX, int newPosX, int newPosY) {
+	public void updatePlayer(int playerX, float newPosX, float newPosY) {
 		player.update(playerX, newPosX, newPosY);
 	}
 

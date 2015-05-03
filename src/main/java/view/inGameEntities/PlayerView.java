@@ -36,14 +36,14 @@ public class PlayerView extends VisibleObjects {
 		shapeY[2] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 32;
 	}
 	
-	public void update(float dt, int newPosX, int newPosY) {
+	/*
+	 * update players position.
+	 */
+	public void update(float dt, float newPosX, float newPosY) {
 		
-		// setting new position for player
 		x = newPosX;
 		y = newPosY;
-		System.out.println("NewPosition: (" + x + ", " + y + ")");
 		
-		// set shape
 		setShape();
 	}
 	
