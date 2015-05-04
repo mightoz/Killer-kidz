@@ -19,7 +19,7 @@ public class Model implements ObservedSubject {
 
 
     public Model(){
-
+        observers = new ArrayList<>();
     }
 
     /**
@@ -28,6 +28,7 @@ public class Model implements ObservedSubject {
      * @param playerName
      */
     public Model(String playerName) {
+        this();
         player1 = new Player(0, 0, playerName);
     }
 
@@ -38,6 +39,7 @@ public class Model implements ObservedSubject {
      * @param player2Name
      */
     public Model(String player1Name, String player2Name) {
+        this();
         player1 = new Player(0, 0, player1Name);
         player2 = new Player(0, 0, player2Name);
     }
