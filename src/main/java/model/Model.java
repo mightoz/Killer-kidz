@@ -90,18 +90,34 @@ public class Model implements ObservedSubject {
         return player1;
     }
 
+    /**
+     * Adds a new observer
+     * @param newObserver
+     */
     @Override
-    public void register(Observer o) {
+    public void register(Observer newObserver) {
 
+        if(newObserver == null){
+            throw new IllegalArgumentException("Tries to add null object as observer");
+        }
+
+       if(!observers.contains(newObserver)){
+           observers.add(newObserver);
+       }
     }
 
+    /**
+     * Removes an observer
+     * @param observer
+     */
     @Override
-    public void unregister(Observer o) {
+    public void unregister(Observer observer) {
 
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObserver() {
-
+        
     }
 }

@@ -1,10 +1,12 @@
 package view.gameStates;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import model.ObservedSubject;
+import model.Observer;
 import view.ViewGameStateManager;
 import view.inGameEntities.PlayerView;
 
-public class PlayfieldView extends GameState {
+public class PlayfieldView extends GameState implements Observer {
 
 	private ShapeRenderer sr;
 	private PlayerView player;	
@@ -47,5 +49,18 @@ public class PlayfieldView extends GameState {
 //	@Override
 	public void handleInput(int playerX, int newPosX, int newPosY) {
 		update(1, newPosX, newPosY);
+	}
+
+
+	//Observer methods
+
+	@Override
+	public void update() {
+
+	}
+
+	@Override
+	public void setSubject(ObservedSubject sub) {
+
 	}
 }
