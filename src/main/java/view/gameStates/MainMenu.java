@@ -4,31 +4,29 @@ import view.GameView;
 import view.ViewGameStateManager;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class MainMenu extends GameState {
 
 //	private GameView gv = new GameView();
 	
-	private ShapeRenderer sr;
-	
 	// For the text
 	private SpriteBatch batch;
-	private BitmapFont font;
-	int viewportHeight;
-	BitmapFont titleFont;
-	BitmapFont textFont;
+	private BitmapFont titleFont;
+	private BitmapFont textFont;
 	
-	private int buttonWidth = 150;
-	private int buttonHeight = 70;
-	private String title = "KillerKids";
+	// Used to add strings to view.
+	GlyphLayout layout = new GlyphLayout(); //dont do this every frame! Store it as member
 	
+	private final String title = "KillerKids";
+	
+	private int currentItem;
+	private String[] menuItems;
 	
 //	private int button1[]
 	
@@ -36,16 +34,30 @@ public class MainMenu extends GameState {
 		super(gsm);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void init() {
-		sr = new ShapeRenderer();
 		batch = new SpriteBatch();
+
+		
+		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
+				Gdx.files.internal("fonts/OpenSans-CondLight.ttf"));
+		
+		titleFont = gen.generateFont(56);
+		titleFont.setColor(Color.YELLOW);
+		
 //		font = new BitmapFont();
-//		font.setColor(Color.BLUE);
+		textFont = gen.generateFont(20);
+		textFont.setColor(Color.WHITE);
+		
+		menuItems = new String[] {
+				"Play",
+				"Settings",
+				"HighScore",
+				"HowToPlay",
+				"Quit"
+		};
 //		int fontSize = (int)(28 * Gdx.graphics.getDensity());
-		
-//		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/OpenSans-CondLight.ttf"));
-		
 //        font = createFont(generator, 64);
 //        generator.dispose();
 
@@ -54,52 +66,79 @@ public class MainMenu extends GameState {
 	// for now, only paints the player and then updates
 	@Override
 	public void update(float dt) {
-
+		
+		handleInput();
 	}
 
 	public void draw() {
-
-		// Start to draw all buttons.
-		sr.begin(ShapeType.Filled);
-		sr.setColor(1, 1, 0, 1);
-
-		// all drawing should go between this and sr.end() at bottom.
-		sr.rect((GameView.W_WIDTH / 2) - (buttonWidth / 2), GameView.W_HEIGHT / 2, buttonWidth, buttonHeight);
-		sr.rect((GameView.W_WIDTH / 2) - (buttonWidth / 2), (GameView.W_HEIGHT / 2) - 100, buttonWidth, buttonHeight);
-		sr.rect((GameView.W_WIDTH / 2) - (buttonWidth / 2), (GameView.W_HEIGHT / 2) - 200, buttonWidth, buttonHeight);
-		FileHandle handle = Gdx.files.internal("data/myfile.txt");
-		
-		sr.end();
 		
 		// Start to draw strings.
+		batch.setProjectionMatrix(GameView.cam.combined);
 		batch.begin();
-//		font.draw(batch, title, (GameView.W_WIDTH / 2) - (buttonWidth / 2), ((GameView.W_HEIGHT / 3) * 2));
-//		font.draw(batch, title, 100, 100 );
+		
+		
+		layout.setText(titleFont, title);
+		float width = layout.width;// contains the width of the current set text
+		float height = layout.height; // contains the height of the current set text
+		
+		// Draw title
+		titleFont.draw(batch, title, (GameView.WIDTH - width) / 2, 300);
+		
+		// Draw menuitems
+		for(int i = 0; i < menuItems.length; i++) {
+			layout.setText(textFont, menuItems[i]);
+			width = layout.width;
+			if(currentItem == i) textFont.setColor(Color.RED);
+			else textFont.setColor(Color.WHITE);
+			titleFont.draw(batch, menuItems[i], (GameView.WIDTH - width) / 2, 300);
+		}
 		
 		batch.end();
 		
 	}
 
 	@Override
-	public void dispose() {}
-	
-	
-	private BitmapFont createFont(FreeTypeFontGenerator gen, float dp)
-    {
-		FileHandle fontFile = Gdx.files.internal("data/Roboto-Bold.ttf");
-	    FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);
-	    FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-	    parameter.size = 12;
-	    textFont = generator.generateFont(parameter);
-	    parameter.size = 24;
-	    titleFont = generator.generateFont(parameter);
-	    generator.dispose();
-		return generator.generateFont(parameter);
-    }
-
-	@Override
 	public void handleInput() {
+		
+		if(Gdx.input.isKeyJustPressed(Keys.UP)) {
+			if(currentItem > 0) currentItem--;
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+			if(currentItem < menuItems.length - 1){
+				currentItem++;
+			}
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			select();
+		}
 	}
+	
+	private void select() {
+		
+		// Play
+		if (currentItem == 0) {
+			gsm.setState(ViewGameStateManager.PLAY);
+		}
+		// Settings
+		else if (currentItem == 1) {
+//			gsm.setState(ViewGameStateManager.MENU_SETTINGS);
+		}
+		// HighScore
+		else if (currentItem == 2) {
+//			gsm.setState(ViewGameStateManager.HIGHSCORE);
+		}
+		// HowToPlay
+		else if (currentItem == 3) {
+//			gsm.setState(ViewGameStateManager.MENU_HELP);
+		}
+		// Quit
+		else if (currentItem == 4) {
+			Gdx.app.exit();
+		}
+	}
+	
+	@Override
+	public void dispose() {}
 }
 
 
