@@ -2,6 +2,7 @@ package model;
 
 import model.candymodels.Candy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,12 +10,17 @@ import java.util.List;
  */
 public class Model implements ObservedSubject {
 
-    private List<Observer> observers;
+    private ArrayList<Observer> observers;
 
     private Player player1;
     private Player player2;
     private Candy selectedCandy1;
     private Candy selectedCandy2;
+
+
+    public Model(){
+
+    }
 
     /**
      * Creates game with one player
@@ -46,11 +52,10 @@ public class Model implements ObservedSubject {
 
         if (player == 1) {
             player1.updateDir(directions);
-            updatePlayer(1, player1.getX(), player1.getY());
         } else {
             player2.updateDir(directions);
-            updatePlayer(2, player2.getX(), player2.getY());
         }
+        notifyObserver();
     }
 
     /**
@@ -116,8 +121,13 @@ public class Model implements ObservedSubject {
         observers.remove(observer);
     }
 
+
     @Override
     public void notifyObserver() {
-        
+
+        for(Observer observer: observers){
+            observer.update();
+        }
+
     }
 }

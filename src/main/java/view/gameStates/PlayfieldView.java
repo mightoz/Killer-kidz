@@ -12,7 +12,9 @@ public class PlayfieldView extends GameState implements Observer {
 	private PlayerView player;	
 	
 	public PlayfieldView(ViewGameStateManager gsm) {
+
 		super(gsm);
+
 	}
 
 	@Override
