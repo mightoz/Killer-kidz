@@ -1,8 +1,9 @@
 package model;
 
 import model.candymodels.Candy;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oscar on 24/04/15.
@@ -131,5 +132,4 @@ public class Model implements ObservedSubject {
         }
 
     }
-
 }
