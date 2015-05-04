@@ -120,19 +120,19 @@ public class MainMenu extends GameState {
 			gsm.setState(ViewGameStateManager.PLAY);
 		}
 		// Settings
-		if (currentItem == 1) {
+		else if (currentItem == 1) {
 //			gsm.setState(ViewGameStateManager.MENU_SETTINGS);
 		}
 		// HighScore
-		if (currentItem == 1) {
+		else if (currentItem == 2) {
 //			gsm.setState(ViewGameStateManager.HIGHSCORE);
 		}
 		// HowToPlay
-		if (currentItem == 1) {
+		else if (currentItem == 3) {
 //			gsm.setState(ViewGameStateManager.MENU_HELP);
 		}
 		// Quit
-		if (currentItem == 1) {
+		else if (currentItem == 4) {
 			Gdx.app.exit();
 		}
 	}
