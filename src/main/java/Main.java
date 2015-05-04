@@ -44,6 +44,7 @@ public class Main {
 		
 		Model model = new Model(); // default constructor is missing.
 		GameView gv = new GameView();
+		Model.register(gv);
 		
 		new LwjglApplication(gv, cfg);
 //		LwjglApplication app = new LwjglApplication(gv, cfg);
