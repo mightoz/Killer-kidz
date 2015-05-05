@@ -12,6 +12,8 @@ public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
 
+    private ArrayList<> objects;
+
     private Player player1;
     private Player player2;
     private Candy selectedCandy1;
@@ -20,6 +22,7 @@ public class Model implements ObservedSubject {
 
     public Model(){
         observers = new ArrayList<>();
+        objects = new ArrayList<>();
     }
 
     /**
@@ -123,12 +126,18 @@ public class Model implements ObservedSubject {
         observers.remove(observer);
     }
 
-
+    /**
+     * Notifies all the observers that a change has occurred
+     */
     @Override
     public void notifyObserver() {
 
         for(Observer observer: observers){
-            observer.update();
+
+            for(object: objects){
+                observer.update(String id, float posX, float posY);
+            }
+
         }
 
     }

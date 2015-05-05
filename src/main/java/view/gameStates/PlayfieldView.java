@@ -55,7 +55,7 @@ public class PlayfieldView extends GameState implements Observer {
 	//Observer methods
 
 	@Override
-	public void update() {
+	public void update(String id, float posX, float posY) {
 
 	}
 
