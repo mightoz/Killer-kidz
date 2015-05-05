@@ -23,12 +23,6 @@ public class PlayfieldView extends GameState implements Observer {
 		player = new PlayerView();
 	}
 
-	// Paints the player and updates for now (later it will also update arrays
-	// with kids and candy)
-	public void update(float dt, int newPosX, int newPosY) {
-		player.update(dt, newPosX, newPosY);
-	}
-
 	@Override
 	public void draw() {
 		player.draw(sr);
@@ -47,10 +41,14 @@ public class PlayfieldView extends GameState implements Observer {
 	public void update(float dt) {
 		player.update(dt);
 	}
+	
+	// Gives the player a new position, and then update the view.
+	public void updatePlayer(int playerX, int newPosX, int newPosY) {
+		player.update(playerX, newPosX, newPosY);
+	}
 
-//	@Override
-	public void handleInput(int playerX, int newPosX, int newPosY) {
-		update(1, newPosX, newPosY);
+	@Override
+	public void handleInput() {
 	}
 
 

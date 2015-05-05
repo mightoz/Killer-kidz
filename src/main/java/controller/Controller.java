@@ -5,6 +5,13 @@ import com.badlogic.gdx.InputProcessor;
 import model.Model;
 import view.GameView;
 
+
+
+/*
+ * Class for Kim, used it from start, but will be removed as soon as View:s
+ * dependency on it, is removed and fixed.
+ * 
+ */
 public class Controller implements InputProcessor {
 	
 	Model model;

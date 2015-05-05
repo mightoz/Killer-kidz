@@ -1,16 +1,16 @@
 package view.gameStates;
 
+import view.GameView;
+import view.ViewGameStateManager;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import view.GameView;
-import view.ViewGameStateManager;
 
 public class MainMenu extends GameState {
 
@@ -98,5 +98,9 @@ public class MainMenu extends GameState {
     }
 
 	@Override
-	public void handleInput(int playerX, int newPosX, int newPosY) {}
+	public void handleInput() {
+	}
 }
+
+
+

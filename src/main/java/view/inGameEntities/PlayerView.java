@@ -10,13 +10,7 @@ import view.GameView;
  * visa spelarens nya koordinater.
  */
 
-
 public class PlayerView extends VisibleObjects {
-
-//	private boolean up;
-//	private boolean down;
-//	private boolean left;
-//	private boolean right;
 	
 	public PlayerView() {
 		
@@ -41,11 +35,6 @@ public class PlayerView extends VisibleObjects {
 		shapeX[2] = x + MathUtils.cos(radians + 4 * 3.1415f / 5) * 32;
 		shapeY[2] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 32;
 	}
-	
-//	public void setUp(boolean b) { up = b; }
-//	public void setDown(boolean b) { down = b; }
-//	public void setLeft(boolean b) { left = b; }
-//	public void setRight(boolean b) { right = b; }
 	
 	public void update(float dt, int newPosX, int newPosY) {
 		
