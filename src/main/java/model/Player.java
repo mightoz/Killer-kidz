@@ -13,14 +13,14 @@ public class Player {
 
     private float x, y;
     private String name;
-    private ArrayList candyData = new ArrayList<int[]>();
+    private ArrayList candyData;
 
     private boolean leftKeyPressed;
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
     private boolean downKeyPressed;
 
-    int selectedCandy;
+    private int selectedCandy;
 
 
     public Player(float x, float y, String name){
@@ -29,11 +29,17 @@ public class Player {
         this.y = y;
         this.name = name;
 
+        candyData = new ArrayList<int[]>();
+        int[] startCandy = new int[4];
+        for(int i = 0; i < 4; i++){
+            startCandy[i] = 0;
+        }
+        candyData.add(0,startCandy);
+
         leftKeyPressed = false;
         upKeyPressed = false;
         rightKeyPressed = false;
         downKeyPressed = false;
-
         selectedCandy = 0;
 
     }

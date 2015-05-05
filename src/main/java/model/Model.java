@@ -1,6 +1,9 @@
 package model;
 
 import model.candymodels.Candy;
+import model.candymodels.JellyBean;
+
+import java.util.ArrayList;
 
 /**
  * Created by Oscar on 24/04/15.
@@ -53,11 +56,17 @@ public class Model {
     public void throwCandy(int player){
 
         Candy candy;
-
+        //TODO: MAKE THIS WORK
         if(player == 1){
-            //Hur skapar man rätt candy?
+            switch(player1.getSelectedCandy()){
+                case 0:
+                    ArrayList tmpData = player1.getCandyData();
+                    int[] tmpCandy = tmpData.get(0);
+                    candy = new JellyBean(tmpData.get(0), player1.getX(), player1.getY());
+            }
             candy = player1.getNewCandy(player1.getSelectedCandy());
 
+            //TODO:CREATE APPROPRIATE LIST FOR CANDIES
             //shouldnt we have one giant List containing all currently existing candy object
             selectedCandy1 = candy;
         }
