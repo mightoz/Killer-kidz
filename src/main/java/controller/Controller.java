@@ -3,7 +3,7 @@ package controller;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import model.Model;
-import view.GameView;
+import view.GameManager;
 
 
 
@@ -15,7 +15,7 @@ import view.GameView;
 public class Controller implements InputProcessor {
 	
 	Model model;
-	GameView gv;
+	GameManager gv;
 //	LwjglApplication app;
 	
 	/*
@@ -30,7 +30,7 @@ public class Controller implements InputProcessor {
 		
 	}
 	
-	public Controller(Model model, GameView gv) {
+	public Controller(Model model, GameManager gv) {
 		this.model = model;
 //		this.gv = gv;
 		this.gv = gv;
