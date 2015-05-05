@@ -12,15 +12,13 @@ public class Model {
 
     private Player player1;
     private Player player2;
-    private Candy selectedCandy1;
-    private Candy selectedCandy2;
 
     /**
      * Creates game with one player
      * @param playerName
      */
     public Model(String playerName){
-        player1 = new Player(0, 0, playerName);
+        player1 = new Player(400, 500, playerName);
     }
 
     /**
@@ -29,12 +27,12 @@ public class Model {
      * @param player2Name
      */
     public Model(String player1Name, String player2Name){
-        player1 = new Player(0, 0, player1Name);
-        player2 = new Player(0, 0, player2Name);
+        player1 = new Player(400, 500, player1Name);
+        player2 = new Player(400, 800, player2Name);
     }
 
     /**
-     * Updates the player's position and tells the viewto update
+     * Updates the player's directions
      * @param player
      * @param directions
      */
@@ -42,33 +40,59 @@ public class Model {
 
         if(player == 1) {
             player1.updateDir(directions);
-            updatePlayer(1, player1.getX(), player1.getY());
         }else{
             player2.updateDir(directions);
-            updatePlayer(2, player2.getX(), player2.getY());
         }
     }
 
     /**
+     * Creates the currently selected candy.
      *
-     * @param player
+     * @param player Which player who should create the candy.
      */
     public void throwCandy(int player){
 
         Candy candy;
-        //TODO: MAKE THIS WORK
+
         if(player == 1){
             switch(player1.getSelectedCandy()){
                 case 0:
-                    ArrayList tmpData = player1.getCandyData();
-                    int[] tmpCandy = tmpData.get(0);
-                    candy = new JellyBean(tmpData.get(0), player1.getX(), player1.getY());
+                    ArrayList<int[]> tmpData1 = player1.getCandyData();
+                    candy = new JellyBean(tmpData1.get(0), player1.getX(), player1.getY());
+                    break;
+                case 1:
+                    ArrayList<int[]> tmpData2 = player1.getCandyData();
+                    candy = new Skittle(tmpData2.get(1), player1.getX(), player1.getY());
+                    break;
+                case 2:
+                    ArrayList<int[]> tmpData3 = player1.getCandyData();
+                    candy = new HubbaBubba(tmpData3.get(2), player1.getX(), player1.getY());
+                    break;
+                case 3:
+                    ArrayList<int[]> tmpData4 = player1.getCandyData();
+                    candy = new FerroRoscher(tmpData4.get(3), player1.getX(), player1.getY());
+                    break;
             }
-            candy = player1.getNewCandy(player1.getSelectedCandy());
+        }else{
+            switch(player2.getSelectedCandy()) {
+                case 0:
+                    ArrayList<int[]> tmpData1 = player2.getCandyData();
+                    candy = new JellyBean(tmpData1.get(0), player2.getX(), player2.getY());
+                    break;
+                case 1:
+                    ArrayList<int[]> tmpData2 = player2.getCandyData();
+                    candy = new Skittle(tmpData2.get(1), player2.getX(), player2.getY());
+                    break;
+                case 2:
+                    ArrayList<int[]> tmpData3 = player2.getCandyData();
+                    candy = new HubbaBubba(tmpData3.get(2), player2.getX(), player2.getY());
+                    break;
+                case 3:
+                    ArrayList<int[]> tmpData4 = player2.getCandyData();
+                    candy = new FerroRoscher(tmpData4.get(3), player2.getX(), player2.getY());
+                    break;
+            }
 
-            //TODO:CREATE APPROPRIATE LIST FOR CANDIES
-            //shouldnt we have one giant List containing all currently existing candy object
-            selectedCandy1 = candy;
         }
 
     }

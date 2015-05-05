@@ -131,15 +131,7 @@ public class Player {
         return selectedCandy;
     }
 
-    //is this really the best way to return candy object?
-    public Candy getNewCandy(int selectedCandy){
-        if(selectedCandy == 0){
-            //should really take candyData.get(0), but how do we do that?
-            return new JellyBean(new int[]{1,2,3}, x, y);
-        }else{
-            return null;
-        }
-    }
+
 
 
 
