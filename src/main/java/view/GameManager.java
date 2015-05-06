@@ -13,7 +13,7 @@ import view.gameStates.PlayfieldView;
 public class GameManager extends Game {
 
 	public static final String TITLE = "KillerKids";
-	private int WIDTH = 640; // -------------------------------------------------- ändrade ifrån static, kolla krockar.
+	private int WIDTH = 640;
 	private int HEIGHT = 480;
 	
 	// ---------------------------------------------------------------------------- Behöver vi dessa för framtiden? Isf. inte spara dom i view'n.
