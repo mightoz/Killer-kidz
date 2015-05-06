@@ -5,7 +5,6 @@ import model.candymodels.JellyBean;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 
 /**
  * Created by Oscar on 24/04/15.
@@ -14,15 +13,15 @@ public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
 
-    private ArrayList<> objects;
+    private ArrayList<Entity> objects;
 
     private Player player1;
     private Player player2;
 
 
     public Model(){
-        observers = new ArrayList<>();
-        objects = new ArrayList<>();
+        observers = new ArrayList<Observer>();
+        objects = new ArrayList<Entity>();
     }
 
     /**
@@ -34,8 +33,8 @@ public class Model implements ObservedSubject {
     public Model(String playerName){
         this();
         player1 = new Player(400, 500, playerName);
+        objects.add(player1);
     }
-
 
     /**
      * Creates game with two players
@@ -47,6 +46,8 @@ public class Model implements ObservedSubject {
         this();
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
+        objects.add(player1);
+        objects.add(player2);
     }
 
     /**
@@ -61,7 +62,6 @@ public class Model implements ObservedSubject {
         }else{
             player2.updateDir(directions);
         }
-        notifyObserver();
     }
 
     /**
@@ -77,63 +77,62 @@ public class Model implements ObservedSubject {
             switch(player1.getSelectedCandy()){
                 case 0:
                     ArrayList<int[]> tmpData1 = player1.getCandyData();
-                    candy = new JellyBean(tmpData1.get(0), player1.getX(), player1.getY());
+                    candy = new JellyBean(player1.getX(), player1.getY(), tmpData1.get(0));
+                    objects.add(candy);
                     break;
                 case 1:
-                    ArrayList<int[]> tmpData2 = player1.getCandyData();
-                    candy = new Skittle(tmpData2.get(1), player1.getX(), player1.getY());
-                    break;
+//                    ArrayList<int[]> tmpData2 = player1.getCandyData();
+//                    candy = new Skittle(player1.getX(), player1.getY(), tmpData2.get(1));
+//                    break;
                 case 2:
-                    ArrayList<int[]> tmpData3 = player1.getCandyData();
-                    candy = new HubbaBubba(tmpData3.get(2), player1.getX(), player1.getY());
-                    break;
+//                    ArrayList<int[]> tmpData3 = player1.getCandyData();
+//                    candy = new HubbaBubba(player1.getX(), player1.getY(), tmpData3.get(2));
+//                    break;
                 case 3:
-                    ArrayList<int[]> tmpData4 = player1.getCandyData();
-                    candy = new FerroRoscher(tmpData4.get(3), player1.getX(), player1.getY());
-                    break;
+//                    ArrayList<int[]> tmpData4 = player1.getCandyData();
+//                    candy = new FerroRoscher(player1.getX(), player1.getY(), tmpData4.get(3));
+//                    break;
             }
         }else{
             switch(player2.getSelectedCandy()) {
                 case 0:
                     ArrayList<int[]> tmpData1 = player2.getCandyData();
-                    candy = new JellyBean(tmpData1.get(0), player2.getX(), player2.getY());
+                    candy = new JellyBean(player2.getX(), player2.getY(), tmpData1.get(0));
+                    objects.add(candy);
                     break;
                 case 1:
-                    ArrayList<int[]> tmpData2 = player2.getCandyData();
-                    candy = new Skittle(tmpData2.get(1), player2.getX(), player2.getY());
-                    break;
+//                    ArrayList<int[]> tmpData2 = player2.getCandyData();
+//                    candy = new Skittle(player2.getX(), player2.getY(), tmpData2.get(1));
+//                    break;
                 case 2:
-                    ArrayList<int[]> tmpData3 = player2.getCandyData();
-                    candy = new HubbaBubba(tmpData3.get(2), player2.getX(), player2.getY());
-                    break;
+//                    ArrayList<int[]> tmpData3 = player2.getCandyData();
+//                    candy = new HubbaBubba(player2.getX(), player2.getY(), tmpData3.get(2));
+//                    break;
                 case 3:
-                    ArrayList<int[]> tmpData4 = player2.getCandyData();
-                    candy = new FerroRoscher(tmpData4.get(3), player2.getX(), player2.getY());
-                    break;
+//                    ArrayList<int[]> tmpData4 = player2.getCandyData();
+//                    candy = new FerroRoscher(player2.getX(), player2.getY(), tmpData4.get(3));
+//                    break;
             }
 
         }
 
     }
 
+    /**
+     * Updates the list of active objects and notifies view. Removes objects that have expired.
+     */
     public void updateGame() {
         // assuming delta is one second
         int delta = 1000;
-        player1.update(delta);
 
-        if (selectedCandy1 != null) {
-            selectedCandy1.update(delta);
+        for(Entity entity: objects){
+            if(!entity.isExpired()){
+                entity.update(delta);
+            }else{
+                objects.remove(entity);
+            }
         }
-    }
-
-    //returns selectedCandy1, currently this is the only way to access our candy.
-    public Candy getSelectedCandy1() {
-        return selectedCandy1;
-    }
-
-    //returns player1, currently this is the only way to access our player.
-    public Player getPlayer1() {
-        return player1;
+        notifyObserver();
     }
 
     /**
@@ -169,8 +168,8 @@ public class Model implements ObservedSubject {
 
         for(Observer observer: observers){
 
-            for(object: objects){
-                observer.update(String id, float posX, float posY);
+            for(Entity entity: objects){
+                observer.update(entity.getId(), entity.getX(), entity.getY());
             }
 
         }

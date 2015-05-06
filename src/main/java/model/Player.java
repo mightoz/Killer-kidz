@@ -1,7 +1,5 @@
 package model;
 
-import model.candymodels.JellyBean;
-import model.candymodels.Candy;
 
 import java.util.ArrayList;
 
@@ -9,24 +7,27 @@ import java.util.ArrayList;
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Player {
+public class Player extends Entity{
 
-    private float x, y;
+    private float xPos, yPos;
     private String name;
     private ArrayList candyData;
-
     private boolean leftKeyPressed;
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
     private boolean downKeyPressed;
-
     private int selectedCandy;
+    private static int pIdGenerator;
+    private final String pId;
 
 
     public Player(float x, float y, String name){
+        super(x,y);
 
-        this.x = x;
-        this.y = y;
+        pId = generateId();
+
+        xPos = x;
+        yPos = y;
         this.name = name;
 
         candyData = new ArrayList<int[]>();
@@ -42,14 +43,6 @@ public class Player {
         downKeyPressed = false;
         selectedCandy = 0;
 
-    }
-
-    public float getX(){
-        return this.x;
-    }
-
-    public float getY(){
-        return this.y;
     }
 
     /**
@@ -77,7 +70,7 @@ public class Player {
     }
 
     /**
-     * Updates the position of the player.
+     * Updates the direction of the player.
      * @param directions array of booleans that tells what keys are pressed. Index 0 - 4 corresponds to the keys: left, up, right and down.
      */
     public void updateDir(boolean[] directions){
@@ -88,6 +81,11 @@ public class Player {
         downKeyPressed = directions[3];
 
     }
+
+    /**
+     * Updates the position of the player based on the directions.
+     * @param delta
+     */
     public void update(int delta){
 
         boolean leftAndRight = (!leftKeyPressed && !rightKeyPressed) || (leftKeyPressed && rightKeyPressed);
@@ -97,43 +95,56 @@ public class Player {
         //or both left and right keys are not pressed at all.
         if(leftAndRight && !upAndDown){
             if(upKeyPressed)
-                y += delta;
+                yPos += delta;
             else
-                y -= delta;
+                yPos -= delta;
         }
         //moves player left/right if left/right key is pressed and both up and down keys are pressed at the same time,
         //or both up and down keys are not pressed at all.
         if(!leftAndRight && upAndDown){
             if (rightKeyPressed)
-                x += delta;
+                xPos += delta;
             else
-                x -= delta;
+                xPos -= delta;
         }
         //moves player diagonally at the same speed as all other axis.
         if(!leftAndRight && !upAndDown){
             if(upKeyPressed && rightKeyPressed){
-                x += Math.sqrt(2 * Math.pow(delta, 2));
-                y += Math.sqrt(2 * Math.pow(delta, 2));
+                xPos += Math.sqrt(2 * Math.pow(delta, 2));
+                yPos += Math.sqrt(2 * Math.pow(delta, 2));
             }else if(upKeyPressed){
-                x -= Math.sqrt(2 * Math.pow(delta, 2));
-                y += Math.sqrt(2 * Math.pow(delta, 2));
+                xPos -= Math.sqrt(2 * Math.pow(delta, 2));
+                yPos += Math.sqrt(2 * Math.pow(delta, 2));
             }else if(rightKeyPressed){
-                x += Math.sqrt(2 * Math.pow(delta, 2));
-                y -= Math.sqrt(2 * Math.pow(delta, 2));
+                xPos += Math.sqrt(2 * Math.pow(delta, 2));
+                yPos -= Math.sqrt(2 * Math.pow(delta, 2));
             }else{
-                x -= Math.sqrt(2 * Math.pow(delta, 2));
-                y -= Math.sqrt(2 * Math.pow(delta, 2));
+                xPos -= Math.sqrt(2 * Math.pow(delta, 2));
+                yPos -= Math.sqrt(2 * Math.pow(delta, 2));
             }
         }
     }
 
+    /**
+     * Returns the selected candy
+     * @return
+     */
     public int getSelectedCandy(){
         return selectedCandy;
     }
 
+    @Override
+    public String generateId() {
+        int tmp = pIdGenerator;
+        pIdGenerator++;
+        return "c"+tmp;
+    }
 
+    public boolean isExpired(){
+        return false;
+    }
 
-
-
-
+    public String getId(){
+        return pId;
+    }
 }
