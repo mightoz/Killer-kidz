@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import model.Model;
 
-public class GameController implements KeyListener{
+public class KeyController implements KeyListener{
     
     private Model model;
     private boolean[] p1Moves = {false, false, false, false};
@@ -15,9 +15,8 @@ public class GameController implements KeyListener{
     private final int[] P2_LURD = {KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S};
     private final int P2_THROW = KeyEvent.VK_CONTROL;
 
-    public GameController(Model model) {
+    public KeyController(Model model) {
         this.model = model;
-        new TimeController(model);
     }
 
 	// skicka array[4] med booleans LURD ist for direction
@@ -26,13 +25,13 @@ public class GameController implements KeyListener{
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = true;
-    			model.movePlayer(1, p1Moves);
+    			model.movePlayer(p1Moves, 1);
     		}
     	}
     	for (int i = 0; i < 4; i++) {
     		if (P2_LURD[i] == key) {
     			p2Moves[i] = true;
-    			model.movePlayer(2, p2Moves);
+    			model.movePlayer(p2Moves, 1);
     		}
     	}
     }
@@ -42,13 +41,13 @@ public class GameController implements KeyListener{
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = false;
-    			model.movePlayer(1, p1Moves);
+    			model.movePlayer(p1Moves, 1);
     		}
     	}
     	for (int i = 0; i < 4; i++) {
     		if (P2_LURD[i] == key) {
     			p2Moves[i] = false;
-    			model.movePlayer(2, p2Moves);
+    			model.movePlayer(p2Moves, 2);
     		}
     	}
     	

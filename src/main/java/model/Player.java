@@ -13,14 +13,14 @@ public class Player {
 
     private float x, y;
     private String name;
-    private ArrayList candyData = new ArrayList<int[]>();
+    private ArrayList candyData;
 
     private boolean leftKeyPressed;
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
     private boolean downKeyPressed;
 
-    int selectedCandy;
+    private int selectedCandy;
 
 
     public Player(float x, float y, String name){
@@ -29,11 +29,17 @@ public class Player {
         this.y = y;
         this.name = name;
 
+        candyData = new ArrayList<int[]>();
+        int[] startCandy = new int[4];
+        for(int i = 0; i < 4; i++){
+            startCandy[i] = 0;
+        }
+        candyData.add(0,startCandy);
+
         leftKeyPressed = false;
         upKeyPressed = false;
         rightKeyPressed = false;
         downKeyPressed = false;
-
         selectedCandy = 0;
 
     }
@@ -125,15 +131,7 @@ public class Player {
         return selectedCandy;
     }
 
-    //is this really the best way to return candy object?
-    public Candy getNewCandy(int selectedCandy){
-        if(selectedCandy == 0){
-            //should really take candyData.get(0), but how do we do that?
-            return new JellyBean(new int[]{1,2,3}, x, y);
-        }else{
-            return null;
-        }
-    }
+
 
 
 
