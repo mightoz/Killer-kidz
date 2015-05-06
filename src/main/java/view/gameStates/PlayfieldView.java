@@ -9,21 +9,46 @@ import view.inGameEntities.PlayerView;
 public class PlayfieldView implements Screen {
 
 	private ShapeRenderer sr;
-	private PlayerView player;	
+	private PlayerView[] player;	
 	
 	private GameManager gm;
 	
-	public PlayfieldView(GameManager gvm) {
+	public PlayfieldView(GameManager gm) {
 		sr = new ShapeRenderer();
-		player = new PlayerView();
-		this.gm = gvm;
+		player = new PlayerView[2];
+		player[0] = new PlayerView("P.1");
+		this.gm = gm;
 	}
 
 	@Override
 	public void render(float delta) {
-		player.render(sr);
+		player[0].render(sr);
 		
 		// --------------------------------------------------------------------- Lägg till alla rutor som skall visas, t.ex. "combat-area", candy-bar, curr.level, etc.
+	}
+	
+	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
+	public void update(String objectID, float newXPos, float newYPos){
+		
+		switch(objectID.substring(0, 1)){
+		case "P": // Player objects	
+				  if(objectID.equals("P.1")){
+					  player[0].update(newXPos, newYPos);
+					  break;
+					  
+				  } else if(objectID.equals("P.2")){
+					  player[1].update(newXPos, newYPos);
+					  break;
+			}
+					
+		case "C": // Candy object
+//			int temp = Integer.parseInt(objectID.substring(2, 5)); // 999 objects
+//			for()
+			
+		case "K": // Kid object	
+			// Do stuff
+		}
+		
 	}
 	
 	@Override
@@ -40,45 +65,3 @@ public class PlayfieldView implements Screen {
 	public void dispose() {}
 
 }
-
-//import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-//import view.GameViewStateManager;
-//import view.inGameEntities.PlayerView;
-//
-//public class PlayfieldView extends GameState {
-//
-//	private ShapeRenderer sr;
-//	private PlayerView player;	
-//	
-//	public PlayfieldView(GameViewStateManager gsm) {
-//		super(gsm);
-//	}
-//
-//	@Override
-//	public void init() {
-//		sr = new ShapeRenderer();
-//		player = new PlayerView();
-//	}
-//
-//	@Override
-//	public void draw() {
-//		player.draw(sr);
-//	}
-//
-//	@Override
-//	public void dispose() { }
-//
-//	@Override
-//	public void update(float dt) {
-//		player.update(dt);
-//	}
-//	
-//	// Gives the player a new position, and then update the view.
-//	public void updatePlayer(int playerX, float newPosX, float newPosY) {
-//		player.update(playerX, newPosX, newPosY);
-//	}
-//
-//	@Override
-//	public void handleInput() {
-//	}
-//}

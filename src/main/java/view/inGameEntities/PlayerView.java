@@ -1,26 +1,29 @@
 package view.inGameEntities;
 
-import model.Player;
+import view.GameManager;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 
-import view.GameManager;
-
 /*
- * Slog ihop denna med Models tempor�rt, s� den kunde l�sa korrekt data f�r
+ * Slog ihop denna med Models temporärt, så den kunde läsa korrekt data
  * visa spelarens nya koordinater.
  */
 
 public class PlayerView extends VisibleObjects {
 
-	private Player playerModel;
-
-	public PlayerView() {
-
-		x = GameManager.WIDTH / 4;
-		y = GameManager.HEIGHT / 2;
+	private GameManager gm;
+	
+	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system.
+	private String id;
+	
+	public PlayerView(String id) {
+		
+		this.id = id;
+		
+		x = gm.getWidth() / 4;
+		y = gm.getHeight() / 2;
 
 		shapeX = new float[3];
 		shapeY = new float[3];
@@ -30,14 +33,11 @@ public class PlayerView extends VisibleObjects {
 	}
 
 	// Updates players position, called by model (through interface).
-	public void update() {
+	public void update(float newXPos, float newYPos) {
 
-		// new coordinates for player.
-		x = playerModel.getX();
-		y = playerModel.getY();
-		
-		// update the "player-shape" with new coordinates.
-		setShape();
+		x = newXPos;
+		y = newYPos;
+		setShape(); // update the "player-shape" with new coordinates.
 	}
 
 	// --------------------------------------------------------------------------- Dessa streck-gubbar skall bort, och ersättas med sprites.
