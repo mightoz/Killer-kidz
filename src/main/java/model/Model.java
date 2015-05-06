@@ -121,7 +121,6 @@ public class Model implements ObservedSubject {
      */
     @Override
     public void unregister(Observer observer) {
-
         observers.remove(observer);
     }
 
