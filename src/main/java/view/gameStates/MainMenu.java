@@ -40,7 +40,6 @@ public class MainMenu implements Screen {
 		titleFont = gen.generateFont(56);
 		titleFont.setColor(Color.YELLOW);
 		
-//		font = new BitmapFont();
 		textFont = gen.generateFont(20);
 		textFont.setColor(Color.WHITE);
 		
@@ -87,12 +86,12 @@ public class MainMenu implements Screen {
 		if(Gdx.input.isKeyJustPressed(Keys.UP)) {
 			if(currentItem > 0) currentItem--;
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+		else if(Gdx.input.isKeyJustPressed(Keys.DOWN)) {
 			if(currentItem < menuItems.length - 1){
 				currentItem++;
 			}
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+		else if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 			select();
 		}
 	}
@@ -105,7 +104,7 @@ public class MainMenu implements Screen {
 		}
 		// Settings
 		else if (currentItem == 1) {
-//			gsm.setState(gm.MENU_SETTINGS);
+//			gsm.setScreen(gm.MENU_SETTINGS);
 		}
 		// HighScore
 		else if (currentItem == 2) {
