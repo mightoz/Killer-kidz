@@ -1,0 +1,26 @@
+Meeting Agenda
+
+  Date: 2015-05-05
+  Facilitator: Kim
+  Participants: Everyone
+
+1. Objectives 
+NA.
+
+2. Reports 
+Kim have started to remodify the whole view, and added a “basic” MainMenu and some  views to represent every “part” of the GameBoard, like candybar and it’s content (money, candy, currentLevel).
+Marie has began to write a controller to handle events from the view, and thought of how to improve the controller responsible for key events.
+Matilda have been working on getting the eventhandling from model to view to work (with an Observer-Pattern).
+Oscar has extended the class JellyBean and working/restructed some models to work with future plans.
+3. Discussion items 	
+How we should solve an issue with how model should send events to views. An added model that will represent the “action” with candys,kids and the player (their positions).
+
+4. Outcomes and assignments
+We decided to have a gameboard in model. And we will send events from model to view with an method: notifyObservers(String id, int newPosX, int newPosY).
+
+We decided to meet tomorrow in 6211 at 2 pm to merge together each part into one working program.
+5. Wrap up
+
+Next meeting will be on Friday 8th may 12:00 in 5205.
+
+
