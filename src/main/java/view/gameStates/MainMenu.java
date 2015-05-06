@@ -29,18 +29,18 @@ public class MainMenu implements Screen {
 	private String[] menuItems;
 	
 	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
-	public MainMenu(GameManager gvm) {
-		this.gm = gvm;
+	public MainMenu(GameManager gm) {
+		this.gm = gm;
 		
 		batch = new SpriteBatch();
 
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
-				Gdx.files.internal("fonts/OpenSans-CondLight.ttf"));
+				Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondLight.ttf"));
 		
 		titleFont = gen.generateFont(56);
 		titleFont.setColor(Color.YELLOW);
 		
-		textFont = gen.generateFont(20);
+		textFont = gen.generateFont(40);
 		textFont.setColor(Color.WHITE);
 		
 		menuItems = new String[] {
@@ -66,7 +66,7 @@ public class MainMenu implements Screen {
 		float width = layout.width;// contains the width of the current set text
 		
 		// Draw title
-		titleFont.draw(batch, title, (gm.getWidth() - width) / 2, 300);
+		titleFont.draw(batch, title, (gm.getWidth() - width) / 2, 450);
 		
 		// Draw menuitems
 		for(int i = 0; i < menuItems.length; i++) {
@@ -74,7 +74,7 @@ public class MainMenu implements Screen {
 			width = layout.width;
 			if(currentItem == i) textFont.setColor(Color.RED);
 			else textFont.setColor(Color.WHITE);
-			titleFont.draw(batch, menuItems[i], (gm.getWidth() - width) / 2, 300);
+			textFont.draw(batch, menuItems[i], (gm.getWidth() - width) / 2, 350-(i*50));
 		}
 		
 		batch.end();
@@ -100,6 +100,7 @@ public class MainMenu implements Screen {
 		
 		// Play
 		if (currentItem == 0) {
+			gm.dispose();
 			gm.setScreen(gm.playfieldView);
 		}
 		// Settings

@@ -23,6 +23,7 @@ public class KeyController implements KeyListener{
     }
 
     public void keyPressed(KeyEvent e) {
+    	System.out.println("Test");
     	int key = e.getKeyCode();
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
