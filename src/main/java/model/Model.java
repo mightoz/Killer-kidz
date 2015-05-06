@@ -5,52 +5,71 @@ import model.candymodels.JellyBean;
 
 import java.util.ArrayList;
 
+import java.util.ArrayList;
+
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Model {
+public class Model implements ObservedSubject {
+
+    private ArrayList<Observer> observers;
+
+    private ArrayList<> objects;
 
     private Player player1;
     private Player player2;
 
-    /**
-     * Creates game with one player
-     * @param playerName
-     */
-    public Model(String playerName){
-        player1 = new Player(400, 500, playerName);
+
+    public Model(){
+        observers = new ArrayList<>();
+        objects = new ArrayList<>();
     }
 
     /**
+     * Creates game with one player
+     *
+     * @param playerName
+     */
+
+    public Model(String playerName){
+        this();
+        player1 = new Player(400, 500, playerName);
+    }
+
+
+    /**
      * Creates game with two players
+     *
      * @param player1Name
      * @param player2Name
      */
     public Model(String player1Name, String player2Name){
+        this();
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
     }
 
     /**
      * Updates the player's directions
-     * @param player
-     * @param directions
+     * @param player what player to update
+     * @param directions the new directions
      */
-    public void movePlayer(int player, boolean[] directions){
+    public void movePlayer(int player, boolean[] directions) {
 
-        if(player == 1) {
+        if (player == 1) {
             player1.updateDir(directions);
         }else{
             player2.updateDir(directions);
         }
+        notifyObserver();
     }
 
     /**
-     * Creates the currently selected candy.
+     * Creates the currently selected candy for the specified player.
      *
-     * @param player Which player who should create the candy.
+     * @param player which player to throw the candy
      */
-    public void throwCandy(int player){
+    public void throwCandy(int player) {
 
         Candy candy;
 
@@ -97,22 +116,64 @@ public class Model {
 
     }
 
-    public void updateGame(){
+    public void updateGame() {
         // assuming delta is one second
         int delta = 1000;
         player1.update(delta);
 
-        if(selectedCandy1 != null){
+        if (selectedCandy1 != null) {
             selectedCandy1.update(delta);
         }
     }
+
     //returns selectedCandy1, currently this is the only way to access our candy.
-    public Candy getSelectedCandy1(){
+    public Candy getSelectedCandy1() {
         return selectedCandy1;
     }
+
     //returns player1, currently this is the only way to access our player.
-    public Player getPlayer1(){
+    public Player getPlayer1() {
         return player1;
     }
 
+    /**
+     * Adds a new observer
+     * @param newObserver
+     */
+    @Override
+    public void register(Observer newObserver) {
+
+        if(newObserver == null){
+            throw new IllegalArgumentException("Tries to add null object as observer");
+        }
+
+       if(!observers.contains(newObserver)){
+           observers.add(newObserver);
+       }
+    }
+
+    /**
+     * Removes an observer
+     * @param observer
+     */
+    @Override
+    public void unregister(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /**
+     * Notifies all the observers that a change has occurred
+     */
+    @Override
+    public void notifyObserver() {
+
+        for(Observer observer: observers){
+
+            for(object: objects){
+                observer.update(String id, float posX, float posY);
+            }
+
+        }
+
+    }
 }

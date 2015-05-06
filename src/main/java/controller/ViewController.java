@@ -1,14 +1,14 @@
 package controller;
 
 import model.Model;
-import view.GameView;
+import view.GameManager;
 
 public class ViewController {
 
 	Model model;
-	GameView view;
+	GameManager view;
 	
-	public ViewController(Model model, GameView view) {
+	public ViewController(Model model, GameManager view) {
 		this.model = model;
 		this.view = view;
 		

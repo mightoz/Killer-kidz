@@ -1,49 +1,72 @@
 package view.gameStates;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import view.ViewGameStateManager;
+
+
+import view.GameManager;
+import model.ObservedSubject;
+import model.Observer;
 import view.inGameEntities.PlayerView;
 
-public class PlayfieldView extends GameState {
+public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
-	private PlayerView player;	
+	private PlayerView[] player;
+	private GameManager gm;
 	
-	public PlayfieldView(ViewGameStateManager gsm) {
-		super(gsm);
-	}
+	public PlayfieldView(GameManager gm) {
 
-	@Override
-	public void init() {
 		sr = new ShapeRenderer();
-		player = new PlayerView();
+		player = new PlayerView[2];
+		player[0] = new PlayerView("P.1");
+		this.gm = gm;
 	}
 
 	@Override
-	public void draw() {
-		player.draw(sr);
-	}
-
-//	// Forwards the new playerPos to given player.
-//	@Override
-//	public void handleInput(int playerX, int newPosX, int newPosY) {
-//		player.update(newPosX, newPosY);
-//	}
-
-	@Override
-	public void dispose() { }
-
-	@Override
-	public void update(float dt) {
-		player.update(dt);
+	public void render(float delta) {
+		player[0].render(sr);
+		
+		// --------------------------------------------------------------------- Lägg till alla rutor som skall visas, t.ex. "combat-area", candy-bar, curr.level, etc.
 	}
 	
-	// Gives the player a new position, and then update the view.
-	public void updatePlayer(int playerX, float newPosX, float newPosY) {
-		player.update(playerX, newPosX, newPosY);
-	}
-
+	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
 	@Override
-	public void handleInput() {
+	public void update(String objectID, float newXPos, float newYPos){
+		
+		switch(objectID.substring(0, 1)){
+		case "P": // Player objects	
+				  if(objectID.equals("P.1")){
+					  player[0].update(newXPos, newYPos);
+					  break;
+					  
+				  } else if(objectID.equals("P.2")){
+					  player[1].update(newXPos, newYPos);
+					  break;
+			}
+					
+		case "C": // Candy object
+//			int temp = Integer.parseInt(objectID.substring(2, 5)); // 999 objects
+//			for()
+			
+		case "K": // Kid object	
+			// Do stuff
+		}
+		
 	}
+	
+	@Override
+	public void hide() {}
+	@Override
+	public void show() {}
+	@Override
+	public void resize(int x, int y) {}
+	@Override
+	public void pause() {}
+	@Override
+	public void resume() {}
+	@Override
+	public void dispose() {}
 }
+
+

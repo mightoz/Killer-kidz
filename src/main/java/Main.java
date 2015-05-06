@@ -3,24 +3,26 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import controller.ViewController;
 import model.Model;
-import view.GameView;
+import view.GameManager;
 
 public class Main {
 
+	
 	public static void main(String[] args) {
-		System.out.println("Start");
 		LwjglApplicationConfiguration cfg =
 				new LwjglApplicationConfiguration();
 		
-		cfg.title = GameView.TITLE;
-		cfg.width = GameView.WIDTH;
-		cfg.height = GameView.HEIGHT;
+		Model model = new Model("Player1");
+		GameManager gm = new GameManager();
+		
+		cfg.title = gm.TITLE;
+		cfg.width = gm.getWidth();
+		cfg.height = gm.getHeight();
 		cfg.resizable = false;
 		
-		Model model = new Model("Player1"); // default constructor is missing.
-		GameView gv = new GameView();
-		
-		new LwjglApplication(gv, cfg);		
-		new ViewController(model, gv);
+		new LwjglApplication(gm, cfg);		
+		new ViewController(model, gm);
 	}
+
 }
+

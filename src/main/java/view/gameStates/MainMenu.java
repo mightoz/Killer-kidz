@@ -1,45 +1,39 @@
 package view.gameStates;
 
-import view.GameView;
-import view.ViewGameStateManager;
+import view.GameManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-public class MainMenu extends GameState {
+public class MainMenu implements Screen {
 
-//	private GameView gv = new GameView();
+	private GameManager gm;
 	
-	// For the text
+	// Used for having strings on-screen.
 	private SpriteBatch batch;
 	private BitmapFont titleFont;
 	private BitmapFont textFont;
 	
-	// Used to add strings to view.
-	GlyphLayout layout = new GlyphLayout(); //dont do this every frame! Store it as member
+	// This is used to add strings to view (we use it to get center of each string
+	// so the text will be centered in the menu).
+	GlyphLayout layout = new GlyphLayout();
 	
 	private final String title = "KillerKids";
-	
 	private int currentItem;
 	private String[] menuItems;
 	
-//	private int button1[]
-	
-	public MainMenu(ViewGameStateManager gsm) {
-		super(gsm);
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public void init() {
+	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
+	public MainMenu(GameManager gvm) {
+		this.gm = gvm;
+		
 		batch = new SpriteBatch();
 
-		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 				Gdx.files.internal("fonts/OpenSans-CondLight.ttf"));
 		
@@ -57,32 +51,23 @@ public class MainMenu extends GameState {
 				"HowToPlay",
 				"Quit"
 		};
-//		int fontSize = (int)(28 * Gdx.graphics.getDensity());
-//        font = createFont(generator, 64);
-//        generator.dispose();
-
 	}
-
-	// for now, only paints the player and then updates
+	
 	@Override
-	public void update(float dt) {
+	public void render(float delta) {
 		
+		// Check for keyEvents.
 		handleInput();
-	}
-
-	public void draw() {
 		
 		// Start to draw strings.
-		batch.setProjectionMatrix(GameView.cam.combined);
+		batch.setProjectionMatrix(gm.getCam().combined);
 		batch.begin();
-		
 		
 		layout.setText(titleFont, title);
 		float width = layout.width;// contains the width of the current set text
-		float height = layout.height; // contains the height of the current set text
 		
 		// Draw title
-		titleFont.draw(batch, title, (GameView.WIDTH - width) / 2, 300);
+		titleFont.draw(batch, title, (gm.getWidth() - width) / 2, 300);
 		
 		// Draw menuitems
 		for(int i = 0; i < menuItems.length; i++) {
@@ -90,14 +75,13 @@ public class MainMenu extends GameState {
 			width = layout.width;
 			if(currentItem == i) textFont.setColor(Color.RED);
 			else textFont.setColor(Color.WHITE);
-			titleFont.draw(batch, menuItems[i], (GameView.WIDTH - width) / 2, 300);
+			titleFont.draw(batch, menuItems[i], (gm.getWidth() - width) / 2, 300);
 		}
 		
 		batch.end();
-		
 	}
-
-	@Override
+	
+	// ---------------------------------------------------------------------------- Flytta till en Controller.
 	public void handleInput() {
 		
 		if(Gdx.input.isKeyJustPressed(Keys.UP)) {
@@ -117,29 +101,36 @@ public class MainMenu extends GameState {
 		
 		// Play
 		if (currentItem == 0) {
-			gsm.setState(ViewGameStateManager.PLAY);
+			gm.setScreen(gm.playfieldView);
 		}
 		// Settings
 		else if (currentItem == 1) {
-//			gsm.setState(ViewGameStateManager.MENU_SETTINGS);
+//			gsm.setState(gm.MENU_SETTINGS);
 		}
 		// HighScore
 		else if (currentItem == 2) {
-//			gsm.setState(ViewGameStateManager.HIGHSCORE);
+//			gsm.setState(gm.HIGHSCORE);
 		}
 		// HowToPlay
 		else if (currentItem == 3) {
-//			gsm.setState(ViewGameStateManager.MENU_HELP);
+//			gsm.setState(gm.MENU_HELP);
 		}
 		// Quit
 		else if (currentItem == 4) {
 			Gdx.app.exit();
 		}
 	}
-	
+
+	@Override
+	public void hide() {}
+	@Override
+	public void show() {}
+	@Override
+	public void resize(int arg0, int arg1) {}
+	@Override
+	public void pause() {}
+	@Override
+	public void resume() {}
 	@Override
 	public void dispose() {}
 }
-
-
-
