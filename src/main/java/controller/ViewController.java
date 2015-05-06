@@ -4,14 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.Model;
-import view.GameView;
+import view.GameManager;
 
 public class ViewController implements ActionListener {
 
-	private Model model;
-	private final GameView view;
+	Model model;
+	GameManager view;
 	
-	public ViewController(GameView view) {
+	public ViewController(Model model, GameManager view) {
+		this.model = model;
 		this.view = view;
 	}
 
