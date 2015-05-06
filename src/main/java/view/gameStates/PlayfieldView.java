@@ -1,19 +1,17 @@
 package view.gameStates;
 
+import model.Observer;
+import view.GameManager;
+import view.inGameEntities.PlayerView;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
-
-import view.GameManager;
-import model.ObservedSubject;
-import model.Observer;
-import view.inGameEntities.PlayerView;
 
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
 	private PlayerView[] player;
-	private GameManager gm;
+	private GameManager gm; // ------------------------------------ Användas senare?
 	
 	public PlayfieldView(GameManager gm) {
 
@@ -34,13 +32,23 @@ public class PlayfieldView implements Screen, Observer {
 	@Override
 	public void update(String objectID, float newXPos, float newYPos){
 		
-		switch(objectID.substring(0, 1)){
+		/*
+		 * Bortse koden under om det bråkar, och istället gör:
+		 * 1) kolla vilket objekt som skall updateras (skicka med objekt i parameter?)
+		 * 2) säg till respektive "viewObjekt" att updatera dess position utifrån
+		 * 	  modelsObjekt, tex:
+		 * 			CandyViewObj.update(CandyModel.getPos())
+		 *    som då alltså säger till ett viewobjek att uppdateras sin position
+		 *    ifrån models.
+		 */
+		
+		switch(objectID.substring(0, 1)) {
 		case "P": // Player objects	
-				  if(objectID.equals("P.1")){
+				  if(objectID.equals("P.1")) {
 					  player[0].update(newXPos, newYPos);
 					  break;
 					  
-				  } else if(objectID.equals("P.2")){
+				  } else if(objectID.equals("P.2")) {
 					  player[1].update(newXPos, newYPos);
 					  break;
 			}
@@ -68,5 +76,3 @@ public class PlayfieldView implements Screen, Observer {
 	@Override
 	public void dispose() {}
 }
-
-
