@@ -18,6 +18,7 @@ public class KeyController implements KeyListener{
 
     public KeyController(Model model) {
         this.model = model;
+        new TimeController(model);
         //nbrOfPlayers = this.model.getNbrOfPlayers();
     }
 
