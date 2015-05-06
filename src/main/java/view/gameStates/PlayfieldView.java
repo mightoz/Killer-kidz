@@ -7,10 +7,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import view.GameManager;
 import model.ObservedSubject;
 import model.Observer;
-import view.ViewGameStateManager;
 import view.inGameEntities.PlayerView;
 
-public class PlayfieldView implements Screen implements Observer {
+public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
 	private PlayerView[] player;
@@ -68,7 +67,6 @@ public class PlayfieldView implements Screen implements Observer {
 	public void resume() {}
 	@Override
 	public void dispose() {}
-
 }
 
 
