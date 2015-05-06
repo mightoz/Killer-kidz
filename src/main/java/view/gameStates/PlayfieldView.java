@@ -3,17 +3,21 @@ package view.gameStates;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+
 import view.GameManager;
+import model.ObservedSubject;
+import model.Observer;
+import view.ViewGameStateManager;
 import view.inGameEntities.PlayerView;
 
-public class PlayfieldView implements Screen {
+public class PlayfieldView implements Screen implements Observer {
 
 	private ShapeRenderer sr;
-	private PlayerView[] player;	
-	
+	private PlayerView[] player;
 	private GameManager gm;
 	
 	public PlayfieldView(GameManager gm) {
+
 		sr = new ShapeRenderer();
 		player = new PlayerView[2];
 		player[0] = new PlayerView("P.1");
@@ -28,6 +32,7 @@ public class PlayfieldView implements Screen {
 	}
 	
 	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
+	@Override
 	public void update(String objectID, float newXPos, float newYPos){
 		
 		switch(objectID.substring(0, 1)){
@@ -65,3 +70,5 @@ public class PlayfieldView implements Screen {
 	public void dispose() {}
 
 }
+
+
