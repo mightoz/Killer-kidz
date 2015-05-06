@@ -24,7 +24,7 @@ public class Main {
 		new LwjglApplication(gv, cfg);
 //		LwjglApplication app = new LwjglApplication(gv, cfg);
 		
-		new ViewController(model, gv);
+		new ViewController(gv);
 	}
 }
 
