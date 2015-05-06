@@ -48,7 +48,7 @@ public class CurrentLevel_Bar {
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, CurrentLevel, (gm.WIDTH ) / 8, (gm.HEIGHT / 8)); // ----------- Ta reda på mer korrekta koordinater.
+		textFont.draw(batch, CurrentLevel, (gm.getWidth() ) / 8, (gm.getHeight() / 8)); // ----------- Ta reda på mer korrekta koordinater.
 		
 		batch.end();
 	}

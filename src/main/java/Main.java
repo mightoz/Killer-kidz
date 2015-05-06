@@ -7,20 +7,21 @@ import view.GameManager;
 
 public class Main {
 
+	
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg =
 				new LwjglApplicationConfiguration();
 		
-		cfg.title = GameManager.TITLE;
-		cfg.width = GameManager.WIDTH;
-		cfg.height = GameManager.HEIGHT;
+		Model model = new Model("Player1");
+		GameManager gm = new GameManager();
+		
+		cfg.title = gm.TITLE;
+		cfg.width = gm.getWidth();
+		cfg.height = gm.getHeight();
 		cfg.resizable = false;
 		
-		Model model = new Model("Player1");
-		GameManager gv = new GameManager();
-		
-		new LwjglApplication(gv, cfg);		
-		new ViewController(model, gv);
+		new LwjglApplication(gm, cfg);		
+		new ViewController(model, gm);
 	}
 
 }
