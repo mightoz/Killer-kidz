@@ -1,5 +1,6 @@
 package model.candymodels;
 
+
 /**
  * Created by Oscar on 28/04/15.
  */
@@ -8,22 +9,21 @@ public class JellyBean extends Candy {
     private int[] candyStatus;
     private int[] extraCandyStatus;
     private int damage;
-    private float xPos;
-    private float yPos;
     private float travelledLength;
     private float maxTravelRange;
     private boolean expired;
 
 
 
-    public JellyBean(int[] candyStatus, float x, float y) {
 
+    public JellyBean(float x, float y, int[] candyStatus) {
+        super(x,y);
         this.candyStatus = candyStatus;
-        xPos = x;
-        yPos = y;
         expired = false;
         extraCandyStatus = candyStatus;
         extraCandyStatus[2] = 0;
+
+        generateId();
 
         switch (candyStatus[0]) {
             case 0:
@@ -62,14 +62,14 @@ public class JellyBean extends Candy {
             case 0:
                 break;
             case 1:
-                Candy extraCandy = new JellyBean(extraCandyStatus, xPos, yPos+10);
+                Candy extraCandy = new JellyBean(xPos, yPos+10, extraCandyStatus);
                 break;
             case 2:
-                Candy extraCandy1 = new JellyBean(extraCandyStatus, xPos, yPos+10);
+                Candy extraCandy1 = new JellyBean(xPos, yPos+10, extraCandyStatus);
                 if(extraCandyStatus[0] > 0)
                     extraCandyStatus[0] -= 1;
-                Candy extraCandy2 = new JellyBean(extraCandyStatus, xPos-10, yPos+10);
-                Candy extraCandy3 = new JellyBean(extraCandyStatus, xPos-10, yPos);
+                Candy extraCandy2 = new JellyBean(xPos-10, yPos+10, extraCandyStatus);
+                Candy extraCandy3 = new JellyBean(xPos-10, yPos, extraCandyStatus);
                 break;
             case 3:
                 //todo: make a big jellybean that explodes into more jellybeans
@@ -98,4 +98,6 @@ public class JellyBean extends Candy {
             expired = true;
         }
     }
+
+
 }

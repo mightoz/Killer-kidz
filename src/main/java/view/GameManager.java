@@ -1,12 +1,11 @@
 package view;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-
 import view.gameStates.MainMenu;
 import view.gameStates.PlayfieldView;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 
 // ------------------------------------------------------------------------------ Omvandlats till en Controller =P?
@@ -58,26 +57,9 @@ public class GameManager extends Game {
 	
 	@Override
 	public void render () {
+//		System.out.println("5");
+//		System.out.println(screen);
 		if (screen != null) screen.render(Gdx.graphics.getDeltaTime());
-	}
-	
-	// ------------------------------------------------------------------------------ Ta bort senare, har bara som referens, för att slippa kolla metoden online.
-	/**
-	 * Sets the current screen. {@link Screen#hide()} is called on any old
-	 * screen, and {@link Screen#show()} is called on the new screen, if any.
-	 * 
-	 * @param screen
-	 *            may be {@code null}
-	 */
-	public void setScreen (Screen screen) {
-		if (this.screen != null) { 
-			this.screen.hide(); 
-			this.screen = screen;
-		}
-		if (this.screen != null) {
-			this.screen.show();
-			this.screen.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		}
 	}
 	
 	public OrthographicCamera getCam(){	return cam;	}
