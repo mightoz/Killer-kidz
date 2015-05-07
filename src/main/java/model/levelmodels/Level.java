@@ -8,11 +8,30 @@ import java.util.ArrayList;
 public abstract class Level {
 
     private ArrayList<Kid> kids;
+    private int frames;
+    private int kidsInStore;
 
     public Level(){
         kids = new ArrayList<>();
+        frames = 0;
+        kidsInStore = 0;
     }
 
-    public abstract void update(int type, float x, float y);
+    /**
+     * Updates the positions of all the kids in the game
+     */
+    public abstract void update();
+
+    /**
+     * Checks if the player is done with the level
+     * @return
+     */
+    public abstract boolean levelDone();
+
+    /**
+     * Checks if the player has failed
+     * @return
+     */
+    public abstract boolean levelFailed();
 
 }

@@ -12,8 +12,12 @@ public class LevelOne extends Level {
     }
 
     @Override
-    public void update(int type, float x, float y) {
-        return null;
+    public void update() {
+
+        frames++;
+
+
+
     }
 
 }
