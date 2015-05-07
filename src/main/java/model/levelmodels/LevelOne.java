@@ -1,6 +1,6 @@
 package model.levelmodels;
 
-import java.util.ArrayList;
+import model.Entity;
 
 /**
  * Created by Matilda on 2015-05-03.
@@ -13,31 +13,22 @@ public class LevelOne extends Level {
     }
 
     @Override
-    public void update() {
-        frames++;
+    public void update(int delta) {
+        updates++;
 
         //Intervallet får anpassas till resten av spelet
-        if(frames > 5){
-            kids.add(new Kid());
-            frames = 0;
+        if(updates > 5){
+
+            //double (mellan 0 och 1) * 101
+            kids.add(new Kid(maxX, (float)Math.random()*101));
+            updates = 0;
         }
 
         //uppdaterar positionen på alla kids
-        for(Kid kid: kids){
-            kid.update();
+        for(Entity kid: kids){
+            kid.update(delta);
         }
 
-    }
-
-    @Override
-    public boolean levelDone() {
-
-        if(kidsInLevel == 0 || kidsInStore < 10 && kidsInLevel == 0){
-            return true;
-        }else{
-            return false;
-        }
-        
     }
 
     @Override
