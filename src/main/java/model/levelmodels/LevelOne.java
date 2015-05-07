@@ -31,7 +31,13 @@ public class LevelOne extends Level {
 
     @Override
     public boolean levelDone() {
-        return false;
+
+        if(kidsInLevel == 0 || kidsInStore < 10 && kidsInLevel == 0){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     @Override
