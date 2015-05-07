@@ -7,12 +7,13 @@ import java.util.ArrayList;
  */
 public abstract class Level {
 
-    private ArrayList<Kid> kids;
-    private int frames;
-    private int kidsInStore;
+    protected ArrayList<Kid> kids;
+    protected int frames;
+    protected int kidsInStore;
+    protected int kidsInLevel;
 
     public Level(){
-        kids = new ArrayList<>();
+        kids = new ArrayList<Kid>();
         frames = 0;
         kidsInStore = 0;
     }
