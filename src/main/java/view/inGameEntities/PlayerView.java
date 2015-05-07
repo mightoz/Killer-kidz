@@ -18,10 +18,11 @@ public class PlayerView extends VisibleObjects {
 	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system.
 	private String id;
 	
-	public PlayerView(String id) {
+	public PlayerView(String id, GameManager gm) {
 		
+		this.gm = gm;
 		this.id = id;
-		
+		System.out.println(gm);
 		x = gm.getWidth() / 4;
 		y = gm.getHeight() / 2;
 

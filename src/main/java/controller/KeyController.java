@@ -10,6 +10,7 @@ public class KeyController implements KeyListener{
     private boolean[] p1Moves = {false, false, false, false};
     private boolean[] p2Moves = {false, false, false, false};
     
+    private final int nbrOfPlayers = 2;		// NOTE: have to change soon
     private final int[] P1_LURD = {KeyEvent.VK_LEFT, KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN};
     private final int P1_THROW = KeyEvent.VK_SPACE;
     private final int[] P2_LURD = {KeyEvent.VK_A, KeyEvent.VK_W, KeyEvent.VK_D, KeyEvent.VK_S};
@@ -17,22 +18,26 @@ public class KeyController implements KeyListener{
 
     public KeyController(Model model) {
         this.model = model;
+        new TimeController(model);
+        //nbrOfPlayers = this.model.getNbrOfPlayers();
     }
 
-	// skicka array[4] med booleans LURD ist for direction
     public void keyPressed(KeyEvent e) {
+    	System.out.println("Test");
     	int key = e.getKeyCode();
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = true;
-    			model.movePlayer(p1Moves, 1);
+    			model.movePlayer(1, p1Moves);
     		}
     	}
-    	for (int i = 0; i < 4; i++) {
-    		if (P2_LURD[i] == key) {
-    			p2Moves[i] = true;
-    			model.movePlayer(p2Moves, 1);
-    		}
+    	if (nbrOfPlayers == 2) {
+	    	for (int i = 0; i < 4; i++) {
+	    		if (P2_LURD[i] == key) {
+	    			p2Moves[i] = true;
+	    			model.movePlayer(2, p2Moves);
+	    		}
+	    	}
     	}
     }
     
@@ -41,20 +46,22 @@ public class KeyController implements KeyListener{
     	for (int i = 0; i < 4; i++) {
     		if (P1_LURD[i] == key) {
     			p1Moves[i] = false;
-    			model.movePlayer(p1Moves, 1);
+    			model.movePlayer(1, p1Moves);
     		}
     	}
-    	for (int i = 0; i < 4; i++) {
-    		if (P2_LURD[i] == key) {
-    			p2Moves[i] = false;
-    			model.movePlayer(p2Moves, 2);
-    		}
+    	if (nbrOfPlayers == 2) {
+	    	for (int i = 0; i < 4; i++) {
+	    		if (P2_LURD[i] == key) {
+	    			p2Moves[i] = false;
+	    			model.movePlayer(2, p2Moves);
+	    		}
+	    	}
     	}
     	
     	if (key == P1_THROW) {
     		model.throwCandy(1);
     	}
-    	if (key == P2_THROW) {
+    	if (nbrOfPlayers == 2 && key == P2_THROW) {
     		model.throwCandy(2);
     	}
     }
