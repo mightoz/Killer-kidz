@@ -6,7 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class KeyController extends InputListener {
+public class GameController extends InputListener {
     private Model model;
     private boolean[] p1Moves = {false, false, false, false};
     private boolean[] p2Moves = {false, false, false, false};
@@ -17,7 +17,7 @@ public class KeyController extends InputListener {
     private final int[] P2_LURD = {Keys.A, Keys.W, Keys.D, Keys.S};
     private final int P2_THROW = Keys.CONTROL_LEFT;
   
-    public KeyController(Model model) {
+    public GameController(Model model) {
         this.model = model;
         new TimeController(model);
         //nbrOfPlayers = this.model.getNbrOfPlayers();
