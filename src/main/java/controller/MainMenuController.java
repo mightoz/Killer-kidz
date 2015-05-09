@@ -15,7 +15,8 @@ public class MainMenuController extends InputListener {
 	public MainMenuController(Model model, GameManager view) {
 		this.model = model;
 		this.view = view;
-		new GameController(model);
+		GameController gc = new GameController(model);
+		// view.addListener(gc);
 	}
 	
 	public boolean keyUp(InputEvent event, int keycode) {
@@ -24,6 +25,10 @@ public class MainMenuController extends InputListener {
 			return true;
 		}
 		else if (keycode == Keys.DOWN) {
+			// do stuff
+			return true;
+		}
+		else if (keycode == Keys.ENTER) {
 			// do stuff
 			return true;
 		}
