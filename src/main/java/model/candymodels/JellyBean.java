@@ -90,7 +90,7 @@ public class JellyBean extends Candy {
      * @param delta
      */
     @Override
-    public void update(int delta) {
+    public void update(double delta) {
         if(travelledLength < maxTravelRange){
             xPos += 3 * delta;
             travelledLength += 3 * delta;

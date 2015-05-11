@@ -86,7 +86,7 @@ public class Player extends Entity{
      * Updates the position of the player based on the directions.
      * @param delta
      */
-    public void update(int delta){
+    public void update(double delta){
 
         boolean leftAndRight = (!leftKeyPressed && !rightKeyPressed) || (leftKeyPressed && rightKeyPressed);
         boolean upAndDown = (!upKeyPressed && !downKeyPressed) || (upKeyPressed && downKeyPressed);
