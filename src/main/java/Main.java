@@ -1,7 +1,7 @@
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import controller.ViewController;
+import controller.MainMenuController;
 import model.Model;
 import view.GameManager;
 
@@ -21,7 +21,7 @@ public class Main {
 		cfg.resizable = false;
 		
 		new LwjglApplication(gm, cfg);		
-		new ViewController(model, gm);
+		new MainMenuController(model, gm);
 	}
 }
 
