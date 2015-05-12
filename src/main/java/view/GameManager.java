@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 // ------------------------------------------------------------------------------ Omvandlats till en Controller =P?
 public class GameManager extends Game {
 
-	public static final String TITLE = "KillerKids";
-	private int WIDTH = 640;
-	private int HEIGHT = 480;
+	public String title;
+	private int width;
+	private int height;
 	
 	// ---------------------------------------------------------------------------- Behöver vi dessa för framtiden? Isf. inte spara dom i view'n.
 //	public static final int MAIN_MENU = 1;
@@ -22,20 +22,27 @@ public class GameManager extends Game {
 //	public static final int HIGHSCORE = 3;
 //	public static final int PLAY = 4;
 //	public static final int SHOP = 5;
-	
+
 	// We need this camera to see our game.
 	private static OrthographicCamera cam;
 	
 	// All types of "Game-States" we will see.
 	private MainMenu mainMenuView;
-	public PlayfieldView playfieldView;
+	private PlayfieldView playfieldView;
+	
+	public GameManager(int width, int height, String title){
+		this.width = width;
+		this.height = height;
+		this.title = title;
+		
+	}
 	
 	@Override
 	public void create() {
 
 		// Create the canvas with given width & height.
-		WIDTH = Gdx.graphics.getWidth();
-		HEIGHT = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 		
 		/*
 		 * default cam look at origo with a box: (-1, -1) to (1, 1) so we make
@@ -43,8 +50,8 @@ public class GameManager extends Game {
 		 * center of our window with translate, and lastly we have to update
 		 * camera to see the change.
 		 */
-		cam = new OrthographicCamera(WIDTH, HEIGHT);
-		cam.translate(WIDTH / 2, HEIGHT / 2);
+		cam = new OrthographicCamera(width, height);
+		cam.translate(width / 2, height / 2);
 		cam.update();
 		
 		// create an object for each "Game-State".
@@ -63,6 +70,8 @@ public class GameManager extends Game {
 	}
 	
 	public OrthographicCamera getCam(){	return cam;	}
-	public int getWidth(){ return WIDTH; }
-	public int getHeight(){	return HEIGHT; }
+	public int getWidth(){ return width; }
+	public int getHeight(){	return height; }
+	public MainMenu getMainMenu() { return mainMenuView; }
+	public PlayfieldView getPlayfieldView() { return playfieldView; }
 }

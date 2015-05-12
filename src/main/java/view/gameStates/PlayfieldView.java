@@ -64,7 +64,6 @@ public class PlayfieldView implements Screen, Observer {
 		case "K": // Kid object	
 			// Do stuff
 		}
-		
 	}
 	
 	@Override
