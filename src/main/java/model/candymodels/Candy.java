@@ -16,7 +16,7 @@ public abstract class Candy extends Entity{
         cId = generateId();
     }
 
-    public abstract void update(int delta);
+    public abstract void update(double delta);
 
     @Override
     public String generateId() {
