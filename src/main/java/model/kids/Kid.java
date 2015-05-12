@@ -34,7 +34,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	// Default: no acceleration
-	@Override
+//	@Override ------------------------------------------------------------------------ TODO
 	public void update(int delta) {
 		xPos += vx*delta;
 		yPos += vy*delta;
