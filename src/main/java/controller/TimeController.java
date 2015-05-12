@@ -29,8 +29,8 @@ public class TimeController {
             if(currentTime >= nextTime){
                 double delta = currentTime - nextTime;
                 model.updateGame(delta);
+                nextTime += delta;
                 if(currentTime < nextTime) model.notifyObserver();
-                nextTime = (double)System.nanoTime()/1000000000.0;
             }else{
                 int sleepTime = (int)(1000.0*(nextTime-currentTime));
                 if(sleepTime > 0) {
