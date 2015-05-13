@@ -32,7 +32,7 @@ public abstract class Entity {
      */
     public abstract boolean isExpired();
 
-    public abstract void update(int delta);
+    public abstract void update(double delta);
     /**
      * returns the id of an object.
      * @return

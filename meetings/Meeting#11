@@ -1,0 +1,42 @@
+Meeting Agenda
+
+  Date: 2015-05-08
+  Facilitator: Marie
+  Participants: Everyone
+
+1. Objectives 
+NA.
+
+2. Reports 
+¤ Matilda: Has started with levels and looked at collision detections
+¤ Oscar: Has restructured model, creating an abstract class entity that all moving objects extend. Finished all code in models that is required to run the program correctly. Continued extending JellyBean, added two upgrades. Started working on implementing a dynamic timer in the controller.
+¤ Kim: Corrected the path to the font directory, cleared up some unused code, fixed some nullpointersExceptions and other small things.
+¤ Marie: Has started on the kid classes with factory pattern and looked into LibGDX listeners
+
+3. Discussion items 
+¤ What the model should send to its observers
+¤ Where the list of kids should be stored
+¤ If we should randomize (in some interval) what/how many kids each level should contain
+¤ We need to accelerate RAD (with use cases), SDD
+¤ How should we detect collisions between candy and kids
+
+4. Outcomes and assignments
+Outcomes:
+¤ Keep parameters to observers as they are
+¤ The level needs a list of kids, and perhaps a list with what kids the level will contain
+¤ The one who creates the level decides how random it will be
+¤ Use circles to model the shape of the entities (many circles like snowmans for kids) 
+
+Assignments: 
+¤ Everyone will update their part in RAD and write something in SDD
+¤ Oscar finishes the timer in the controller
+¤ Matilda will continue with levels and collision detections
+¤ Kim vill continue with his view
+¤ Marie will create new controllers and continue with kids
+
+5. Wrap up
+Unresolved issues for next meeting: N.A.
+
+Time and place for next meeting: Wednesday 13 of May, 13:15 in 5205.
+
+

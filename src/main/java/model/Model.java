@@ -121,9 +121,7 @@ public class Model implements ObservedSubject {
     /**
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
-    public void updateGame() {
-        // assuming delta is one second
-        int delta = 1000;
+    public void updateGame(double delta) {
 
         for(Entity entity: objects){
             if(!entity.isExpired()){
@@ -132,7 +130,6 @@ public class Model implements ObservedSubject {
                 objects.remove(entity);
             }
         }
-        notifyObserver();
     }
 
     /**
