@@ -55,8 +55,8 @@ public class MainMenu implements Screen {
 	@Override
 	public void render(float delta) {
 		
-		// Check for keyEvents.
-		handleInput();
+		
+//		handleInput();
 		
 		// Start to draw strings.
 		batch.setProjectionMatrix(gm.getCam().combined);
@@ -80,20 +80,24 @@ public class MainMenu implements Screen {
 		batch.end();
 	}
 	
-	// ---------------------------------------------------------------------------- Flytta till en Controller.
-	public void handleInput() {
+	// Called by a controller when user press specific key in MainMenu.
+	public String handleInput(String key) {
 		
-		if(Gdx.input.isKeyJustPressed(Keys.UP)) {
+		if(key.equals("Up")) {
 			if(currentItem > 0) currentItem--;
+			return "Up";
 		}
-		else if(Gdx.input.isKeyJustPressed(Keys.DOWN)) {
+		else if(key.equals("Down")) {
 			if(currentItem < menuItems.length - 1){
 				currentItem++;
+				return "Down";
 			}
 		}
-		else if(Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+		else if(key.equals("Enter")) {
 			select();
+			return menuItems[currentItem];
 		}
+		return "Error, Controller called MainMenu.handleInput with unknown parameter";
 	}
 	
 	private void select() {
@@ -101,7 +105,7 @@ public class MainMenu implements Screen {
 		// Play
 		if (currentItem == 0) {
 			gm.dispose();
-			gm.setScreen(gm.playfieldView);
+			gm.setScreen(gm.getPlayfieldView());
 		}
 		// Settings
 		else if (currentItem == 1) {

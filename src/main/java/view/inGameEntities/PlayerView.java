@@ -15,7 +15,7 @@ public class PlayerView extends VisibleObjects {
 
 	private GameManager gm;
 	
-	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system.
+	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system eller använd objekt i anrop.
 	private String id;
 	
 	public PlayerView(String id, GameManager gm) {
