@@ -1,35 +1,41 @@
 package controller;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.InputAdapter;
 
 import model.Model;
 import view.GameManager;
+import view.gameStates.MainMenu;
 
-public class MainMenuController extends InputListener {
+public class MainMenuController extends InputAdapter {
 
 	private final Model model;
 	private final GameManager view;
+	private final MainMenu menu;
 	
 	public MainMenuController(Model model, GameManager view) {
+		System.out.println("constructor called");
 		this.model = model;
 		this.view = view;
-		GameController gc = new GameController(model);
-		// view.addListener(gc);
+		this.menu = this.view.getMainMenu();
+		Gdx.input.setInputProcessor(this);
+		//GameController gc = new GameController(model);
 	}
 	
-	public boolean keyUp(InputEvent event, int keycode) {
+	@Override
+	public boolean keyUp(int keycode) {
 		if (keycode == Keys.UP) {
-			// do stuff
+			menu.handleInput("Up");
 			return true;
 		}
 		else if (keycode == Keys.DOWN) {
-			// do stuff
+			menu.handleInput("Down");
 			return true;
 		}
 		else if (keycode == Keys.ENTER) {
-			// do stuff
+			String choise = menu.handleInput("Enter");
+			System.out.println(choise);
 			return true;
 		}
 		return false;
