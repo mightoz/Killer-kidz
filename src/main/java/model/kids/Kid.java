@@ -1,6 +1,7 @@
 package model.kids;
 
 import model.Entity;
+import model.candymodels.Candy;
 
 public abstract class Kid extends Entity {
 	
@@ -8,15 +9,15 @@ public abstract class Kid extends Entity {
 	private final String ID;
 	private boolean expired;
 
-	protected double xHead, yHead;
-	protected double rHead;
-	protected double rBody;
+	protected double xHead, yHead;		// head position
+	protected double rHead;				// head radius
+	protected double rBody;				// body radius
 	
-	protected double vx, vy;
+	protected double vx, vy;			// velocities
 	
 	public Kid(float x, float y) {
 		// initiate position
-		super(x, y);			// body position
+		super(x, y);					// initiate body position
 		xHead = x;
 		yHead = y + rBody + rHead;
 		
@@ -34,6 +35,14 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
+	public double getHeadX() {
+		return xHead;
+	}
+	
+	public double getHeadY() {
+		return yHead;
+	}
+	
 	public double getHeadRadius() {
 		return rHead;
 	}
@@ -41,7 +50,17 @@ public abstract class Kid extends Entity {
 	public double getBodyRadius() {
 		return rBody;
 	}
-			
+	
+	@Override
+	public abstract void update(double delta);
+	
+	/**
+	 * hitByCandy handles the changes in kid if it's hit by a candy
+	 * @param candy: the candy which hit the kid
+	 * @return: void 
+	 */
+	public abstract void hitByCandy(Candy candy);
+	
 	@Override
 	public boolean isExpired() {
 		return expired;

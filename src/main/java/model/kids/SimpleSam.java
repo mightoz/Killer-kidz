@@ -1,5 +1,7 @@
 package model.kids;
 
+import model.candymodels.Candy;
+
 public class SimpleSam extends Kid {
 
 	public SimpleSam(float x, float y, int w, int h) {
@@ -16,6 +18,12 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*delta;
 		yPos += vy*delta;
+	}
+
+	@Override
+	public void hitByCandy(Candy candy) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
