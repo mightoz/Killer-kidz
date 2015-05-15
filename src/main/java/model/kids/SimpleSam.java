@@ -11,9 +11,7 @@ public class SimpleSam extends Kid {
 		vy = 0;
 	}
 
-	@Override
-	public void update(double delta) {
-		//TODO
-	}
+
+
 
 }
