@@ -36,10 +36,13 @@ public abstract class Level {
         }
     }
 
+    public ArrayList<Entity> getKids(){
+        return kids;
+    }
     /**
      * Updates the positions of all the kids in the game
      */
-    public abstract void update(int delta);
+    public abstract void update(double delta);
 
     /**
      * Checks if the player has failed

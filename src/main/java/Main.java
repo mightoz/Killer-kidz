@@ -7,7 +7,7 @@ import view.GameManager;
 
 public class Main {
 
-	public static int WIDTH = 640;
+	public static int WIDTH = 640; //TODO should be final if its a constant
 	public static int HEIGHT = 480;
 	public static final String TITLE = "KillerKids";
 	

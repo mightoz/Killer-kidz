@@ -2,6 +2,7 @@ package model;
 
 import model.candymodels.Candy;
 import model.candymodels.JellyBean;
+import model.levelmodels.Level;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class Model implements ObservedSubject {
 
     private Player player1;
     private Player player2;
+
+    private Level level;
 
 
     public Model(){
@@ -126,6 +129,7 @@ public class Model implements ObservedSubject {
         for(Entity entity: objects){
             if(!entity.isExpired()){
                 entity.update(delta);
+                level.update(delta);
             }else{
                 objects.remove(entity);
             }

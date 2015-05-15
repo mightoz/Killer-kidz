@@ -1,6 +1,10 @@
 package model.levelmodels;
 
 import model.Entity;
+import model.kids.KidFactory;
+import model.kids.KidTypes;
+
+import java.util.Random;
 
 /**
  * Created by Matilda on 2015-05-03.
@@ -13,14 +17,13 @@ public class LevelOne extends Level {
     }
 
     @Override
-    public void update(int delta) {
+    public void update(double delta) {
         updates++;
+        Random random = new Random();
 
         //Intervallet får anpassas till resten av spelet
         if(updates > 5){
-
-            //double (mellan 0 och 1) * 101
-            kids.add(new Kid(maxX, (float)Math.random()*101));
+            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, 640, random.nextInt(480)));
             updates = 0;
         }
 
