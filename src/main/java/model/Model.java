@@ -3,6 +3,7 @@ package model;
 import model.candymodels.Candy;
 import model.candymodels.JellyBean;
 import model.levelmodels.Level;
+import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
 
@@ -20,11 +21,13 @@ public class Model implements ObservedSubject {
     private Player player2;
 
     private Level level;
+    private int currentLevel;
 
 
     public Model(){
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
+        currentLevel = 1;
     }
 
     /**
@@ -122,6 +125,22 @@ public class Model implements ObservedSubject {
     }
 
     /**
+     * Starts a new level
+     * @param levelNbr
+     */
+    public void startLevel(int levelNbr){
+
+        switch(levelNbr){
+            case 1:
+                level = new LevelOne();
+                break;
+   //         case 2:
+   //             level = new LevelTwo();
+   //             break;
+        }
+    }
+
+    /**
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
@@ -133,6 +152,15 @@ public class Model implements ObservedSubject {
             }else{
                 objects.remove(entity);
             }
+        }
+
+        if(!level.levelFailed() && !level.levelDone()){
+            level.update(delta);
+        }else if(level.levelFailed()){
+            //TODO when level failed, go to candy shop and restart level
+        }else if(level.levelDone()){
+            currentLevel++;
+            //TODO when level completed, go to candy shop and start next level
         }
     }
 
