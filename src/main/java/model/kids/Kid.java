@@ -3,15 +3,16 @@ package model.kids;
 import model.Entity;
 
 public abstract class Kid extends Entity {
-
+	
 	private static int idCounter = 0;
 	private final String ID;
+	private boolean expired;
 
 	protected double xHead, yHead;
-	protected int rHead;
-	protected int rBody;
+	protected double rHead;
+	protected double rBody;
 	
-	protected int vx, vy;
+	protected double vx, vy;
 	
 	public Kid(float x, float y) {
 		// initiate position
@@ -20,6 +21,7 @@ public abstract class Kid extends Entity {
 		yHead = y + rBody + rHead;
 		
 		ID = generateId();
+		expired = false;	// if not default for booleans?
 	}
 	
 	@Override
@@ -32,16 +34,17 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
-	
-	@Override
-	public void update(double delta) {
-		xPos += vx*delta;
-		yPos += vy*delta;
+	public double getHeadRadius() {
+		return rHead;
 	}
-		
+	
+	public double getBodyRadius() {
+		return rBody;
+	}
+			
 	@Override
 	public boolean isExpired() {
-		return false;
+		return expired;
 	}
 
 }
