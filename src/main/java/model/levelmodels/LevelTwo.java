@@ -6,5 +6,13 @@ package model.levelmodels;
 public class LevelTwo extends Level{
 
 
+    @Override
+    public void update(double delta) {
 
+    }
+
+    @Override
+    public boolean levelFailed() {
+        return false;
+    }
 }
