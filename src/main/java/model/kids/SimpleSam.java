@@ -4,6 +4,8 @@ import model.candymodels.Candy;
 
 public class SimpleSam extends Kid {
 
+	private double vx, vy;		// velocities
+	
 	public SimpleSam(float x, float y, int w, int h) {
 		super(x, y);		
 		rHead = 5;		// NOTE: This may perhaps not work, as Kid needs rHead and rBody
@@ -22,8 +24,8 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void hitByCandy(Candy candy) {
-		// TODO Auto-generated method stub
-		
+		// TODO: handle hit
+		expired = true;
 	}
 	
 }

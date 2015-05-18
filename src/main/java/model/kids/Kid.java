@@ -7,13 +7,11 @@ public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
 	private final String ID;
-	private boolean expired;
+	protected boolean expired;
 
 	protected double xHead, yHead;		// head position
 	protected double rHead;				// head radius
 	protected double rBody;				// body radius
-	
-	protected double vx, vy;			// velocities
 	
 	public Kid(float x, float y) {
 		// initiate position
