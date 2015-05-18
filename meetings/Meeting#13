@@ -1,0 +1,33 @@
+Meeting Agenda
+
+  Date: 2015-05-18
+  Facilitator: Oscar
+  Participants: Everyone
+
+1. Objectives 
+NA.
+2. Reports 
+
+Matilda has started working on the SDD.
+Oscar has been working with maven/libGDX.
+Kim has helped with the main menu/controller. Helped getting maven to work with libGDX.
+Marie has fixed the controller so it activates. Done some work on the kid classes.
+
+3. Discussion items 
+The correspondance between level, kid, candy and player when kid is hit by candy.
+Should the kids react differenty depending on the candy upgrades, or just on the type of candy?
+Where do we create levels?
+What is reasonable to present on thursday.
+
+4. Outcomes and assignments
+Outcomes:
+On thursday we want to present a player that can move around and throw a candy, as well as a wave of kids that the player can hit with the candy.
+Assignments: 
+Oscar is going to finish the timer and make the player able to throw candies that will fly over the screen. If he has time he will add a spritesheet for the candy.
+Matilda will fix the collision detection between a thrown candy and a kid.
+Marie will help Matilda with the collision detection if she needs it, and fix the controllers if needed, otherwise keep working on the use cases in the RAD.
+Kim will make graphical models for kid and background.
+5. Wrap up
+Unresolved issues for next meeting: N.A.
+
+Time and place for next meeting: Wednesday 20 of May, 15:00 in 5213.
