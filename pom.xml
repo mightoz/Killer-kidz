@@ -21,37 +21,18 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        
         <dependency>
             <groupId>jdepend</groupId>
             <artifactId>jdepend</artifactId>
             <version>2.9.1</version>
             <scope>test</scope>
         </dependency>
+        
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>annotations</artifactId>
             <version>2.0.3</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.badlogicgames.gdx</groupId>
-        	<artifactId>gdx</artifactId>
-        	<version>1.6.0</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.badlogicgames.gdx</groupId>
-        	<artifactId>gdx-freetype</artifactId>
-        	<version>1.6.0</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.badlogicgames.gdx</groupId>
-        	<artifactId>gdx-backend-lwjgl</artifactId>
-        	<version>1.6.0</version>
-        </dependency>
-        <dependency>
-        	<groupId>com.badlogicgames.gdx</groupId>
-        	<artifactId>gdx-platform</artifactId>
-        	<version>1.6.0</version>
-        	<classifier>natives-desktop</classifier>
         </dependency>
         <!--  
         <dependency>
@@ -61,10 +42,35 @@
         	<type>pom</type>
         </dependency>
         -->
+        
+        
+
+        <dependency>
+        	<groupId>com.badlogicgames.gdx</groupId>
+        	<artifactId>gdx</artifactId>
+        	<version>1.6.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.badlogicgames.gdx</groupId>
+        	<artifactId>gdx-backend-lwjgl</artifactId>
+        	<version>1.6.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.badlogicgames.gdx</groupId>
+        	<artifactId>gdx-freetype</artifactId>
+        	<version>1.6.0</version>
+        </dependency>
+        <dependency>
+        	<groupId>com.badlogicgames.gdx</groupId>
+        	<artifactId>gdx-platform</artifactId>
+        	<version>1.6.0</version>
+        	<classifier>natives-desktop</classifier>
+        </dependency>
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx-freetype-platform</artifactId>
         	<version>1.6.0</version>
+        	<classifier>natives-desktop</classifier>
         </dependency>
     </dependencies>
 

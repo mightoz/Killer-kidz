@@ -23,9 +23,7 @@ public class Main {
 		cfg.height = gm.getHeight();
 		cfg.resizable = false;
 		
-		System.out.println("gm status: " + gm);
 		new LwjglApplication(gm, cfg);		
 		new MainMenuController(model, gm);
 	}
 }
-
