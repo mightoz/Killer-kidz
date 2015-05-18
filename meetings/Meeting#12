@@ -1,0 +1,30 @@
+Meeting Agenda
+
+  Date: 2015-05-13
+  Facilitator: Matilda
+  Participants: Everyone
+
+1. Objectives 
+NA.
+2. Reports 
+ Matilda: Has been reviewing the RAD.
+Oscar: Has worked with TimeController but hasn't been able to test is. Ha has spent a lot of time trying to get libGDX to work with maven but hasn't succeded.
+Kim: Made adjustments to the view to fit the controller.
+Marie: Has implemented abstract kid and a "real" kid. She has been working on the controllers as well, trying to get them to work with libGDX. She has also updated her part of RAD.
+3. Discussion items 
+Entity generateId method
+Timer and controllers
+Get the program to work
+4. Outcomes and assignments
+Outcomes:
+We decided to make the method generateId() private
+The controllers will be remade and will use two threads in order to make the updating of the game better.
+
+Assignments: 
+We will work together in order to get libGDXto work so that we can test our current code before we continue with other parts.
+The next priority is to implement the new time controller and make the key controller compatible with libGDX and the view.
+If there is time everyone will continue working on their previous parts.
+5. Wrap up
+Unresolved issues for next meeting: N.A.
+
+Time and place for next meeting: Monday 18 of May, 12:15 in 6205.
