@@ -3,6 +3,7 @@ package controller;
 import model.Model;
 
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 
 public class GameController extends InputAdapter {
@@ -19,11 +20,14 @@ public class GameController extends InputAdapter {
     public GameController(Model model, int nbrOfPlayers) {
     	this.nbrOfPlayers = nbrOfPlayers;
         this.model = model;
+        System.out.println("GC constructor called");
+        Gdx.input.setInputProcessor(this);
         new TimeController(model);
     }
 
     @Override
 	public boolean keyDown(int keycode) {
+    	System.out.println("key down");
     	for (int i = 0; i < 4; i++) {
 			if (P1_LURD[i] == keycode) {
 				p1Moves[i] = true;
@@ -45,6 +49,7 @@ public class GameController extends InputAdapter {
 	
     @Override
 	public boolean keyUp(int keycode) {
+    	System.out.println("key up");
     	for (int i = 0; i < 4; i++) {
 			if (P1_LURD[i] == keycode) {
 				p1Moves[i] = false;

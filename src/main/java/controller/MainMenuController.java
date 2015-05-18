@@ -13,12 +13,10 @@ import view.gameStates.MainMenu;
 public class MainMenuController extends InputAdapter {
 
 	private final Model model;
-	private final GameManager view;
 	private final MainMenu menu;
 	
 	public MainMenuController(Model model, GameManager view) {
 		this.model = model;
-		this.view = view;
 		
 		// Needs to wait for the GameManager to be done with creating a working
 		// "shell", in this case, initialized the mainMenu object.
@@ -55,8 +53,7 @@ public class MainMenuController extends InputAdapter {
 			System.out.println("choise: " + choise);
 			switch (choise) {
 			case "Play":
-				GameController gc = new GameController(model, 1);
-				Gdx.input.setInputProcessor(gc);
+				new GameController(model, 1);
 				return true;
 			case "Settings":
 				return true;
