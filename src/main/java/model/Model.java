@@ -14,8 +14,9 @@ import java.util.ArrayList;
 public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
-
     private ArrayList<Entity> objects;
+    private float width;
+    private float height;
 
     private Player player1;
     private Player player2;
@@ -24,9 +25,11 @@ public class Model implements ObservedSubject {
     private int currentLevel;
 
 
-    public Model(){
+    public Model(int width, int height){
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
+        this.width = (float)width;
+        this.height = (float)height;
         currentLevel = 1;
     }
 
@@ -36,10 +39,11 @@ public class Model implements ObservedSubject {
      * @param playerName
      */
 
-    public Model(String playerName){
-        this();
+    public Model(String playerName, int width, int height){
+        this(width, height);
         player1 = new Player(400, 500, playerName);
         objects.add(player1);
+        startLevel
     }
 
     /**
@@ -48,8 +52,8 @@ public class Model implements ObservedSubject {
      * @param player1Name
      * @param player2Name
      */
-    public Model(String player1Name, String player2Name){
-        this();
+    public Model(String player1Name, String player2Name, int width, int height){
+        this(width, height);
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
         objects.add(player1);
