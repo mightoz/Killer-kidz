@@ -16,7 +16,6 @@ public class Main {
 				new LwjglApplicationConfiguration();
 		
 		Model model = new Model("Player1");
-//		GameManager gm = new GameManager();
 		GameManager gm = new GameManager(WIDTH, HEIGHT, TITLE);
 		
 		cfg.title = gm.title;
@@ -28,4 +27,3 @@ public class Main {
 		new MainMenuController(model, gm);
 	}
 }
-

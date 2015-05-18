@@ -14,6 +14,7 @@ public class GameManager extends Game {
 	public String title;
 	private int width;
 	private int height;
+	private boolean gmIsStarted = false;
 	
 	// ---------------------------------------------------------------------------- Behöver vi dessa för framtiden? Isf. inte spara dom i view'n.
 //	public static final int MAIN_MENU = 1;
@@ -34,7 +35,6 @@ public class GameManager extends Game {
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		
 	}
 	
 	@Override
@@ -60,12 +60,14 @@ public class GameManager extends Game {
 		
 		// Sets our mainMenu to be first screen we will see.
 		setScreen(mainMenuView);
+		
+		// used for Controller who needs to wait for this libGDX shell to be done.
+		gmIsStarted = true;
+		
 	}
 	
 	@Override
 	public void render () {
-//		System.out.println("5");
-//		System.out.println(screen);
 		if (screen != null) screen.render(Gdx.graphics.getDeltaTime());
 	}
 	
@@ -74,4 +76,5 @@ public class GameManager extends Game {
 	public int getHeight(){	return height; }
 	public MainMenu getMainMenu() { return mainMenuView; }
 	public PlayfieldView getPlayfieldView() { return playfieldView; }
+	public boolean getgmStatus() { return gmIsStarted; }
 }

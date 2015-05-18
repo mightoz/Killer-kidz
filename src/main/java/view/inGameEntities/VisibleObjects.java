@@ -20,5 +20,4 @@ public class VisibleObjects {
 	// objects shape ------------------------------------------------------------ Replace with sprites.
 	protected float[] shapeX;
 	protected float[] shapeY;
-	
 }
