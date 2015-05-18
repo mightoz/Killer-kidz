@@ -43,7 +43,7 @@ public class Model implements ObservedSubject {
         this(width, height);
         player1 = new Player(400, 500, playerName);
         objects.add(player1);
-        startLevel
+        startLevel(currentLevel);
     }
 
     /**
