@@ -2,6 +2,10 @@ package view.gameStates;
 
 import model.Observer;
 import view.GameManager;
+import view.gameStates.playfieldGUI.CurrentLevel_Bar;
+import view.gameStates.playfieldGUI.GUI;
+import view.gameStates.playfieldGUI.Money_Bar;
+import view.gameStates.playfieldGUI.ShopToProtect;
 import view.inGameEntities.PlayerView;
 
 import com.badlogic.gdx.Gdx;
@@ -15,19 +19,65 @@ public class PlayfieldView implements Screen, Observer {
 	private PlayerView[] player;
 	private GameManager gm; // ------------------------------------ Användas senare?
 	
+	private float width;
+	private float height;
+	
+	private GUI gui;
+	private ShopToProtect shop;
+	
+	private Money_Bar money;
+	private CurrentLevel_Bar level;
+	
 	public PlayfieldView(GameManager gm) {
+		
 		sr = new ShapeRenderer();
-		player = new PlayerView[2];
-		player[0] = new PlayerView("P.1", gm);
 		this.gm = gm;
+		
+		width = gm.getWidth();
+		height = gm.getHeight();
+
+		gui = new GUI(width, height);
+		shop = new ShopToProtect(gm, gui, width, height);
+		
+		
+		money = new Money_Bar(gm, width, height);
+		level = new CurrentLevel_Bar(gm ,width, height);
+		
+		player = new PlayerView[2];
+		player[0] = new PlayerView("P.1", width, height);
+		
+		
+		
+		
 	}
 
+	/*
+	 * Order of painting:
+	 * Background
+	 * Entities (kids, player, candy)
+	 * Shop "forbidden zone"
+	 * ActionBar
+	 * All text above & selected Candy
+	 * 
+	 * Reason to draw entities first, is we want them to run "under the shop"
+	 * and the actionBar, because we want it to be like a "building" with the
+	 * shop, and i think it will look better with the GUI on top.
+	 */
 	@Override
 	public void render(float delta) {
-//		System.out.println("playField.render...");
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		player[0].render(sr);
+		
+		shop.render(sr);
+		gui.render(sr);
+		
+		money.render();
+		level.render();
+		
+		
 		
 		// --------------------------------------------------------------------- Lägg till alla rutor som skall visas, t.ex. "combat-area", candy-bar, curr.level, etc.
 	}
@@ -67,15 +117,15 @@ public class PlayfieldView implements Screen, Observer {
 	}
 	
 	@Override
-	public void hide() {}
+	public void hide() { }
 	@Override
-	public void show() {}
+	public void show() { }
 	@Override
-	public void resize(int x, int y) {}
+	public void resize(int x, int y) { }
 	@Override
-	public void pause() {}
+	public void pause() { }
 	@Override
-	public void resume() {}
+	public void resume() { }
 	@Override
-	public void dispose() {}
+	public void dispose() { }
 }

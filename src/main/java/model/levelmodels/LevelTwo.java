@@ -15,4 +15,5 @@ public class LevelTwo extends Level{
     public boolean levelFailed() {
         return false;
     }
+
 }
