@@ -1,8 +1,12 @@
 package model.kids;
 
+import model.candymodels.Candy;
+
 public class SimpleSam extends Kid {
 
-	public SimpleSam(float x, float y) {
+	private double vx, vy;		// velocities
+	
+	public SimpleSam(float x, float y, int w, int h) {
 		super(x, y);		
 		rHead = 5;		// NOTE: This may perhaps not work, as Kid needs rHead and rBody
 		rBody = 10;
@@ -13,7 +17,15 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void update(double delta) {
-		//TODO
+		// no acceleration
+		xPos += vx*delta;
+		yPos += vy*delta;
 	}
 
+	@Override
+	public void hitByCandy(Candy candy) {
+		// TODO: handle hit
+		expired = true;
+	}
+	
 }
