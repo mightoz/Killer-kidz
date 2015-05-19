@@ -11,11 +11,10 @@ public class VisibleObjects {
 	protected float dy;
 	
 	protected float radians;
-	protected float speed;
 	
 	// objects size
-	protected int width;
-	protected int height;
+	protected float width;
+	protected float height;
 	
 	// objects shape ------------------------------------------------------------ Replace with sprites.
 	protected float[] shapeX;
