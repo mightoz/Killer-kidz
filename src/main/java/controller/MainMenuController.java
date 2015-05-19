@@ -68,5 +68,4 @@ public class MainMenuController extends InputAdapter {
 		return false;
 	}
 
-
 }
