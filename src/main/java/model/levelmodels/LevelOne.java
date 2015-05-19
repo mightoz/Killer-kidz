@@ -1,6 +1,7 @@
 package model.levelmodels;
 
 import model.Entity;
+import model.Model;
 import model.kids.KidFactory;
 import model.kids.KidTypes;
 
@@ -23,7 +24,7 @@ public class LevelOne extends Level {
 
         //Intervallet får anpassas till resten av spelet
         if(updates > 5){
-            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, 640, random.nextInt(480)));
+            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.getWidth(), random.nextInt(Model.getHeight())));
             updates = 0;
         }
 
