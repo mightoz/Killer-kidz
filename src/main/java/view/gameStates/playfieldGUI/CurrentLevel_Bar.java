@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
-public class CurrentLevel_Bar {
+public class CurrentLevel_Bar extends GUI_Super {
 	
-	// Using this for getting the cam-position.
+	// used for 
 	private GameManager gm;
 	
 	// Used for having strings on-screen.
@@ -21,24 +21,26 @@ public class CurrentLevel_Bar {
 	// so the text will be centered in the menu).
 //	GlyphLayout layout = new GlyphLayout();
 	
-	private String CurrentLevel;
+	private String currentLevel;
 	
 	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
-	public CurrentLevel_Bar(GameManager gm) {
+	public CurrentLevel_Bar(GameManager gm, float width, float height) {
 
 		this.gm = gm;
+		this.width = width;
+		this.height = height;
 		
 		batch = new SpriteBatch();
 
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
-				Gdx.files.internal("fonts/OpenSans-CondLight.ttf"));
+				Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondBold.ttf"));
 		
 //			font = new BitmapFont();
-		textFont = gen.generateFont(20);
-		textFont.setColor(Color.RED);
+		textFont = gen.generateFont(22);
+		textFont.setColor(Color.GREEN);
 		
 		// ----------------------------------------------------------------------- Player måste ha en money-value, lägg till när det är dags för slippa konflikter med merge.
-		CurrentLevel = "Current\n  Level\n    "; //+ Model.getCurrentLevel();
+		currentLevel = "Level\n   1"; //+ Model.getCurrentLevel();
 	}
 		
 	public void render() {
@@ -48,7 +50,7 @@ public class CurrentLevel_Bar {
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, CurrentLevel, (gm.getWidth() ) / 8, (gm.getHeight() / 8)); // ----------- Ta reda på mer korrekta koordinater.
+		textFont.draw(batch, currentLevel, (width / 64), (height / 480) * 472); // ----------- Ta reda på mer korrekta koordinater.
 		
 		batch.end();
 	}
