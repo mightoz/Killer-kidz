@@ -7,20 +7,18 @@ public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
 	private final String ID;
+	protected int hp;
 	protected boolean expired;
 
-	protected double xHead, yHead;		// head position
+	protected double yHead;				// head y position (x always same as body)
 	protected double rHead;				// head radius
 	protected double rBody;				// body radius
 	
 	public Kid(float x, float y) {
-		// initiate position
 		super(x, y);					// initiate body position
-		xHead = x;
-		yHead = y + rBody + rHead;
 		
 		ID = generateId();
-		expired = false;	// if not default for booleans?
+		expired = false;
 	}
 	
 	@Override
@@ -31,10 +29,6 @@ public abstract class Kid extends Entity {
 	@Override
 	public String getId() {
 		return ID;
-	}
-	
-	public double getHeadX() {
-		return xHead;
 	}
 	
 	public double getHeadY() {
@@ -58,6 +52,10 @@ public abstract class Kid extends Entity {
 	 * @return: void 
 	 */
 	public abstract void hitByCandy(Candy candy);
+	
+	public boolean enteredStore() {
+		return xPos <= 0;
+	}
 	
 	@Override
 	public boolean isExpired() {
