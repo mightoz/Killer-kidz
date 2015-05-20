@@ -15,8 +15,8 @@ public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
     private ArrayList<Entity> objects;
-    private float width;
-    private float height;
+    public static float width;
+    public static float height;
 
     private Player player1;
     private Player player2;
@@ -215,6 +215,10 @@ public class Model implements ObservedSubject {
 
     public float getHeight(){
         return height;
+    }
+
+    public ArrayList getEntities(){
+        return objects;
     }
 
 }

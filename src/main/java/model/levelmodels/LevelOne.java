@@ -24,13 +24,18 @@ public class LevelOne extends Level {
 
         //Intervallet får anpassas till resten av spelet
         if(updates > 5){
-            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.getWidth(), random.nextInt(Model.getHeight())));
+            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int)Model.height)));
             updates = 0;
         }
 
         //uppdaterar positionen på alla kids
         for(Entity kid: kids){
-            kid.update(delta);
+            if(!kid.isExpired()){
+                kid.update(delta);
+            }else{
+                kids.remove(kid);
+            }
+
         }
 
     }

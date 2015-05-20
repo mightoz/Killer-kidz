@@ -59,7 +59,12 @@ public abstract class Kid extends Entity {
 	
 	@Override
 	public boolean isExpired() {
-		return expired;
+
+		if(){
+			return !expired;
+		}else {
+			return expired;
+		}
 	}
 
 }
