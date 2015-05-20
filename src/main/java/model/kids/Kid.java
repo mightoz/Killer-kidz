@@ -4,23 +4,21 @@ import model.Entity;
 import model.candymodels.Candy;
 
 public abstract class Kid extends Entity {
-
+	
 	private static int idCounter = 0;
 	private final String ID;
+	protected int hp;
+	protected boolean expired;
 
-	protected double xHead, yHead;
-	protected int rHead;
-	protected int rBody;
-	
-	protected int vx, vy;
+	protected double yHead;				// head y position (x always same as body)
+	protected double rHead;				// head radius
+	protected double rBody;				// body radius
 	
 	public Kid(float x, float y) {
-		// initiate position
-		super(x, y);			// body position
-		xHead = x;
-		yHead = y + rBody + rHead;
+		super(x, y);					// initiate body position
 		
 		ID = generateId();
+		expired = false;
 	}
 	
 	@Override
@@ -33,35 +31,35 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
-	// Default: no acceleration
-//	@Override ------------------------------------------------------------------------ TODO
-	public void update(int delta) {
-		xPos += vx*delta;
-		yPos += vy*delta;
+	public double getHeadY() {
+		return yHead;
 	}
 	
-	boolean hitByCandy(Candy c) {
-		int rCandy = 2; //c.getRadius();				// NOTE: change!
-		
-		if (pow2(xHead - c.getX()) + pow2(yHead - c.getY()) <= pow2(rHead + rCandy)) {
-			// Candy hit head
-			return true;
-		}
-		else if (pow2(xPos - c.getX()) + pow2(yPos - c.getY()) <= pow2(rBody + rCandy)) {
-			// Candy hit body
-			return true;
-		}
-		
-		return false;
+	public double getHeadRadius() {
+		return rHead;
 	}
 	
-	private double pow2(double x) {
-		return x*x;
+	public double getBodyRadius() {
+		return rBody;
+	}
+	
+	@Override
+	public abstract void update(double delta);
+	
+	/**
+	 * hitByCandy handles the changes in kid if it's hit by a candy
+	 * @param candy: the candy which hit the kid
+	 * @return: void 
+	 */
+	public abstract void hitByCandy(Candy candy);
+	
+	public boolean enteredStore() {
+		return xPos <= 0;
 	}
 	
 	@Override
 	public boolean isExpired() {
-		return false;
+		return expired;
 	}
 
 }
