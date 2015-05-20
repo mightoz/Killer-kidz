@@ -15,7 +15,6 @@ public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
     private ArrayList<Entity> objects;
-    public static ArrayList<Entity> kids;
     public static float width;
     public static float height;
     public static float leftBoundary;
@@ -31,7 +30,6 @@ public class Model implements ObservedSubject {
     public Model(int width, int height){
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
-        kids = new ArrayList<>();
         this.width = (float)width;
         this.height = (float)height-62;
         leftBoundary = 45;
@@ -139,7 +137,7 @@ public class Model implements ObservedSubject {
      * @param levelNbr
      */
     public void startLevel(int levelNbr){
-        kids.clear();
+    //    kids.clear();
         switch(levelNbr){
             case 1:
                 level = new LevelOne();
@@ -164,11 +162,11 @@ public class Model implements ObservedSubject {
             }
         }
 
-        for(Entity kid: kids){
+        for(Entity kid: level.getKids()){
             if(!kid.isExpired()){
-                kid.update(delta);
+                kid.update(10*delta);
             }else{
-                kids.remove(kid);
+                level.getKids().remove(kid);
             }
         }
 
@@ -220,7 +218,7 @@ public class Model implements ObservedSubject {
                 observer.update(entity.getId(), entity.getX(), entity.getY());
             }
 
-            for(Entity entity: kids){
+            for(Entity entity: level.getKids()){
                 observer.update(entity.getId(), entity.getX(), entity.getY());
             }
 
@@ -236,8 +234,5 @@ public class Model implements ObservedSubject {
         return height;
     }
 
-    public ArrayList getEntities(){
-        return objects;
-    }
 
 }

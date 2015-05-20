@@ -11,13 +11,13 @@ import java.util.ArrayList;
  */
 public abstract class Level {
 
-  //  protected static ArrayList<Entity> kids;
+    protected static ArrayList<Entity> kids;
     protected int updates;
     protected int kidsInStore;
     protected int kidsInLevel;
 
     public Level(){
-    //    kids = new ArrayList<Entity>();
+        kids = new ArrayList<Entity>();
         updates = 0;
         kidsInStore = 0;
     }
@@ -36,9 +36,9 @@ public abstract class Level {
         }
     }
 
-//    public static ArrayList<Entity> getKids(){
-//        return kids;
-//    }
+    public static ArrayList<Entity> getKids(){
+        return kids;
+    }
     /**
      * Updates the positions of all the kids in the game
      */
