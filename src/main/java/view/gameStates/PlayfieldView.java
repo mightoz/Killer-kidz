@@ -85,8 +85,7 @@ public class PlayfieldView implements Screen, Observer {
 	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
 	@Override
 	public void update(String objectID, float newXPos, float newYPos){
-		
-		/*
+        /*
 		 * Bortse koden under om det bråkar, och istället gör:
 		 * 1) kolla vilket objekt som skall updateras (skicka med objekt i parameter?)
 		 * 2) säg till respektive "viewObjekt" att updatera dess position utifrån
@@ -97,17 +96,17 @@ public class PlayfieldView implements Screen, Observer {
 		 */
 		
 		switch(objectID.substring(0, 1)) {
-		case "P": // Player objects	
-				  if(objectID.equals("P.1")) {
+		case "p": // Player objects
+				  if(objectID.equals("p0")) {
 					  player[0].update(newXPos, newYPos);
-					  break;
+                      break;
 					  
-				  } else if(objectID.equals("P.2")) {
+				  } else if(objectID.equals("p1")) {
 					  player[1].update(newXPos, newYPos);
 					  break;
 			}
 					
-		case "C": // Candy object
+		case "c": // Candy object
 //			int temp = Integer.parseInt(objectID.substring(2, 5)); // 999 objects
 //			for()
 			

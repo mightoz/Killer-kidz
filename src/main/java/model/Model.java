@@ -41,7 +41,7 @@ public class Model implements ObservedSubject {
 
     public Model(String playerName, int width, int height){
         this(width, height);
-        player1 = new Player(400, 500, playerName);
+        player1 = new Player(100, 250, playerName);
         objects.add(player1);
         startLevel(currentLevel);
     }
@@ -66,6 +66,8 @@ public class Model implements ObservedSubject {
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
+
+
 
         if (player == 1) {
             player1.updateDir(directions);
@@ -198,7 +200,6 @@ public class Model implements ObservedSubject {
      */
     @Override
     public void notifyObserver() {
-
         for(Observer observer: observers){
 
             for(Entity entity: objects){

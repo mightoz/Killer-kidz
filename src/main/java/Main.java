@@ -16,7 +16,7 @@ public class Main {
 				new LwjglApplicationConfiguration();
 		
 		Model model = new Model("Player1", WIDTH, HEIGHT);
-		GameManager gm = new GameManager(WIDTH, HEIGHT, TITLE);
+		GameManager gm = new GameManager(model, WIDTH, HEIGHT, TITLE);
 		
 		cfg.title = gm.title;
 		cfg.width = gm.getWidth();

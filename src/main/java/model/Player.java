@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Player extends Entity{
 
-    private float xPos, yPos;
+
     private String name;
     private ArrayList candyData;
     private boolean leftKeyPressed;
@@ -84,10 +84,12 @@ public class Player extends Entity{
 
     /**
      * Updates the position of the player based on the directions.
-     * @param delta
+     * @param deltaMovement
      */
-    public void update(double delta){
-
+    public void update(double deltaMovement){
+        double delta = deltaMovement * 200;
+//        System.out.println(xPos);
+//        System.out.println(yPos);
         boolean leftAndRight = (!leftKeyPressed && !rightKeyPressed) || (leftKeyPressed && rightKeyPressed);
         boolean upAndDown = (!upKeyPressed && !downKeyPressed) || (upKeyPressed && downKeyPressed);
 
@@ -110,17 +112,17 @@ public class Player extends Entity{
         //moves player diagonally at the same speed as all other axis.
         if(!leftAndRight && !upAndDown){
             if(upKeyPressed && rightKeyPressed){
-                xPos += Math.sqrt(2 * Math.pow(delta, 2));
-                yPos += Math.sqrt(2 * Math.pow(delta, 2));
+                xPos += Math.sqrt(2*delta);
+                yPos += Math.sqrt(2*delta);
             }else if(upKeyPressed){
-                xPos -= Math.sqrt(2 * Math.pow(delta, 2));
-                yPos += Math.sqrt(2 * Math.pow(delta, 2));
+                xPos -= Math.sqrt(2*delta);
+                yPos += Math.sqrt(2*delta);
             }else if(rightKeyPressed){
-                xPos += Math.sqrt(2 * Math.pow(delta, 2));
-                yPos -= Math.sqrt(2 * Math.pow(delta, 2));
+                xPos += Math.sqrt(2*delta);
+                yPos -= Math.sqrt(2*delta);
             }else{
-                xPos -= Math.sqrt(2 * Math.pow(delta, 2));
-                yPos -= Math.sqrt(2 * Math.pow(delta, 2));
+                xPos -= Math.sqrt(2*delta);
+                yPos -= Math.sqrt(2*delta);
             }
         }
     }
@@ -137,7 +139,7 @@ public class Player extends Entity{
     public String generateId() {
         int tmp = pIdGenerator;
         pIdGenerator++;
-        return "c"+tmp;
+        return "p"+tmp;
     }
 
     public boolean isExpired(){
