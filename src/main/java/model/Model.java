@@ -156,11 +156,13 @@ public class Model implements ObservedSubject {
         for(Entity entity: objects){
             if(!entity.isExpired()){
                 entity.update(delta);
-                level.update(delta);
+         //     level.update(delta);
             }else{
                 objects.remove(entity);
             }
         }
+
+        level.update(delta);
 
         if(!level.levelFailed() && !level.levelDone()){
             level.update(delta);
@@ -205,6 +207,10 @@ public class Model implements ObservedSubject {
         for(Observer observer: observers){
 
             for(Entity entity: objects){
+                observer.update(entity.getId(), entity.getX(), entity.getY());
+            }
+
+            for(Entity entity: Level.getKids()){
                 observer.update(entity.getId(), entity.getX(), entity.getY());
             }
 

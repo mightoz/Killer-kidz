@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public abstract class Level {
 
-    protected ArrayList<Entity> kids;
+    protected static ArrayList<Entity> kids;
     protected int updates;
     protected int kidsInStore;
     protected int kidsInLevel;
@@ -36,7 +36,7 @@ public abstract class Level {
         }
     }
 
-    public ArrayList<Entity> getKids(){
+    public static ArrayList<Entity> getKids(){
         return kids;
     }
     /**

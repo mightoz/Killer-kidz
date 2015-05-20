@@ -6,6 +6,7 @@ import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
+import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
 
 import com.badlogic.gdx.Gdx;
@@ -13,12 +14,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.util.ArrayList;
+
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
 	private PlayerView[] player;
 	private GameManager gm; // ------------------------------------ Användas senare?
-	
+	private ArrayList<KidView> kidViews;
+
 	private float width;
 	private float height;
 	
@@ -38,7 +42,7 @@ public class PlayfieldView implements Screen, Observer {
 
 		gui = new GUI(width, height);
 		shop = new ShopToProtect(gm, gui, width, height);
-		
+		kidViews = new ArrayList<>();
 		
 		money = new Money_Bar(gm, width, height);
 		level = new CurrentLevel_Bar(gm ,width, height);
@@ -70,6 +74,9 @@ public class PlayfieldView implements Screen, Observer {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		player[0].render(sr);
+		for(KidView kidView: kidViews){
+			kidView.render(sr);
+		}
 		
 		shop.render(sr);
 		gui.render(sr);
@@ -110,8 +117,18 @@ public class PlayfieldView implements Screen, Observer {
 //			int temp = Integer.parseInt(objectID.substring(2, 5)); // 999 objects
 //			for()
 			
-		case "K": // Kid object	
-			// Do stuff
+		case "k": // Kid object
+			boolean isNew = true;
+			for(KidView kidView: kidViews){
+				if(objectID == kidView.getId()){
+					kidView.update(newXPos, newYPos);
+					isNew = false;
+					break;
+				}
+			}
+			if(isNew){
+				kidViews.add(new KidView(objectID, newXPos, newYPos));
+			}
 		}
 	}
 	

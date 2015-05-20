@@ -12,18 +12,22 @@ import java.util.Random;
  */
 public class LevelOne extends Level {
 
+    Random random;
+
     public LevelOne(){
         super();
         kidsInLevel = 50;
+        random = new Random();
     }
 
     @Override
     public void update(double delta) {
+  //      System.out.println("Updating level");
+
         updates++;
-        Random random = new Random();
 
         //Intervallet får anpassas till resten av spelet
-        if(updates > 5){
+        if(updates >= 80){
             kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int)Model.height)));
             updates = 0;
         }
