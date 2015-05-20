@@ -17,6 +17,8 @@ public class Model implements ObservedSubject {
     private ArrayList<Entity> objects;
     public static float width;
     public static float height;
+    public static float leftBoundary;
+    public static float rightBoundary;
 
     private Player player1;
     private Player player2;
@@ -29,7 +31,9 @@ public class Model implements ObservedSubject {
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
         this.width = (float)width;
-        this.height = (float)height;
+        this.height = (float)height-62;
+        leftBoundary = 45;
+        rightBoundary = 200;
         currentLevel = 1;
     }
 
@@ -66,8 +70,6 @@ public class Model implements ObservedSubject {
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
-
-
 
         if (player == 1) {
             player1.updateDir(directions);
