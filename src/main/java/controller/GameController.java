@@ -26,10 +26,10 @@ public class GameController extends InputAdapter {
     	this.nbrOfPlayers = nbrOfPlayers;
 
     	if (this.nbrOfPlayers == 1) {
-    	    P1_LURD[0] = Keys.LEFT;
-    	    P1_LURD[1] = Keys.UP;
-    	    P1_LURD[2] = Keys.RIGHT;
-    	    P1_LURD[3] = Keys.DOWN;
+    	    P1_LURD[0] = Keys.A;
+    	    P1_LURD[1] = Keys.W;
+    	    P1_LURD[2] = Keys.D;
+    	    P1_LURD[3] = Keys.S;
     	}
     	else if (this.nbrOfPlayers == 2) {
     	    P1_LURD[0] = Keys.A;
@@ -51,7 +51,7 @@ public class GameController extends InputAdapter {
 
     @Override
 	public boolean keyDown(int keycode) {
-    	// If the player started to move
+        // If the player started to move
     	for (int i = 0; i < 4; i++) {
 			if (P1_LURD[i] == keycode) {
 				p1Moves[i] = true;
@@ -75,7 +75,7 @@ public class GameController extends InputAdapter {
 	
     @Override
 	public boolean keyUp(int keycode) {
-    	// If the player stopped moving
+        // If the player stopped moving
     	for (int i = 0; i < 4; i++) {
 			if (P1_LURD[i] == keycode) {
 				p1Moves[i] = false;

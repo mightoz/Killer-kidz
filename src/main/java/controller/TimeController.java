@@ -23,14 +23,13 @@ public class TimeController {
 
 		@Override
 		public void run() {
-
             runFlag = true;
             double currentTime = (double)System.nanoTime()/1000000000.0;
             if(currentTime >= nextTime){
-                double delta = currentTime - nextTime;
+                double delta = (currentTime - nextTime);
                 model.updateGame(delta);
+                model.notifyObserver();
                 nextTime += delta;
-                if(currentTime < nextTime) model.notifyObserver();
             }else{
                 int sleepTime = (int)(1000.0*(nextTime-currentTime));
                 if(sleepTime > 0) {

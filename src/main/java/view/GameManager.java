@@ -2,6 +2,7 @@ package view;
 
 import view.gameStates.MainMenu;
 import view.gameStates.PlayfieldView;
+import model.Model;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +16,7 @@ public class GameManager extends Game {
 	private int width;
 	private int height;
 	private boolean gmIsStarted = false;
+    private Model model;
 	
 	// ---------------------------------------------------------------------------- Behöver vi dessa för framtiden? Isf. inte spara dom i view'n.
 //	public static final int MAIN_MENU = 1;
@@ -30,8 +32,10 @@ public class GameManager extends Game {
 	// All types of "Game-States" we will see.
 	private MainMenu mainMenuView;
 	private PlayfieldView playfieldView;
+
 	
-	public GameManager(int width, int height, String title){
+	public GameManager(Model model, int width, int height, String title){
+        this.model = model;
 		this.width = width;
 		this.height = height;
 		this.title = title;
@@ -57,6 +61,8 @@ public class GameManager extends Game {
 		// create an object for each "Game-State".
 		mainMenuView = new MainMenu(this);
 		playfieldView = new PlayfieldView(this);
+        model.register(playfieldView);
+
 		
 		// Sets our mainMenu to be first screen we will see.
 		setScreen(mainMenuView);
