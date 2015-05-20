@@ -26,10 +26,10 @@ public class GameController extends InputAdapter {
     	this.nbrOfPlayers = nbrOfPlayers;
 
     	if (this.nbrOfPlayers == 1) {
-    	    P1_LURD[0] = Keys.A;
-    	    P1_LURD[1] = Keys.W;
-    	    P1_LURD[2] = Keys.D;
-    	    P1_LURD[3] = Keys.S;
+    	    P1_LURD[0] = Keys.LEFT;
+    	    P1_LURD[1] = Keys.UP;
+    	    P1_LURD[2] = Keys.RIGHT;
+    	    P1_LURD[3] = Keys.DOWN;
     	}
     	else if (this.nbrOfPlayers == 2) {
     	    P1_LURD[0] = Keys.A;
@@ -121,7 +121,7 @@ public class GameController extends InputAdapter {
 			return true;
 		}
 		
-		// Event not handled if another key was released, it wasn't handled.
+		// If another key was released, it wasn't handled.
 		return false;
 	}
 }
