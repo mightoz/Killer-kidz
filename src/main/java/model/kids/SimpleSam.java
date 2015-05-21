@@ -27,15 +27,13 @@ public class SimpleSam extends Kid {
 		yPos += vy*delta;
 		yHead += vy*delta;
 
-		if(xPos <= Model.leftBoundary)
-			expired = true;
+		expired = xPos <= Model.leftBoundary;
 	}
 
 	@Override
 	public void hitByCandy(Candy candy) {
 		hp -= 100;
 		expired = hp <= 0;
-		//|| xPos <= 0;
 	}
 	
 }
