@@ -26,9 +26,9 @@ public class SimpleSam extends Kid {
 		xPos += vx*delta;
 		yPos += vy*delta;
 		yHead += vy*delta;
-
-		if(xPos <= Model.leftBoundary)
-			expired = true;
+//
+//		if(xPos <= Model.leftBoundary)
+//			expired = true;
 	}
 
 	@Override
