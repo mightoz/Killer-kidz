@@ -3,10 +3,12 @@ package view.gameStates;
 import model.Entity;
 import model.Observer;
 import view.GameManager;
+
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
+
 import view.inGameEntities.CandyView;
 import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
@@ -55,10 +57,6 @@ public class PlayfieldView implements Screen, Observer {
 		player[0] = new PlayerView("P.1", width, height);
 
         candies = new ArrayList();
-		
-		
-		
-		
 	}
 
 	/*
@@ -95,12 +93,11 @@ public class PlayfieldView implements Screen, Observer {
 		money.render();
 		level.render();
 		
-		
-		
-		// --------------------------------------------------------------------- Lägg till alla rutor som skall visas, t.ex. "combat-area", candy-bar, curr.level, etc.
 	}
 	
-	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
+	/*
+	 * Method model will use to tell view to update its contents.
+	 */
 	@Override
 	public void update(Entity entity, float newXPos, float newYPos){
         /*
@@ -143,9 +140,6 @@ public class PlayfieldView implements Screen, Observer {
                 candies.add(new CandyView(entity.getId(), newXPos, newYPos));
             }
 
-
-			
-
 		case "k": // Kid object
 			boolean isNew = true;
 			for(KidView kidView: kidViews){
@@ -158,7 +152,6 @@ public class PlayfieldView implements Screen, Observer {
 			if(isNew){
 				kidViews.add(new KidView(entity.getId(), newXPos, newYPos));
 			}
-
 		}
 	}
 
@@ -170,7 +163,6 @@ public class PlayfieldView implements Screen, Observer {
         String id = entity.getId();
         switch (id.substring(0, 1)){
             case "p":
-
                 break;
 
             case "c":
@@ -183,10 +175,8 @@ public class PlayfieldView implements Screen, Observer {
                 }
 
             case "k":
-
                 break;
         }
-
     }
 	
 	@Override
