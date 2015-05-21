@@ -2,11 +2,14 @@ package model;
 
 import model.candymodels.Candy;
 import model.candymodels.JellyBean;
+import model.kids.KidFactory;
+import model.kids.KidTypes;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 
 /**
@@ -14,8 +17,9 @@ import java.util.Iterator;
  */
 public class Model implements ObservedSubject {
 
+
     private ArrayList<Observer> observers;
-    private ArrayList<Entity> objects;
+    private static ArrayList<Entity> objects;
     public static float width;
     public static float height;
     public static float leftBoundary;
@@ -133,6 +137,10 @@ public class Model implements ObservedSubject {
 
     }
 
+    public static void spawnKid(KidTypes type, float xPos, float yPos){
+       objects.add(KidFactory.createKid(type, xPos, yPos));
+    }
+
     /**
      * Starts a new level
      * @param levelNbr
@@ -165,17 +173,19 @@ public class Model implements ObservedSubject {
                 for(Observer observer: observers){
                     observer.removeEntity(entity);
                 }
-                level.update(delta);
+
             }
         }
 
-        for(Entity kid: level.getKids()){
-            if(!kid.isExpired()){
-                kid.update(10*delta);
-            }else{
-                level.getKids().remove(kid);
-            }
-        }
+        level.update(delta);
+
+//        for(Entity kid: level.getKids()){
+//            if(!kid.isExpired()){
+//                kid.update(10*delta);
+//            }else{
+//                level.getKids().remove(kid);
+//            }
+//        }
 
         level.update(delta);
 
@@ -225,9 +235,9 @@ public class Model implements ObservedSubject {
                 observer.update(entity, entity.getX(), entity.getY());
             }
 
-            for(Entity entity: level.getKids()){
-                observer.update(entity, entity.getX(), entity.getY());
-            }
+//            for(Entity entity: level.getKids()){
+//                observer.update(entity, entity.getX(), entity.getY());
+//            }
 
         }
 
