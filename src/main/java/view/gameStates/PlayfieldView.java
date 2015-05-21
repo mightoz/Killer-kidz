@@ -25,6 +25,8 @@ public class PlayfieldView implements Screen, Observer {
 	private ShapeRenderer sr;
 	private PlayerView[] player;
 	private GameManager gm; // ------------------------------------ Användas senare?
+
+    private ArrayList<CandyView> candies;
 	private ArrayList<KidView> kidViews;
 
 	private float width;
@@ -36,7 +38,6 @@ public class PlayfieldView implements Screen, Observer {
 	private Money_Bar money;
 	private CurrentLevel_Bar level;
 
-    private ArrayList<CandyView> candies;
 	
 	public PlayfieldView(GameManager gm) {
 		
@@ -175,7 +176,14 @@ public class PlayfieldView implements Screen, Observer {
                 }
 
             case "k":
-                break;
+
+                for(KidView kid: kidViews){
+                    if(kid.getId().equals(id)){
+                        kidViews.remove(kid);
+                        break;
+                    }
+                }
+
         }
     }
 	
