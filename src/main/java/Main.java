@@ -22,6 +22,7 @@ public class Main {
 		cfg.width = gm.getWidth();
 		cfg.height = gm.getHeight();
 		cfg.resizable = false;
+		cfg.samples = 16;
 		
 		new LwjglApplication(gm, cfg);		
 		new MainMenuController(model, gm);
