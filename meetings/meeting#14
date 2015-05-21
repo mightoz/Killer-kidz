@@ -1,0 +1,38 @@
+Meeting Agenda
+
+  Date: 2015-05-20
+  Facilitator: Kim
+  Participants: Everyone
+
+1. Objectives 
+NA.
+2. Reports 
+  ¤Kim has extended the game view with a candy bar, toy store and info of money balance and level.
+  ¤Marie has added the ability to change candy in the controller and made some small changes in the kid classes.
+  ¤Matilda has thought of how to implement collision detection.
+  ¤Oscar has fixed a working timer, and fixed references and some logic from objects and classes to work together.
+
+3. Discussion items 
+  ¤Must get working code.
+  ¤What code we want to show at tomorrow’s supervised meeting.
+
+4. Outcomes and assignments
+Outcomes from this meeting:
+We decided:
+  ¤we will show our supervisor the whole chain how to move a player.
+  ¤to postpone special collision with hitting a head.
+  ¤to take a look on the SDD and the RAD and then submit this to GitHub.
+
+New Assignments for everyone: 
+  ¤Everyone needs to start / finish 5 use cases each, so we get a total of 20, then add these to GitHub
+  ¤Everyone needs to start making some tests (preferable with JUnit, or other “standard-dependencies”.
+  ¤Everyone should polish their code to work even better and/or work as intended.
+
+
+5. Wrap up
+Unresolved issues we will discuss on next meeting:
+NA.
+
+Next meeting: Monday 25th of May, 14:00 in 5213
+
+
