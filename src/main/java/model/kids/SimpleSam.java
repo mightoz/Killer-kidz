@@ -1,13 +1,12 @@
 package model.kids;
 
-import model.Model;
 import model.candymodels.Candy;
 
 public class SimpleSam extends Kid {
 
 	private double vx, vy;			// velocities
 	
-	public SimpleSam(float x, float y, int w, int h) {
+	public SimpleSam(float x, float y) {
 		super(x, y);
 		rHead = 5;
 		rBody = 10;
@@ -16,7 +15,8 @@ public class SimpleSam extends Kid {
 		vx = -10;
 		vy = 0;
 
-		hp = 100;
+		startHP = 100;
+		hp = startHP;
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class SimpleSam extends Kid {
 		yPos += vy*delta;
 		yHead += vy*delta;
 
-		expired = xPos <= Model.leftBoundary;
+		expired = xPos <= LEFT_WALL;
 
 	}
 

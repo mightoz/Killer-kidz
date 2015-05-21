@@ -1,13 +1,12 @@
 package model.kids;
 
-import model.Model;
 import model.candymodels.Candy;
 
 public class SinEster extends Kid {
 	
 	private double vx, vy;
 	
-	public SinEster (float x, float y, int w, int h) {
+	public SinEster (float x, float y) {
 		super(x, y);
 		rHead = 5;
 		rBody = 10;
@@ -27,7 +26,7 @@ public class SinEster extends Kid {
 		yPos += vy*delta;
 		yHead += vy*delta;
 
-		expired = xPos <= Model.leftBoundary;
+		expired = xPos <= LEFT_WALL;
 	}
 
 	@Override
