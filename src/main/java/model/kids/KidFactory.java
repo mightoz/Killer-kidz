@@ -14,7 +14,8 @@ public abstract class KidFactory {
 		switch(type) {
 		case SIMPLE_SAM:
 			return new SimpleSam(x, y, width, height);
-	    // TODO: add more cases for new kids
+		case SINESTER:
+			return new SinEster(x, y, width, height);
 		}
 		return null;
 	}
