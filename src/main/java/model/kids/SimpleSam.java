@@ -9,7 +9,6 @@ public class SimpleSam extends Kid {
 	
 	public SimpleSam(float x, float y, int w, int h) {
 		super(x, y);
-		System.out.println("Creating kid");
 		rHead = 5;
 		rBody = 10;
 		yHead = y + rBody + rHead;	// have to initialize it here; radiuses are 0 in Kid
