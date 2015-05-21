@@ -226,7 +226,7 @@ public class Model implements ObservedSubject {
             }
 
             for(Entity entity: level.getKids()){
-                observer.update(entity.getId(), entity.getX(), entity.getY());
+                observer.update(entity, entity.getX(), entity.getY());
             }
 
         }
