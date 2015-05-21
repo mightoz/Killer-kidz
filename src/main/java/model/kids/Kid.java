@@ -1,6 +1,7 @@
 package model.kids;
 
 import model.Entity;
+import model.Model;
 import model.candymodels.Candy;
 
 public abstract class Kid extends Entity {
@@ -13,6 +14,11 @@ public abstract class Kid extends Entity {
 	protected double yHead;				// head y position (x always same as body)
 	protected double rHead;				// head radius
 	protected double rBody;				// body radius
+	
+	protected static final double LEFT_WALL = Model.leftBoundary;
+	protected static final double RIGHT_WALL = Model.rightBoundary;
+	protected static final double FLOOR = 0;
+	protected static final double CEILING = FLOOR + Model.height;
 	
 	public Kid(float x, float y) {
 		super(x, y);					// initiate body position
