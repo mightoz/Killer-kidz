@@ -49,7 +49,7 @@ public class PlayerView extends VisibleObjects {
 		// Then draw the new player-figure.
 		sr.begin(ShapeType.Filled);
 
-		sr.triangle(x - 20, y - 20, x, y + 30, x + 20, y - 20);
+		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
 
 		sr.end();
 	}
