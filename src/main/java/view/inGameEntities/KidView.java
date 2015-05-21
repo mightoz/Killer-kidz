@@ -8,6 +8,7 @@ public class KidView extends VisibleObjects{
 	
 	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system eller använd objekt i anrop.
 	private String id;
+	private float radius;
 	
 	public KidView(String id, float width, float height) {
 		
@@ -20,6 +21,8 @@ public class KidView extends VisibleObjects{
 		shapeY = new float[4];
 
 		radians = MathUtils.PI / 2;
+		
+		radius = 10f;
 	}
 
 	// Updates players position, called by model (through interface).
@@ -27,41 +30,19 @@ public class KidView extends VisibleObjects{
 
 		x = newXPos;
 		y = newYPos;
-		setShape(); // update the "player-shape" with new coordinates.
 	}
 
 	// --------------------------------------------------------------------------- Dessa streck-gubbar skall bort, och ersättas med sprites.
 	public void render(ShapeRenderer sr) {
 		
-		// first set the shape to draw.
-		setShape();
-		
-		sr.setColor(1, 0, 0, 1);
+		sr.setColor(0, 1, 0, 1);
 
 		// Then draw the new player-figure.
-		sr.begin(ShapeType.Line);
-
-		for (int i = 0, j = shapeX.length - 1; i < shapeX.length; j = i++) {
-
-			sr.line(shapeX[i], shapeY[i], shapeX[j], shapeY[j]);
-		}
+		sr.begin(ShapeType.Filled);
+		
+		sr.circle(x, y, radius);
 
 		sr.end();
-	}
-	
-	private void setShape() {
-		
-		shapeX[0] = x - MathUtils.cos(radians - 4 * MathUtils.PI / 5) * 32;
-		shapeY[0] = y + MathUtils.sin(radians) * 32;
-		
-		shapeX[1] = x + MathUtils.cos(radians - 4 * MathUtils.PI / 5) * 32;
-		shapeY[1] = y + MathUtils.sin(radians) * 32;
-
-		shapeX[2] = x + MathUtils.cos(radians - 4 * MathUtils.PI / 5) * 32;
-		shapeY[2] = y + MathUtils.sin(radians - 4 * MathUtils.PI / 5) * 32;
-
-		shapeX[3] = x + MathUtils.cos(radians + 4 * MathUtils.PI / 5) * 32;
-		shapeY[3] = y + MathUtils.sin(radians + 4 * MathUtils.PI / 5) * 32;
 	}
 
 	public String getId(){
