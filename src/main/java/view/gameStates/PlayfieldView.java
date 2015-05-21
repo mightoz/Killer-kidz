@@ -145,7 +145,7 @@ public class PlayfieldView implements Screen, Observer {
 			boolean isNew = true;
 			for(KidView kidView: kidViews){
 				if(kidView.getId().equals(id)){
-					kidView.update(entity, newXPos, newYPos);
+					kidView.update(newXPos, newYPos);
 					isNew = false;
 					break;
 				}

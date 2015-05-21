@@ -155,7 +155,7 @@ public class Model implements ObservedSubject {
      */
     public void updateGame(double delta) {
         level.update(delta);
-        for(int i = 0; i< objects.size();i++){
+        for(int i = 0; i< objects.size()-1;i++){
             Entity entity = objects.get(i);
             if(!entity.isExpired()){
                 entity.update(delta);
@@ -168,9 +168,9 @@ public class Model implements ObservedSubject {
                  */
                 if(entity.getId().substring(0,1).equals("k") && entity instanceof Kid){
                     if(((Kid)entity).enteredStore()){
-                        level.enteredStore();
+//                        level.enteredStore();
                     }else{
-                        level.killedByCandy();
+//                        level.killedByCandy();
                     }
                 }
                 for(Observer observer: observers){

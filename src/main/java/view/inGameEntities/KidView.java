@@ -23,7 +23,9 @@ public class KidView extends VisibleObjects{
 	
 	
 	public KidView(String id, float width, float height) {
-		
+
+
+
 		this.id = id;
 
 		x = width / 4;
@@ -38,16 +40,17 @@ public class KidView extends VisibleObjects{
 	}
 
 	// Updates players position, called by model (through interface).
-	public void update(Entity entity, float newXPos, float newYPos) {
+	public void update(float newXPos, float newYPos) {
 
-		kid = (Kid)entity;
+
+		//kid = (Kid)entity;
 		x = newXPos;
 		y = newYPos;
 		
-		radius = (float)kid.getBodyRadius();
+		//radius = (float)kid.getBodyRadius();
 		
 //		hungerPoint = kid.getHpRatio();
-		segment = (int) (2 * hungerPoint);
+		//segment = (int) (2 * hungerPoint);
 		
 		
 	}
@@ -55,14 +58,14 @@ public class KidView extends VisibleObjects{
 	// --------------------------------------------------------------------------- Dessa streck-gubbar skall bort, och ersättas med sprites.
 	public void render(ShapeRenderer sr) {
 		
-		sr.setColor(0, 1, 0, 1);
+		sr.setColor(0, 1, 1, 1);
 
 		// Then draw the new player-figure.
 		sr.begin(ShapeType.Filled);
 		
 		sr.circle(x, y, radius);
 		
-		sr.setColor(0, 0, 0, 1);
+//		sr.setColor(0, 0, 0, 1);
 //		sr.circle(x, y, radius, segment);
 
 		sr.end();
