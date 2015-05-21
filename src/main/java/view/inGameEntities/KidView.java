@@ -63,7 +63,7 @@ public class KidView extends VisibleObjects{
 		sr.circle(x, y, radius);
 		
 		sr.setColor(0, 0, 0, 1);
-		sr.circle(x, y, radius, segment);
+//		sr.circle(x, y, radius, segment);
 
 		sr.end();
 	}
