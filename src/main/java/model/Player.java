@@ -1,6 +1,8 @@
 package model;
 
 
+import com.sun.javafx.sg.prism.NGShape;
+
 import java.util.ArrayList;
 
 
@@ -94,10 +96,18 @@ public class Player extends Entity{
         //moves player up/down if up/down key is pressed and both left and right keys are pressed at the same time,
         //or both left and right keys are not pressed at all.
         if(leftAndRight && !upAndDown){
-            if(upKeyPressed)
+            if (upKeyPressed)
                 yPos += delta;
             else
                 yPos -= delta;
+
+
+            if(yPos <= 0) {
+                yPos += delta;
+            }else if(yPos >= Model.height) {
+                yPos -= delta;
+            }
+
         }
         //moves player left/right if left/right key is pressed and both up and down keys are pressed at the same time,
         //or both up and down keys are not pressed at all.
@@ -106,6 +116,13 @@ public class Player extends Entity{
                 xPos += delta;
             else
                 xPos -= delta;
+
+
+            if(xPos <= Model.leftBoundary) {
+                xPos += delta;
+            }else if(xPos >= Model.rightBoundary) {
+                xPos -= delta;
+            }
         }
         //moves player diagonally at the same speed as all other axis.
         if(!leftAndRight && !upAndDown){
@@ -118,9 +135,32 @@ public class Player extends Entity{
             }else if(rightKeyPressed){
                 xPos += Math.sqrt((delta*delta)/2);
                 yPos -= Math.sqrt((delta*delta)/2);
-            }else{
-                xPos -= Math.sqrt((delta*delta)/2);
+            }else {
+                xPos -= Math.sqrt((delta * delta) / 2);
+                yPos -= Math.sqrt((delta * delta) / 2);
+            }
+
+            if(yPos <= 0){
+                yPos += Math.sqrt((delta*delta)/2);
+            }else if(yPos >= Model.height){
                 yPos -= Math.sqrt((delta*delta)/2);
+            }else if(xPos <= Model.leftBoundary){
+                xPos += Math.sqrt((delta*delta)/2);
+            }else if(xPos >= Model.rightBoundary){
+                xPos -= Math.sqrt((delta*delta)/2);
+            }else if(yPos >= Model.height && xPos <= Model.leftBoundary){
+                yPos -= Math.sqrt((delta*delta)/2);
+                xPos += Math.sqrt((delta*delta)/2);
+            }else if(yPos >= Model.height && xPos >= Model.rightBoundary){
+                    yPos -= Math.sqrt((delta*delta)/2);
+                    xPos -= Math.sqrt((delta*delta)/2);
+            }else if(yPos <= 0 && xPos <= Model.leftBoundary){
+                yPos += Math.sqrt((delta*delta)/2);
+                xPos += Math.sqrt((delta*delta)/2);
+            }else if(yPos <= 0 && xPos >= Model.rightBoundary){
+                yPos += Math.sqrt((delta*delta)/2);
+                xPos -= Math.sqrt((delta*delta)/2);
+
             }
         }
     }

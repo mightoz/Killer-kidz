@@ -63,4 +63,8 @@ public class KidView extends VisibleObjects{
 		shapeX[3] = x + MathUtils.cos(radians + 4 * MathUtils.PI / 5) * 32;
 		shapeY[3] = y + MathUtils.sin(radians + 4 * MathUtils.PI / 5) * 32;
 	}
+
+	public String getId(){
+		return id;
+	}
 }

@@ -8,6 +8,7 @@ import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
 import view.inGameEntities.CandyView;
+import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
 
 import com.badlogic.gdx.Gdx;
@@ -22,7 +23,8 @@ public class PlayfieldView implements Screen, Observer {
 	private ShapeRenderer sr;
 	private PlayerView[] player;
 	private GameManager gm; // ------------------------------------ Användas senare?
-	
+	private ArrayList<KidView> kidViews;
+
 	private float width;
 	private float height;
 	
@@ -44,7 +46,7 @@ public class PlayfieldView implements Screen, Observer {
 
 		gui = new GUI(width, height);
 		shop = new ShopToProtect(gm, gui, width, height);
-		
+		kidViews = new ArrayList<>();
 		
 		money = new Money_Bar(gm, width, height);
 		level = new CurrentLevel_Bar(gm ,width, height);
@@ -83,6 +85,9 @@ public class PlayfieldView implements Screen, Observer {
             candies.get(i).render(sr);
         }
 
+        for(int i = 0; i<kidViews.size();i++){
+            kidViews.get(i).render(sr);
+        }
 		
 		shop.render(sr);
 		gui.render(sr);
@@ -140,8 +145,20 @@ public class PlayfieldView implements Screen, Observer {
 
 
 			
-		case "K": // Kid object
-			// Do stuff
+
+		case "k": // Kid object
+			boolean isNew = true;
+			for(KidView kidView: kidViews){
+				if(kidView.getId().equals(id)){
+					kidView.update(newXPos, newYPos);
+					isNew = false;
+					break;
+				}
+			}
+			if(isNew){
+				kidViews.add(new KidView(entity.getId(), newXPos, newYPos));
+			}
+
 		}
 	}
 

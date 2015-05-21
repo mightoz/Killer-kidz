@@ -16,8 +16,10 @@ public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
     private ArrayList<Entity> objects;
-    private float width;
-    private float height;
+    public static float width;
+    public static float height;
+    public static float leftBoundary;
+    public static float rightBoundary;
 
     private Player player1;
     private Player player2;
@@ -30,7 +32,9 @@ public class Model implements ObservedSubject {
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
         this.width = (float)width;
-        this.height = (float)height;
+        this.height = (float)height-62;
+        leftBoundary = 45;
+        rightBoundary = 200;
         currentLevel = 1;
     }
 
@@ -67,8 +71,6 @@ public class Model implements ObservedSubject {
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
-
-
 
         if (player == 1) {
             player1.updateDir(directions);
@@ -136,7 +138,7 @@ public class Model implements ObservedSubject {
      * @param levelNbr
      */
     public void startLevel(int levelNbr){
-
+    //    kids.clear();
         switch(levelNbr){
             case 1:
                 level = new LevelOne();
@@ -157,7 +159,7 @@ public class Model implements ObservedSubject {
             Entity entity = objects.get(i);
             if(!entity.isExpired()){
                 entity.update(delta);
-                level.update(delta);
+         //     level.update(delta);
             }else{
                 objects.remove(entity);
                 for(Observer observer: observers){
@@ -166,6 +168,16 @@ public class Model implements ObservedSubject {
                 level.update(delta);
             }
         }
+
+        for(Entity kid: level.getKids()){
+            if(!kid.isExpired()){
+                kid.update(10*delta);
+            }else{
+                level.getKids().remove(kid);
+            }
+        }
+
+        level.update(delta);
 
         if(!level.levelFailed() && !level.levelDone()){
             level.update(delta);
@@ -213,7 +225,21 @@ public class Model implements ObservedSubject {
                 observer.update(entity, entity.getX(), entity.getY());
             }
 
+            for(Entity entity: level.getKids()){
+                observer.update(entity.getId(), entity.getX(), entity.getY());
+            }
+
         }
 
     }
+
+    public float getWidth(){
+        return width;
+    }
+
+    public float getHeight(){
+        return height;
+    }
+
+
 }

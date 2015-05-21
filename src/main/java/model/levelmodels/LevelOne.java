@@ -1,6 +1,7 @@
 package model.levelmodels;
 
 import model.Entity;
+import model.Model;
 import model.kids.KidFactory;
 import model.kids.KidTypes;
 
@@ -11,26 +12,35 @@ import java.util.Random;
  */
 public class LevelOne extends Level {
 
+    Random random;
+
     public LevelOne(){
         super();
         kidsInLevel = 50;
+        random = new Random();
     }
 
     @Override
     public void update(double delta) {
+  //      System.out.println("Updating level");
+
         updates++;
-        Random random = new Random();
 
         //Intervallet får anpassas till resten av spelet
-        if(updates > 5){
-            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, 640, random.nextInt(480)));
+        if(updates >= 80){
+            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int)Model.height)));
             updates = 0;
         }
 
         //uppdaterar positionen på alla kids
-        for(Entity kid: kids){
-            kid.update(delta);
-        }
+//        for(Entity kid: kids){
+//            if(!kid.isExpired()){
+//                kid.update(delta);
+//            }else{
+//                kids.remove(kid);
+//            }
+//
+//        }
 
     }
 
