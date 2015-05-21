@@ -1,17 +1,21 @@
 package view.gameStates;
 
+import model.Entity;
 import model.Observer;
 import view.GameManager;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
+import view.inGameEntities.CandyView;
 import view.inGameEntities.PlayerView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import java.util.ArrayList;
 
 public class PlayfieldView implements Screen, Observer {
 
@@ -27,6 +31,8 @@ public class PlayfieldView implements Screen, Observer {
 	
 	private Money_Bar money;
 	private CurrentLevel_Bar level;
+
+    private ArrayList<CandyView> candies;
 	
 	public PlayfieldView(GameManager gm) {
 		
@@ -45,6 +51,8 @@ public class PlayfieldView implements Screen, Observer {
 		
 		player = new PlayerView[2];
 		player[0] = new PlayerView("P.1", width, height);
+
+        candies = new ArrayList();
 		
 		
 		
@@ -70,6 +78,11 @@ public class PlayfieldView implements Screen, Observer {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		player[0].render(sr);
+
+        for(int i = 0; i<candies.size();i++){
+            candies.get(i).render(sr);
+        }
+
 		
 		shop.render(sr);
 		gui.render(sr);
@@ -84,7 +97,7 @@ public class PlayfieldView implements Screen, Observer {
 	
 	// -------------------------------------------------------------------------- Metod som model skall anropa för uppdatera spelare, godis, barn, m.m.
 	@Override
-	public void update(String objectID, float newXPos, float newYPos){
+	public void update(Entity entity, float newXPos, float newYPos){
         /*
 		 * Bortse koden under om det bråkar, och istället gör:
 		 * 1) kolla vilket objekt som skall updateras (skicka med objekt i parameter?)
@@ -94,26 +107,70 @@ public class PlayfieldView implements Screen, Observer {
 		 *    som då alltså säger till ett viewobjek att uppdateras sin position
 		 *    ifrån models.
 		 */
-		
-		switch(objectID.substring(0, 1)) {
+
+        String id = entity.getId();
+
+		switch(entity.getId().substring(0, 1)) {
 		case "p": // Player objects
-				  if(objectID.equals("p0")) {
+				  if(entity.getId().equals("p0")) {
 					  player[0].update(newXPos, newYPos);
                       break;
-					  
-				  } else if(objectID.equals("p1")) {
+				  } else if(entity.getId().equals("p1")) {
 					  player[1].update(newXPos, newYPos);
 					  break;
 			}
-					
+		/*
+		Iterates over a linked list of candyViews.
+		If a candy is thrown and updated in model, but is still not added as a view,
+		adds the candy to views. Otherwise, updates the positions of the candy.
+		 */
 		case "c": // Candy object
-//			int temp = Integer.parseInt(objectID.substring(2, 5)); // 999 objects
-//			for()
+            boolean newCandy = true;
+
+            for(CandyView candy: candies){
+               if(candy.getId().equals(id)){
+                   candy.update(newXPos, newYPos);
+                   newCandy = false;
+                   break;
+               }
+            }
+            if(newCandy) {
+                candies.add(new CandyView(entity.getId(), newXPos, newYPos));
+            }
+
+
 			
-		case "K": // Kid object	
+		case "K": // Kid object
 			// Do stuff
 		}
 	}
+
+    /**
+     * removes an object from a list of viewobjects, specified by the entity id.
+     * @param entity
+     */
+    public void removeEntity(Entity entity){
+        String id = entity.getId();
+        switch (id.substring(0, 1)){
+            case "p":
+
+                break;
+
+            case "c":
+
+                for(CandyView candy: candies){
+                    if(candy.getId().equals(id)){
+                        candies.remove(candy);
+                        break;
+                    }
+                }
+
+            case "k":
+
+                break;
+        }
+
+    }
 	
 	@Override
 	public void hide() { }

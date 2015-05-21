@@ -88,8 +88,6 @@ public class Player extends Entity{
      */
     public void update(double deltaMovement){
         double delta = deltaMovement * 200;
-//        System.out.println(xPos);
-//        System.out.println(yPos);
         boolean leftAndRight = (!leftKeyPressed && !rightKeyPressed) || (leftKeyPressed && rightKeyPressed);
         boolean upAndDown = (!upKeyPressed && !downKeyPressed) || (upKeyPressed && downKeyPressed);
 
@@ -112,17 +110,17 @@ public class Player extends Entity{
         //moves player diagonally at the same speed as all other axis.
         if(!leftAndRight && !upAndDown){
             if(upKeyPressed && rightKeyPressed){
-                xPos += Math.sqrt(2*delta);
-                yPos += Math.sqrt(2*delta);
+                xPos += Math.sqrt((delta*delta)/2);
+                yPos += Math.sqrt((delta*delta)/2);
             }else if(upKeyPressed){
-                xPos -= Math.sqrt(2*delta);
-                yPos += Math.sqrt(2*delta);
+                xPos -= Math.sqrt((delta*delta)/2);
+                yPos += Math.sqrt((delta*delta)/2);
             }else if(rightKeyPressed){
-                xPos += Math.sqrt(2*delta);
-                yPos -= Math.sqrt(2*delta);
+                xPos += Math.sqrt((delta*delta)/2);
+                yPos -= Math.sqrt((delta*delta)/2);
             }else{
-                xPos -= Math.sqrt(2*delta);
-                yPos -= Math.sqrt(2*delta);
+                xPos -= Math.sqrt((delta*delta)/2);
+                yPos -= Math.sqrt((delta*delta)/2);
             }
         }
     }

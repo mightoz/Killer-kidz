@@ -6,6 +6,7 @@ import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -151,12 +152,18 @@ public class Model implements ObservedSubject {
      */
     public void updateGame(double delta) {
 
-        for(Entity entity: objects){
+
+        for(int i = 0; i< objects.size();i++){
+            Entity entity = objects.get(i);
             if(!entity.isExpired()){
                 entity.update(delta);
                 level.update(delta);
             }else{
                 objects.remove(entity);
+                for(Observer observer: observers){
+                    observer.removeEntity(entity);
+                }
+                level.update(delta);
             }
         }
 
@@ -203,7 +210,7 @@ public class Model implements ObservedSubject {
         for(Observer observer: observers){
 
             for(Entity entity: objects){
-                observer.update(entity.getId(), entity.getX(), entity.getY());
+                observer.update(entity, entity.getX(), entity.getY());
             }
 
         }

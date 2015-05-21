@@ -42,16 +42,16 @@ public class JellyBean extends Candy {
 
         switch (candyStatus[1]) {
             case 0:
-                maxTravelRange = 500;
+                maxTravelRange = 250;
                 break;
             case 1:
-                maxTravelRange = 700;
+                maxTravelRange = 300;
                 break;
             case 2:
-                maxTravelRange = 1000;
+                maxTravelRange = 400;
                 break;
             case 3:
-                maxTravelRange = 1400;
+                maxTravelRange = 600;
                 break;
         }
 
@@ -78,6 +78,14 @@ public class JellyBean extends Candy {
     }
 
     /**
+     * returns the damage of the thrown candy.
+     * @return damage.
+     */
+    public int getDamage(){
+        return damage;
+    }
+
+    /**
      * returns a boolean that decides if this candy object is expired or not.
      * @return
      */
@@ -87,10 +95,11 @@ public class JellyBean extends Candy {
 
     /**
      * Update method for candy position. Candy travels different distances depending on how much it has been upgraded.
-     * @param delta
+     * @param deltaTime
      */
     @Override
-    public void update(double delta) {
+    public void update(double deltaTime) {
+        double delta = deltaTime*150;
         if(travelledLength < maxTravelRange){
             xPos += 3 * delta;
             travelledLength += 3 * delta;

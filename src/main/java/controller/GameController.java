@@ -9,7 +9,8 @@ import com.badlogic.gdx.InputAdapter;
 
 public class GameController extends InputAdapter {
     private Model model;
-    private final int nbrOfPlayers;    
+    private final int nbrOfPlayers;
+    private TimeController timeController;
     
     private boolean[] p1Moves = {false, false, false, false};
     private boolean[] p2Moves = {false, false, false, false};
@@ -46,7 +47,8 @@ public class GameController extends InputAdapter {
     	}
         
         Gdx.input.setInputProcessor(this);
-        new TimeController(model);
+        timeController = new TimeController(model);
+        timeController.startLogic();
     }
 
     @Override
