@@ -8,6 +8,7 @@ public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
 	private final String ID;
+	protected int startHP;
 	protected int hp;
 	protected boolean expired;
 
@@ -47,6 +48,11 @@ public abstract class Kid extends Entity {
 	
 	public double getBodyRadius() {
 		return rBody;
+	}
+	
+	// return the ratio of the hp that is left
+	public double getHpRatio() {
+		return (double)hp/startHP;
 	}
 	
 	@Override

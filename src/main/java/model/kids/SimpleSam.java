@@ -15,7 +15,8 @@ public class SimpleSam extends Kid {
 		vx = -10;
 		vy = 0;
 
-		hp = 100;
+		startHP = 100;
+		hp = startHP;
 	}
 
 	@Override
