@@ -155,26 +155,30 @@ public class Model implements ObservedSubject {
      */
     public void updateGame(double delta) {
         level.update(delta);
-        for(int i = 0; i< objects.size()-1;i++){
-            Entity entity = objects.get(i);
-            if(!entity.isExpired()){
-                entity.update(delta);
-            }else{
-                objects.remove(entity);
-                /**
-                 * if entity is a kid then we need to tell level how the kid expired: if it entered the store
-                 * or if it got shot down by candies. Instanceof is used to be 100% sure that the entity is a kid before
-                 * we type cast it.
-                 */
-                if(entity.getId().substring(0,1).equals("k") && entity instanceof Kid){
-                    if(((Kid)entity).enteredStore()){
+        for(int i = 0; i< objects.size();i++){
+            if(objects.get(i) != null) {
+                Entity entity = objects.get(i);
+
+
+                if (!entity.isExpired()) {
+                    entity.update(delta);
+                } else {
+                    objects.remove(entity);
+                    /**
+                     * if entity is a kid then we need to tell level how the kid expired: if it entered the store
+                     * or if it got shot down by candies. Instanceof is used to be 100% sure that the entity is a kid before
+                     * we type cast it.
+                     */
+                    if (entity.getId().substring(0, 1).equals("k") && entity instanceof Kid) {
+                        if (((Kid) entity).enteredStore()) {
 //                        level.enteredStore();
-                    }else{
+                        } else {
 //                        level.killedByCandy();
+                        }
                     }
-                }
-                for(Observer observer: observers){
-                    observer.removeEntity(entity);
+                    for (Observer observer : observers) {
+                        observer.removeEntity(entity);
+                    }
                 }
             }
         }
@@ -229,12 +233,19 @@ public class Model implements ObservedSubject {
      */
     @Override
     public void notifyObserver() {
+
         for(Observer observer: observers){
 
-            for(Entity entity: objects){
-                observer.update(entity, entity.getX(), entity.getY());
-            }
+//            for(Entity entity: objects){
+//                observer.update(entity, entity.getX(), entity.getY());
+//            }
 
+            for(int i = 0; i < objects.size();i++){
+                if(objects.get(i) != null) {
+                    Entity entity = objects.get(i);
+                    observer.update(entity, entity.getX(), entity.getY());
+                }
+            }
         }
 
     }
