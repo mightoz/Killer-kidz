@@ -8,7 +8,7 @@ public class SimpleSam extends Kid {
 	
 	public SimpleSam(float x, float y) {
 		super(x, y);
-		rHead = 5;
+        rHead = 5;
 		rBody = 10;
 		yHead = y + rBody + rHead;	// have to initialize it here; radiuses are 0 in Kid
 

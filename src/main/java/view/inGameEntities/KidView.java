@@ -57,8 +57,7 @@ public class KidView extends VisibleObjects{
 
 	// --------------------------------------------------------------------------- Dessa streck-gubbar skall bort, och ersättas med sprites.
 	public void render(ShapeRenderer sr) {
-		
-		sr.setColor(0, 1, 1, 1);
+        sr.setColor(0, 1, 1, 1);
 
 		// Then draw the new player-figure.
 		sr.begin(ShapeType.Filled);

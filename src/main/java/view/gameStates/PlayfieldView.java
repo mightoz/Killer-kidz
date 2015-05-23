@@ -49,7 +49,7 @@ public class PlayfieldView implements Screen, Observer {
 
 		gui = new GUI(width, height);
 		shop = new ShopToProtect(gm, gui, width, height);
-		kidViews = new ArrayList<>();
+		kidViews = new ArrayList();
 		
 		money = new Money_Bar(gm, width, height);
 		level = new CurrentLevel_Bar(gm ,width, height);
@@ -112,8 +112,7 @@ public class PlayfieldView implements Screen, Observer {
 		 */
 
         String id = entity.getId();
-
-		switch(entity.getId().substring(0, 1)) {
+        switch(entity.getId().substring(0, 1)) {
 		case "p": // Player objects
 				  if(entity.getId().equals("p0")) {
 					  player[0].update(newXPos, newYPos);
@@ -123,36 +122,37 @@ public class PlayfieldView implements Screen, Observer {
 					  break;
 			}
 		/*
-		Iterates over a linked list of candyViews.
+		Loops over ArrayList of candyViews.
 		If a candy is thrown and updated in model, but is still not added as a view,
 		adds the candy to views. Otherwise, updates the positions of the candy.
 		 */
 		case "c": // Candy object
             boolean newCandy = true;
-
+//            System.out.println(id);
             for(CandyView candy: candies){
                if(candy.getId().equals(id)){
                    candy.update(newXPos, newYPos);
                    newCandy = false;
-                   break;
                }
             }
             if(newCandy) {
                 candies.add(new CandyView(entity.getId(), newXPos, newYPos));
             }
+            break;
 
 		case "k": // Kid object
-			boolean isNew = true;
+            System.out.println(id);
+            boolean isNew = true;
 			for(KidView kidView: kidViews){
 				if(kidView.getId().equals(id)){
 					kidView.update(newXPos, newYPos);
 					isNew = false;
-					break;
 				}
 			}
 			if(isNew){
 				kidViews.add(new KidView(entity.getId(), newXPos, newYPos));
 			}
+            break;
 		}
 	}
 

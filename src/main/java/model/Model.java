@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class Model implements ObservedSubject {
 
     private ArrayList<Observer> observers;
-    private ArrayList<Entity> objects;
+    public ArrayList<Entity> objects;
     public static float width;
     public static float height;
     public static float leftBoundary;
@@ -183,24 +183,16 @@ public class Model implements ObservedSubject {
             }
         }
 
-//        for(Entity kid: level.getKids()){
-//            if(!kid.isExpired()){
-//                kid.update(10*delta);
-//            }else{
-//                level.getKids().remove(kid);
-//            }
-//        }
-//
-//        level.update(delta);
 
-        if(!level.levelFailed() && !level.levelDone()){
-            level.update(delta);
-        }else if(level.levelFailed()){
-            //TODO when level failed, go to candy shop and restart level
-        }else if(level.levelDone()){
-            currentLevel++;
-            //TODO when level completed, go to candy shop and start next level
-        }
+//
+//        if(!level.levelFailed() && !level.levelDone()){
+//            level.update(delta);
+//        }else if(level.levelFailed()){
+//            //TODO when level failed, go to candy shop and restart level
+//        }else if(level.levelDone()){
+//            currentLevel++;
+//            //TODO when level completed, go to candy shop and start next level
+//        }
     }
 
     /**
@@ -235,11 +227,6 @@ public class Model implements ObservedSubject {
     public void notifyObserver() {
 
         for(Observer observer: observers){
-
-//            for(Entity entity: objects){
-//                observer.update(entity, entity.getX(), entity.getY());
-//            }
-
             for(int i = 0; i < objects.size();i++){
                 if(objects.get(i) != null) {
                     Entity entity = objects.get(i);
