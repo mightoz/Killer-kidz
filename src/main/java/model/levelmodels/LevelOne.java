@@ -8,34 +8,42 @@ import model.kids.KidTypes;
  */
 public class LevelOne extends Level {
 
-    public LevelOne(){t
+    public LevelOne() {
+        super();
+        timePassed = 0;
+        nextSpawnTime = 3;
+    }
+
+    public void update(double delta){
+        timePassed+=delta;
+        switch(currentWave){
+            case 1:
                 if(spawnedKids < 10) {
-                    if (timePassed >= lastSpawnTime && timePassed <= timePassed + random.nextDouble()*3) {
+                    if(timePassed >= nextSpawnTime){
                         Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
                         spawnedKids++;
-                        lastSpawnTime = timePassed;
+                        nextSpawnTime += random.nextDouble()*4;
                     }
+                }else if(kidsRemoved == 10){
+                    spawnedKids = 0;
+                    currentWave++;
+                    nextSpawnTime = timePassed + 3;
                 }
                 break;
             case 2:
                 if(spawnedKids < 15){
-                    if(timePassed >= lastSpawnTime && timePassed <= timePassed + random.nextDouble()*3){
+                    if(timePassed >= nextSpawnTime){
                         Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
                         spawnedKids++;
-                        lastSpawnTime = timePassed;
+                        nextSpawnTime += random.nextDouble()*4;
                     }
                 }
                 break;
         }
 
-
-        if(kidsRemoved == 10 && (kidsInStore + kidsKilled) == 10){
-            currentWave++;
-            spawnedKids = 0;
-        }
     }
 
-
+//
     @Override
     public boolean levelDone(){
         if(kidsRemoved == 20){

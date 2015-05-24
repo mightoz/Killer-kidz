@@ -12,7 +12,7 @@ import java.util.Random;
 public abstract class Level {
 
     protected double timePassed;
-    protected double lastSpawnTime;
+    protected double nextSpawnTime;
 
     protected int currentWave;
     protected int spawnedKids;
@@ -27,7 +27,7 @@ public abstract class Level {
         timePassed = 0.0;
         kidsInStore = 0;
         random = new Random();
-        currentWave = 0;
+        currentWave = 1;
         spawnedKids = 0;
     }
 

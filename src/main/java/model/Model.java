@@ -179,9 +179,9 @@ public class Model implements ObservedSubject {
                      */
                     if (entity.getId().substring(0, 1).equals("k") && entity instanceof Kid) {
                         if (((Kid) entity).enteredStore()) {
-//                        level.enteredStore();
+                        level.enteredStore();
                         } else {
-//                        level.killedByCandy();
+                        level.killedByCandy();
                         }
                     }
                     for (Observer observer : observers) {
