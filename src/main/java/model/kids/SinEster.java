@@ -30,10 +30,6 @@ public class SinEster extends Kid {
 		vy = A*k*Math.cos(k*(RIGHT_WALL - xPos));	// vy = dy/dx (old x)
 		xPos += vx*dt;								// vx = dx/dt
 		yPos += vy*vx*dt;							// dy/dt = dy/dx * dx/dt
-		
-		if (yPos < FLOOR || yPos > CEILING) {
-			System.out.println("kid escaped");
-		}
 	}
 
 	@Override
