@@ -25,7 +25,7 @@ public class CandyView extends VisibleObjects{
     }
 
     public void render(ShapeRenderer sr){
-        sr.setColor(1, 1, 1, 1);
+        sr.setColor(1, 1, 5, 1);
 
         sr.begin(ShapeType.Filled);
 

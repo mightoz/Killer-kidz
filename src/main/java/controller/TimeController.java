@@ -18,7 +18,7 @@ import java.util.TimerTask;
 public class TimeController {
 
     private LogicThread logicUpdater;
-    private RenderThread renderer;
+//    private RenderThread renderer;
     private Model model;
     private Timer timer;
     private TimerTask updater;
@@ -30,11 +30,11 @@ public class TimeController {
 
         this.model = model;
         logicUpdater = new LogicThread();
-        renderer = new RenderThread();
+//        renderer = new RenderThread();
         isRunning = false;
-        timer = new Timer();
-        updater = new RenderThread();
-        timer.schedule(updater,0,20);
+//        timer = new Timer();
+//        updater = new RenderThread();
+//        timer.schedule(updater,0,20);
         nextTime = (double)System.nanoTime()/1000000000.0;
     }
 
@@ -66,6 +66,7 @@ public class TimeController {
                 double currentTime = (double) System.nanoTime() / 1000000000.0;
                 double delta = (currentTime - nextTime);
                 model.updateGame(delta);
+                model.notifyObserver();
                 nextTime += delta;
 
             }
@@ -75,10 +76,11 @@ public class TimeController {
     /**
      * render thread.
      */
-    private class RenderThread extends TimerTask{
-
-        public void run(){
-            model.notifyObserver();
-        }
-    }
+//    private class RenderThread extends TimerTask{
+//
+//        public void run(){
+//            model.notifyObserver();
+//
+//        }
+//    }
 }

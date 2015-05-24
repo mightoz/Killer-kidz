@@ -8,18 +8,7 @@ import model.kids.KidTypes;
  */
 public class LevelOne extends Level {
 
-    public LevelOne(){
-        super();
-        kidsKilled = 0;
-    }
-
-    @Override
-    public void update(double delta) {
-
-        timePassed += delta;
-
-        switch (currentWave){
-            case 1:
+    public LevelOne(){t
                 if(spawnedKids < 10) {
                     if (timePassed >= lastSpawnTime && timePassed <= timePassed + random.nextDouble()*3) {
                         Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
@@ -38,6 +27,7 @@ public class LevelOne extends Level {
                 }
                 break;
         }
+
 
         if(kidsRemoved == 10 && (kidsInStore + kidsKilled) == 10){
             currentWave++;

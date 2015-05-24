@@ -7,6 +7,11 @@ public class LevelTwo extends Level{
 
 
     @Override
+    public boolean levelDone() {
+        return false;
+    }
+
+    @Override
     public void update(double delta) {
 
     }

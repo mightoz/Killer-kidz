@@ -4,6 +4,7 @@ import model.candymodels.Candy;
 import model.candymodels.JellyBean;
 import model.kids.KidFactory;
 import model.kids.KidTypes;
+import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
@@ -161,42 +162,47 @@ public class Model implements ObservedSubject {
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
-
-
+        level.update(delta);
         for(int i = 0; i< objects.size();i++){
-            Entity entity = objects.get(i);
-            if(!entity.isExpired()){
-                entity.update(delta);
-         //     level.update(delta);
-            }else{
-                objects.remove(entity);
-                for(Observer observer: observers){
-                    observer.removeEntity(entity);
+            if(objects.get(i) != null) {
+                Entity entity = objects.get(i);
+
+
+                if (!entity.isExpired()) {
+                    entity.update(delta);
+                } else {
+                    objects.remove(entity);
+                    /**
+                     * if entity is a kid then we need to tell level how the kid expired: if it entered the store
+                     * or if it got shot down by candies. Instanceof is used to be 100% sure that the entity is a kid before
+                     * we type cast it.
+                     */
+                    if (entity.getId().substring(0, 1).equals("k") && entity instanceof Kid) {
+                        if (((Kid) entity).enteredStore()) {
+//                        level.enteredStore();
+                        } else {
+//                        level.killedByCandy();
+                        }
+                    }
+                    for (Observer observer : observers) {
+                        observer.removeEntity(entity);
+                    }
                 }
 
             }
         }
 
-        level.update(delta);
 
-//        for(Entity kid: level.getKids()){
-//            if(!kid.isExpired()){
-//                kid.update(10*delta);
-//            }else{
-//                level.getKids().remove(kid);
-//            }
+//
+//        if(!level.levelFailed() && !level.levelDone()){
+//            level.update(delta);
+//        }else if(level.levelFailed()){
+//            //TODO when level failed, go to candy shop and restart level
+//        }else if(level.levelDone()){
+//            currentLevel++;
+//            //TODO when level completed, go to candy shop and start next level
 //        }
 
-        level.update(delta);
-
-        if(!level.levelFailed() && !level.levelDone()){
-            level.update(delta);
-        }else if(level.levelFailed()){
-            //TODO when level failed, go to candy shop and restart level
-        }else if(level.levelDone()){
-            currentLevel++;
-            //TODO when level completed, go to candy shop and start next level
-        }
     }
 
     /**
@@ -229,15 +235,15 @@ public class Model implements ObservedSubject {
      */
     @Override
     public void notifyObserver() {
+
+
         for(Observer observer: observers){
-
-            for(Entity entity: objects){
-                observer.update(entity, entity.getX(), entity.getY());
+            for(int i = 0; i < objects.size();i++){
+                if(objects.get(i) != null) {
+                    Entity entity = objects.get(i);
+                    observer.update(entity, entity.getX(), entity.getY());
+                }
             }
-
-//            for(Entity entity: level.getKids()){
-//                observer.update(entity, entity.getX(), entity.getY());
-//            }
 
         }
 
