@@ -1,5 +1,7 @@
 package model.kids;
 
+import java.util.Random;
+
 import model.Entity;
 import model.Model;
 import model.candymodels.Candy;
@@ -20,6 +22,8 @@ public abstract class Kid extends Entity {
 	protected static final double RIGHT_WALL = Model.rightBoundary;
 	protected static final double FLOOR = 0;
 	protected static final double CEILING = FLOOR + Model.height;
+	
+	protected static final Random randGen = new Random();
 	
 	public Kid(float x, float y) {
 		super(x, y);					// initiate body position
@@ -56,7 +60,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	@Override
-	public abstract void update(double delta);
+	public abstract void update(double dt);
 	
 	/**
 	 * hitByCandy handles the changes in kid if it's hit by a candy

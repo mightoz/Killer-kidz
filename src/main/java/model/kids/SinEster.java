@@ -1,35 +1,33 @@
 package model.kids;
 
-import java.util.Random;
 
 import model.candymodels.Candy;
+import java.lang.Math;
 
 public class SinEster extends Kid {
 	
 	private double vx, vy;		// velocities
-	
-	private final Random randGen;
-	private int A;				// amplitude of the sine wave
+	private int maxA;		// maximum amplitude of the sine wave
 	
 	public SinEster (float x, float y) {
 		super(x, y);
 		rHead = 5;
 		rBody = 10;
-		vx = -1;
-		vy = 0;
+		vx = -50;
+		
+		maxA = (int)Math.min(CEILING - yPos, yPos - FLOOR); 
 
 		startHP = 200;
 		hp = startHP;
-		
-		randGen = new Random();
 	}
 
 
 	@Override
-	public void update(double delta) {
-		// no acceleration
-		xPos += vx*delta;
-		yPos += vy*delta;
+	public void update(double dt) {
+		double A = maxA; //randGen.nextInt(maxA);
+		vy = A*5*Math.cos(RIGHT_WALL - xPos);
+		xPos += vx*dt;
+		yPos += vy*dt;
 	}
 
 	@Override
