@@ -11,7 +11,7 @@ public class SimpleSam extends Kid {
         rHead = 5;
 		rBody = 10;
 
-		vx = -10;
+		vx = -40;
 		vy = 0;
 
 		startHP = 100;
@@ -23,6 +23,9 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*delta;
 		yPos += vy*delta;
+
+		expired = xPos <= LEFT_WALL;
+
 	}
 
 	@Override

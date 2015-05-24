@@ -2,12 +2,15 @@ package model;
 
 import model.candymodels.Candy;
 import model.candymodels.JellyBean;
+import model.kids.KidFactory;
+import model.kids.KidTypes;
 import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 
 /**
@@ -15,8 +18,9 @@ import java.util.Iterator;
  */
 public class Model implements ObservedSubject {
 
+
     private ArrayList<Observer> observers;
-    public ArrayList<Entity> objects;
+    private static ArrayList<Entity> objects;
     public static float width;
     public static float height;
     public static float leftBoundary;
@@ -134,6 +138,10 @@ public class Model implements ObservedSubject {
 
     }
 
+    public static void spawnKid(KidTypes type, float xPos, float yPos){
+       objects.add(KidFactory.createKid(type, xPos, yPos));
+    }
+
     /**
      * Starts a new level
      * @param levelNbr
@@ -171,15 +179,16 @@ public class Model implements ObservedSubject {
                      */
                     if (entity.getId().substring(0, 1).equals("k") && entity instanceof Kid) {
                         if (((Kid) entity).enteredStore()) {
-//                        level.enteredStore();
+                        level.enteredStore();
                         } else {
-//                        level.killedByCandy();
+                        level.killedByCandy();
                         }
                     }
                     for (Observer observer : observers) {
                         observer.removeEntity(entity);
                     }
                 }
+
             }
         }
 
@@ -193,6 +202,7 @@ public class Model implements ObservedSubject {
 //            currentLevel++;
 //            //TODO when level completed, go to candy shop and start next level
 //        }
+
     }
 
     /**
@@ -226,6 +236,7 @@ public class Model implements ObservedSubject {
     @Override
     public void notifyObserver() {
 
+
         for(Observer observer: observers){
             for(int i = 0; i < objects.size();i++){
                 if(objects.get(i) != null) {
@@ -233,6 +244,7 @@ public class Model implements ObservedSubject {
                     observer.update(entity, entity.getX(), entity.getY());
                 }
             }
+
         }
 
     }
