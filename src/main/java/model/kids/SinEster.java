@@ -1,20 +1,27 @@
 package model.kids;
 
+import java.util.Random;
+
 import model.candymodels.Candy;
 
 public class SinEster extends Kid {
 	
-	private double vx, vy;
+	private double vx, vy;		// velocities
+	
+	private final Random randGen;
+	private int A;				// amplitude of the sine wave
 	
 	public SinEster (float x, float y) {
 		super(x, y);
 		rHead = 5;
 		rBody = 10;
-
-		vx = -10;
+		vx = -1;
 		vy = 0;
 
-		hp = 200;
+		startHP = 200;
+		hp = startHP;
+		
+		randGen = new Random();
 	}
 
 
@@ -23,8 +30,6 @@ public class SinEster extends Kid {
 		// no acceleration
 		xPos += vx*delta;
 		yPos += vy*delta;
-
-		expired = xPos <= LEFT_WALL;
 	}
 
 	@Override

@@ -4,7 +4,7 @@ package model.kids;
 public abstract class KidFactory {
 	
 	public static Kid createKid(KidTypes type, float x, float y) {
-        switch(type) {
+		switch(type) {
 		case SIMPLE_SAM:
 			return new SimpleSam(x, y);
 		case SINESTER:

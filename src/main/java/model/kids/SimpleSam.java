@@ -23,9 +23,6 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*delta;
 		yPos += vy*delta;
-
-		expired = xPos <= LEFT_WALL;
-
 	}
 
 	@Override

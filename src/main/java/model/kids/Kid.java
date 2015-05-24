@@ -8,6 +8,7 @@ public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
 	private final String ID;
+	
 	protected int startHP;
 	protected int hp;
 	protected boolean expired;
@@ -65,7 +66,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(Candy candy);
 	
 	public boolean enteredStore() {
-		return xPos <= 0;
+		return xPos <= LEFT_WALL;
 	}
 	
 	@Override
