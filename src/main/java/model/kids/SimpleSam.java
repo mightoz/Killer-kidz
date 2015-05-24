@@ -32,8 +32,12 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void hitByCandy(Candy candy) {
-		hp -= 100;
+		hp -= candy.getDamage();
 		expired = hp <= 0;
 	}
+
+    public float getRadius(){
+        return rBody;
+    }
 	
 }

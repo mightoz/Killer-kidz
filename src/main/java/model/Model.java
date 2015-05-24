@@ -158,18 +158,31 @@ public class Model implements ObservedSubject {
         for(int i = 0; i< objects.size();i++){
             if(objects.get(i) != null) {
                 Entity entity = objects.get(i);
-
-
+                String id = entity.getId();
                 if (!entity.isExpired()) {
                     entity.update(delta);
+                    if(id.substring(0,1).equals("c")){
+                        for(int j = 0; j< objects.size();j++){
+                            if(objects.get(j).getId().substring(0,1).equals("k")){
+                                Entity kid = objects.get(j);
+                                float deltaX = kid.getX()-entity.getX();
+                                float deltaY = entity.getY()-entity.getY();
+                                float combinedR = kid.getRadius()+entity.getRadius();
+                                if(Math.pow(deltaX,2)+Math.pow(deltaY,2)<= Math.pow(combinedR, 2)){
+                                    ((Kid)kid).hitByCandy((Candy)entity);
+                                    objects.remove(entity);
+                                }
+                            }
+                        }
+                    }
                 } else {
-                    objects.remove(entity);
+                        objects.remove(entity);
                     /**
                      * if entity is a kid then we need to tell level how the kid expired: if it entered the store
-                     * or if it got shot down by candies. Instanceof is used to be 100% sure that the entity is a kid before
-                     * we type cast it.
+                     * or if it got shot down by candies.
                      */
-                    if (entity.getId().substring(0, 1).equals("k") && entity instanceof Kid) {
+                    if (entity.getId().substring(0, 1).equals("k")) {
+
                         if (((Kid) entity).enteredStore()) {
 //                        level.enteredStore();
                         } else {

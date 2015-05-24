@@ -5,7 +5,8 @@ package model;
  */
 public abstract class Entity {
 
-    protected float xPos, yPos;
+    protected float xPos, yPos, radius;
+
 
 
     public Entity(float x, float y){
@@ -38,5 +39,9 @@ public abstract class Entity {
      * @return
      */
     public abstract String getId();
+
+    public float getRadius(){
+        return radius;
+    }
 
 }
