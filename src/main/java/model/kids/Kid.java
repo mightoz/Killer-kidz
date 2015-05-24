@@ -12,7 +12,6 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 
-	protected double yHead;				// head y position (x always same as body)
 	protected double rHead;				// head radius
 	protected double rBody;				// body radius
 	
@@ -39,7 +38,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	public double getHeadY() {
-		return yHead;
+		return yPos + rBody + rHead;
 	}
 	
 	public double getHeadRadius() {

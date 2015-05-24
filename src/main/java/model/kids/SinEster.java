@@ -10,7 +10,6 @@ public class SinEster extends Kid {
 		super(x, y);
 		rHead = 5;
 		rBody = 10;
-		yHead = y + rBody + rHead;	// have to initialize it here; radiuses are 0 in Kid
 
 		vx = -10;
 		vy = 0;
@@ -24,7 +23,6 @@ public class SinEster extends Kid {
 		// no acceleration
 		xPos += vx*delta;
 		yPos += vy*delta;
-		yHead += vy*delta;
 
 		expired = xPos <= LEFT_WALL;
 	}
