@@ -1,52 +1,61 @@
 package model.levelmodels;
 
-import model.Entity;
 import model.Model;
-import model.kids.KidFactory;
 import model.kids.KidTypes;
-
-import java.util.Random;
 
 /**
  * Created by Matilda on 2015-05-03.
  */
 public class LevelOne extends Level {
 
-    Random random;
-
-    public LevelOne(){
+    public LevelOne() {
         super();
-        kidsInLevel = 50;
-        random = new Random();
+        timePassed = 0;
+        nextSpawnTime = 3;
     }
 
-    @Override
-    public void update(double delta) {
-  //      System.out.println("Updating level");
+    public void update(double delta){
+        timePassed+=delta;
+        switch(currentWave){
+            case 1:
+                if(spawnedKids < 10) {
+                    if(timePassed >= nextSpawnTime){
+                        Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
+                        spawnedKids++;
+                        nextSpawnTime += random.nextDouble()*4;
+                    }
+                }else if(kidsRemoved == 10){
+                    spawnedKids = 0;
+                    currentWave++;
+                    nextSpawnTime = timePassed + 3;
+                }
+                break;
+            case 2:
+                if(spawnedKids < 15){
+                    if(timePassed >= nextSpawnTime){
+                        Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
+                        spawnedKids++;
+                        nextSpawnTime += random.nextDouble()*4;
+                    }
+                }
+                break;
+        }
 
-        updates++;
+    }
 
-        //Intervallet får anpassas till resten av spelet
-//        if(updates >= 80){
-//            kids.add(KidFactory.createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int)Model.height)));
-//            updates = 0;
-//        }
-
-        //uppdaterar positionen på alla kids
-//        for(Entity kid: kids){
-//            if(!kid.isExpired()){
-//                kid.update(delta);
-//            }else{
-//                kids.remove(kid);
-//            }
 //
-//        }
-
+    @Override
+    public boolean levelDone(){
+        if(kidsRemoved == 20){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean levelFailed() {
-        if(kidsInStore == 10){
+        if(kidsInStore == 3){
             return true;
         }else{
             return false;

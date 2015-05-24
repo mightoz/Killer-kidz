@@ -22,9 +22,10 @@ public class SimpleSam extends Kid {
 	@Override
 	public void update(double delta) {
 		// no acceleration
-		xPos += vx*delta;
-		yPos += vy*delta;
-		yHead += vy*delta;
+		double deltaMovement = delta*4;
+		xPos += vx*deltaMovement;
+		yPos += vy*deltaMovement;
+		yHead += vy*deltaMovement;
 
 		expired = xPos <= LEFT_WALL;
 

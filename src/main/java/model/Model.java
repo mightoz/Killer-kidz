@@ -2,12 +2,15 @@ package model;
 
 import model.candymodels.Candy;
 import model.candymodels.JellyBean;
+import model.kids.KidFactory;
+import model.kids.KidTypes;
 import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 
 /**
@@ -15,8 +18,9 @@ import java.util.Iterator;
  */
 public class Model implements ObservedSubject {
 
+
     private ArrayList<Observer> observers;
-    public ArrayList<Entity> objects;
+    private static ArrayList<Entity> objects;
     public static float width;
     public static float height;
     public static float leftBoundary;
@@ -29,11 +33,11 @@ public class Model implements ObservedSubject {
     private int currentLevel;
 
 
-    public Model(int width, int height){
+    public Model(int width, int height) {
         observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
-        this.width = (float)width;
-        this.height = (float)height-62;
+        this.width = (float) width;
+        this.height = (float) height - 62;
         leftBoundary = 45;
         rightBoundary = 200;
         currentLevel = 1;
@@ -45,7 +49,7 @@ public class Model implements ObservedSubject {
      * @param playerName
      */
 
-    public Model(String playerName, int width, int height){
+    public Model(String playerName, int width, int height) {
         this(width, height);
         player1 = new Player(100, 250, playerName);
         objects.add(player1);
@@ -58,7 +62,7 @@ public class Model implements ObservedSubject {
      * @param player1Name
      * @param player2Name
      */
-    public Model(String player1Name, String player2Name, int width, int height){
+    public Model(String player1Name, String player2Name, int width, int height) {
         this(width, height);
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
@@ -68,14 +72,15 @@ public class Model implements ObservedSubject {
 
     /**
      * Updates the player's directions
-     * @param player what player to update
+     *
+     * @param player     what player to update
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
 
         if (player == 1) {
             player1.updateDir(directions);
-        }else{
+        } else {
             player2.updateDir(directions);
         }
     }
@@ -89,8 +94,8 @@ public class Model implements ObservedSubject {
 
         Candy candy;
 
-        if(player == 1){
-            switch(player1.getSelectedCandy()){
+        if (player == 1) {
+            switch (player1.getSelectedCandy()) {
                 case 0:
                     ArrayList<int[]> tmpData1 = player1.getCandyData();
                     candy = new JellyBean(player1.getX(), player1.getY(), tmpData1.get(0));
@@ -109,8 +114,8 @@ public class Model implements ObservedSubject {
 //                    candy = new FerroRoscher(player1.getX(), player1.getY(), tmpData4.get(3));
 //                    break;
             }
-        }else{
-            switch(player2.getSelectedCandy()) {
+        } else {
+            switch (player2.getSelectedCandy()) {
                 case 0:
                     ArrayList<int[]> tmpData1 = player2.getCandyData();
                     candy = new JellyBean(player2.getX(), player2.getY(), tmpData1.get(0));
@@ -134,19 +139,24 @@ public class Model implements ObservedSubject {
 
     }
 
+    public static void spawnKid(KidTypes type, float xPos, float yPos) {
+        objects.add(KidFactory.createKid(type, xPos, yPos));
+    }
+
     /**
      * Starts a new level
+     *
      * @param levelNbr
      */
-    public void startLevel(int levelNbr){
-    //    kids.clear();
-        switch(levelNbr){
+    public void startLevel(int levelNbr) {
+        //    kids.clear();
+        switch (levelNbr) {
             case 1:
                 level = new LevelOne();
                 break;
-   //         case 2:
-   //             level = new LevelTwo();
-   //             break;
+            //         case 2:
+            //             level = new LevelTwo();
+            //             break;
         }
     }
 
@@ -155,28 +165,34 @@ public class Model implements ObservedSubject {
      */
     public void updateGame(double delta) {
         level.update(delta);
-        for(int i = 0; i< objects.size();i++){
-            if(objects.get(i) != null) {
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.get(i) != null) {
                 Entity entity = objects.get(i);
                 String id = entity.getId();
                 if (!entity.isExpired()) {
                     entity.update(delta);
-                    if(id.substring(0,1).equals("c")){
+                    if (id.substring(0, 1).equals("c")) {
                         for(int j = 0; j< objects.size();j++){
-                            if(objects.get(j).getId().substring(0,1).equals("k")){
+                            if (objects.get(j) != null) {
+                            if(objects.get(j).getId().substring(0,1).equals("k")) {
                                 Entity kid = objects.get(j);
-                                float deltaX = kid.getX()-entity.getX();
-                                float deltaY = entity.getY()-entity.getY();
-                                float combinedR = kid.getRadius()+entity.getRadius();
-                                if(Math.pow(deltaX,2)+Math.pow(deltaY,2)<= Math.pow(combinedR, 2)){
-                                    ((Kid)kid).hitByCandy((Candy)entity);
+                                float deltaX = kid.getX() - entity.getX();
+                                float deltaY = kid.getY() - entity.getY();
+                                float combinedR = kid.getRadius() + entity.getRadius();
+                                if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
+                                    ((Kid) kid).hitByCandy((Candy) entity);
                                     objects.remove(entity);
+                                    for (Observer observer : observers) {
+                                        observer.removeEntity(entity);
+                                    }
                                 }
                             }
+                            }
                         }
+
                     }
                 } else {
-                        objects.remove(entity);
+                    objects.remove(entity);
                     /**
                      * if entity is a kid then we need to tell level how the kid expired: if it entered the store
                      * or if it got shot down by candies.
@@ -184,9 +200,9 @@ public class Model implements ObservedSubject {
                     if (entity.getId().substring(0, 1).equals("k")) {
 
                         if (((Kid) entity).enteredStore()) {
-//                        level.enteredStore();
+                            level.enteredStore();
                         } else {
-//                        level.killedByCandy();
+                            level.killedByCandy();
                         }
                     }
                     for (Observer observer : observers) {
@@ -195,17 +211,6 @@ public class Model implements ObservedSubject {
                 }
             }
         }
-
-
-//
-//        if(!level.levelFailed() && !level.levelDone()){
-//            level.update(delta);
-//        }else if(level.levelFailed()){
-//            //TODO when level failed, go to candy shop and restart level
-//        }else if(level.levelDone()){
-//            currentLevel++;
-//            //TODO when level completed, go to candy shop and start next level
-//        }
     }
 
     /**
@@ -239,6 +244,7 @@ public class Model implements ObservedSubject {
     @Override
     public void notifyObserver() {
 
+
         for(Observer observer: observers){
             for(int i = 0; i < objects.size();i++){
                 if(objects.get(i) != null) {
@@ -246,6 +252,7 @@ public class Model implements ObservedSubject {
                     observer.update(entity, entity.getX(), entity.getY());
                 }
             }
+
         }
 
     }

@@ -1,44 +1,56 @@
 package model.levelmodels;
 
-import model.Entity;
+import model.Model;
 
-import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Matilda on 2015-05-03.
  *
- * This class create kid objects, representing a level
+ * This class decides when to create kid objects, representing a level
  */
 public abstract class Level {
 
-    protected static ArrayList<Entity> kids;
-    protected int updates;
+    protected double timePassed;
+    protected double nextSpawnTime;
+
+    protected int currentWave;
+    protected int spawnedKids;
+
     protected int kidsInStore;
-    protected int kidsInLevel;
+    protected int kidsKilled;
+    protected int kidsRemoved;
+    protected Random random;
+
 
     public Level(){
-        kids = new ArrayList<Entity>();
-        updates = 0;
+        timePassed = 0.0;
         kidsInStore = 0;
+        random = new Random();
+        currentWave = 1;
+        spawnedKids = 0;
+    }
+
+    public void kidRemoved(){
+        kidsRemoved++;
+    }
+
+    public void enteredStore(){
+        kidsInStore++;
+        kidRemoved();
+    }
+
+    public void killedByCandy(){
+        kidsKilled++;
+        kidRemoved();
     }
 
     /**
      * Checks if the player is done with the level
      * @return
      */
-    public boolean levelDone(){
+    public abstract boolean levelDone();
 
-        //Om ett kid blir träffad tas objektet bort ur listan och sätter kidsInLevel--
-        if(kidsInLevel == 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public static ArrayList<Entity> getKids(){
-        return kids;
-    }
     /**
      * Updates the positions of all the kids in the game
      */
