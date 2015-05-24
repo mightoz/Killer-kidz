@@ -27,6 +27,7 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void hitByCandy(Candy candy) {
+		// SimpleSam reacts the same for all candy: he dies immediately
 		hp -= 100;
 		expired = hp <= 0;
 	}

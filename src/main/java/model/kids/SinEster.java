@@ -7,7 +7,8 @@ import java.lang.Math;
 public class SinEster extends Kid {
 	
 	private double vx, vy;		// velocities
-	private int maxA;		// maximum amplitude of the sine wave
+	private int maxA;			// maximum amplitude of the sine wave
+	private double k = 0.05;		// the angle velocity of the sine wave
 	
 	public SinEster (float x, float y) {
 		super(x, y);
@@ -15,7 +16,7 @@ public class SinEster extends Kid {
 		rBody = 10;
 		vx = -50;
 		
-		maxA = (int)Math.min(CEILING - yPos, yPos - FLOOR); 
+		maxA = (int)Math.min(CEILING - yPos, yPos - FLOOR);
 
 		startHP = 200;
 		hp = startHP;
@@ -24,15 +25,32 @@ public class SinEster extends Kid {
 
 	@Override
 	public void update(double dt) {
-		double A = maxA; //randGen.nextInt(maxA);
-		vy = A*5*Math.cos(RIGHT_WALL - xPos);
-		xPos += vx*dt;
-		yPos += vy*dt;
+		// y(x) = A * sin(k*x)
+		double A = randGen.nextInt(maxA);
+		vy = A*k*Math.cos(k*(RIGHT_WALL - xPos));	// vy = dy/dx (old x)
+		xPos += vx*dt;								// vx = dx/dt
+		yPos += vy*vx*dt;							// dy/dt = dy/dx * dx/dt
+		
+		if (yPos < FLOOR || yPos > CEILING) {
+			System.out.println("kid escaped");
+		}
 	}
 
 	@Override
 	public void hitByCandy(Candy candy) {
-		hp -= 100;
+		String candyType = "JellyBean"; //candy.getType();
+		switch (candyType) {
+		case "candy2":			// favorite candy
+			hp = 0;
+			break;
+		case "candy3":			// killer instinct triggering candy
+			hp += 200;
+			vx *= 2;
+			break;
+		default:
+			hp -= 100;	
+		}
+
 		expired = hp <= 0;
 	}
 
