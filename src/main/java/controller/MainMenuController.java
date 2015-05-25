@@ -30,6 +30,7 @@ public class MainMenuController extends InputAdapter {
 				e.printStackTrace();
 			}
 		}
+		
 		menu = this.gm.getMainMenu();
 		state = MainMenuStates.MENU;
 		Gdx.input.setInputProcessor(this);
@@ -40,6 +41,12 @@ public class MainMenuController extends InputAdapter {
 		switch(state) {
 		case MENU:
 			return handleMain(keycode);
+		case SETTINGS:
+			return handleSettings(keycode);
+		case HIGHSCORE:
+			return handleHighscore(keycode);
+		case HOW_TO_PLAY:
+			return handleHowToPlay(keycode);
 		}
 		return false;
 	}
@@ -59,10 +66,13 @@ public class MainMenuController extends InputAdapter {
 				new GameController(model, 1);
 				return true;
 			case "Settings":
+				state = MainMenuStates.SETTINGS;
 				return true;
 			case "HighScore":
+				state = MainMenuStates.HIGHSCORE;
 				return true;
 			case "HowToPlay":
+				state = MainMenuStates.HOW_TO_PLAY;
 				return true;
 			case "Quit":
 				return true;
@@ -70,5 +80,17 @@ public class MainMenuController extends InputAdapter {
 		}
 		return false;
 	}
-
+	
+	private boolean handleSettings(int keycode) {
+		return false;
+	}
+	
+	private boolean handleHighscore(int keycode) {
+		return false;
+	}
+	
+	private boolean handleHowToPlay(int keycode) {
+		return false;
+	}
+	
 }

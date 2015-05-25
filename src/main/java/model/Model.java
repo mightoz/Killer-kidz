@@ -84,6 +84,10 @@ public class Model implements ObservedSubject {
             player2.updateDir(directions);
         }
     }
+    
+    public void changeCandy(int player, int candy) {
+    	System.out.println("Player" + player + " changed candy to " + candy);
+    }
 
     /**
      * Creates the currently selected candy for the specified player.
