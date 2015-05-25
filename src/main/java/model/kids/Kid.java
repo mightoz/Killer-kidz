@@ -43,17 +43,15 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
-
 	public double getHeadY() {
 		return yPos + rBody + rHead;
-
 	}
 	
 	public float getHeadRadius() {
 		return rHead;
 	}
 	
-	public float getBodyRadius() {
+	public float getRadius() {
 		return rBody;
 	}
 	

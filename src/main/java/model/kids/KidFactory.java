@@ -9,6 +9,8 @@ public abstract class KidFactory {
 			return new SimpleSam(x, y);
 		case SINESTER:
 			return new SinEster(x, y);
+		case DIZZY_DORIZ:
+			return new DizzyDoriz(x, y);
 		}
 		return null;
 	}
