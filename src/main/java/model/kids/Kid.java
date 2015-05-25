@@ -1,5 +1,7 @@
 package model.kids;
 
+import java.util.Random;
+
 import model.Entity;
 import model.Model;
 import model.candymodels.Candy;
@@ -8,18 +10,21 @@ public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
 	private final String ID;
+	
 	protected int startHP;
 	protected int hp;
 	protected boolean expired;
 
-	protected double yHead;				// head y position (x always same as body)
-	protected double rHead;				// head radius
-	protected double rBody;				// body radius
+	protected float yHead;				// head y position (x always same as body)
+	protected float rHead;				// head radius
+	protected float rBody;				// body radius
 	
 	protected static final double LEFT_WALL = Model.leftBoundary;
 	protected static final double RIGHT_WALL = Model.rightBoundary;
 	protected static final double FLOOR = 0;
 	protected static final double CEILING = FLOOR + Model.height;
+	
+	protected static final Random randGen = new Random();
 	
 	public Kid(float x, float y) {
 		super(x, y);					// initiate body position
@@ -38,15 +43,17 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
+
 	public double getHeadY() {
-		return yHead;
+		return yPos + rBody + rHead;
+
 	}
 	
-	public double getHeadRadius() {
+	public float getHeadRadius() {
 		return rHead;
 	}
 	
-	public double getBodyRadius() {
+	public float getBodyRadius() {
 		return rBody;
 	}
 	
@@ -56,7 +63,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	@Override
-	public abstract void update(double delta);
+	public abstract void update(double dt);
 	
 	/**
 	 * hitByCandy handles the changes in kid if it's hit by a candy
@@ -66,7 +73,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(Candy candy);
 	
 	public boolean enteredStore() {
-		return xPos <= 0;
+		return xPos <= LEFT_WALL;
 	}
 	
 	@Override

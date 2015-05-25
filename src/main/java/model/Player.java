@@ -45,6 +45,8 @@ public class Player extends Entity{
         downKeyPressed = false;
         selectedCandy = 0;
 
+        radius = 10;
+
     }
 
     /**
