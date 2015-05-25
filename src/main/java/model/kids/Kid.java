@@ -15,8 +15,9 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 
-	protected double rHead;				// head radius
-	protected double rBody;				// body radius
+	protected float yHead;				// head y position (x always same as body)
+	protected float rHead;				// head radius
+	protected float rBody;				// body radius
 	
 	protected static final double LEFT_WALL = Model.leftBoundary;
 	protected static final double RIGHT_WALL = Model.rightBoundary;
@@ -42,15 +43,17 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
+
 	public double getHeadY() {
 		return yPos + rBody + rHead;
+
 	}
 	
-	public double getHeadRadius() {
+	public float getHeadRadius() {
 		return rHead;
 	}
 	
-	public double getBodyRadius() {
+	public float getBodyRadius() {
 		return rBody;
 	}
 	

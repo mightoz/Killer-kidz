@@ -8,7 +8,6 @@ public class JellyBean extends Candy {
 
     private int[] candyStatus;
     private int[] extraCandyStatus;
-    private int damage;
     private float travelledLength;
     private float maxTravelRange;
     private boolean expired;
@@ -23,20 +22,22 @@ public class JellyBean extends Candy {
         extraCandyStatus = candyStatus;
         extraCandyStatus[2] = 0;
 
+        radius = 5;
+
         generateId();
 
         switch (candyStatus[0]) {
             case 0:
-                damage = 10;
-                break;
-            case 1:
                 damage = 30;
                 break;
-            case 2:
+            case 1:
                 damage = 60;
                 break;
+            case 2:
+                damage = 120;
+                break;
             case 3:
-                damage = 100;
+                damage = 210;
                 break;
         }
 
