@@ -13,33 +13,28 @@ import view.gameStates.MainMenu;
 public class MainMenuController extends InputAdapter {
 
 	private final Model model;
+	private final GameManager gm;
 	private final MainMenu menu;
 	
-	public MainMenuController(Model model, GameManager view) {
+	public MainMenuController(Model model, GameManager gm) {
 		this.model = model;
+		this.gm = gm;
 		
 		// Needs to wait for the GameManager to be done with creating a working
 		// "shell", in this case, initialized the mainMenu object.
-		while(!view.getgmStatus()) {
+		while(!this.gm.getgmStatus()) {
 			try {
 				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		menu = view.getMainMenu();
-		if (menu == null) {
-			System.out.println("constr: menu is null");
-		}
+		menu = this.gm.getMainMenu();
 		Gdx.input.setInputProcessor(this);
 	}
 	
 	@Override
-	public boolean keyUp(int keycode) {
-		if (menu == null) {		// REMOVE THIS LATER
-			System.out.println("menu is null");
-		}
-			
+	public boolean keyUp(int keycode) {			
 		if (keycode == Keys.UP) {
 			menu.handleInput("Up");
 			return true;
