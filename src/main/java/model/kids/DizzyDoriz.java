@@ -27,10 +27,10 @@ public class DizzyDoriz extends Kid {
 	public void hitByCandy(Candy candy) {
 		String candyType = "JellyBean"; //candy.getType();
 		switch (candyType) {
-		case "candy2":			// favorite candy
+		case "candy3":			// favorite candy
 			hp = 0;
 			break;
-		case "candy3":			// killer instinct triggering candy
+		case "candy4":			// killer instinct triggering candy
 			hp += 200;
 			vx *= 2;
 			break;

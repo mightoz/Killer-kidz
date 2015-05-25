@@ -26,7 +26,7 @@ public class SinEster extends Kid {
 	@Override
 	public void update(double dt) {
 		// y(x) = A * sin(k*x)
-		double A = randGen.nextInt(maxA);
+		int A = randGen.nextInt(maxA);
 		vy = A*k*Math.cos(k*(RIGHT_WALL - xPos));	// vy = dy/dx (old x)
 		xPos += vx*dt;								// vx = dx/dt
 		yPos += vy*vx*dt;							// dy/dt = dy/dx * dx/dt

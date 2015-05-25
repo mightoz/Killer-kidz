@@ -2,5 +2,6 @@ package model.kids;
 
 public enum KidTypes {
 	SIMPLE_SAM,
-	SINESTER;
+	SINESTER,
+	DIZZY_DORIZ;
 }
