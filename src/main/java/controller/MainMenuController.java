@@ -15,6 +15,7 @@ public class MainMenuController extends InputAdapter {
 	private final Model model;
 	private final GameManager gm;
 	private final MainMenu menu;
+	private MainMenuStates state;
 	
 	public MainMenuController(Model model, GameManager gm) {
 		this.model = model;
@@ -30,22 +31,29 @@ public class MainMenuController extends InputAdapter {
 			}
 		}
 		menu = this.gm.getMainMenu();
+		state = MainMenuStates.MENU;
 		Gdx.input.setInputProcessor(this);
 	}
 	
 	@Override
 	public boolean keyUp(int keycode) {			
-		if (keycode == Keys.UP) {
+		switch(state) {
+		case MENU:
+			return handleMain(keycode);
+		}
+		return false;
+	}
+	
+	private boolean handleMain(int keycode) {
+		switch (keycode) {
+		case Keys.UP:
 			menu.handleInput("Up");
 			return true;
-		}
-		else if (keycode == Keys.DOWN) {
+		case Keys.DOWN:
 			menu.handleInput("Down");
 			return true;
-		}
-		else if (keycode == Keys.ENTER) {
+		case Keys.ENTER:
 			String choise = menu.handleInput("Enter");
-			System.out.println("choise: " + choise);
 			switch (choise) {
 			case "Play":
 				new GameController(model, 1);
