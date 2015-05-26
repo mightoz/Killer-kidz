@@ -131,54 +131,26 @@ public class Model implements ObservedSubject {
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
-        level.update(delta);
-        for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i) != null) {
-                Entity entity = objects.get(i);
-                String id = entity.getId();
-                if (!entity.isExpired()) {
-                    entity.update(delta);
-                    if (id.substring(0, 1).equals("c")) {
-                        for(int j = 0; j< objects.size();j++){
-                            if (objects.get(j) != null) {
-                            if(objects.get(j).getId().substring(0,1).equals("k")) {
-                                Entity kid = objects.get(j);
-                                float deltaX = kid.getX() - entity.getX();
-                                float deltaY = kid.getY() - entity.getY();
-                                float combinedR = kid.getRadius() + entity.getRadius();
-                                if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                                    ((Kid) kid).hitByCandy((Candy) entity);
-                                    objects.remove(entity);
-                                    for (Observer observer : observers) {
-                                        observer.removeEntity(entity);
-                                    }
-                                }
-                            }
-                            }
-                        }
-
-                    }
-                } else {
-                    objects.remove(entity);
-                    /**
-                     * if entity is a kid then we need to tell level how the kid expired: if it entered the store
-                     * or if it got shot down by candies.
-                     */
-                    if (entity.getId().substring(0, 1).equals("k")) {
-
-                        if (((Kid) entity).enteredStore()) {
-                            level.enteredStore();
-                        } else {
-                            level.killedByCandy();
-                        }
-                    }
-                    for (Observer observer : observers) {
-                        observer.removeEntity(entity);
+        ArrayList<Candy> candyList = player1.getActiveCandies();
+        for (Candy candy : candyList) {
+            if (!candy.isExpired()) {
+                candy.update(delta);
+                ArrayList<Kid> kidList = level.getActiveKids();
+                for (Kid kid : kidList) {
+                    float deltaX = kid.getX() - candy.getX();
+                    float deltaY = kid.getY() - candy.getY();
+                    float combinedR = kid.getRadius() + candy.getRadius();
+                    if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
+                        kid.hitByCandy(candy.getDamage());
+                        candyList.remove(candy);
                     }
                 }
             }
         }
+        level.update(delta);
+        updateObjectList();
         notifyObserver();
+
     }
 
     /**
@@ -213,16 +185,9 @@ public class Model implements ObservedSubject {
     public void notifyObserver() {
 
 
-        for(Observer observer: observers){
-            for(int i = 0; i < objects.size();i++){
-                if(objects.get(i) != null) {
-                    Entity entity = objects.get(i);
-                    observer.update(entity, entity.getX(), entity.getY());
-                }
-            }
-
+        for(Observer observer: observers) {
+            observer.update();
         }
-
     }
 
     public float getWidth(){
@@ -233,5 +198,20 @@ public class Model implements ObservedSubject {
         return height;
     }
 
+    private void updateObjectList() {
+        ArrayList<Entity> newEntities = level.getActiveKids();
+
+        for (Candy candy : player1.getActiveCandies()) {
+            newEntities.add(candy);
+        }
+
+        for (Kid kid : level.getActiveKids()) {
+            newEntities.add(kid);
+        }
+        newEntities.add(player1);
+        newEntities.add(player2);
+
+        objects = newEntities;
+    }
 
 }

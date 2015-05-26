@@ -26,7 +26,7 @@ public class SimpleSam extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
+	public void hitByCandy(int damage) {
 		hp -= candy.getDamage();
 		expired = hp <= 0;
 	}

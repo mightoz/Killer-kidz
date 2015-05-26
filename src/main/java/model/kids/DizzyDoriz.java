@@ -24,7 +24,7 @@ public class DizzyDoriz extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
+	public void hitByCandy(int damage) {
 		String candyType = "JellyBean"; //candy.getType();
 		switch (candyType) {
 		case "candy3":			// favorite candy

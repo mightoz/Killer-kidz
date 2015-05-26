@@ -65,10 +65,10 @@ public abstract class Kid extends Entity {
 	
 	/**
 	 * hitByCandy handles the changes in kid if it's hit by a candy
-	 * @param candy: the candy which hit the kid
+	 * @param damage: the candy dmg hit the kid
 	 * @return: void 
 	 */
-	public abstract void hitByCandy(Candy candy);
+	public abstract void hitByCandy(int damage);
 	
 	public boolean enteredStore() {
 		return xPos <= LEFT_WALL;
