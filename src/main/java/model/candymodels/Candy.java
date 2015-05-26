@@ -8,6 +8,7 @@ import model.Entity;
 public abstract class Candy extends Entity{
 
     private static int cIdGenerator;
+    protected String type;
     protected int damage;
 
     private final String cId;
@@ -27,6 +28,9 @@ public abstract class Candy extends Entity{
 
     }
 
+    public String getType(){
+    	return type;
+    }
     public int getDamage(){
         return damage;
     }

@@ -1,6 +1,5 @@
 package model.kids;
 
-import model.candymodels.Candy;
 
 public class DizzyDoriz extends Kid {
 	
@@ -9,7 +8,7 @@ public class DizzyDoriz extends Kid {
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
 		rHead = 5;
-		rBody = 10;
+		radius = 10;
 		vx = -50;
 
 		startHP = 200;
@@ -21,11 +20,14 @@ public class DizzyDoriz extends Kid {
 	public void update(double dt) {
 		xPos += vx*dt;
 		yPos += vy*dt;
+		
+		if (xPos-radius <= leftBoundary) {
+			expired = true;
+		}
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
-		String candyType = "JellyBean"; //candy.getType();
+	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
 		case "candy3":			// favorite candy
 			hp = 0;
@@ -37,8 +39,10 @@ public class DizzyDoriz extends Kid {
 		default:
 			hp -= 100;	
 		}
-
-		expired = hp <= 0;
+		
+		if (hp <= 0) {
+			expired = true;
+		}
 	}
 
 }
