@@ -95,50 +95,13 @@ public class Model implements ObservedSubject {
      * @param player which player to throw the candy
      */
     public void throwCandy(int player) {
-
-        Candy candy;
-
-        if (player == 1) {
-            switch (player1.getSelectedCandy()) {
-                case 0:
-                    ArrayList<int[]> tmpData1 = player1.getCandyData();
-                    candy = new JellyBean(player1.getX(), player1.getY(), tmpData1.get(0));
-                    objects.add(candy);
-                    break;
-                case 1:
-//                    ArrayList<int[]> tmpData2 = player1.getCandyData();
-//                    candy = new Skittle(player1.getX(), player1.getY(), tmpData2.get(1));
-//                    break;
-                case 2:
-//                    ArrayList<int[]> tmpData3 = player1.getCandyData();
-//                    candy = new HubbaBubba(player1.getX(), player1.getY(), tmpData3.get(2));
-//                    break;
-                case 3:
-//                    ArrayList<int[]> tmpData4 = player1.getCandyData();
-//                    candy = new FerroRoscher(player1.getX(), player1.getY(), tmpData4.get(3));
-//                    break;
-            }
-        } else {
-            switch (player2.getSelectedCandy()) {
-                case 0:
-                    ArrayList<int[]> tmpData1 = player2.getCandyData();
-                    candy = new JellyBean(player2.getX(), player2.getY(), tmpData1.get(0));
-                    objects.add(candy);
-                    break;
-                case 1:
-//                    ArrayList<int[]> tmpData2 = player2.getCandyData();
-//                    candy = new Skittle(player2.getX(), player2.getY(), tmpData2.get(1));
-//                    break;
-                case 2:
-//                    ArrayList<int[]> tmpData3 = player2.getCandyData();
-//                    candy = new HubbaBubba(player2.getX(), player2.getY(), tmpData3.get(2));
-//                    break;
-                case 3:
-//                    ArrayList<int[]> tmpData4 = player2.getCandyData();
-//                    candy = new FerroRoscher(player2.getX(), player2.getY(), tmpData4.get(3));
-//                    break;
-            }
-
+        switch(player){
+            case 1:
+                player1.throwCandy();
+                break;
+            case 2:
+                player2.throwCandy();
+                break;
         }
 
     }
@@ -215,6 +178,7 @@ public class Model implements ObservedSubject {
                 }
             }
         }
+        notifyObserver();
     }
 
     /**

@@ -1,7 +1,8 @@
 package model;
 
 
-import com.sun.javafx.sg.prism.NGShape;
+import model.candymodels.Candy;
+import model.candymodels.CandyFactory;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class Player extends Entity{
     private int selectedCandy;
     private static int pIdGenerator;
     private final String pId;
+    private ArrayList<Candy> activeCandies;
 
 
     public Player(float x, float y, String name){
@@ -38,6 +40,8 @@ public class Player extends Entity{
             startCandy[i] = 0;
         }
         candyData.add(0,startCandy);
+
+        activeCandies = new ArrayList<>();
 
         leftKeyPressed = false;
         upKeyPressed = false;
@@ -72,6 +76,15 @@ public class Player extends Entity{
     public ArrayList getCandyData(){
         return candyData;
     }
+
+    public void throwCandy(){
+        ArrayList<Candy> tmp = CandyFactory.throwCandy(selectedCandy, candyData, xPos, yPos);
+        for(Candy candies: tmp){
+            activeCandies.add(candies);
+        }
+    }
+
+
 
     /**
      * Updates the direction of the player.
@@ -180,6 +193,10 @@ public class Player extends Entity{
         int tmp = pIdGenerator;
         pIdGenerator++;
         return "p"+tmp;
+    }
+
+    public ArrayList<Candy> getActiveCandies(){
+        return activeCandies;
     }
 
     public boolean isExpired(){

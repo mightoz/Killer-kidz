@@ -38,7 +38,7 @@ public class TimeController {
         if(!isRunning){
             isRunning = true;
             nextTime = (double)System.nanoTime()/1000000000.0;
-            timer.schedule(new UpdateGame(), 0, 20);
+            timer.schedule(new UpdateGame(), 0, 2);
         }
 
     }

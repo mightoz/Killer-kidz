@@ -6,38 +6,27 @@ package model.candymodels;
  */
 public class JellyBean extends Candy {
 
-    private int[] candyStatus;
-    private int[] extraCandyStatus;
     private float travelledLength;
     private float maxTravelRange;
     private boolean expired;
 
-
-
-
     public JellyBean(float x, float y, int[] candyStatus) {
         super(x,y);
-        this.candyStatus = candyStatus;
         expired = false;
-        extraCandyStatus = candyStatus;
-        extraCandyStatus[2] = 0;
-
         radius = 5;
-
         generateId();
-
         switch (candyStatus[0]) {
             case 0:
-                damage = 30;
+                damage = 40;
                 break;
             case 1:
                 damage = 60;
                 break;
             case 2:
-                damage = 120;
+                damage = 100;
                 break;
             case 3:
-                damage = 210;
+                damage = 160;
                 break;
         }
 
@@ -56,26 +45,6 @@ public class JellyBean extends Candy {
                 break;
         }
 
-        /**
-         * Throws more candies, the higher the upgrade.
-         */
-        switch (candyStatus[2]) {
-            case 0:
-                break;
-            case 1:
-                Candy extraCandy = new JellyBean(xPos, yPos+10, extraCandyStatus);
-                break;
-            case 2:
-                Candy extraCandy1 = new JellyBean(xPos, yPos+10, extraCandyStatus);
-                if(extraCandyStatus[0] > 0)
-                    extraCandyStatus[0] -= 1;
-                Candy extraCandy2 = new JellyBean(xPos-10, yPos+10, extraCandyStatus);
-                Candy extraCandy3 = new JellyBean(xPos-10, yPos, extraCandyStatus);
-                break;
-            case 3:
-                //todo: make a big jellybean that explodes into more jellybeans
-                break;
-        }
     }
 
     /**
@@ -108,6 +77,5 @@ public class JellyBean extends Candy {
             expired = true;
         }
     }
-
 
 }

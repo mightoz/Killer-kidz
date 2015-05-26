@@ -25,6 +25,7 @@ public abstract class Entity {
      * Initializes the id for a player. Used only by constructor, should not be public.
      * @return
      */
+    //TODO: Make private?
     public abstract String generateId();
 
     /**
