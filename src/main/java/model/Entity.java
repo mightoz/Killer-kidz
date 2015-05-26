@@ -7,13 +7,23 @@ public abstract class Entity {
 
     protected float xPos, yPos, radius;
 
-
+    protected static float leftBoundary;		// right wall of toy store
+    protected static float rightBoundary;
+    protected static float upperBoundary;
+    protected static float lowerBoundary;
 
     public Entity(float x, float y){
         xPos = x;
         yPos = y;
     }
 
+    public static void setBoundaries(float left, float right, float upper, float lower) {
+    	leftBoundary = left;
+    	rightBoundary = right;
+    	upperBoundary = upper;
+    	lowerBoundary = lower;
+    }
+    
     public float getX(){
         return this.xPos;
     }

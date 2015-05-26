@@ -19,11 +19,6 @@ public abstract class Kid extends Entity {
 	protected float rHead;				// head radius
 	protected float rBody;				// body radius
 	
-	protected static final double LEFT_WALL = Model.leftBoundary;
-	protected static final double RIGHT_WALL = Model.rightBoundary;
-	protected static final double FLOOR = 0;
-	protected static final double CEILING = FLOOR + Model.height;
-	
 	protected static final Random randGen = new Random();
 	
 	public Kid(float x, float y) {
@@ -71,7 +66,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(Candy candy);
 	
 	public boolean enteredStore() {
-		return xPos <= LEFT_WALL;
+		return xPos <= leftBoundary;
 	}
 	
 	@Override

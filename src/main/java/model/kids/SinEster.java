@@ -16,7 +16,7 @@ public class SinEster extends Kid {
 		rBody = 10;
 		vx = -50;
 		
-		maxA = (int)Math.min(CEILING - yPos, yPos - FLOOR);
+		maxA = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
 
 		startHP = 200;
 		hp = startHP;
@@ -27,9 +27,9 @@ public class SinEster extends Kid {
 	public void update(double dt) {
 		// y(x) = A * sin(k*x)
 		int A = randGen.nextInt(maxA);
-		vy = A*k*Math.cos(k*(RIGHT_WALL - xPos));	// vy = dy/dx (old x)
-		xPos += vx*dt;								// vx = dx/dt
-		yPos += vy*vx*dt;							// dy/dt = dy/dx * dx/dt
+		vy = A*k*Math.cos(k*(rightBoundary - xPos));	// vy = dy/dx (old x)
+		xPos += vx*dt;									// vx = dx/dt
+		yPos += vy*vx*dt;								// dy/dt = dy/dx * dx/dt
 	}
 
 	@Override
