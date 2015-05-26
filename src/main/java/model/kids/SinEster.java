@@ -12,7 +12,7 @@ public class SinEster extends Kid {
 	public SinEster (float x, float y) {
 		super(x, y);
 		rHead = 5;
-		rBody = 10;
+		radius = 10;
 		vx = -50;
 		
 		maxA = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
@@ -29,11 +29,14 @@ public class SinEster extends Kid {
 		vy = A*k*Math.cos(k*(rightBoundary - xPos));	// vy = dy/dx (old x)
 		xPos += vx*dt;									// vx = dx/dt
 		yPos += vy*vx*dt;								// dy/dt = dy/dx * dx/dt
+		
+		if (xPos-radius <= leftBoundary) {
+			expired = true;
+		}
 	}
 
 	@Override
-	public void hitByCandy(String candy, int damage) {
-		String candyType = "JellyBean"; //candy.getType();
+	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
 		case "candy2":			// favorite candy
 			hp = 0;
@@ -46,7 +49,9 @@ public class SinEster extends Kid {
 			hp -= 100;	
 		}
 
-		expired = hp <= 0;
+		if (hp <= 0) {
+			expired = true;
+		}
 	}
 
 }

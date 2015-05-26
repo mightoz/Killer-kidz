@@ -15,7 +15,6 @@ public abstract class Kid extends Entity {
 
 	protected float yHead;				// head y position (x always same as body)
 	protected float rHead;				// head radius
-	protected float rBody;				// body radius
 	
 	protected static final Random randGen = new Random();
 	
@@ -37,15 +36,16 @@ public abstract class Kid extends Entity {
 	}
 	
 	public double getHeadY() {
-		return yPos + rBody + rHead;
+		return yPos + radius + rHead;
 	}
 	
 	public float getHeadRadius() {
 		return rHead;
 	}
 	
+	@Override
 	public float getRadius() {
-		return rBody;
+		return radius;
 	}
 	
 	// return the ratio of the hp that is left
@@ -61,7 +61,7 @@ public abstract class Kid extends Entity {
 	 * @param candy: the candy which hit the kid
 	 * @return: void 
 	 */
-	public abstract void hitByCandy(String candy, int damage);
+	public abstract void hitByCandy(String candyType, int damage);
 	
 	public boolean enteredStore() {
 		return xPos <= leftBoundary;
