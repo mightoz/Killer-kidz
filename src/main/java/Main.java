@@ -18,13 +18,14 @@ public class Main {
 		Model model = new Model("Player1", WIDTH, HEIGHT);
 		GameManager gm = new GameManager(model, WIDTH, HEIGHT, TITLE);
 		
-		cfg.title = gm.title;
-		cfg.width = gm.getWidth();
-		cfg.height = gm.getHeight();
+		// setup the LwjglApplication.
+		cfg.title = TITLE;
+		cfg.width = WIDTH;
+		cfg.height = HEIGHT;
 		cfg.resizable = false;
 		cfg.samples = 16;
 		
-		new LwjglApplication(gm, cfg);		
+		new LwjglApplication(gm, cfg);
 		new MainMenuController(model, gm);
 	}
 }
