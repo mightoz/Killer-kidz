@@ -55,7 +55,17 @@ public abstract class Level {
     public void update(double delta){
 
         for(Kid kid: activeKids){
-            kid.update(delta);
+            if(!kid.isExpired()){
+                kid.update(delta);
+            }else{
+                if(kid.enteredStore()){
+                    enteredStore();
+                }else{
+                    killedByCandy();
+                }
+                activeKids.remove(kid);
+            }
+
         }
 
         updateLevel(delta);
