@@ -1,6 +1,5 @@
 package model.kids;
 
-import model.candymodels.Candy;
 
 public class SimpleSam extends Kid {
 
@@ -26,8 +25,8 @@ public class SimpleSam extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
-		hp -= candy.getDamage();
+	public void hitByCandy(String candy, int damage) {
+		hp -= damage;
 		expired = hp <= 0;
 	}
 	

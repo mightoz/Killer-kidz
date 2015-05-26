@@ -3,8 +3,6 @@ package model.kids;
 import java.util.Random;
 
 import model.Entity;
-import model.Model;
-import model.candymodels.Candy;
 
 public abstract class Kid extends Entity {
 	
@@ -63,7 +61,7 @@ public abstract class Kid extends Entity {
 	 * @param candy: the candy which hit the kid
 	 * @return: void 
 	 */
-	public abstract void hitByCandy(Candy candy);
+	public abstract void hitByCandy(String candy, int damage);
 	
 	public boolean enteredStore() {
 		return xPos <= leftBoundary;
