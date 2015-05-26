@@ -5,6 +5,7 @@ import view.GameManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,7 +54,9 @@ public class MainMenu implements Screen {
 	
 	@Override
 	public void render(float delta) {
-		
+		// Clear the screen
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 //		handleInput();
 		
@@ -116,7 +119,8 @@ public class MainMenu implements Screen {
 		}
 		// HowToPlay
 		else if (currentItem == 3) {
-//			gsm.setState(gm.MENU_HELP);
+			gm.dispose();
+			gm.setScreen(gm.getHowToPlayView());
 		}
 		// Quit
 		else if (currentItem == 4) {
