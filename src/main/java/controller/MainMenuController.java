@@ -10,6 +10,11 @@ import model.Model;
 import view.GameManager;
 import view.gameStates.MainMenu;
 
+/**
+ * MainMenuController
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class MainMenuController extends InputAdapter {
 
 	private final Model model;
