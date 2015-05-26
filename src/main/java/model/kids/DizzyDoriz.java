@@ -1,6 +1,10 @@
 package model.kids;
 
-
+/**
+ * DizzyDoriz
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class DizzyDoriz extends Kid {
 	
 	private double vx, vy;		// velocities
