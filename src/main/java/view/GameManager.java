@@ -1,5 +1,6 @@
 package view;
 
+import view.gameStates.HowToPlayView;
 import view.gameStates.MainMenu;
 import view.gameStates.PlayfieldView;
 import model.Model;
@@ -22,6 +23,7 @@ public class GameManager extends Game {
 	// All types of "Game-States" we will see.
 	private MainMenu mainMenuView;
 	private PlayfieldView playfieldView;
+	private HowToPlayView howToPlayView;
 
 	
 	public GameManager(Model model, int width, int height){
@@ -50,6 +52,7 @@ public class GameManager extends Game {
 		// create an object for each "Game-State".
 		mainMenuView = new MainMenu(this);
 		playfieldView = new PlayfieldView(this);
+		howToPlayView = new HowToPlayView(this);
         model.register(playfieldView);
 
 		
@@ -73,6 +76,6 @@ public class GameManager extends Game {
 	
 	public MainMenu getMainMenu() { return mainMenuView; }
 	public PlayfieldView getPlayfieldView() { return playfieldView; }
-	
+	public HowToPlayView getHowToPlayView() {return howToPlayView; }
 	public boolean getgmStatus() { return gmIsStarted; }
 }

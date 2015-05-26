@@ -6,7 +6,11 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 
-
+/**
+ * GameController
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class GameController extends InputAdapter {
     private Model model;
     private final int nbrOfPlayers;
