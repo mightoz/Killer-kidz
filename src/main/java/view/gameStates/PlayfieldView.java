@@ -100,7 +100,7 @@ public class PlayfieldView implements Screen, Observer {
 	 * Method model will use to tell view to update its contents.
 	 */
 	@Override
-	public void update(Entity entity, float newXPos, float newYPos){
+	public void update(Entity entity){
         /*
 		 * Bortse koden under om det bråkar, och istället gör:
 		 * 1) kolla vilket objekt som skall updateras (skicka med objekt i parameter?)
@@ -110,8 +110,10 @@ public class PlayfieldView implements Screen, Observer {
 		 *    som då alltså säger till ett viewobjek att uppdateras sin position
 		 *    ifrån models.
 		 */
-
+        float newXPos = entity.getX();
+        float newYPos = entity.getY();
         String id = entity.getId();
+
         switch(entity.getId().substring(0, 1)) {
 		case "p": // Player objects
 				  if(entity.getId().equals("p0")) {

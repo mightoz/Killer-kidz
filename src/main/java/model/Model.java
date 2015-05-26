@@ -184,9 +184,10 @@ public class Model implements ObservedSubject {
     @Override
     public void notifyObserver() {
 
-
         for(Observer observer: observers) {
-            observer.update();
+            for(Entity entity: objects) {
+                observer.update(entity);
+            }
         }
     }
 

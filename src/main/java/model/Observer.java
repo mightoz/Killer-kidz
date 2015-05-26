@@ -5,6 +5,6 @@ package model;
  */
 public interface Observer {
 
-    public void update(Entity entity, float posX, float posY);
+    public void update(Entity entity);
     public void removeEntity(Entity entity);
 }
