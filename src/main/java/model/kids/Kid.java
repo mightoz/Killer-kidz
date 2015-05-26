@@ -34,7 +34,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	@Override
-	public String generateId() {
+	protected String generateId() {
 		return "k" + (++idCounter);
 	}
 

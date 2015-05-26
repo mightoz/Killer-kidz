@@ -25,7 +25,7 @@ public abstract class Entity {
      * Initializes the id for a player. Used only by constructor, should not be public.
      * @return
      */
-    public abstract String generateId();
+    protected abstract String generateId();
 
     /**
      * returns true if object has expired.
