@@ -9,6 +9,6 @@ public interface ObservedSubject {
     public void unregister(Observer o);
 
     //Notify observers of change
-    public void notifyObserver();
+    void notifyObserver();
 
 }

@@ -1,7 +1,8 @@
 package model.levelmodels;
 
-import model.Model;
+import model.kids.Kid;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -10,6 +11,8 @@ import java.util.Random;
  * This class decides when to create kid objects, representing a level
  */
 public abstract class Level {
+
+    protected ArrayList<Kid> activeKids;
 
     protected double timePassed;
     protected double nextSpawnTime;
@@ -29,6 +32,7 @@ public abstract class Level {
         random = new Random();
         currentWave = 1;
         spawnedKids = 0;
+        activeKids = new ArrayList<>();
     }
 
     public void kidRemoved(){
@@ -46,15 +50,32 @@ public abstract class Level {
     }
 
     /**
+     * Updates the positions of all the kids in the game
+     */
+    public void update(double delta){
+
+        for(Kid kid: activeKids){
+            kid.update(delta);
+        }
+
+        updateLevel(delta);
+
+    }
+
+
+    public ArrayList<Kid> getActiveKids(){
+        return activeKids;
+    }
+
+    protected abstract void updateLevel(double delta);
+
+
+    /**
      * Checks if the player is done with the level
      * @return
      */
     public abstract boolean levelDone();
 
-    /**
-     * Updates the positions of all the kids in the game
-     */
-    public abstract void update(double delta);
 
     /**
      * Checks if the player has failed

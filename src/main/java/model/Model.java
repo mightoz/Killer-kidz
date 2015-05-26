@@ -143,9 +143,6 @@ public class Model implements ObservedSubject {
 
     }
 
-    public static void spawnKid(KidTypes type, float xPos, float yPos) {
-        objects.add(KidFactory.createKid(type, xPos, yPos));
-    }
 
     /**
      * Starts a new level
@@ -202,7 +199,6 @@ public class Model implements ObservedSubject {
                      * or if it got shot down by candies.
                      */
                     if (entity.getId().substring(0, 1).equals("k")) {
-
                         if (((Kid) entity).enteredStore()) {
                             level.enteredStore();
                         } else {
@@ -215,6 +211,13 @@ public class Model implements ObservedSubject {
                 }
             }
         }
+
+        if(level.levelFailed()){
+            System.out.println("Level failed");
+        }else if(level.levelDone()){
+            System.out.println("Level done");
+        }
+
     }
 
     /**

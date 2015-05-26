@@ -1,5 +1,6 @@
 package model.kids;
 
+import model.Model;
 import model.candymodels.Candy;
 
 public class SimpleSam extends Kid {
@@ -23,6 +24,10 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*dt;
 		yPos += vy*dt;
+
+		if(xPos <= Model.leftBoundary){
+			expired = true;
+		}
 	}
 
 	@Override
