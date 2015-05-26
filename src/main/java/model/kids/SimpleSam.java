@@ -30,5 +30,4 @@ public class SimpleSam extends Kid {
 		hp -= candy.getDamage();
 		expired = hp <= 0;
 	}
-	
 }
