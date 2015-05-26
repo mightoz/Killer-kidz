@@ -14,15 +14,16 @@ public class KidView extends VisibleObjects{
 	private float radius;
 	
 	/*
+	 * My idea is to make every 
 	 * fields below are for making the kids show their remaining hp as segments.
 	 */
 	// kids hunger as a percentage
 	private double hungerPoint;
-	private int segments = 3;
+//	private int segments = 3;
 	private Kid kid;
 	
 	
-	public KidView(String id,   float width, float height) {
+	public KidView(String id,  float width, float height) {
 
 		this.id = id;
 
@@ -61,8 +62,9 @@ public class KidView extends VisibleObjects{
 		
 		sr.circle(x, y, radius);
 		
-		sr.setColor(0, 0, 0, 1);
-		sr.circle(x, y, radius-1, segments);
+		// TODO - description above fields.
+//		sr.setColor(0, 0, 0, 1);
+//		sr.circle(x, y, radius-1, segments);
 
 		sr.end();
 	}

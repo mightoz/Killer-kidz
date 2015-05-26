@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class GameManager extends Game {
 
-	private String title;
 	private int width;
 	private int height;
 	private boolean gmIsStarted = false;
@@ -25,11 +24,10 @@ public class GameManager extends Game {
 	private PlayfieldView playfieldView;
 
 	
-	public GameManager(Model model, int width, int height, String title){
+	public GameManager(Model model, int width, int height){
         this.model = model;
 		this.width = width;
 		this.height = height;
-		this.title = title;
 	}
 	
 	@Override
