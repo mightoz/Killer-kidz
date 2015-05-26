@@ -1,7 +1,6 @@
 package model.kids;
 
 
-import model.candymodels.Candy;
 import java.lang.Math;
 
 public class SinEster extends Kid {
@@ -13,10 +12,10 @@ public class SinEster extends Kid {
 	public SinEster (float x, float y) {
 		super(x, y);
 		rHead = 5;
-		rBody = 10;
+		radius = 10;
 		vx = -50;
 		
-		maxA = (int)Math.min(CEILING - yPos, yPos - FLOOR);
+		maxA = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
 
 		startHP = 200;
 		hp = startHP;
@@ -26,15 +25,18 @@ public class SinEster extends Kid {
 	@Override
 	public void update(double dt) {
 		// y(x) = A * sin(k*x)
-		double A = randGen.nextInt(maxA);
-		vy = A*k*Math.cos(k*(RIGHT_WALL - xPos));	// vy = dy/dx (old x)
-		xPos += vx*dt;								// vx = dx/dt
-		yPos += vy*vx*dt;							// dy/dt = dy/dx * dx/dt
+		int A = randGen.nextInt(maxA);
+		vy = A*k*Math.cos(k*(rightBoundary - xPos));	// vy = dy/dx (old x)
+		xPos += vx*dt;									// vx = dx/dt
+		yPos += vy*vx*dt;								// dy/dt = dy/dx * dx/dt
+		
+		if (xPos-radius <= leftBoundary) {
+			expired = true;
+		}
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
-		String candyType = "JellyBean"; //candy.getType();
+	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
 		case "candy2":			// favorite candy
 			hp = 0;
@@ -47,7 +49,9 @@ public class SinEster extends Kid {
 			hp -= 100;	
 		}
 
-		expired = hp <= 0;
+		if (hp <= 0) {
+			expired = true;
+		}
 	}
 
 }

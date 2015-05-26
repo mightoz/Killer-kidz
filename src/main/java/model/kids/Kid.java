@@ -3,8 +3,6 @@ package model.kids;
 import java.util.Random;
 
 import model.Entity;
-import model.Model;
-import model.candymodels.Candy;
 
 public abstract class Kid extends Entity {
 	
@@ -17,12 +15,6 @@ public abstract class Kid extends Entity {
 
 	protected float yHead;				// head y position (x always same as body)
 	protected float rHead;				// head radius
-	protected float rBody;				// body radius
-	
-	protected static final double LEFT_WALL = Model.leftBoundary;
-	protected static final double RIGHT_WALL = Model.rightBoundary;
-	protected static final double FLOOR = 0;
-	protected static final double CEILING = FLOOR + Model.height;
 	
 	protected static final Random randGen = new Random();
 	
@@ -34,7 +26,7 @@ public abstract class Kid extends Entity {
 	}
 	
 	@Override
-	public String generateId() {
+	protected String generateId() {
 		return "k" + (++idCounter);
 	}
 
@@ -43,18 +35,17 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
-
 	public double getHeadY() {
-		return yPos + rBody + rHead;
-
+		return yPos + radius + rHead;
 	}
 	
 	public float getHeadRadius() {
 		return rHead;
 	}
 	
-	public float getBodyRadius() {
-		return rBody;
+	@Override
+	public float getRadius() {
+		return radius;
 	}
 	
 	// return the ratio of the hp that is left
@@ -70,10 +61,10 @@ public abstract class Kid extends Entity {
 	 * @param candy: the candy which hit the kid
 	 * @return: void 
 	 */
-	public abstract void hitByCandy(Candy candy);
+	public abstract void hitByCandy(String candyType, int damage);
 	
 	public boolean enteredStore() {
-		return xPos <= LEFT_WALL;
+		return xPos <= leftBoundary;
 	}
 	
 	@Override

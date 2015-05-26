@@ -84,6 +84,10 @@ public class Model implements ObservedSubject {
             player2.updateDir(directions);
         }
     }
+    
+    public void changeCandy(int player, int candy) {
+    	System.out.println("Player" + player + " changed candy to " + candy);
+    }
 
     /**
      * Creates the currently selected candy for the specified player.
@@ -180,7 +184,7 @@ public class Model implements ObservedSubject {
                                 float deltaY = kid.getY() - entity.getY();
                                 float combinedR = kid.getRadius() + entity.getRadius();
                                 if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                                    ((Kid) kid).hitByCandy((Candy) entity);
+                                    ((Kid) kid).hitByCandy(((Candy) entity).getType(), ((Candy) entity).getDamage());
                                     objects.remove(entity);
                                     for (Observer observer : observers) {
                                         observer.removeEntity(entity);

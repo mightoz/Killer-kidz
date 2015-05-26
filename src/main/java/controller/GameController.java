@@ -10,7 +10,6 @@ import com.badlogic.gdx.InputAdapter;
 public class GameController extends InputAdapter {
     private Model model;
     private final int nbrOfPlayers;
-    private TimeController timeController;
     
     private boolean[] p1Moves = {false, false, false, false};
     private boolean[] p2Moves = {false, false, false, false};
@@ -47,8 +46,8 @@ public class GameController extends InputAdapter {
     	}
         
         Gdx.input.setInputProcessor(this);
-        timeController = new TimeController(model);
-        timeController.startLogic();
+        TimeController tc = new TimeController(model);
+        tc.startLogic();
     }
 
     @Override
@@ -98,16 +97,14 @@ public class GameController extends InputAdapter {
 		// If the player changed candy
 		for (int i = 0; i < 4; i++) {
 			if(P1_CANDY[i] == keycode) {
-				// model.changeCandy(1, i+1);
-				System.out.println("p1 changed candy to " + (i+1));
+				model.changeCandy(1, i+1);
 				return true;
 			}
 		}
 		if (nbrOfPlayers == 2) {
 			for (int i = 0; i < 4; i++) {
 				if(P2_CANDY[i] == keycode) {
-					// model.changeCandy(2, i+1);
-					System.out.println("p2 changed candy to " + (i+1));
+					model.changeCandy(2, i+1);
 					return true;
 				}
 			}

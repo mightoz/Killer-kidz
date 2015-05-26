@@ -1,6 +1,5 @@
 package model.kids;
 
-import model.candymodels.Candy;
 
 public class SimpleSam extends Kid {
 
@@ -9,7 +8,7 @@ public class SimpleSam extends Kid {
 	public SimpleSam(float x, float y) {
 		super(x, y);
         rHead = 5;
-		rBody = 10;
+		radius = 10;
 
 		vx = -40;
 		vy = 0;
@@ -23,16 +22,19 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*dt;
 		yPos += vy*dt;
+		
+		if (xPos-radius <= leftBoundary) {
+			expired = true;
+		}
 	}
 
 	@Override
-	public void hitByCandy(Candy candy) {
-		hp -= candy.getDamage();
-		expired = hp <= 0;
-	}
+	public void hitByCandy(String candyType, int damage) {
+		hp -= damage;
 
-    public float getRadius(){
-        return rBody;
-    }
+		if (hp <= 0) {
+			expired = true;
+		}
+	}
 	
 }

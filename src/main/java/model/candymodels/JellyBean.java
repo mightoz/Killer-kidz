@@ -24,6 +24,7 @@ public class JellyBean extends Candy {
 
         radius = 5;
 
+        type = "JellyBean";
         generateId();
 
         switch (candyStatus[0]) {
