@@ -59,7 +59,7 @@ public class MainMenuController extends InputAdapter {
 		return false;
 	}
 	
-	// Takes care of what happens if state is the main menu
+	// Takes care of key input if user is in main menu
 	private boolean handleMain(int keycode) {
 		switch (keycode) {
 		case Keys.UP:

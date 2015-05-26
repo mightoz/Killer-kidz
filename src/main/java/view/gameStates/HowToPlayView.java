@@ -4,6 +4,7 @@ import view.GameManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -20,7 +21,9 @@ public class HowToPlayView implements Screen {
 	private GameManager gm;
 	
 	private SpriteBatch batch;
-	private BitmapFont font;
+	private BitmapFont htpFont;
+	private BitmapFont okFont; 
+	private String howToPlay;
 	
 	@SuppressWarnings("deprecation")
 	public HowToPlayView (GameManager gm) {
@@ -30,8 +33,13 @@ public class HowToPlayView implements Screen {
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 			Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondLight.ttf"));
-		font = gen.generateFont(20);
-		font.setColor(Color.BLUE);
+		htpFont = gen.generateFont(15);
+		okFont = gen.generateFont(35);
+		htpFont.setColor(Color.WHITE);
+		okFont.setColor(Color.RED);
+		
+		FileHandle handle = Gdx.files.internal("src/main/resources/HowToPlay");
+		howToPlay = handle.readString();
 	}
 	
 	@Override
@@ -44,7 +52,8 @@ public class HowToPlayView implements Screen {
 		batch.setProjectionMatrix(gm.getCam().combined);
 		batch.begin();
 		
-		font.draw(batch, "hello", 100, 450);
+		htpFont.draw(batch, howToPlay, 250, 450);
+		okFont.draw(batch, "I UNDERSTAND", 245, 100);
 		
 		batch.end();
 	}
