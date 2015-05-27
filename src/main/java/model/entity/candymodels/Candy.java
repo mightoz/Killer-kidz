@@ -1,6 +1,6 @@
-package model.candymodels;
+package model.entity.candymodels;
 
-import model.Entity;
+import model.entity.Entity;
 
 /**
  * Created by Oscar on 28/04/15.

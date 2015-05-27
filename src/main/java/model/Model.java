@@ -1,16 +1,13 @@
 package model;
 
-import model.candymodels.Candy;
-import model.candymodels.JellyBean;
-import model.kids.KidFactory;
-import model.kids.KidTypes;
+import model.entity.Player;
+import model.entity.candymodels.Candy;
+import model.entity.Entity;
 import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
 
 
 /**
@@ -96,57 +93,17 @@ public class Model implements ObservedSubject {
      * @param player which player to throw the candy
      */
     public void throwCandy(int player) {
-
-        Candy candy;
-
-        if (player == 1) {
-            switch (player1.getSelectedCandy()) {
-                case 0:
-                    ArrayList<int[]> tmpData1 = player1.getCandyData();
-                    candy = new JellyBean(player1.getX(), player1.getY(), tmpData1.get(0));
-                    objects.add(candy);
-                    break;
-                case 1:
-//                    ArrayList<int[]> tmpData2 = player1.getCandyData();
-//                    candy = new Skittle(player1.getX(), player1.getY(), tmpData2.get(1));
-//                    break;
-                case 2:
-//                    ArrayList<int[]> tmpData3 = player1.getCandyData();
-//                    candy = new HubbaBubba(player1.getX(), player1.getY(), tmpData3.get(2));
-//                    break;
-                case 3:
-//                    ArrayList<int[]> tmpData4 = player1.getCandyData();
-//                    candy = new FerroRoscher(player1.getX(), player1.getY(), tmpData4.get(3));
-//                    break;
-            }
-        } else {
-            switch (player2.getSelectedCandy()) {
-                case 0:
-                    ArrayList<int[]> tmpData1 = player2.getCandyData();
-                    candy = new JellyBean(player2.getX(), player2.getY(), tmpData1.get(0));
-                    objects.add(candy);
-                    break;
-                case 1:
-//                    ArrayList<int[]> tmpData2 = player2.getCandyData();
-//                    candy = new Skittle(player2.getX(), player2.getY(), tmpData2.get(1));
-//                    break;
-                case 2:
-//                    ArrayList<int[]> tmpData3 = player2.getCandyData();
-//                    candy = new HubbaBubba(player2.getX(), player2.getY(), tmpData3.get(2));
-//                    break;
-                case 3:
-//                    ArrayList<int[]> tmpData4 = player2.getCandyData();
-//                    candy = new FerroRoscher(player2.getX(), player2.getY(), tmpData4.get(3));
-//                    break;
-            }
-
+        switch(player){
+            case 1:
+                player1.throwCandy();
+                break;
+            case 2:
+                player2.throwCandy();
+                break;
         }
 
     }
 
-    public static void spawnKid(KidTypes type, float xPos, float yPos) {
-        objects.add(KidFactory.createKid(type, xPos, yPos));
-    }
 
     /**
      * Starts a new level
@@ -169,52 +126,31 @@ public class Model implements ObservedSubject {
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
-        level.update(delta);
-        for (int i = 0; i < objects.size(); i++) {
-            if (objects.get(i) != null) {
-                Entity entity = objects.get(i);
-                String id = entity.getId();
-                if (!entity.isExpired()) {
-                    entity.update(delta);
-                    if (id.substring(0, 1).equals("c")) {
-                        for(int j = 0; j< objects.size();j++){
-                            if (objects.get(j) != null) {
-                            if(objects.get(j).getId().substring(0,1).equals("k")) {
-                                Entity kid = objects.get(j);
-                                float deltaX = kid.getX() - entity.getX();
-                                float deltaY = kid.getY() - entity.getY();
-                                float combinedR = kid.getRadius() + entity.getRadius();
-                                if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                                    ((Kid) kid).hitByCandy(((Candy) entity).getType(), ((Candy) entity).getDamage());
-                                    objects.remove(entity);
-                                    for (Observer observer : observers) {
-                                        observer.removeEntity(entity);
-                                    }
-                                }
-                            }
-                            }
-                        }
 
-                    }
-                } else {
-                    objects.remove(entity);
-                    /**
-                     * if entity is a kid then we need to tell level how the kid expired: if it entered the store
-                     * or if it got shot down by candies.
-                     */
-                    if (entity.getId().substring(0, 1).equals("k")) {
-
-                        if (((Kid) entity).enteredStore()) {
-                            level.enteredStore();
-                        } else {
-                            level.killedByCandy();
-                        }
-                    }
-                    for (Observer observer : observers) {
-                        observer.removeEntity(entity);
+        ArrayList<Candy> candyList = player1.getActiveCandies();
+        for (Candy candy : candyList) {
+            if (!candy.isExpired()) {
+                candy.update(delta);
+                ArrayList<Kid> kidList = level.getActiveKids();
+                for (Kid kid : kidList) {
+                    float deltaX = kid.getX() - candy.getX();
+                    float deltaY = kid.getY() - candy.getY();
+                    float combinedR = kid.getRadius() + candy.getRadius();
+                    if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
+                        kid.hitByCandy(candy.getType(), candy.getDamage());
+                        candyList.remove(candy);
                     }
                 }
             }
+        }
+        level.update(delta);
+        updateObjectList();
+        notifyObserver();
+
+        if(level.levelFailed()){
+            System.out.println("Level failed");
+        }else if(level.levelDone()){
+            System.out.println("Level done");
         }
     }
 
@@ -249,17 +185,11 @@ public class Model implements ObservedSubject {
     @Override
     public void notifyObserver() {
 
-
-        for(Observer observer: observers){
-            for(int i = 0; i < objects.size();i++){
-                if(objects.get(i) != null) {
-                    Entity entity = objects.get(i);
-                    observer.update(entity, entity.getX(), entity.getY());
-                }
+        for(Observer observer: observers) {
+            for(Entity entity: objects) {
+                observer.update(entity);
             }
-
         }
-
     }
 
     public float getWidth(){
@@ -270,5 +200,24 @@ public class Model implements ObservedSubject {
         return height;
     }
 
+    private void updateObjectList() {
+        ArrayList<Entity> newEntities = new ArrayList<>();
+
+        for(Kid kid: level.getActiveKids()){
+            newEntities.add(kid);
+        }
+
+        for (Candy candy : player1.getActiveCandies()) {
+            newEntities.add(candy);
+        }
+
+        for (Kid kid : level.getActiveKids()) {
+            newEntities.add(kid);
+        }
+        newEntities.add(player1);
+        newEntities.add(player2);
+
+        objects = newEntities;
+    }
 
 }

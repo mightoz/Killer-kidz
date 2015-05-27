@@ -1,7 +1,10 @@
-package model;
+package model.entity;
 
 
-import com.sun.javafx.sg.prism.NGShape;
+import model.Model;
+import model.entity.candymodels.Candy;
+import model.entity.candymodels.CandyFactory;
+import model.entity.Entity;
 
 import java.util.ArrayList;
 
@@ -9,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Player extends Entity{
+public class Player extends Entity {
 
 
     private String name;
@@ -21,6 +24,7 @@ public class Player extends Entity{
     private int selectedCandy;
     private static int pIdGenerator;
     private final String pId;
+    private ArrayList<Candy> activeCandies;
 
 
     public Player(float x, float y, String name){
@@ -38,6 +42,8 @@ public class Player extends Entity{
             startCandy[i] = 0;
         }
         candyData.add(0,startCandy);
+
+        activeCandies = new ArrayList<>();
 
         leftKeyPressed = false;
         upKeyPressed = false;
@@ -73,6 +79,15 @@ public class Player extends Entity{
         return candyData;
     }
 
+    public void throwCandy(){
+        ArrayList<Candy> tmp = CandyFactory.throwCandy(selectedCandy, candyData, xPos, yPos);
+        for(Candy candies: tmp){
+            activeCandies.add(candies);
+        }
+    }
+
+
+
     /**
      * Updates the direction of the player.
      * @param directions array of booleans that tells what keys are pressed. Index 0 - 4 corresponds to the keys: left, up, right and down.
@@ -104,9 +119,9 @@ public class Player extends Entity{
                 yPos -= delta;
 
 
-            if(yPos <= 0) {
+            if(yPos <= lowerBoundary) {
                 yPos += delta;
-            }else if(yPos >= Model.height) {
+            }else if(yPos >= upperBoundary) {
                 yPos -= delta;
             }
 
@@ -120,9 +135,9 @@ public class Player extends Entity{
                 xPos -= delta;
 
 
-            if(xPos <= Model.leftBoundary) {
+            if(xPos <= leftBoundary) {
                 xPos += delta;
-            }else if(xPos >= Model.rightBoundary) {
+            }else if(xPos >= rightBoundary) {
                 xPos -= delta;
             }
         }
@@ -142,24 +157,24 @@ public class Player extends Entity{
                 yPos -= Math.sqrt((delta * delta) / 2);
             }
 
-            if(yPos <= 0){
+            if(yPos <= lowerBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height){
+            }else if(yPos >= upperBoundary){
                 yPos -= Math.sqrt((delta*delta)/2);
-            }else if(xPos <= Model.leftBoundary){
+            }else if(xPos <= leftBoundary){
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(xPos >= Model.rightBoundary){
+            }else if(xPos >= rightBoundary){
                 xPos -= Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height && xPos <= Model.leftBoundary){
+            }else if(yPos >= upperBoundary && xPos <= leftBoundary){
                 yPos -= Math.sqrt((delta*delta)/2);
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height && xPos >= Model.rightBoundary){
+            }else if(yPos >= upperBoundary && xPos >= rightBoundary){
                     yPos -= Math.sqrt((delta*delta)/2);
                     xPos -= Math.sqrt((delta*delta)/2);
-            }else if(yPos <= 0 && xPos <= Model.leftBoundary){
+            }else if(yPos <= lowerBoundary && xPos <= leftBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos <= 0 && xPos >= Model.rightBoundary){
+            }else if(yPos <= lowerBoundary && xPos >= rightBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
                 xPos -= Math.sqrt((delta*delta)/2);
 
@@ -180,6 +195,10 @@ public class Player extends Entity{
         int tmp = pIdGenerator;
         pIdGenerator++;
         return "p"+tmp;
+    }
+
+    public ArrayList<Candy> getActiveCandies(){
+        return activeCandies;
     }
 
     public boolean isExpired(){

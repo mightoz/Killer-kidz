@@ -1,5 +1,7 @@
 package view.inGameEntities;
 
+import model.kids.Kid;
+
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 

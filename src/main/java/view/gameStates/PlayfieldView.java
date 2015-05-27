@@ -2,7 +2,7 @@ package view.gameStates;
 
 import java.util.ArrayList;
 
-import model.Entity;
+import model.entity.Entity;
 import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
@@ -100,10 +100,12 @@ public class PlayfieldView implements Screen, Observer {
 	 * Method model will use to tell view to update its contents.
 	 */
 	@Override
-	public void update(Entity entity, float newXPos, float newYPos){
+	public void update(Entity entity){
 
+        float newXPos = entity.getX();
+        float newYPos = entity.getY();
         String id = entity.getId();
-        
+
         switch(entity.getId().substring(0, 1)) {
         
         // Player objects

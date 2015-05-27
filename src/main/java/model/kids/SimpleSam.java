@@ -5,6 +5,7 @@ package model.kids;
  * @author  MarieKlevedal
  * @version 1.0
  */
+
 public class SimpleSam extends Kid {
 
 	private double vx, vy;			// velocities
@@ -26,6 +27,7 @@ public class SimpleSam extends Kid {
 		// no acceleration
 		xPos += vx*dt;
 		yPos += vy*dt;
+
 		
 		if (xPos-radius <= leftBoundary) {
 			expired = true;
@@ -40,5 +42,4 @@ public class SimpleSam extends Kid {
 			expired = true;
 		}
 	}
-	
 }

@@ -10,18 +10,14 @@ import java.util.TimerTask;
  */
 
 /**
- * A dynamic timer with two threads that are run: A logic thread that udates all the logic of the game as often as possible,
- * and a render thread that renders all graphic each 20th milli second. If the computer that is running the program lags,
- * the logic thread will compensate by updating all logic with a calculated delta, based on the time since the last update.
+ * A timer that calls a run method every x milliseconds. Calculates the time it difference between each update and
+ * updates model with the calculated delta as argument.
  *
  */
 public class TimeController {
 
-    private LogicThread logicUpdater;
-//    private RenderThread renderer;
-    private Model model;
     private Timer timer;
-    private TimerTask updater;
+    private Model model;
 
     private boolean isRunning;
     private double nextTime;
@@ -29,22 +25,20 @@ public class TimeController {
     public TimeController(Model model){
 
         this.model = model;
-        logicUpdater = new LogicThread();
-//        renderer = new RenderThread();
         isRunning = false;
-//        timer = new Timer();
-//        updater = new RenderThread();
-//        timer.schedule(updater,0,20);
-        nextTime = (double)System.nanoTime()/1000000000.0;
+        timer = new Timer();
+
     }
 
     /**
      * tells the logic thread to start updating.
      */
     public void startLogic(){
+
         if(!isRunning){
             isRunning = true;
-            logicUpdater.start();
+            nextTime = (double)System.nanoTime()/1000000000.0;
+            timer.schedule(new UpdateGame(), 0, 2);
         }
 
     }
@@ -53,34 +47,22 @@ public class TimeController {
      * tells the logic thread to stop updating.
      */
     public void stopLogic(){
+
         isRunning = false;
+        timer.cancel();
+
     }
 
     /**
-     * logic thread.
+     * Run method for updating the game. Is called by a schedule.
      */
-    private class LogicThread extends Thread{
+    private class UpdateGame extends TimerTask{
 
         public void run(){
-            while(isRunning) {
-                double currentTime = (double) System.nanoTime() / 1000000000.0;
-                double delta = (currentTime - nextTime);
-                model.updateGame(delta);
-                model.notifyObserver();
-                nextTime += delta;
-
-            }
+            double currentTime = (double) System.nanoTime() / 1000000000.0;
+            double delta = (currentTime - nextTime);
+            model.updateGame(delta);
+            nextTime += delta;
         }
     }
-
-    /**
-     * render thread.
-     */
-//    private class RenderThread extends TimerTask{
-//
-//        public void run(){
-//            model.notifyObserver();
-//
-//        }
-//    }
 }
