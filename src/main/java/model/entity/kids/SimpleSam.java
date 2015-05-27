@@ -19,7 +19,7 @@ public class SimpleSam extends Kid {
 		vx = -40;
 		ax = -5;
 
-		startHP = 100;
+		startHP = 50;
 		hp = startHP;
 	}
 
