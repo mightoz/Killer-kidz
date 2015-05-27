@@ -60,7 +60,7 @@ public class GameManager extends Game {
 		// create an object for each "Game-State".
 		mainMenuView = new MainMenu(cam, width);
 		playfieldView = new PlayfieldView(cam, width, height);
-		howToPlayView = new HowToPlayView(this);
+		howToPlayView = new HowToPlayView(cam);
         model.register(playfieldView);
         
         currentItem = mainMenuView.getCurrentItem();
@@ -81,87 +81,29 @@ public class GameManager extends Game {
 	}
 	
 	// Called by a controller when user press specific key in MainMenu.
-	public String handleInput(String key) {
+	public String updateMenu(String key) {
+			
+		String[] menuItemsList = mainMenuView.getMenuItems();
 		
-		// Inside mainMenu
-		if(screen.equals(mainMenuView)) {
-			
-			String[] menuItemsList = mainMenuView.getMenuItems();
-			
-			switch(key) {
-			
-			case "Up":
-				if(currentItem > 0)	{ currentItem--; }
-				return "Up";
-			
-			case "Down":
-				if(currentItem < menuItemsList.length - 1) { currentItem++; }
-				return "Down";
-				
-			case "Enter":
-				select();
-				return menuItemsList[currentItem];
-				
-			default: 
-				return "Error, Controller called GameManager.handleInput with unknown parameter";
-			}
-		}
+		switch(key) {
 		
-		// inside howToPlay
-		else if(screen.equals(howToPlayView)){
-			if(key.equals("Enter")){
-				dispose();
-				setScreen(getMainMenu());
-			}
+		case "Up":
+			if(currentItem > 0)	{mainMenuView.setCurrentItem(--currentItem); }
+			return "Up";
+		
+		case "Down":
+			if(currentItem < menuItemsList.length - 1) { mainMenuView.setCurrentItem(++currentItem); }
+			return "Down";
+			
+		case "Enter":
+			return menuItemsList[currentItem];
+			
+		default: 
+			return "Error, Controller called GameManager.handleInput with unknown parameter";
 		}
-		return "Error, Controller called GameManager.handleInput with unknown parameter";
+
 	}
 	
-	/**
-	 * This method is used by the controllers who are responsible for the 
-	 * mainMenu and its sub-categories like howToPlay, to  
-	 */
-	private void select() {
-		
-		if(screen.equals(mainMenuView)){
-			
-			int currentItem = mainMenuView.getCurrentItem();
-			switch(currentItem){
-
-			// Play
-			case 0:
-				dispose();
-				setScreen(getPlayfieldView());
-				break;
-				
-			// Settings
-			case 1:
-//				gm.setScreen(gm.MENU_SETTINGS);
-				break;
-				
-			// HighScore
-			case 2:
-//				gm.setState(gm.HIGHSCORE);
-				break;
-				
-			// HowToPlay
-			case 3:
-				dispose();
-				setScreen(getHowToPlayView());
-				break;
-				
-			// Quit
-			case 4:
-				Gdx.app.exit();
-				break;
-				
-			default: 
-				System.out.println("Error, GameManager.select had selected an unkown string.");
-				break;
-			}
-		}
-		
-	}
 	
 	public OrthographicCamera getCam(){	return cam;	}
 	

@@ -57,13 +57,13 @@ public class MainMenuController extends InputAdapter {
 	private boolean handleMain(int keycode) {
 		switch (keycode) {
 		case Keys.UP:
-			gm.handleInput("Up");
+			gm.updateMenu("Up");
 			return true;
 		case Keys.DOWN:
-			gm.handleInput("Down");
+			gm.updateMenu("Down");
 			return true;
 		case Keys.ENTER:
-			String choise = gm.handleInput("Enter");
+			String choise = gm.updateMenu("Enter");
 			switch (choise) {
 			case "Play":
 				gm.dispose();
