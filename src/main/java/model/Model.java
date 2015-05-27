@@ -106,9 +106,6 @@ public class Model implements ObservedSubject {
 
     }
 
-    public static void spawnKid(KidTypes type, float xPos, float yPos) {
-        objects.add(KidFactory.createKid(type, xPos, yPos));
-    }
 
     /**
      * Starts a new level
@@ -131,6 +128,7 @@ public class Model implements ObservedSubject {
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
+
         ArrayList<Candy> candyList = player1.getActiveCandies();
         for (Candy candy : candyList) {
             if (!candy.isExpired()) {
@@ -151,6 +149,11 @@ public class Model implements ObservedSubject {
         updateObjectList();
         notifyObserver();
 
+        if(level.levelFailed()){
+            System.out.println("Level failed");
+        }else if(level.levelDone()){
+            System.out.println("Level done");
+        }
     }
 
     /**

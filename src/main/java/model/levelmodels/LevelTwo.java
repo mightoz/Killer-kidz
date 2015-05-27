@@ -5,6 +5,19 @@ package model.levelmodels;
  */
 public class LevelTwo extends Level{
 
+    public LevelTwo(){
+        super();
+        timePassed = 0;
+        nextSpawnTime = 1;
+    }
+
+
+    @Override
+    public void update(double delta) {
+        timePassed += delta;
+
+
+    }
 
     @Override
     public boolean levelDone() {
@@ -12,12 +25,8 @@ public class LevelTwo extends Level{
     }
 
     @Override
-    public void update(double delta) {
-
-    }
-
-    @Override
     public boolean levelFailed() {
+
         return false;
     }
 

@@ -3,6 +3,8 @@ package model.levelmodels;
 import model.Model;
 import model.kids.KidTypes;
 
+import static model.kids.KidFactory.createKid;
+
 /**
  * Created by Matilda on 2015-05-03.
  */
@@ -14,13 +16,13 @@ public class LevelOne extends Level {
         nextSpawnTime = 3;
     }
 
-    public void update(double delta){
+    public void updateLevel(double delta){
         timePassed+=delta;
         switch(currentWave){
             case 1:
                 if(spawnedKids < 10) {
                     if(timePassed >= nextSpawnTime){
-                        Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height)));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -33,7 +35,7 @@ public class LevelOne extends Level {
             case 2:
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
-                        Model.spawnKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height)));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -46,7 +48,7 @@ public class LevelOne extends Level {
 //
     @Override
     public boolean levelDone(){
-        if(kidsRemoved == 20){
+        if(kidsRemoved == 25){
             return true;
         }else{
             return false;
@@ -55,7 +57,7 @@ public class LevelOne extends Level {
 
     @Override
     public boolean levelFailed() {
-        if(kidsInStore == 3){
+        if(kidsInStore == 5){
             return true;
         }else{
             return false;
