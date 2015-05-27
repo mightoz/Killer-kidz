@@ -1,7 +1,8 @@
 package model.entity.kids;
 
 /**
- * KidTypes
+ * Name:	KidTypes
+ * About:	An enumeration of the different kid types.
  * @author  MarieKlevedal
  * @version 1.0
  */

@@ -1,7 +1,8 @@
 package model.entity.kids;
 
 /**
- * DizzyDoriz
+ * Name: 	DizzyDoriz
+ * About:	A kid walking in a random pattern.
  * @author  MarieKlevedal
  * @version 1.0
  */
