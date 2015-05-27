@@ -9,7 +9,7 @@ package model.entity.kids;
 public class DizzyDoriz extends Kid {
 	
 	private double vx, vy;		// velocities
-	private int interval;
+	private int updatesLeft;	// remaining updates before next change of velocity
 	
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
@@ -22,10 +22,9 @@ public class DizzyDoriz extends Kid {
 
 	@Override
 	public void update(double dt) {
-		// Velocity is reset every 1000th update
-		interval %= 1000;
-		interval++;
-		if (interval == 1) {
+		// Velocity is changed every 1000th update
+		updatesLeft %= 1000;
+		if (updatesLeft == 0) {
 			vx = 50 - randGen.nextInt(151);		// in [-100, 50]
 			vy = 50 - randGen.nextInt(101);		// in [-50, 50]
 		}
@@ -35,16 +34,17 @@ public class DizzyDoriz extends Kid {
 		// If Doriz escaped, put her back at playfield and set new velocity next time
 		if (xPos + radius > rightBoundary) {
 			xPos = rightBoundary-radius;
-			interval = 0;
+			updatesLeft = 1;
 		}
 		if (yPos + radius > upperBoundary) {
 			yPos = upperBoundary-radius;
-			interval = 0;
+			updatesLeft = 1;
 		}
 		else if (yPos - radius < lowerBoundary) {
 			yPos = lowerBoundary+radius;
-			interval = 0;
+			updatesLeft = 1;
 		}
+		updatesLeft--;
 		
 		if (xPos - radius <= leftBoundary) {
 			expired = true;

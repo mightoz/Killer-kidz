@@ -19,8 +19,8 @@ public class SinEster extends Kid {
 		super(x, y);
 		rHead = 5;
 		radius = 10;
-		vx = -50;
 		
+		vx = -50;
 		maxA = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
 
 		startHP = 200;
