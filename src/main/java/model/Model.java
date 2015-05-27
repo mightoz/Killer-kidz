@@ -203,7 +203,11 @@ public class Model implements ObservedSubject {
     }
 
     private void updateObjectList() {
-        ArrayList<Entity> newEntities = level.getActiveKids();
+        ArrayList<Entity> newEntities = new ArrayList<>();
+
+        for(Kid kid: level.getActiveKids()){
+            newEntities.add(kid);
+        }
 
         for (Candy candy : player1.getActiveCandies()) {
             newEntities.add(candy);
