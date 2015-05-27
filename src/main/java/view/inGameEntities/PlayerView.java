@@ -16,13 +16,13 @@ public class PlayerView extends VisibleObjects {
 
     public void render(Entity player, ShapeRenderer sr){
 
-//        if(id.equals("1")){
-//            x = width / 4;
-//            y = (height / 3) * 2;
-//        }else{
-//            x = width / 4;
-//            y = (height /3);
-//        }
+        if(player.getId().substring(1,2).equals("0")){
+            x = player.getRightBoundary() / 4;
+            y = (player.getUpperBoundary() / 3) * 2;
+        }else{
+            x = player.getRightBoundary() / 4;
+            y = (player.getUpperBoundary() /3);
+        }
 
         sr.setColor(1, 1, 1, 1);
 

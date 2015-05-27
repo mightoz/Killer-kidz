@@ -57,7 +57,12 @@ public abstract class Entity {
     public static float getUpperBoundary(){
         return upperBoundary;
     }
-
+    public static float getLowerBoundary(){
+        return lowerBoundary;
+    }
+    public static float getLeftBoundary(){
+        return leftBoundary;
+    }
     public static float getRightBoundary(){
         return rightBoundary;
     }

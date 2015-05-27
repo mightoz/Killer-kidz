@@ -80,9 +80,9 @@ public class Model implements ObservedSubject {
             player2.updateDir(directions);
         }
     }
-    
+
     public void changeCandy(int player, int candy) {
-    	System.out.println("Player" + player + " changed candy to " + candy);
+        System.out.println("Player" + player + " changed candy to " + candy);
     }
 
     /**
@@ -91,7 +91,7 @@ public class Model implements ObservedSubject {
      * @param player which player to throw the candy
      */
     public void throwCandy(int player) {
-        switch(player){
+        switch (player) {
             case 1:
                 player1.throwCandy();
                 break;
@@ -130,16 +130,18 @@ public class Model implements ObservedSubject {
 
         ArrayList<Candy> candyList = player1.getActiveCandies();
         for (Candy candy : candyList) {
-            if (!candy.isExpired()) {
-                candy.update(delta);
-                ArrayList<Kid> kidList = level.getActiveKids();
-                for (Kid kid : kidList) {
-                    float deltaX = kid.getX() - candy.getX();
-                    float deltaY = kid.getY() - candy.getY();
-                    float combinedR = kid.getRadius() + candy.getRadius();
-                    if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                        kid.hitByCandy(candy.getType(), candy.getDamage());
-                        candyList.remove(candy);
+            if (candy != null) {
+                if (!candy.isExpired()) {
+                    candy.update(delta);
+                    ArrayList<Kid> kidList = level.getActiveKids();
+                    for (Kid kid : kidList) {
+                        float deltaX = kid.getX() - candy.getX();
+                        float deltaY = kid.getY() - candy.getY();
+                        float combinedR = kid.getRadius() + candy.getRadius();
+                        if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
+                            kid.hitByCandy(candy.getType(), candy.getDamage());
+                            candyList.remove(candy);
+                        }
                     }
                 }
             }
@@ -148,31 +150,33 @@ public class Model implements ObservedSubject {
         updateObjectList();
         notifyObserver();
 
-        if(level.levelFailed()){
+        if (level.levelFailed()) {
             System.out.println("Level failed");
-        }else if(level.levelDone()){
+        } else if (level.levelDone()) {
             System.out.println("Level done");
         }
     }
 
     /**
      * Adds a new observer
+     *
      * @param newObserver
      */
     @Override
     public void register(Observer newObserver) {
 
-        if(newObserver == null){
+        if (newObserver == null) {
             throw new IllegalArgumentException("Tries to add null object as observer");
         }
 
-       if(!observers.contains(newObserver)){
-           observers.add(newObserver);
-       }
+        if (!observers.contains(newObserver)) {
+            observers.add(newObserver);
+        }
     }
 
     /**
      * Removes an observer
+     *
      * @param observer
      */
     @Override
@@ -186,25 +190,25 @@ public class Model implements ObservedSubject {
     @Override
     public void notifyObserver() {
 
-        for(Observer observer: observers) {
-            for(Entity entity: objects) {
+        for (Observer observer : observers) {
+            for (Entity entity : objects) {
                 observer.update(entity);
             }
         }
     }
 
-    public float getWidth(){
+    public float getWidth() {
         return width;
     }
 
-    public float getHeight(){
+    public float getHeight() {
         return height;
     }
 
     private void updateObjectList() {
         ArrayList<Entity> newEntities = new ArrayList<>();
 
-        for(Kid kid: level.getActiveKids()){
+        for (Kid kid : level.getActiveKids()) {
             newEntities.add(kid);
         }
 
