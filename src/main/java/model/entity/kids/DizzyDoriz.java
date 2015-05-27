@@ -1,13 +1,15 @@
 package model.entity.kids;
 
 /**
- * DizzyDoriz
+ * Name: 	DizzyDoriz
+ * About:	A kid walking in a random pattern.
  * @author  MarieKlevedal
  * @version 1.0
  */
 public class DizzyDoriz extends Kid {
 	
 	private double vx, vy;		// velocities
+	private int interval;
 	
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
@@ -20,20 +22,28 @@ public class DizzyDoriz extends Kid {
 
 	@Override
 	public void update(double dt) {
-		vx = 50 - randGen.nextInt(151);		// in [-100, 50]
-		vy = 50 - randGen.nextInt(101);		// in [-50, 50]
+		// Velocity is reset every 1000th update
+		interval %= 1000;
+		interval++;
+		if (interval == 1) {
+			vx = 50 - randGen.nextInt(151);		// in [-100, 50]
+			vy = 50 - randGen.nextInt(101);		// in [-50, 50]
+		}
 		xPos += vx*dt;
 		yPos += vy*dt;
 		
-		// If Doriz escaped, put her back at playfield
+		// If Doriz escaped, put her back at playfield and set new velocity next time
 		if (xPos + radius > rightBoundary) {
 			xPos = rightBoundary-radius;
+			interval = 0;
 		}
 		if (yPos + radius > upperBoundary) {
 			yPos = upperBoundary-radius;
+			interval = 0;
 		}
 		else if (yPos - radius < lowerBoundary) {
 			yPos = lowerBoundary+radius;
+			interval = 0;
 		}
 		
 		if (xPos - radius <= leftBoundary) {

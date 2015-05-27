@@ -1,11 +1,12 @@
 package model.entity.kids;
 
 /**
- * KidFactory
+ * Name:	KidFactory
+ * About:	This is where all the evil kids are created. 
+ * 			There are no instances of this class (it's abstract).
  * @author  MarieKlevedal
  * @version 1.0
  */
-//No instances of this class!
 public abstract class KidFactory {
 	
 	public static Kid createKid(KidTypes type, float x, float y) {

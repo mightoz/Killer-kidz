@@ -4,7 +4,8 @@ package model.entity.kids;
 import java.lang.Math;
 
 /**
- * SinEster
+ * Name:	SinEster
+ * About:	A kid walking in a sine wave.
  * @author  MarieKlevedal
  * @version 1.0
  */
@@ -51,7 +52,7 @@ public class SinEster extends Kid {
 			vx *= 2;
 			break;
 		default:
-			hp -= 100;	
+			hp -= damage;	
 		}
 
 		if (hp <= 0) {

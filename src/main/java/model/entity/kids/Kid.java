@@ -5,7 +5,8 @@ import java.util.Random;
 import model.entity.Entity;
 
 /**
- * Kid
+ * Name:	Kid
+ * About: 	An abstract class with the general properties of all kids.
  * @author  MarieKlevedal
  * @version 1.0
  */
@@ -60,11 +61,6 @@ public abstract class Kid extends Entity {
 	@Override
 	public abstract void update(double dt);
 	
-	/**
-	 * hitByCandy handles the changes in kid if it's hit by a candy
-	 * @param damage: the candy dmg hit the kid
-	 * @return: void 
-	 */
 	public abstract void hitByCandy(String candyType, int damage);
 	
 	public boolean enteredStore() {
