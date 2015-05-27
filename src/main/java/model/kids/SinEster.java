@@ -3,6 +3,11 @@ package model.kids;
 
 import java.lang.Math;
 
+/**
+ * SinEster
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class SinEster extends Kid {
 	
 	private double vx, vy;		// velocities

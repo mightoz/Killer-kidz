@@ -1,9 +1,14 @@
 package model.kids;
 
-import java.util.Random;
 
+import java.util.Random;
 import model.Entity;
 
+/**
+ * Kid
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public abstract class Kid extends Entity {
 	
 	private static int idCounter = 0;
@@ -13,7 +18,6 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 
-	protected float yHead;				// head y position (x always same as body)
 	protected float rHead;				// head radius
 	
 	protected static final Random randGen = new Random();

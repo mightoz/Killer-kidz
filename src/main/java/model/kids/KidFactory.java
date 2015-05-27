@@ -1,5 +1,10 @@
 package model.kids;
 
+/**
+ * KidFactory
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 //No instances of this class!
 public abstract class KidFactory {
 	
