@@ -23,6 +23,7 @@ public class PlayerView extends VisibleObjects {
             x = player.getRightBoundary() / 4;
             y = (player.getUpperBoundary() /3);
         }
+        sr.setAutoShape(true);
 
         sr.setColor(1, 1, 1, 1);
 

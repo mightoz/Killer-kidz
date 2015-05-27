@@ -1,6 +1,6 @@
 package model;
 
-import model.entity.Player;
+import model.entity.players.Player;
 import model.entity.candymodels.Candy;
 import model.entity.kids.Kid;
 import model.entity.Entity;
@@ -208,10 +208,6 @@ public class Model implements ObservedSubject {
     private void updateObjectList() {
         ArrayList<Entity> newEntities = new ArrayList<>();
 
-        for (Kid kid : level.getActiveKids()) {
-            newEntities.add(kid);
-        }
-
         for (Candy candy : player1.getActiveCandies()) {
             newEntities.add(candy);
         }
@@ -220,8 +216,6 @@ public class Model implements ObservedSubject {
             newEntities.add(kid);
         }
         newEntities.add(player1);
-        newEntities.add(player2);
-
         objects = newEntities;
     }
 
