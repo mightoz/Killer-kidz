@@ -12,7 +12,6 @@ public class LevelOne extends Level {
 
     public LevelOne() {
         super();
-        timePassed = 0;
         nextSpawnTime = 3;
     }
 

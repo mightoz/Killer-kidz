@@ -6,6 +6,7 @@ import model.entity.kids.Kid;
 import model.entity.Entity;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
+import model.levelmodels.LevelThree;
 import model.levelmodels.LevelTwo;
 
 import java.util.ArrayList;
@@ -115,6 +116,9 @@ public class Model implements ObservedSubject {
                 break;
             case 2:
                 level = new LevelTwo();
+                break;
+            case 3:
+                level = new LevelThree();
                 break;
         }
     }

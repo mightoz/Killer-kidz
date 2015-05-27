@@ -12,7 +12,6 @@ public class LevelTwo extends Level{
 
     public LevelTwo(){
         super();
-        timePassed = 0;
         nextSpawnTime = 1;
     }
 
@@ -36,6 +35,7 @@ public class LevelTwo extends Level{
                 }else if(kidsRemoved == 15){
                     changeWave();
                 }
+                break;
             case 2:
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
@@ -51,7 +51,7 @@ public class LevelTwo extends Level{
                 }else if(spawnedKids == 20){
                     changeWave();
                 }
-
+                break;
             case 3:
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
@@ -64,9 +64,8 @@ public class LevelTwo extends Level{
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
                     }
-                }else if(spawnedKids == 20){
-                    changeWave();
                 }
+                break;
         }
 
     }
