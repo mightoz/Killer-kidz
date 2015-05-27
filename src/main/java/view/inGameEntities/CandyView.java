@@ -8,7 +8,7 @@ public class CandyView extends VisibleObjects{
 
     public void render(Entity candy, ShapeRenderer sr){
 
-        sr.setColor(1, 1, 5, 1);
+        sr.setColor(1, 4, 2, 1);
 
         sr.begin(ShapeType.Filled);
 

@@ -1,14 +1,12 @@
 package view.gameStates;
 
 import model.entity.Entity;
-import model.Observer;
-import view.GameManager;
 
+import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
-import view.gameStates.playfieldGUI.GUI;
+import view.gameStates.playfieldGUI.GUI_Foundation;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
-
 import view.inGameEntities.CandyView;
 import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
@@ -16,8 +14,19 @@ import view.inGameEntities.PlayerView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * PlayfieldView
+ * This class is responsible to tell all sub-categories like GUI, currentLevel,
+ * shopToProtect, etc. to be painted in a specific order (to avoid kids running
+ * "on top of" the GUI for an example) when the player is in the "action-part"
+ * of the game, aka. playfield.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
@@ -29,29 +38,26 @@ public class PlayfieldView implements Screen, Observer {
 	private float width;
 	private float height;
 	
-	private GUI gui;
+	private GUI_Foundation gui;
 	private ShopToProtect shop;
 	
 	private Money_Bar money;
 	private CurrentLevel_Bar level;
 
 	
-	public PlayfieldView(GameManager gm) {
+	public PlayfieldView(OrthographicCamera cam, float width, float height) {
 		
 		sr = new ShapeRenderer();
-		
-		width = gm.getWidth();
-		height = gm.getHeight();
-
-		gui = new GUI(width, height);
-		shop = new ShopToProtect(gm, gui, width, height);
 
 		kidView = new KidView();
         candyView = new CandyView();
         playerView = new PlayerView();
-		
-		money = new Money_Bar(gm, width, height);
-		level = new CurrentLevel_Bar(gm ,width, height);
+
+		gui = new GUI_Foundation(width, height);
+		shop = new ShopToProtect(cam, gui, height);
+
+		money = new Money_Bar(cam, width, height);
+		level = new CurrentLevel_Bar(cam ,width, height);
 	}
 
 	/*
@@ -79,26 +85,27 @@ public class PlayfieldView implements Screen, Observer {
 		level.render();
 		
 	}
-	
-	/*
-	 * Method model will use to tell view to update its contents.
-	 */
+
+	// Method model will use to tell view to update its contents.
 	@Override
 	public void update(Entity entity){
-        String id = entity.getId();
-        switch (id.substring(0,1)){
+
+        switch(entity.getId().substring(0, 1)) {
+
+            // Player objects
             case "p":
                 playerView.render(entity, sr);
                 break;
+            // Candy objects
             case "c":
                 candyView.render(entity, sr);
                 break;
+            // Kid objects
             case "k":
                 kidView.render(entity, sr);
                 break;
-            }
-
         }
+	}
 	@Override
 	public void hide() { }
 	

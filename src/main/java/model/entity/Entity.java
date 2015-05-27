@@ -54,4 +54,12 @@ public abstract class Entity {
         return radius;
     }
 
+    public static float getUpperBoundary(){
+        return upperBoundary;
+    }
+
+    public static float getRightBoundary(){
+        return rightBoundary;
+    }
+
 }

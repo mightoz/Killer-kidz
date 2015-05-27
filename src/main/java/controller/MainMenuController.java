@@ -8,8 +8,6 @@ import com.badlogic.gdx.InputAdapter;
 
 import model.Model;
 import view.GameManager;
-import view.gameStates.HowToPlayView;
-import view.gameStates.MainMenu;
 
 /**
  * MainMenuController
@@ -20,8 +18,6 @@ public class MainMenuController extends InputAdapter {
 
 	private final Model model;
 	private final GameManager gm;
-	private final MainMenu menu;
-	private final HowToPlayView htp;
 	private MainMenuStates state;
 	
 	public MainMenuController(Model model, GameManager gm) {
@@ -38,8 +34,6 @@ public class MainMenuController extends InputAdapter {
 			}
 		}
 		
-		menu = this.gm.getMainMenu();
-		htp = this.gm.getHowToPlayView();
 		state = MainMenuStates.MENU;
 		Gdx.input.setInputProcessor(this);
 	}
@@ -63,27 +57,32 @@ public class MainMenuController extends InputAdapter {
 	private boolean handleMain(int keycode) {
 		switch (keycode) {
 		case Keys.UP:
-			menu.handleInput("Up");
+			gm.updateMenu("Up");
 			return true;
 		case Keys.DOWN:
-			menu.handleInput("Down");
+			gm.updateMenu("Down");
 			return true;
 		case Keys.ENTER:
-			String choise = menu.handleInput("Enter");
+			String choise = gm.updateMenu("Enter");
 			switch (choise) {
 			case "Play":
+				gm.dispose();
+				gm.setScreen(gm.getPlayfieldView());
 				new GameController(model, 1);
 				return true;
 			case "Settings":
-				state = MainMenuStates.SETTINGS;
-				return true;
+				//state = MainMenuStates.SETTINGS;
+				return false;
 			case "HighScore":
-				state = MainMenuStates.HIGHSCORE;
-				return true;
+				//state = MainMenuStates.HIGHSCORE;
+				return false;
 			case "HowToPlay":
+				gm.dispose();
+				gm.setScreen(gm.getHowToPlayView());
 				state = MainMenuStates.HOW_TO_PLAY;
 				return true;
 			case "Quit":
+				Gdx.app.exit();
 				return true;
 			}
 		}
@@ -101,7 +100,8 @@ public class MainMenuController extends InputAdapter {
 	// Handles the key input if user is viewing how to play
 	private boolean handleHowToPlay(int keycode) {
 		if (keycode == Keys.ENTER) {
-			htp.pressedEnter();
+			gm.dispose();
+			gm.setScreen(gm.getMainMenu());
 			state = MainMenuStates.MENU;
 			return true;
 		}

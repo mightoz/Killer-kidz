@@ -1,6 +1,6 @@
 package model.levelmodels;
 
-import model.kids.Kid;
+import model.entity.kids.Kid;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -78,6 +78,8 @@ public abstract class Level {
     }
 
     protected abstract void updateLevel(double delta);
+
+    protected abstract void changeWave();
 
 
     /**
