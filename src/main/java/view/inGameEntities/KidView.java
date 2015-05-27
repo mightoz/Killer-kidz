@@ -64,7 +64,7 @@ public class KidView extends VisibleObjects{
 		
 		sr.circle(x, y, radius);
 		
-		// TODO - description above fields.
+		// TODO - description below fields.
 //		sr.setColor(0, 0, 0, 1);
 //		sr.circle(x, y, radius-1, segments);
 

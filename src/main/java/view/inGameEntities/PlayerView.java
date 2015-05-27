@@ -1,7 +1,5 @@
 package view.inGameEntities;
 
-import view.GameManager;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -14,7 +12,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  * @version 1.0
  */
 public class PlayerView extends VisibleObjects {
-
 
 	public PlayerView(String id, float width, float height) {
 		
@@ -38,7 +35,7 @@ public class PlayerView extends VisibleObjects {
 		
 		sr.setColor(1, 1, 1, 1);
 
-		// Then draw the new player-triangle.
+		// paint the new player(triangle).
 		sr.begin(ShapeType.Filled);
 
 		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);

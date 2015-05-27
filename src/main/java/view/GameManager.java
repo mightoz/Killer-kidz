@@ -19,11 +19,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  * @author  Kim Berger
  * @version 1.0
  */
-
 public class GameManager extends Game {
 
-	private int width;
-	private int height;
+	private float width;
+	private float height;
 	private boolean gmIsStarted = false;
     private Model model;
 
@@ -55,7 +54,7 @@ public class GameManager extends Game {
 		 * camera to see the change.
 		 */
 		cam = new OrthographicCamera(width, height);
-		cam.translate((float)width / 2, (float)height / 2);
+		cam.translate(width / 2, height / 2);
 		cam.update();
 		
 		// create an object for each "Game-State".
@@ -76,7 +75,9 @@ public class GameManager extends Game {
 	
 	@Override
 	public void render () {
-		if (screen != null) screen.render(Gdx.graphics.getDeltaTime());
+		if (screen != null) {
+			screen.render(Gdx.graphics.getDeltaTime());
+		}
 	}
 	
 	// Called by a controller when user press specific key in MainMenu.
@@ -94,13 +95,12 @@ public class GameManager extends Game {
 				return "Up";
 			
 			case "Down":
-				if(currentItem < mainMenuView.getMenuItems().length - 1) { currentItem++; }
+				if(currentItem < menuItemsList.length - 1) { currentItem++; }
 				return "Down";
 				
 			case "Enter":
 				select();
 				return menuItemsList[currentItem];
-//				return mainMenuView.getMenuItems()[currentItem];
 				
 			default: 
 				return "Error, Controller called GameManager.handleInput with unknown parameter";
@@ -165,8 +165,8 @@ public class GameManager extends Game {
 	
 	public OrthographicCamera getCam(){	return cam;	}
 	
-	public int getWidth(){ return width; }
-	public int getHeight(){	return height; }
+	public float getWidth(){ return width; }
+	public float getHeight(){	return height; }
 	
 	public MainMenu getMainMenu() { return mainMenuView; }
 	public PlayfieldView getPlayfieldView() { return playfieldView; }

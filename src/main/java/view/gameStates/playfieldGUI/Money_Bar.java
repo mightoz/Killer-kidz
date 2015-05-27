@@ -23,13 +23,9 @@ public class Money_Bar extends GUI_Super{
 	private SpriteBatch batch;
 	private BitmapFont textFont;
 	
-	// This is used to add strings to view (we use it to get center of each string
-	// so the text will be centered in the menu).
-//	GlyphLayout layout = new GlyphLayout();
-	
 	private String money;
 	
-	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
+	@SuppressWarnings("deprecation")
 	public Money_Bar(OrthographicCamera cam, float width, float height) {
 
 		this.width = width;
@@ -41,12 +37,10 @@ public class Money_Bar extends GUI_Super{
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 				Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondLight.ttf"));
 		
-//			font = new BitmapFont();
 		textFont = gen.generateFont(24);
 		textFont.setColor(Color.YELLOW);
 		
-		// ----------------------------------------------------------------------- Player måste ha en money-value, lägg till när det är dags för slippa konflikter med merge.
-		money = "$$$$$"; //+ player.getMoney();
+		money = "$$$$$"; //player.getMoney();
 	}
 		
 	public void render() {
@@ -56,7 +50,7 @@ public class Money_Bar extends GUI_Super{
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, money, (width / 24) * 22, (height / 24) * 23); // ----------- Ta reda på mer korrekta koordinater.
+		textFont.draw(batch, money, (width / 24) * 22, (height / 24) * 23);
 		
 		batch.end();
 	}
