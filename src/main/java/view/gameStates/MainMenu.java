@@ -1,36 +1,47 @@
 package view.gameStates;
 
-import view.GameManager;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+/**
+ * MainMenu
+ * This class is responsible to draw the mainMenu the user will see when he/she
+ * starts the game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class MainMenu implements Screen {
 
-	private GameManager gm;
+	// used to get cam which is needed to draw batches os strings.
+	private OrthographicCamera cam;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
 	private BitmapFont titleFont;
 	private BitmapFont textFont;
+	private float width;
 	
 	// This is used to add strings to view (we use it to get center of each string
 	// so the text will be centered in the menu).
 	GlyphLayout layout = new GlyphLayout();
 	
-	private final String title = "KillerKids";
+	private static final String title = "KillerKids";
 	private int currentItem;
-	private String[] menuItems;
-	
-	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
-	public MainMenu(GameManager gm) {
-		this.gm = gm;
+	private String[] menuItemsList;
+
+	@SuppressWarnings("deprecation")
+	public MainMenu(OrthographicCamera cam, float width) {
+		
+		this.cam = cam;
+		this.width = width;
 		
 		batch = new SpriteBatch();
 
@@ -43,7 +54,7 @@ public class MainMenu implements Screen {
 		textFont = gen.generateFont(40);
 		textFont.setColor(Color.WHITE);
 		
-		menuItems = new String[] {
+		menuItemsList = new String[] {
 				"Play",
 				"Settings",
 				"HighScore",
@@ -54,78 +65,49 @@ public class MainMenu implements Screen {
 	
 	@Override
 	public void render(float delta) {
+		
 		// Clear the screen
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-//		handleInput();
-		
 		// Start to draw strings.
-		batch.setProjectionMatrix(gm.getCam().combined);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		
 		layout.setText(titleFont, title);
-		float width = layout.width;// contains the width of the current set text
+		
+		// contains the width of the current set text
+		float layoutWidth = layout.width;
 		
 		// Draw title
-		titleFont.draw(batch, title, (gm.getWidth() - width) / 2, 450);
+		titleFont.draw(batch, title, (width - layoutWidth) / 2, 450);
 		
 		// Draw menuitems
-		for(int i = 0; i < menuItems.length; i++) {
-			layout.setText(textFont, menuItems[i]);
-			width = layout.width;
+		for(int i = 0; i < menuItemsList.length; i++) {
+			layout.setText(textFont, menuItemsList[i]);
+			layoutWidth = layout.width;
 			if(currentItem == i) textFont.setColor(Color.RED);
 			else textFont.setColor(Color.WHITE);
-			textFont.draw(batch, menuItems[i], (gm.getWidth() - width) / 2, 350-(i*50));
+			textFont.draw(batch, menuItemsList[i], (width - layoutWidth) / 2, 350-(i*50));
 		}
 		
 		batch.end();
 	}
 	
-	// Called by a controller when user press specific key in MainMenu.
-	public String handleInput(String key) {
-		
-		if(key.equals("Up")) {
-			if(currentItem > 0) currentItem--;
-			return "Up";
-		}
-		else if(key.equals("Down")) {
-			if(currentItem < menuItems.length - 1){
-				currentItem++;
-				return "Down";
-			}
-		}
-		else if(key.equals("Enter")) {
-			select();
-			return menuItems[currentItem];
-		}
-		return "Error, Controller called MainMenu.handleInput with unknown parameter";
+	public int getCurrentItem() {
+		return currentItem;
+	}
+
+	public void setCurrentItem(int currentItem) {
+		this.currentItem = currentItem;
 	}
 	
-	private void select() {
-		
-		// Play
-		if (currentItem == 0) {
-			gm.dispose();
-			gm.setScreen(gm.getPlayfieldView());
-		}
-		// Settings
-		else if (currentItem == 1) {
-//			gsm.setScreen(gm.MENU_SETTINGS);
-		}
-		// HighScore
-		else if (currentItem == 2) {
-//			gsm.setState(gm.HIGHSCORE);
-		}
-		// HowToPlay
-		else if (currentItem == 3) {
-			gm.dispose();
-			gm.setScreen(gm.getHowToPlayView());
-		}
-		// Quit
-		else if (currentItem == 4) {
-			Gdx.app.exit();
-		}
+	public String[] getMenuItems() {
+		return menuItemsList;
+	}
+
+	public void setMenuItems(String[] menuItems) {
+		this.menuItemsList = menuItems;
 	}
 
 	@Override
