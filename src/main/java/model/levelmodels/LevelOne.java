@@ -1,6 +1,7 @@
 package model.levelmodels;
 
 import model.Model;
+import model.entity.Entity;
 import model.entity.kids.KidTypes;
 import static model.entity.kids.KidFactory.createKid;
 
@@ -21,20 +22,18 @@ public class LevelOne extends Level {
             case 1:
                 if(spawnedKids < 10) {
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height)));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
                 }else if(kidsRemoved == 10){
-                    spawnedKids = 0;
-                    currentWave++;
-                    nextSpawnTime = timePassed + 3;
+                    changeWave();
                 }
                 break;
             case 2:
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Model.width, random.nextInt((int) Model.height)));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -44,23 +43,22 @@ public class LevelOne extends Level {
 
     }
 
-//
+    @Override
+    protected void changeWave() {
+        spawnedKids = 0;
+        currentWave++;
+        nextSpawnTime = timePassed + 4;
+    }
+
+    //
     @Override
     public boolean levelDone(){
-        if(kidsRemoved == 25){
-            return true;
-        }else{
-            return false;
-        }
+        return kidsRemoved == 20;
     }
 
     @Override
     public boolean levelFailed() {
-        if(kidsInStore == 5){
-            return true;
-        }else{
-            return false;
-        }
+        return kidsInStore == 5;
     }
 
 }

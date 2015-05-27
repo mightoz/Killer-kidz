@@ -6,6 +6,7 @@ import model.entity.kids.Kid;
 import model.entity.Entity;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
+import model.levelmodels.LevelTwo;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,6 @@ public class Model implements ObservedSubject {
     private static ArrayList<Entity> objects;
     public static float width;
     public static float height;
-    public static float leftBoundary;
-    public static float rightBoundary;
 
     private Player player1;
     private Player player2;
@@ -35,10 +34,8 @@ public class Model implements ObservedSubject {
         objects = new ArrayList<Entity>();
         this.width = (float) width;
         this.height = (float) height - 62;
-        leftBoundary = 45;
-        rightBoundary = 200;
         currentLevel = 1;
-        Entity.setBoundaries(leftBoundary, this.width, this.height, 0);
+        Entity.setBoundaries(45, this.width, this.height, 0);
     }
 
     /**
@@ -116,9 +113,9 @@ public class Model implements ObservedSubject {
             case 1:
                 level = new LevelOne();
                 break;
-            //         case 2:
-            //             level = new LevelTwo();
-            //             break;
+            case 2:
+                level = new LevelTwo();
+                break;
         }
     }
 

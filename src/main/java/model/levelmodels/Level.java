@@ -79,6 +79,8 @@ public abstract class Level {
 
     protected abstract void updateLevel(double delta);
 
+    protected abstract void changeWave();
+
 
     /**
      * Checks if the player is done with the level
