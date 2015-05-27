@@ -9,7 +9,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-
 /**
  * GameManager
  * This class is responsible for managing which screen to show to the user,
@@ -116,8 +115,6 @@ public class GameManager extends Game {
 			}
 		}
 		return "Error, Controller called GameManager.handleInput with unknown parameter";
-		
-
 	}
 	
 	/**
@@ -159,7 +156,7 @@ public class GameManager extends Game {
 				break;
 				
 			default: 
-				System.out.println("Error, MainMenu.select had selected an unkown string.");
+				System.out.println("Error, GameManager.select had selected an unkown string.");
 				break;
 			}
 		}
