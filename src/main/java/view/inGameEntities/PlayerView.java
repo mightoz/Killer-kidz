@@ -2,6 +2,7 @@ package view.inGameEntities;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import model.entity.Entity;
 
 /**
  * CurrentLevel_Bar
@@ -13,34 +14,23 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  */
 public class PlayerView extends VisibleObjects {
 
-	public PlayerView(String id, float width, float height) {
-		
-		if(id.equals("1")){
-			x = width / 4;
-			y = (height / 3) * 2;
-		} else{
-			x = width / 4;
-			y = (height / 3);
-		}
-	}
+    public void render(Entity player, ShapeRenderer sr){
 
-	// Updates players position, called by model (through interface).
-	public void update(float newXPos, float newYPos) {
+//        if(id.equals("1")){
+//            x = width / 4;
+//            y = (height / 3) * 2;
+//        }else{
+//            x = width / 4;
+//            y = (height /3);
+//        }
 
-		x = newXPos;
-		y = newYPos;
-	}
+        sr.setColor(1, 1, 1, 1);
 
-	public void render(ShapeRenderer sr) {
-		
-		sr.setColor(1, 1, 1, 1);
+        sr.begin(ShapeType.Filled);
 
-		// paint the new player(triangle).
-		sr.begin(ShapeType.Filled);
+        sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
 
-		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
+        sr.end();
 
-		sr.end();
-	}
-
+    }
 }

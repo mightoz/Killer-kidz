@@ -1,8 +1,8 @@
 package view.inGameEntities;
 
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import model.entity.Entity;
 
 /**
  * KidView
@@ -12,10 +12,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  * @version 1.0
  */
 public class KidView extends VisibleObjects{
-	
-	private String id;
-	private float radius;
-	
 	/*
 	 * My idea is to make every kids have a "pie-chart" within its circle
 	 * to tell the player(s) how much hp the kid has remaining.
@@ -26,51 +22,26 @@ public class KidView extends VisibleObjects{
 //	private double hungerPoint;
 //	private int segments = 3;
 //	private Kid kid;
-	
-	
-	public KidView(String id,  float width, float height) {
 
-		this.id = id;
+    public void render(Entity kid, ShapeRenderer sr){
 
-		x = width / 4;
-		y = height / 2;
+        sr.setColor(1, 1, 5, 1);
 
-		radius = 10f;
-	}
+        sr.begin(ShapeType.Filled);
 
-	// Updates players position, called by model (through interface).
-	public void update(float newXPos, float newYPos) {
+        sr.circle(kid.getX(), kid.getY(), kid.getRadius());
 
+        sr.end();
 
-		//kid = (Kid)entity;
-		x = newXPos;
-		y = newYPos;
-		
-		// TODO - description above fields.
-//		radius = (float)kid.getBodyRadius();
-//		
-//		hungerPoint = kid.getHpRatio();
-//		segment = (int) (2 * hungerPoint);
-		
-		
-	}
-
-	public void render(ShapeRenderer sr) {
-        sr.setColor(0, 1, 1, 1);
-
-		// Then draw the new player-figure.
-		sr.begin(ShapeType.Filled);
-		
-		sr.circle(x, y, radius);
-		
 		// TODO - description below fields.
 //		sr.setColor(0, 0, 0, 1);
 //		sr.circle(x, y, radius-1, segments);
 
-		sr.end();
-	}
+        // TODO - description above fields.
+//		radius = (float)kid.getBodyRadius();
+//
+//		hungerPoint = kid.getHpRatio();
+//		segment = (int) (2 * hungerPoint);
 
-	public String getId(){
-		return id;
-	}
+    }
 }

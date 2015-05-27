@@ -1,7 +1,6 @@
 package view.gameStates;
 
 import model.entity.Entity;
-import java.util.ArrayList;
 
 import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
@@ -31,10 +30,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
-	private PlayerView[] player;
 
-    private ArrayList<CandyView> candyViews;
-	private ArrayList<KidView> kidViews;
+    private CandyView candyView;
+	private KidView kidView;
+    private PlayerView playerView;
+
+	private float width;
+	private float height;
 	
 	private GUI_Foundation gui;
 	private ShopToProtect shop;
@@ -47,17 +49,15 @@ public class PlayfieldView implements Screen, Observer {
 		
 		sr = new ShapeRenderer();
 
+		kidView = new KidView();
+        candyView = new CandyView();
+        playerView = new PlayerView();
+
 		gui = new GUI_Foundation(width, height);
 		shop = new ShopToProtect(cam, gui, height);
-		kidViews = new ArrayList();
-		
+
 		money = new Money_Bar(cam, width, height);
 		level = new CurrentLevel_Bar(cam ,width, height);
-		
-		player = new PlayerView[2];
-		player[0] = new PlayerView("P.1", width, height);
-
-        candyViews = new ArrayList();
 	}
 
 	/*
@@ -78,16 +78,6 @@ public class PlayfieldView implements Screen, Observer {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		player[0].render(sr);
-
-        for(int i = 0; i<candyViews.size();i++){
-            candyViews.get(i).render(sr);
-        }
-
-        for(int i = 0; i<kidViews.size();i++){
-            kidViews.get(i).render(sr);
-        }
-		
 		shop.render(sr);
 		gui.render(sr);
 		
@@ -100,88 +90,22 @@ public class PlayfieldView implements Screen, Observer {
 	@Override
 	public void update(Entity entity){
 
-        float newXPos = entity.getX();
-        float newYPos = entity.getY();
-        String id = entity.getId();
-
         switch(entity.getId().substring(0, 1)) {
-        
-        // Player objects
-		case "p": if(entity.getId().equals("p0")) {
-					  player[0].update(newXPos, newYPos);
-                      break;
-				  } 
-				  
-				  else if(entity.getId().equals("p1")) {
-					  player[1].update(newXPos, newYPos);
-					  break;
-			}
-				  
-		/*
-		Loops over ArrayList of candyViews.
-		If a candy is thrown and updated in model, but is still not added as a view,
-		adds the candy to views. Otherwise, updates the positions of the candy.
-		 */
-		case "c": // Candy object
-            boolean newCandy = true;
-//            System.out.println(id);
-            for(CandyView candy: candyViews){
-               if(candy.getId().equals(id)){
-                   candy.update(newXPos, newYPos);
-                   newCandy = false;
-               }
-            }
-            if(newCandy) {
-                candyViews.add(new CandyView(entity.getId(), newXPos, newYPos));
-            }
-            break;
 
-		case "k": // Kid object
-            boolean isNew = true;
-			for(KidView kidView: kidViews){
-				if(kidView.getId().equals(id)){
-					kidView.update(newXPos, newYPos);
-					isNew = false;
-				}
-			}
-			if(isNew){
-				kidViews.add(new KidView(entity.getId(), newXPos, newYPos));
-			}
-            break;
-		}
-	}
-
-    /**
-     * removes an object from a list of viewobjects, specified by the entity id.
-     * @param entity
-     */
-    public void removeEntity(Entity entity){
-        String id = entity.getId();
-        switch (id.substring(0, 1)){
+            // Player objects
             case "p":
+                playerView.render(entity, sr);
                 break;
-
+            // Candy objects
             case "c":
-
-                for(CandyView candy: candyViews){
-                    if(candy.getId().equals(id)){
-                        candyViews.remove(candy);
-                        break;
-                    }
-                }
-
+                candyView.render(entity, sr);
+                break;
+            // Kid objects
             case "k":
-
-                for(KidView kid: kidViews){
-                    if(kid.getId().equals(id)){
-                        kidViews.remove(kid);
-                        break;
-                    }
-                }
-
+                kidView.render(entity, sr);
+                break;
         }
-    }
-	
+	}
 	@Override
 	public void hide() { }
 	
