@@ -119,9 +119,9 @@ public class Player extends Entity {
                 yPos -= delta;
 
 
-            if(yPos <= 0) {
+            if(yPos <= lowerBoundary) {
                 yPos += delta;
-            }else if(yPos >= Model.height) {
+            }else if(yPos >= upperBoundary) {
                 yPos -= delta;
             }
 
@@ -135,9 +135,9 @@ public class Player extends Entity {
                 xPos -= delta;
 
 
-            if(xPos <= Model.leftBoundary) {
+            if(xPos <= leftBoundary) {
                 xPos += delta;
-            }else if(xPos >= Model.rightBoundary) {
+            }else if(xPos >= rightBoundary) {
                 xPos -= delta;
             }
         }
@@ -157,24 +157,24 @@ public class Player extends Entity {
                 yPos -= Math.sqrt((delta * delta) / 2);
             }
 
-            if(yPos <= 0){
+            if(yPos <= lowerBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height){
+            }else if(yPos >= upperBoundary){
                 yPos -= Math.sqrt((delta*delta)/2);
-            }else if(xPos <= Model.leftBoundary){
+            }else if(xPos <= leftBoundary){
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(xPos >= Model.rightBoundary){
+            }else if(xPos >= rightBoundary){
                 xPos -= Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height && xPos <= Model.leftBoundary){
+            }else if(yPos >= upperBoundary && xPos <= leftBoundary){
                 yPos -= Math.sqrt((delta*delta)/2);
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos >= Model.height && xPos >= Model.rightBoundary){
+            }else if(yPos >= upperBoundary && xPos >= rightBoundary){
                     yPos -= Math.sqrt((delta*delta)/2);
                     xPos -= Math.sqrt((delta*delta)/2);
-            }else if(yPos <= 0 && xPos <= Model.leftBoundary){
+            }else if(yPos <= lowerBoundary && xPos <= leftBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
                 xPos += Math.sqrt((delta*delta)/2);
-            }else if(yPos <= 0 && xPos >= Model.rightBoundary){
+            }else if(yPos <= lowerBoundary && xPos >= rightBoundary){
                 yPos += Math.sqrt((delta*delta)/2);
                 xPos -= Math.sqrt((delta*delta)/2);
 
