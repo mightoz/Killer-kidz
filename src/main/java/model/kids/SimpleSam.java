@@ -1,6 +1,10 @@
 package model.kids;
 
-
+/**
+ * SimpleSam
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class SimpleSam extends Kid {
 
 	private double vx, vy;			// velocities

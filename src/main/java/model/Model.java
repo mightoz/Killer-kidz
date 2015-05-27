@@ -41,6 +41,7 @@ public class Model implements ObservedSubject {
         leftBoundary = 45;
         rightBoundary = 200;
         currentLevel = 1;
+        Entity.setBoundaries(leftBoundary, this.width, this.height, 0);
     }
 
     /**
