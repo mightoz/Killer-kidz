@@ -2,8 +2,8 @@ package model;
 
 import model.entity.Player;
 import model.entity.candymodels.Candy;
+import model.entity.kids.Kid;
 import model.entity.Entity;
-import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
