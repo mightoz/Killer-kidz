@@ -1,8 +1,8 @@
 package view.gameStates;
 
+import model.entity.Entity;
 import java.util.ArrayList;
 
-import model.entity.Entity;
 import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI_Foundation;
