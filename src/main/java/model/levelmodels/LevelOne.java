@@ -1,9 +1,8 @@
 package model.levelmodels;
 
 import model.Model;
-import model.kids.KidTypes;
-
-import static model.kids.KidFactory.createKid;
+import model.entity.kids.KidTypes;
+import static model.entity.kids.KidFactory.createKid;
 
 /**
  * Created by Matilda on 2015-05-03.

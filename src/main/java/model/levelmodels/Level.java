@@ -1,6 +1,6 @@
 package model.levelmodels;
 
-import model.kids.Kid;
+import model.entity.kids.Kid;
 
 import java.util.ArrayList;
 import java.util.Random;

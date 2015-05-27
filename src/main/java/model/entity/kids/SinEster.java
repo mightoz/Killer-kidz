@@ -1,4 +1,4 @@
-package model.kids;
+package model.entity.kids;
 
 
 import java.lang.Math;
