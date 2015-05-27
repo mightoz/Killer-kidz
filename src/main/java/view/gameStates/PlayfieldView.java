@@ -1,12 +1,11 @@
 package view.gameStates;
 
-
 import model.entity.Entity;
 import java.util.ArrayList;
 
 import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
-import view.gameStates.playfieldGUI.GUI;
+import view.gameStates.playfieldGUI.GUI_Foundation;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
 import view.inGameEntities.CandyView;
@@ -37,18 +36,18 @@ public class PlayfieldView implements Screen, Observer {
     private ArrayList<CandyView> candyViews;
 	private ArrayList<KidView> kidViews;
 	
-	private GUI gui;
+	private GUI_Foundation gui;
 	private ShopToProtect shop;
 	
 	private Money_Bar money;
 	private CurrentLevel_Bar level;
 
 	
-	public PlayfieldView(OrthographicCamera cam, int width, int height) {
+	public PlayfieldView(OrthographicCamera cam, float width, float height) {
 		
 		sr = new ShapeRenderer();
 
-		gui = new GUI(width, height);
+		gui = new GUI_Foundation(width, height);
 		shop = new ShopToProtect(cam, gui, height);
 		kidViews = new ArrayList();
 		
@@ -96,21 +95,11 @@ public class PlayfieldView implements Screen, Observer {
 		level.render();
 		
 	}
-	
-	/*
-	 * Method model will use to tell view to update its contents.
-	 */
+
+	// Method model will use to tell view to update its contents.
 	@Override
 	public void update(Entity entity){
-        /*
-		 * Bortse koden under om det bråkar, och istället gör:
-		 * 1) kolla vilket objekt som skall updateras (skicka med objekt i parameter?)
-		 * 2) säg till respektive "viewObjekt" att updatera dess position utifrån
-		 * 	  modelsObjekt, tex:
-		 * 			CandyViewObj.update(CandyModel.getPos())
-		 *    som då alltså säger till ett viewobjek att uppdateras sin position
-		 *    ifrån models.
-		 */
+
         float newXPos = entity.getX();
         float newYPos = entity.getY();
         String id = entity.getId();

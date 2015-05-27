@@ -8,8 +8,6 @@ import com.badlogic.gdx.InputAdapter;
 
 import model.Model;
 import view.GameManager;
-import view.gameStates.HowToPlayView;
-import view.gameStates.MainMenu;
 
 /**
  * MainMenuController
@@ -68,9 +66,9 @@ public class MainMenuController extends InputAdapter {
 			String choise = gm.handleInput("Enter");
 			switch (choise) {
 			case "Play":
-				new GameController(model, 1);
 				gm.dispose();
 				gm.setScreen(gm.getPlayfieldView());
+				new GameController(model, 1);
 				return true;
 			case "Settings":
 				//state = MainMenuStates.SETTINGS;

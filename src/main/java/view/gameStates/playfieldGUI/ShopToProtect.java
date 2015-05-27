@@ -1,7 +1,5 @@
 package view.gameStates.playfieldGUI;
 
-//import view.GameManager;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,16 +23,14 @@ public class ShopToProtect extends GUI_Super {
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
 	private BitmapFont textFont;
-	
-	// used to get cam.
-//	private GameManager gm;
+
 	private OrthographicCamera cam;
 	
 	private String lives;
 	private String shopText;
 	
 	@SuppressWarnings("deprecation")
-	public ShopToProtect(OrthographicCamera cam, GUI gui, int height) {
+	public ShopToProtect(OrthographicCamera cam, GUI_Foundation gui, float height) {
 
 		this.cam = cam;
 		
@@ -55,10 +51,7 @@ public class ShopToProtect extends GUI_Super {
 
 	}
 
-
-	/*
-	 * Draw an box "shop" from bottomleft to the GUI border at top.
-	 */
+	// Draw an box "shop" from bottomleft to the GUI border at top.
 	public void render(ShapeRenderer sr) {
 
 		sr.setColor(Color.MAROON);
