@@ -18,12 +18,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-import java.util.ArrayList;
-
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
-	private PlayerView[] player;
 
     private CandyView candyView;
 	private KidView kidView;
@@ -88,10 +85,7 @@ public class PlayfieldView implements Screen, Observer {
 	 */
 	@Override
 	public void update(Entity entity){
-        float newXPos = entity.getX();
-        float newYPos = entity.getY();
         String id = entity.getId();
-
         switch (id.substring(0,1)){
             case "p":
                 playerView.render(entity, sr);

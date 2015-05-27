@@ -1,50 +1,20 @@
 package view.inGameEntities;
 
-import view.GameManager;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-
-/*
- * Slog ihop denna med Models temporärt, så den kunde läsa korrekt data
- * visa spelarens nya koordinater.
- */
+import model.entity.Entity;
 
 public class PlayerView extends VisibleObjects {
-	
-	// player id looks like (p.1) or something similar ---------------------------- Kom fram till ett id-system eller använd objekt i anrop.
-	private String id;
 
-	public PlayerView(String id, float width, float height) {
+    public void render(Entity player, ShapeRenderer sr){
 
-		this.id = id;
-		
-		if(id == "1"){
-			x = width / 4;
-			y = (height / 3) * 2;
-		} else{
-			x = width / 4;
-			y = (height / 3);
-		}
-	}
+        sr.setColor(1, 1, 1, 1);
 
-	// Updates players position, called by model (through interface).
-	public void update(float newXPos, float newYPos) {
+        sr.begin(ShapeType.Filled);
 
-		x = newXPos;
-		y = newYPos;
-	}
+        sr.triangle(player.getX() - 10, player.getY() - 10, player.getX(), player.getY() + 15, player.getX() + 10, player.getY() - 10);
 
-	public void render(ShapeRenderer sr) {
-		
-		sr.setColor(1, 1, 1, 1);
+        sr.end();
 
-		// Then draw the new player-triangle.
-		sr.begin(ShapeType.Filled);
-
-		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
-
-		sr.end();
-	}
-
+    }
 }
