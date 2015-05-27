@@ -17,6 +17,8 @@ public abstract class KidFactory {
 			return new SinEster(x, y);
 		case DIZZY_DORIZ:
 			return new DizzyDoriz(x, y);
+		case ROLLING_RASCAL:
+			return new RollingRascal(x, y);
 		}
 		return null;
 	}
