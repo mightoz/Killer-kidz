@@ -1,25 +1,21 @@
 package view.inGameEntities;
 
-import view.GameManager;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-/*
- * Slog ihop denna med Models temporärt, så den kunde läsa korrekt data
- * visa spelarens nya koordinater.
+/**
+ * CurrentLevel_Bar
+ * This class is responsible for painting the player(s) when the user has 
+ * started a new game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
  */
-
 public class PlayerView extends VisibleObjects {
-	
-	// player id looks like (p.1) or something similar ---------------------------- Kom fram till ett id-system eller använd objekt i anrop.
-	private String id;
 
 	public PlayerView(String id, float width, float height) {
-
-		this.id = id;
 		
-		if(id == "1"){
+		if(id.equals("1")){
 			x = width / 4;
 			y = (height / 3) * 2;
 		} else{
@@ -39,7 +35,7 @@ public class PlayerView extends VisibleObjects {
 		
 		sr.setColor(1, 1, 1, 1);
 
-		// Then draw the new player-triangle.
+		// paint the new player(triangle).
 		sr.begin(ShapeType.Filled);
 
 		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);

@@ -4,20 +4,28 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-public class GUI extends GUI_Super{
-
-	/*
-	 * Using this class to print the GUI for the playfieldView, so not every
-	 * class needs to draw their own box, i.e. the cash-box, money_box. Inside
-	 * the Bar at top of view.
-	 */
+/**
+ * GUI
+ * This class is responsible drawing the "shell" for the GUI at top, which is
+ * painted on afterwards, so for an example you have the layer to draw currentLevel:
+ * "background then a box border and lastly the string on top of it, to show
+ * the currentLevel with a nice box and a GUI-background.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
+public class GUI_Foundation extends GUI_Super{
 	
 	// Original box-sizes for our menu.
 	float squareSizeX = 75f;
 	float squareSizeY = 60f;
 	float levelSizeX = 65f;
 	
-	public GUI(float width, float height) {
+//	// arrays wich will represent a vector.
+	protected float[] shapeX;
+	protected float[] shapeY;
+	
+	public GUI_Foundation(float width, float height) {
 		
 		this.width = width;
 		this.height = height;
@@ -43,19 +51,15 @@ public class GUI extends GUI_Super{
 		 *  first set the shape to draw. then set color, then draw
 		 */
 		setShape();
-		
+
 		sr.setColor(0, 1, 0, 1);
 		
 		sr.begin(ShapeType.Line);
 		
-//		int lineWidth = 20;
-//		Gdx.gl20.glLineWidth(lineWidth);
-		
 		for (int i = 0, j = shapeX.length - 1; i < shapeX.length; j = i++) {
-
 			sr.line(shapeX[i], shapeY[i], shapeX[j], shapeY[j]);
 		}
-
+		
 		sr.end();
 	}
 	
@@ -64,8 +68,6 @@ public class GUI extends GUI_Super{
 	 * But i thought it was simple and fun do instead of drawing "new boxes"
 	 */
 	private void setShape() {
-		
-		
 
 		// first draw the outline of all boxes
 		shapeX[0] = x;
@@ -113,7 +115,6 @@ public class GUI extends GUI_Super{
 		shapeY[12] = y;
 		
 		// repeat for future candys....
-		
 	}
 	
 	public float getGUISizeY() { return squareSizeY; }
