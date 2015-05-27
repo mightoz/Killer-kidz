@@ -1,36 +1,42 @@
 package view.gameStates.playfieldGUI;
 
-import view.GameManager;
+//import view.GameManager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+/** 
+ * ShopToProtect
+ * This class is responisble is to draw the shop to the left, which the player(s)
+ * is to protect from kids. Which contains a red box, and an indicator of how many
+ * kids the player may accidently let pass.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class ShopToProtect extends GUI_Super {
-	
-	// player id looks like (p.1) or something ------------------------------------ Kom fram till ett id-system eller använd objekt i anrop.
-	private String id;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
 	private BitmapFont textFont;
 	
 	// used to get cam.
-	private GameManager gm;
+//	private GameManager gm;
+	private OrthographicCamera cam;
 	
 	private String lives;
 	private String shopText;
 	
-	public ShopToProtect(GameManager gm, GUI gui, float width, float height) {
-		
-		this.gm = gm;
-		this.width = width;
-		this.height = height;
-		this.id = id; // ------------------------------------------------------- If we're gonna use this.
+	@SuppressWarnings("deprecation")
+	public ShopToProtect(OrthographicCamera cam, GUI gui, int height) {
+
+		this.cam = cam;
 		
 		batch = new SpriteBatch();
 		
@@ -58,21 +64,13 @@ public class ShopToProtect extends GUI_Super {
 		sr.setColor(Color.MAROON);
 		
 		sr.begin(ShapeType.Filled);
-		
-//		int lineWidth = 20;
-//		Gdx.gl20.glLineWidth(lineWidth);
-		
 		sr.box(0, 0, 0, x, y, 0);
-
 		sr.end();
-		
-		
-		
+
 		// Start to draw strings.
-		batch.setProjectionMatrix(gm.getCam().combined);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 
-		
 		// Draw title
 		textFont.draw(batch, lives, (x / 2) - 6, (y / 30) * 29);
 		textFont.draw(batch, shopText, (x / 2) - 6, (y / 30) * 24);

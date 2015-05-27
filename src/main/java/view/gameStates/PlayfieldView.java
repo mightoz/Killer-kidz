@@ -1,14 +1,17 @@
 package view.gameStates;
 
-import model.entity.Entity;
-import model.Observer;
-import view.GameManager;
 
+import model.entity.Entity;
+=======
+import java.util.ArrayList;
+
+import model.Entity;
+>>>>>>> remotes/origin/ViewRearrange
+import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
-
 import view.inGameEntities.CandyView;
 import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
@@ -16,10 +19,19 @@ import view.inGameEntities.PlayerView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-import java.util.ArrayList;
-
+/**
+ * PlayfieldView
+ * This class is responsible to tell all sub-categories like GUI, currentLevel,
+ * shopToProtect, etc. to be painted in a specific order (to avoid kids running
+ * "on top of" the GUI for an example) when the player is in the "action-part"
+ * of the game, aka. playfield.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
@@ -27,9 +39,6 @@ public class PlayfieldView implements Screen, Observer {
 
     private ArrayList<CandyView> candyViews;
 	private ArrayList<KidView> kidViews;
-
-	private float width;
-	private float height;
 	
 	private GUI gui;
 	private ShopToProtect shop;
@@ -38,19 +47,16 @@ public class PlayfieldView implements Screen, Observer {
 	private CurrentLevel_Bar level;
 
 	
-	public PlayfieldView(GameManager gm) {
+	public PlayfieldView(OrthographicCamera cam, int width, int height) {
 		
 		sr = new ShapeRenderer();
-		
-		width = gm.getWidth();
-		height = gm.getHeight();
 
 		gui = new GUI(width, height);
-		shop = new ShopToProtect(gm, gui, width, height);
+		shop = new ShopToProtect(cam, gui, height);
 		kidViews = new ArrayList();
 		
-		money = new Money_Bar(gm, width, height);
-		level = new CurrentLevel_Bar(gm ,width, height);
+		money = new Money_Bar(cam, width, height);
+		level = new CurrentLevel_Bar(cam ,width, height);
 		
 		player = new PlayerView[2];
 		player[0] = new PlayerView("P.1", width, height);

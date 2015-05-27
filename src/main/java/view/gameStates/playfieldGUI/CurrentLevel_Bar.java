@@ -1,17 +1,24 @@
 package view.gameStates.playfieldGUI;
 
-import view.GameManager;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+/**
+ * CurrentLevel_Bar
+ * 
+ * This class is responsible for painting the currentLevel string in upper left
+ * corner when the user has started a new game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class CurrentLevel_Bar extends GUI_Super {
-	
-	// used for 
-	private GameManager gm;
+
+	private OrthographicCamera cam;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
@@ -24,9 +31,9 @@ public class CurrentLevel_Bar extends GUI_Super {
 	private String currentLevel;
 	
 	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
-	public CurrentLevel_Bar(GameManager gm, float width, float height) {
+	public CurrentLevel_Bar(OrthographicCamera cam, float width, float height) {
 
-		this.gm = gm;
+		this.cam = cam;
 		this.width = width;
 		this.height = height;
 		
@@ -46,7 +53,7 @@ public class CurrentLevel_Bar extends GUI_Super {
 	public void render() {
 		
 		// Start to draw strings.
-		batch.setProjectionMatrix(gm.getCam().combined);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		
 		// Draw title

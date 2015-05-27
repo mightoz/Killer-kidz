@@ -4,6 +4,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+/**
+ * GUI
+ * This class is responsible drawing the "shell" for the GUI at top, which is
+ * painted on afterwards, so for an example you have the layer to draw currentLevel:
+ * "background then a box border and lastly the string on top of it, to show
+ * the currentLevel with a nice box and a GUI-background.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class GUI extends GUI_Super{
 
 	/*
