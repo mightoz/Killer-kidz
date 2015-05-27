@@ -1,14 +1,13 @@
 package view.gameStates;
 
+import java.util.ArrayList;
+
 import model.Entity;
 import model.Observer;
-import view.GameManager;
-
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
 import view.gameStates.playfieldGUI.Money_Bar;
 import view.gameStates.playfieldGUI.ShopToProtect;
-
 import view.inGameEntities.CandyView;
 import view.inGameEntities.KidView;
 import view.inGameEntities.PlayerView;
@@ -16,9 +15,8 @@ import view.inGameEntities.PlayerView;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
-import java.util.ArrayList;
 
 public class PlayfieldView implements Screen, Observer {
 
@@ -27,9 +25,6 @@ public class PlayfieldView implements Screen, Observer {
 
     private ArrayList<CandyView> candyViews;
 	private ArrayList<KidView> kidViews;
-
-	private float width;
-	private float height;
 	
 	private GUI gui;
 	private ShopToProtect shop;
@@ -38,19 +33,16 @@ public class PlayfieldView implements Screen, Observer {
 	private CurrentLevel_Bar level;
 
 	
-	public PlayfieldView(GameManager gm) {
+	public PlayfieldView(OrthographicCamera cam, int width, int height) {
 		
 		sr = new ShapeRenderer();
-		
-		width = gm.getWidth();
-		height = gm.getHeight();
 
 		gui = new GUI(width, height);
-		shop = new ShopToProtect(gm, gui, width, height);
+		shop = new ShopToProtect(cam, gui, height);
 		kidViews = new ArrayList();
 		
-		money = new Money_Bar(gm, width, height);
-		level = new CurrentLevel_Bar(gm ,width, height);
+		money = new Money_Bar(cam, width, height);
+		level = new CurrentLevel_Bar(cam ,width, height);
 		
 		player = new PlayerView[2];
 		player[0] = new PlayerView("P.1", width, height);

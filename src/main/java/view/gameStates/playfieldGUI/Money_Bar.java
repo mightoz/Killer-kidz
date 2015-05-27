@@ -1,9 +1,8 @@
 package view.gameStates.playfieldGUI;
 
-import view.GameManager;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -11,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 public class Money_Bar extends GUI_Super{
 	
 	// Using this for getting the cam-position.
-	private GameManager gm;
+	private OrthographicCamera cam;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
@@ -24,11 +23,11 @@ public class Money_Bar extends GUI_Super{
 	private String money;
 	
 	@SuppressWarnings("deprecation") // ----------------------------------------- Får kolla upp senare.
-	public Money_Bar(GameManager gm, float width, float height) {
+	public Money_Bar(OrthographicCamera cam, float width, float height) {
 
-		this.gm = gm;
 		this.width = width;
 		this.height = height;
+		this.cam = cam;
 		
 		batch = new SpriteBatch();
 
@@ -46,11 +45,11 @@ public class Money_Bar extends GUI_Super{
 	public void render() {
 		
 		// Start to draw strings.
-		batch.setProjectionMatrix(gm.getCam().combined);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, money, (gm.getWidth() / 24) * 22, (gm.getHeight() / 24) * 23); // ----------- Ta reda på mer korrekta koordinater.
+		textFont.draw(batch, money, (width / 24) * 22, (height / 24) * 23); // ----------- Ta reda på mer korrekta koordinater.
 		
 		batch.end();
 	}

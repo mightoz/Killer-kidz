@@ -11,15 +11,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  */
 
 public class PlayerView extends VisibleObjects {
-	
-	// player id looks like (p.1) or something similar ---------------------------- Kom fram till ett id-system eller använd objekt i anrop.
-	private String id;
+
 
 	public PlayerView(String id, float width, float height) {
-
-		this.id = id;
 		
-		if(id == "1"){
+		if(id.equals("1")){
 			x = width / 4;
 			y = (height / 3) * 2;
 		} else{

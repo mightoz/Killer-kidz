@@ -18,9 +18,9 @@ public class KidView extends VisibleObjects{
 	 * fields below are for making the kids show their remaining hp as segments.
 	 */
 	// kids hunger as a percentage
-	private double hungerPoint;
+//	private double hungerPoint;
 //	private int segments = 3;
-	private Kid kid;
+//	private Kid kid;
 	
 	
 	public KidView(String id,  float width, float height) {
@@ -30,11 +30,6 @@ public class KidView extends VisibleObjects{
 		x = width / 4;
 		y = height / 2;
 
-		shapeX = new float[4];
-		shapeY = new float[4];
-
-		radians = MathUtils.PI / 2;
-		
 		radius = 10f;
 	}
 
