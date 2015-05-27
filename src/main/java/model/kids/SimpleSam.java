@@ -1,7 +1,10 @@
 package model.kids;
 
-import model.Model;
-import model.candymodels.Candy;
+/**
+ * SimpleSam
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 
 public class SimpleSam extends Kid {
 
@@ -10,7 +13,7 @@ public class SimpleSam extends Kid {
 	public SimpleSam(float x, float y) {
 		super(x, y);
         rHead = 5;
-		rBody = 10;
+		radius = 10;
 
 		vx = -40;
 		vy = 0;
@@ -25,14 +28,18 @@ public class SimpleSam extends Kid {
 		xPos += vx*dt;
 		yPos += vy*dt;
 
-		if(xPos <= Model.leftBoundary){
+		
+		if (xPos-radius <= leftBoundary) {
 			expired = true;
 		}
 	}
 
 	@Override
-	public void hitByCandy(int damage) {
-		hp -= candy.getDamage();
-		expired = hp <= 0;
+	public void hitByCandy(String candyType, int damage) {
+		hp -= damage;
+
+		if (hp <= 0) {
+			expired = true;
+		}
 	}
 }

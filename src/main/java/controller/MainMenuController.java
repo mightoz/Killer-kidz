@@ -8,13 +8,20 @@ import com.badlogic.gdx.InputAdapter;
 
 import model.Model;
 import view.GameManager;
+import view.gameStates.HowToPlayView;
 import view.gameStates.MainMenu;
 
+/**
+ * MainMenuController
+ * @author  MarieKlevedal
+ * @version 1.0
+ */
 public class MainMenuController extends InputAdapter {
 
 	private final Model model;
 	private final GameManager gm;
 	private final MainMenu menu;
+	private final HowToPlayView htp;
 	private MainMenuStates state;
 	
 	public MainMenuController(Model model, GameManager gm) {
@@ -22,7 +29,7 @@ public class MainMenuController extends InputAdapter {
 		this.gm = gm;
 		
 		// Needs to wait for the GameManager to be done with creating a working
-		// "shell", in this case, initialized the mainMenu object.
+		// "shell", i.e. creating the views that the controller needs.
 		while(!this.gm.getgmStatus()) {
 			try {
 				TimeUnit.SECONDS.sleep(1);
@@ -32,6 +39,7 @@ public class MainMenuController extends InputAdapter {
 		}
 		
 		menu = this.gm.getMainMenu();
+		htp = this.gm.getHowToPlayView();
 		state = MainMenuStates.MENU;
 		Gdx.input.setInputProcessor(this);
 	}
@@ -51,6 +59,7 @@ public class MainMenuController extends InputAdapter {
 		return false;
 	}
 	
+	// Takes care of key input if user is in main menu
 	private boolean handleMain(int keycode) {
 		switch (keycode) {
 		case Keys.UP:
@@ -89,7 +98,13 @@ public class MainMenuController extends InputAdapter {
 		return false;
 	}
 	
+	// Handles the key input if user is viewing how to play
 	private boolean handleHowToPlay(int keycode) {
+		if (keycode == Keys.ENTER) {
+			htp.pressedEnter();
+			state = MainMenuStates.MENU;
+			return true;
+		}
 		return false;
 	}
 	

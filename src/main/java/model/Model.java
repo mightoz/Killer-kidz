@@ -41,6 +41,7 @@ public class Model implements ObservedSubject {
         leftBoundary = 45;
         rightBoundary = 200;
         currentLevel = 1;
+        Entity.setBoundaries(leftBoundary, this.width, this.height, 0);
     }
 
     /**
@@ -139,7 +140,7 @@ public class Model implements ObservedSubject {
                     float deltaY = kid.getY() - candy.getY();
                     float combinedR = kid.getRadius() + candy.getRadius();
                     if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                        kid.hitByCandy(candy.getDamage());
+                        kid.hitByCandy(candy.getType(), candy.getDamage());
                         candyList.remove(candy);
                     }
                 }

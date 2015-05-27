@@ -24,9 +24,8 @@ public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;
 	private PlayerView[] player;
-	private GameManager gm; // ------------------------------------ Användas senare?
 
-    private ArrayList<CandyView> candies;
+    private ArrayList<CandyView> candyViews;
 	private ArrayList<KidView> kidViews;
 
 	private float width;
@@ -42,7 +41,6 @@ public class PlayfieldView implements Screen, Observer {
 	public PlayfieldView(GameManager gm) {
 		
 		sr = new ShapeRenderer();
-		this.gm = gm;
 		
 		width = gm.getWidth();
 		height = gm.getHeight();
@@ -57,7 +55,7 @@ public class PlayfieldView implements Screen, Observer {
 		player = new PlayerView[2];
 		player[0] = new PlayerView("P.1", width, height);
 
-        candies = new ArrayList();
+        candyViews = new ArrayList();
 	}
 
 	/*
@@ -66,7 +64,7 @@ public class PlayfieldView implements Screen, Observer {
 	 * Entities (kids, player, candy)
 	 * Shop "forbidden zone"
 	 * ActionBar
-	 * All text above & selected Candy
+	 * All text on top of GUI & selected Candy
 	 * 
 	 * Reason to draw entities first, is we want them to run "under the shop"
 	 * and the actionBar, because we want it to be like a "building" with the
@@ -80,8 +78,8 @@ public class PlayfieldView implements Screen, Observer {
 		
 		player[0].render(sr);
 
-        for(int i = 0; i<candies.size();i++){
-            candies.get(i).render(sr);
+        for(int i = 0; i<candyViews.size();i++){
+            candyViews.get(i).render(sr);
         }
 
         for(int i = 0; i<kidViews.size();i++){
@@ -100,6 +98,7 @@ public class PlayfieldView implements Screen, Observer {
 	 * Method model will use to tell view to update its contents.
 	 */
 	@Override
+<<<<<<< HEAD
 	public void update(Entity entity){
         /*
 		 * Bortse koden under om det bråkar, och istället gör:
@@ -114,15 +113,25 @@ public class PlayfieldView implements Screen, Observer {
         float newYPos = entity.getY();
         String id = entity.getId();
 
+=======
+	public void update(Entity entity, float newXPos, float newYPos){
+
+        String id = entity.getId();
+        
+>>>>>>> master
         switch(entity.getId().substring(0, 1)) {
-		case "p": // Player objects
-				  if(entity.getId().equals("p0")) {
+        
+        // Player objects
+		case "p": if(entity.getId().equals("p0")) {
 					  player[0].update(newXPos, newYPos);
                       break;
-				  } else if(entity.getId().equals("p1")) {
+				  } 
+				  
+				  else if(entity.getId().equals("p1")) {
 					  player[1].update(newXPos, newYPos);
 					  break;
 			}
+				  
 		/*
 		Loops over ArrayList of candyViews.
 		If a candy is thrown and updated in model, but is still not added as a view,
@@ -131,14 +140,14 @@ public class PlayfieldView implements Screen, Observer {
 		case "c": // Candy object
             boolean newCandy = true;
 //            System.out.println(id);
-            for(CandyView candy: candies){
+            for(CandyView candy: candyViews){
                if(candy.getId().equals(id)){
                    candy.update(newXPos, newYPos);
                    newCandy = false;
                }
             }
             if(newCandy) {
-                candies.add(new CandyView(entity.getId(), newXPos, newYPos));
+                candyViews.add(new CandyView(entity.getId(), newXPos, newYPos));
             }
             break;
 
@@ -169,9 +178,9 @@ public class PlayfieldView implements Screen, Observer {
 
             case "c":
 
-                for(CandyView candy: candies){
+                for(CandyView candy: candyViews){
                     if(candy.getId().equals(id)){
-                        candies.remove(candy);
+                        candyViews.remove(candy);
                         break;
                     }
                 }
@@ -190,14 +199,19 @@ public class PlayfieldView implements Screen, Observer {
 	
 	@Override
 	public void hide() { }
+	
 	@Override
 	public void show() { }
+	
 	@Override
 	public void resize(int x, int y) { }
+	
 	@Override
 	public void pause() { }
+	
 	@Override
 	public void resume() { }
+	
 	@Override
 	public void dispose() { }
 }
