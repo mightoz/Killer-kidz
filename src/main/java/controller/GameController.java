@@ -20,10 +20,10 @@ public class GameController extends InputAdapter {
 
     private final int[] P1_LURD = new int[4];
     private final int[] P1_CANDY = {Keys.NUM_1, Keys.NUM_2, Keys.NUM_3, Keys.NUM_4};
-    private final int P1_THROW = Keys.SPACE;
+    private static final int P1_THROW = Keys.SPACE;
     private final int[] P2_LURD = new int [4];
     private final int[] P2_CANDY = {Keys.NUMPAD_1, Keys.NUMPAD_2, Keys.NUMPAD_3, Keys.NUMPAD_4};
-    private final int P2_THROW = Keys.ENTER;
+    private static final int P2_THROW = Keys.ENTER;
   
     public GameController(Model model, int nbrOfPlayers) {
         this.model = model;

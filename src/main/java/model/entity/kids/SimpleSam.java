@@ -5,10 +5,9 @@ package model.entity.kids;
  * @author  MarieKlevedal
  * @version 1.0
  */
-
 public class SimpleSam extends Kid {
 
-	private double vx, vy;			// velocities
+	private double vx;			// velocity
 	
 	public SimpleSam(float x, float y) {
 		super(x, y);
@@ -16,7 +15,6 @@ public class SimpleSam extends Kid {
 		radius = 10;
 
 		vx = -40;
-		vy = 0;
 
 		startHP = 100;
 		hp = startHP;
@@ -26,8 +24,6 @@ public class SimpleSam extends Kid {
 	public void update(double dt) {
 		// no acceleration
 		xPos += vx*dt;
-		yPos += vy*dt;
-
 		
 		if (xPos-radius <= leftBoundary) {
 			expired = true;
