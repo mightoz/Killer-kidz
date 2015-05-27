@@ -7,6 +7,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+/**
+ * CurrentLevel_Bar
+ * 
+ * This class is responsible for painting the currentLevel string in upper left
+ * corner when the user has started a new game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class CurrentLevel_Bar extends GUI_Super {
 
 	private OrthographicCamera cam;

@@ -5,11 +5,14 @@ import view.GameManager;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-/*
- * Slog ihop denna med Models temporärt, så den kunde läsa korrekt data
- * visa spelarens nya koordinater.
+/**
+ * CurrentLevel_Bar
+ * This class is responsible for painting the player(s) when the user has 
+ * started a new game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
  */
-
 public class PlayerView extends VisibleObjects {
 
 

@@ -12,6 +12,14 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+/**
+ * MainMenu
+ * This class is responsible to draw the mainMenu the user will see when he/she
+ * starts the game.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class MainMenu implements Screen {
 
 	// used to get cam which is needed to draw batches os strings.

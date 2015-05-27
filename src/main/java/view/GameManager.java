@@ -9,6 +9,18 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+
+/**
+ * GameManager
+ * This class is responsible for managing which screen to show to the user,
+ * which uses an StatePattern to tell which paint-responsible-class to work.
+ * It's also responsible to handle input from user to change which object(string)
+ * is chosen in mainMenu and its sub-categories like HowToPlay.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
+
 public class GameManager extends Game {
 
 	private int width;
@@ -108,6 +120,10 @@ public class GameManager extends Game {
 
 	}
 	
+	/**
+	 * This method is used by the controllers who are responsible for the 
+	 * mainMenu and its sub-categories like howToPlay, to  
+	 */
 	private void select() {
 		
 		if(screen.equals(mainMenuView)){

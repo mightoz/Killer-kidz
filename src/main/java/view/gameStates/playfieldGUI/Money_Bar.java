@@ -7,6 +7,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
+/** 
+ * Money_Bar
+ * This class is responsible is to paint the money-string in upper right corner.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class Money_Bar extends GUI_Super{
 	
 	// Using this for getting the cam-position.

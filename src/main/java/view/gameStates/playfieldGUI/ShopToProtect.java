@@ -11,6 +11,15 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+/** 
+ * ShopToProtect
+ * This class is responisble is to draw the shop to the left, which the player(s)
+ * is to protect from kids. Which contains a red box, and an indicator of how many
+ * kids the player may accidently let pass.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class ShopToProtect extends GUI_Super {
 	
 	// Used for having strings on-screen.

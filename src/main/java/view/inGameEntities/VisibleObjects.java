@@ -1,5 +1,6 @@
 package view.inGameEntities;
 
+
 public class VisibleObjects {
 
 	// objects position

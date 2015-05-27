@@ -1,23 +1,27 @@
 package view.inGameEntities;
 
-import model.Entity;
-import model.kids.Kid;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.MathUtils;
 
+/**
+ * KidView
+ * This class is responsible to paint kids on the screen.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class KidView extends VisibleObjects{
 	
-	// player id looks like (p.1) or something similar ---------------------------- Kom fram till ett id-system eller använd objekt i anrop.
 	private String id;
 	private float radius;
 	
 	/*
-	 * My idea is to make every 
-	 * fields below are for making the kids show their remaining hp as segments.
+	 * My idea is to make every kids have a "pie-chart" within its circle
+	 * to tell the player(s) how much hp the kid has remaining.
 	 */
-	// kids hunger as a percentage
+	
+//	//fields below are for making the kids show their remaining hp as segments.
+//	// kids hunger as a percentage
 //	private double hungerPoint;
 //	private int segments = 3;
 //	private Kid kid;
@@ -41,10 +45,11 @@ public class KidView extends VisibleObjects{
 		x = newXPos;
 		y = newYPos;
 		
-		//radius = (float)kid.getBodyRadius();
-		
+		// TODO - description above fields.
+//		radius = (float)kid.getBodyRadius();
+//		
 //		hungerPoint = kid.getHpRatio();
-		//segment = (int) (2 * hungerPoint);
+//		segment = (int) (2 * hungerPoint);
 		
 		
 	}

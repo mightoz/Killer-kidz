@@ -18,6 +18,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * PlayfieldView
+ * This class is responsible to tell all sub-categories like GUI, currentLevel,
+ * shopToProtect, etc. to be painted in a specific order (to avoid kids running
+ * "on top of" the GUI for an example) when the player is in the "action-part"
+ * of the game, aka. playfield.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
 public class PlayfieldView implements Screen, Observer {
 
 	private ShapeRenderer sr;

@@ -5,6 +5,16 @@ import controller.MainMenuController;
 import model.Model;
 import view.GameManager;
 
+/**
+ * Main
+ * This class responsibility is to start the game, which is an LWJGL 
+ * (LightWeight Java Game Library) application, which uses its graphics from
+ * libGDX.
+ * 
+ * @author  Kim Berger
+ * @version 1.0
+ */
+
 public class Main {
 
 	public static final int WIDTH = 640;
