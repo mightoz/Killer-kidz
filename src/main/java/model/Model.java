@@ -1,16 +1,13 @@
 package model;
 
-import model.candymodels.Candy;
-import model.candymodels.JellyBean;
-import model.kids.KidFactory;
-import model.kids.KidTypes;
+import model.entity.Player;
+import model.entity.candymodels.Candy;
+import model.entity.Entity;
 import model.kids.Kid;
 import model.levelmodels.Level;
 import model.levelmodels.LevelOne;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
 
 
 /**

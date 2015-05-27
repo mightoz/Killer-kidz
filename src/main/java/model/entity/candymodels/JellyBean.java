@@ -1,4 +1,4 @@
-package model.candymodels;
+package model.entity.candymodels;
 
 
 /**

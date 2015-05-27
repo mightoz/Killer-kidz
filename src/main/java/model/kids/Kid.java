@@ -2,7 +2,7 @@ package model.kids;
 
 
 import java.util.Random;
-import model.Entity;
+import model.entity.Entity;
 
 /**
  * Kid

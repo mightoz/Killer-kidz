@@ -1,8 +1,10 @@
-package model;
+package model.entity;
 
 
-import model.candymodels.Candy;
-import model.candymodels.CandyFactory;
+import model.Model;
+import model.entity.candymodels.Candy;
+import model.entity.candymodels.CandyFactory;
+import model.entity.Entity;
 
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Player extends Entity{
+public class Player extends Entity {
 
 
     private String name;

@@ -1,6 +1,6 @@
 package view.gameStates;
 
-import model.Entity;
+import model.entity.Entity;
 import model.Observer;
 import view.GameManager;
 
