@@ -22,7 +22,7 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void update(double dt) {
-		// no acceleration
+		//vx += 
 		xPos += vx*dt;
 		
 		if (xPos-radius <= leftBoundary) {
