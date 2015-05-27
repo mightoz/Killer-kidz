@@ -13,19 +13,30 @@ public class DizzyDoriz extends Kid {
 		super(x, y);
 		rHead = 5;
 		radius = 10;
-		vx = -50;
 
 		startHP = 200;
 		hp = startHP;
 	}
 
-
 	@Override
 	public void update(double dt) {
+		vx = 50 - randGen.nextInt(151);		// in [-100, 50]
+		vy = 50 - randGen.nextInt(101);		// in [-50, 50]
 		xPos += vx*dt;
 		yPos += vy*dt;
 		
-		if (xPos-radius <= leftBoundary) {
+		// If Doriz escaped, put her back at playfield
+		if (xPos + radius > rightBoundary) {
+			xPos = rightBoundary-radius;
+		}
+		if (yPos + radius > upperBoundary) {
+			yPos = upperBoundary-radius;
+		}
+		else if (yPos - radius < lowerBoundary) {
+			yPos = lowerBoundary+radius;
+		}
+		
+		if (xPos - radius <= leftBoundary) {
 			expired = true;
 		}
 	}
