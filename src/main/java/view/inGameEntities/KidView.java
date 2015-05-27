@@ -3,8 +3,6 @@ package view.inGameEntities;
 
 import model.entity.kids.Kid;
 
-=======
->>>>>>> remotes/origin/ViewRearrange
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 

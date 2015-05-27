@@ -2,11 +2,8 @@ package view.gameStates;
 
 
 import model.entity.Entity;
-=======
 import java.util.ArrayList;
 
-import model.Entity;
->>>>>>> remotes/origin/ViewRearrange
 import model.Observer;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI;
@@ -104,7 +101,6 @@ public class PlayfieldView implements Screen, Observer {
 	 * Method model will use to tell view to update its contents.
 	 */
 	@Override
-<<<<<<< HEAD
 	public void update(Entity entity){
         /*
 		 * Bortse koden under om det bråkar, och istället gör:
@@ -119,12 +115,6 @@ public class PlayfieldView implements Screen, Observer {
         float newYPos = entity.getY();
         String id = entity.getId();
 
-=======
-	public void update(Entity entity, float newXPos, float newYPos){
-
-        String id = entity.getId();
-        
->>>>>>> master
         switch(entity.getId().substring(0, 1)) {
         
         // Player objects
