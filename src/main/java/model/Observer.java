@@ -8,5 +8,4 @@ import model.entity.Entity;
 public interface Observer {
 
     public void update(Entity entity);
-    public void removeEntity(Entity entity);
 }
