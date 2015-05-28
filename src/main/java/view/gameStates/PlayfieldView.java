@@ -64,7 +64,7 @@ public class PlayfieldView implements Screen {
 		money = new Money_Bar(cam, width, height);
 		level = new CurrentLevel_Bar(cam ,width, height);
 		
-//		candy_bar = new Candy_Bar(gui);
+		candy_bar = new Candy_Bar(gui);
 	}
 
 	/*
@@ -114,6 +114,8 @@ public class PlayfieldView implements Screen {
 		
 		money.render();
 		level.render();
+		
+		candy_bar.render(sr);
 	}
 
 	

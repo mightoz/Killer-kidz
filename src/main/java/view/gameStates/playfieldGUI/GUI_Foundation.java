@@ -117,7 +117,8 @@ public class GUI_Foundation extends GUI_Super{
 		// repeat for future candys....
 	}
 	
-	public float getGUISizeY() { return squareSizeY; }
-	public float getCandyBarStartPointX() { return shapeX[7]; }
-	public float getCandyBarStartPointY() { return shapeY[7]; }
+	public float getSquareSizeX() { return squareSizeX; }
+	public float getSquareSizeY() { return squareSizeY; }
+	public float getCandyBarStartPointX() { return (x + levelSizeX); }
+	public float getCandyBarStartPointY() { return (y - squareSizeY); }
 }
