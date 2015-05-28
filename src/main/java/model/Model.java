@@ -26,6 +26,9 @@ public class Model {
 
     private Level level;
     private int currentLevel;
+    
+    // boolean used to make view wait until model is done modyfing the EntityArray.
+    private boolean updatingEntityArray = true;
 
 
     public Model(int width, int height) {
@@ -45,7 +48,11 @@ public class Model {
     public Model(String playerName, int width, int height) {
         this(width, height);
         player1 = new Player(100, 250, playerName);
+        
+        updatingEntityArray = true;
         objects.add(player1);
+        updatingEntityArray = false;
+        
         startLevel(currentLevel);
     }
 
@@ -59,8 +66,11 @@ public class Model {
         this(width, height);
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
+        
+        updatingEntityArray = true;
         objects.add(player1);
         objects.add(player2);
+        updatingEntityArray = false;
     }
 
     /**
@@ -143,9 +153,14 @@ public class Model {
                 }
             }
         }
+
+        updatingEntityArray = true;
+
         player1.update(delta);
         level.update(delta);
         updateObjectList();
+        
+        updatingEntityArray = false;
 
         if (level.levelFailed()) {
             System.out.println("Level failed");
@@ -164,6 +179,7 @@ public class Model {
     }
 
     private void updateObjectList() {
+    	updatingEntityArray = true;
         ArrayList<Entity> newEntities = new ArrayList<>();
 
         for (Candy candy : player1.getActiveCandies()) {
@@ -174,9 +190,13 @@ public class Model {
             newEntities.add(kid);
         }
         newEntities.add(player1);
+        
         objects = newEntities;
+        
+        updatingEntityArray = false;
     }
     
     public ArrayList<Entity> getEntitys() { return objects; }
+    public boolean getupdatingEntityArray() { return updatingEntityArray; }
 
 }
