@@ -9,12 +9,14 @@ import com.badlogic.gdx.InputAdapter;
 import core.GameManager;
 
 /**
- * GameController
+ * GameController takes care of the key events during the play. If the player is
+ * in the candy shop, it passes on the handling to CandyShopController
  * @author  MarieKlevedal
  * @version 1.0
  */
-public class GameController extends InputAdapter {
-    private Model model;
+class GameController extends InputAdapter {
+    private GameManager gm;
+	private Model model;
     private final int nbrOfPlayers;
     private boolean inCandyShop;
     private CandyShopController csc;
@@ -22,18 +24,19 @@ public class GameController extends InputAdapter {
     private boolean[] p1Moves = {false, false, false, false};
     private boolean[] p2Moves = {false, false, false, false};
 
-    private final int[] P1_LURD = new int[4];
-    private final int[] P1_CANDY = {Keys.NUM_1, Keys.NUM_2, Keys.NUM_3, Keys.NUM_4};
+    private static final int[] P1_LURD = new int[4];
+    private static final int[] P1_CANDY = {Keys.NUM_1, Keys.NUM_2, Keys.NUM_3, Keys.NUM_4};
     private static final int P1_THROW = Keys.SPACE;
-    private final int[] P2_LURD = new int [4];
-    private final int[] P2_CANDY = {Keys.NUMPAD_1, Keys.NUMPAD_2, Keys.NUMPAD_3, Keys.NUMPAD_4};
+    private static final int[] P2_LURD = new int [4];
+    private static final int[] P2_CANDY = {Keys.NUMPAD_1, Keys.NUMPAD_2, Keys.NUMPAD_3, Keys.NUMPAD_4};
     private static final int P2_THROW = Keys.ENTER;
   
     GameController(GameManager gm, Model model, int nbrOfPlayers) {
+    	this.gm = gm;
         this.model = model;
     	this.nbrOfPlayers = nbrOfPlayers;
     	inCandyShop = false;
-    	csc = new CandyShopController(gm, this.model);
+    	csc = new CandyShopController(this.gm, this.model);
 
     	switch (this.nbrOfPlayers) {
     	case 1:
@@ -90,11 +93,13 @@ public class GameController extends InputAdapter {
     @Override
 	public boolean keyUp(int keycode) {
     	// We are in candy shop; let csc handle the key
-    	if (inCandyShop) {
+    	if (inCandyShop && !csc.isFinished()) {
     		return csc.keyUp(keycode);
     	}
     	// Go to candy shop if model is ready
     	if (keycode == Keys.ENTER && /*model.goToCandyShop()*/ true) {
+    		gm.dispose();
+    		gm.setScreen(gm.getCandyShopView());
     		inCandyShop = true;
     		return true;
     	}

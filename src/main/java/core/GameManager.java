@@ -2,6 +2,7 @@ package core;
 
 
 import model.Model;
+import view.gameStates.CandyShopView;
 import view.gameStates.HowToPlayView;
 import view.gameStates.MainMenu;
 import view.gameStates.PlayfieldView;
@@ -33,6 +34,7 @@ public class GameManager extends Game {
 	// All types of "Game-States" we will see.
 	private MainMenu mainMenuView;
 	private PlayfieldView playfieldView;
+	private CandyShopView candyShopView;
 	private HowToPlayView howToPlayView;
 	
 	// used for change state within mainMenu & HowToPlay
@@ -61,6 +63,7 @@ public class GameManager extends Game {
 		// create an object for each "Game-State".
 		mainMenuView = new MainMenu(cam, width);
 		playfieldView = new PlayfieldView(cam, model, width, height);
+		candyShopView = new CandyShopView(cam, model, width, height);
 		howToPlayView = new HowToPlayView(cam);
         
         currentItem = mainMenuView.getCurrentItem();
@@ -112,6 +115,7 @@ public class GameManager extends Game {
 	
 	public MainMenu getMainMenu() { return mainMenuView; }
 	public PlayfieldView getPlayfieldView() { return playfieldView; }
+	public CandyShopView getCandyShopView() {return candyShopView; }
 	public HowToPlayView getHowToPlayView() {return howToPlayView; }
 	public boolean getgmStatus() { return gmIsStarted; }
 }
