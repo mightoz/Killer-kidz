@@ -16,14 +16,16 @@ public class PlayerView extends VisibleObjects {
 
     public void render(Entity player, ShapeRenderer sr){
 
+    	// startposition for player 1.
         if(player.getId().substring(1,2).equals("0")){
-            x = player.getRightBoundary() / 4;
-            y = (player.getUpperBoundary() / 3) * 2;
+            x = player.getX();
+            y = player.getY();
+        
+        // if we are creating the second player
         }else{
-            x = player.getRightBoundary() / 4;
-            y = (player.getUpperBoundary() /3);
+            x = player.getX();
+            y = (player.getY());
         }
-//        sr.setAutoShape(true);
 
         sr.setColor(1, 1, 1, 1);
         
