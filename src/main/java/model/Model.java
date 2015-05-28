@@ -80,7 +80,7 @@ public class Model {
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
-
+        System.out.println("directinos updated");
         if (player == 1) {
             player1.updateDir(directions);
         } else {
@@ -153,9 +153,13 @@ public class Model {
                 }
             }
         }
+
         updatingEntityArray = true;
+
+        player1.update(delta);
         level.update(delta);
         updateObjectList();
+        
         updatingEntityArray = false;
 
         if (level.levelFailed()) {

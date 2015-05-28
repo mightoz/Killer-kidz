@@ -32,7 +32,7 @@ public class PlayerView extends VisibleObjects {
         sr.begin(ShapeType.Filled);
         
         sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
-        
+
         sr.end();
     }
 }
