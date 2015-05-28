@@ -1,8 +1,9 @@
 package view.gameStates;
 
-import model.entity.Entity;
+import java.util.ArrayList;
 
-import model.Observer;
+import model.entity.Entity;
+import model.Model;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI_Foundation;
 import view.gameStates.playfieldGUI.Money_Bar;
@@ -27,9 +28,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @author  Kim Berger
  * @version 1.0
  */
-public class PlayfieldView implements Screen, Observer {
+public class PlayfieldView implements Screen {
 
 	private ShapeRenderer sr;
+	
+	private Model model;
+	private ArrayList<Entity> objects;
 
     private CandyView candyView;
 	private KidView kidView;
@@ -45,9 +49,10 @@ public class PlayfieldView implements Screen, Observer {
 	private CurrentLevel_Bar level;
 
 	
-	public PlayfieldView(OrthographicCamera cam, float width, float height) {
+	public PlayfieldView(OrthographicCamera cam, Model model, float width, float height) {
 		
 		sr = new ShapeRenderer();
+		this.model = model;
 
 		kidView = new KidView();
         candyView = new CandyView();
@@ -74,38 +79,42 @@ public class PlayfieldView implements Screen, Observer {
 	 */
 	@Override
 	public void render(float delta) {
-		
+;
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		// Saved to an variable, so render don't read from the list while
+		// the model is removing an object.
+		objects = model.getEntitys();
+		
+		for (Entity entity : objects) {
+			switch (entity.getId().substring(0, 1)) {
+
+			// Player objects
+			case "p":
+				playerView.render(entity, sr);
+				break;
+				
+			// Candy objects
+			case "c":
+				candyView.render(entity, sr);
+				break;
+				
+			// Kid objects
+			case "k":
+				kidView.render(entity, sr);
+				break;
+			}
+		}
 		
 		shop.render(sr);
 		gui.render(sr);
 		
 		money.render();
 		level.render();
-		
 	}
 
-	// Method model will use to tell view to update its contents.
-	@Override
-	public void update(Entity entity){
-
-        switch(entity.getId().substring(0, 1)) {
-
-            // Player objects
-            case "p":
-                playerView.render(entity, sr);
-                break;
-            // Candy objects
-            case "c":
-                candyView.render(entity, sr);
-                break;
-            // Kid objects
-            case "k":
-                kidView.render(entity, sr);
-                break;
-        }
-	}
+	
 	@Override
 	public void hide() { }
 	

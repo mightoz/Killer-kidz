@@ -15,10 +15,8 @@ import java.util.ArrayList;
 /**
  * Created by Oscar on 24/04/15.
  */
-public class Model implements ObservedSubject {
+public class Model {
 
-
-    private ArrayList<Observer> observers;
     private static ArrayList<Entity> objects;
     public static float width;
     public static float height;
@@ -31,7 +29,6 @@ public class Model implements ObservedSubject {
 
 
     public Model(int width, int height) {
-        observers = new ArrayList<Observer>();
         objects = new ArrayList<Entity>();
         this.width = (float) width;
         this.height = (float) height - 62;
@@ -148,7 +145,6 @@ public class Model implements ObservedSubject {
         }
         level.update(delta);
         updateObjectList();
-        notifyObserver();
 
         if (level.levelFailed()) {
             System.out.println("Level failed");
@@ -157,45 +153,6 @@ public class Model implements ObservedSubject {
         }
     }
 
-    /**
-     * Adds a new observer
-     *
-     * @param newObserver
-     */
-    @Override
-    public void register(Observer newObserver) {
-
-        if (newObserver == null) {
-            throw new IllegalArgumentException("Tries to add null object as observer");
-        }
-
-        if (!observers.contains(newObserver)) {
-            observers.add(newObserver);
-        }
-    }
-
-    /**
-     * Removes an observer
-     *
-     * @param observer
-     */
-    @Override
-    public void unregister(Observer observer) {
-        observers.remove(observer);
-    }
-
-    /**
-     * Notifies all the observers that a change has occurred
-     */
-    @Override
-    public void notifyObserver() {
-
-        for (Observer observer : observers) {
-            for (Entity entity : objects) {
-                observer.update(entity);
-            }
-        }
-    }
 
     public float getWidth() {
         return width;
@@ -218,5 +175,7 @@ public class Model implements ObservedSubject {
         newEntities.add(player1);
         objects = newEntities;
     }
+    
+    public ArrayList<Entity> getEntitys() { return objects; }
 
 }

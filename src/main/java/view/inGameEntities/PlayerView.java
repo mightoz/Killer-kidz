@@ -23,15 +23,14 @@ public class PlayerView extends VisibleObjects {
             x = player.getRightBoundary() / 4;
             y = (player.getUpperBoundary() /3);
         }
-        sr.setAutoShape(true);
+//        sr.setAutoShape(true);
 
         sr.setColor(1, 1, 1, 1);
-
+        
         sr.begin(ShapeType.Filled);
-
+        
         sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
-
+        
         sr.end();
-
     }
 }

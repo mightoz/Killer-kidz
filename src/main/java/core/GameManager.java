@@ -1,4 +1,5 @@
-package view;
+package core;
+
 
 import model.Model;
 import view.gameStates.HowToPlayView;
@@ -59,9 +60,8 @@ public class GameManager extends Game {
 		
 		// create an object for each "Game-State".
 		mainMenuView = new MainMenu(cam, width);
-		playfieldView = new PlayfieldView(cam, width, height);
+		playfieldView = new PlayfieldView(cam, model, width, height);
 		howToPlayView = new HowToPlayView(cam);
-        model.register(playfieldView);
         
         currentItem = mainMenuView.getCurrentItem();
 		
@@ -108,7 +108,7 @@ public class GameManager extends Game {
 	public OrthographicCamera getCam(){	return cam;	}
 	
 	public float getWidth(){ return width; }
-	public float getHeight(){	return height; }
+	public float getHeight(){ return height; }
 	
 	public MainMenu getMainMenu() { return mainMenuView; }
 	public PlayfieldView getPlayfieldView() { return playfieldView; }

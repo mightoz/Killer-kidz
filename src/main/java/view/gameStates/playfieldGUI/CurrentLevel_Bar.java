@@ -35,7 +35,7 @@ public class CurrentLevel_Bar extends GUI_Super {
 		batch = new SpriteBatch();
 
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
-				Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondBold.ttf"));
+				Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
 		
 		textFont = gen.generateFont(22);
 		textFont.setColor(Color.GREEN);
