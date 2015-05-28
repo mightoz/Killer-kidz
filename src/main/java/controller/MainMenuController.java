@@ -43,19 +43,19 @@ public class MainMenuController extends InputAdapter {
 	public boolean keyUp(int keycode) {			
 		switch(state) {
 		case MENU:
-			return handleMain(keycode);
+			return mainController(keycode);
 		case SETTINGS:
-			return handleSettings(keycode);
+			return settingsController(keycode);
 		case HIGHSCORE:
-			return handleHighscore(keycode);
+			return highscoreController(keycode);
 		case HOW_TO_PLAY:
-			return handleHowToPlay(keycode);
+			return howToPlayController(keycode);
 		}
 		return false;
 	}
 	
 	// Takes care of key input if user is in main menu
-	private boolean handleMain(int keycode) {
+	private boolean mainController(int keycode) {
 		switch (keycode) {
 		case Keys.UP:
 			gm.updateMenu("Up");
@@ -69,7 +69,7 @@ public class MainMenuController extends InputAdapter {
 			case "Play":
 				gm.dispose();
 				gm.setScreen(gm.getPlayfieldView());
-				new GameController(model, 1);
+				new GameController(gm, model, 1);
 				return true;
 			case "Settings":
 				//state = MainMenuStates.SETTINGS;
@@ -90,16 +90,16 @@ public class MainMenuController extends InputAdapter {
 		return false;
 	}
 	
-	private boolean handleSettings(int keycode) {
+	private boolean settingsController(int keycode) {
 		return false;
 	}
 	
-	private boolean handleHighscore(int keycode) {
+	private boolean highscoreController(int keycode) {
 		return false;
 	}
 	
 	// Handles the key input if user is viewing how to play
-	private boolean handleHowToPlay(int keycode) {
+	private boolean howToPlayController(int keycode) {
 		if (keycode == Keys.ENTER) {
 			gm.dispose();
 			gm.setScreen(gm.getMainMenu());
