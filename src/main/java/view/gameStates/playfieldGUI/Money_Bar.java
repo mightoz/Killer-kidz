@@ -40,7 +40,7 @@ public class Money_Bar extends GUI_Super{
 		textFont = gen.generateFont(24);
 		textFont.setColor(Color.YELLOW);
 		
-		money = "$$$$$"; //player.getMoney();
+		money = "$$$$$$"; //player.getMoney();
 	}
 		
 	public void render() {
@@ -50,8 +50,8 @@ public class Money_Bar extends GUI_Super{
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, money, (width / 24) * 22, (height / 24) * 23);
-		
+		textFont.draw(batch, money, (width / 128) * 111, (height / 24) * 23);
+//		textFont.draw(batch, money, (width - layoutWidth) / 2, 450);
 		batch.end();
 	}
 }

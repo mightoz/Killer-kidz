@@ -35,6 +35,7 @@ public class KidView extends VisibleObjects{
 
 		// TODO - description at begining of class.
 //		sr.setColor(0, 0, 0, 1);
+//        sr.arc(iconPosX + squareSizeX, iconPosY, 21, 5, 45);
 //		sr.circle(x, y, radius-1, segments);
 //		radius = (float)kid.getBodyRadius();
 //		hungerPoint = kid.getHpRatio();
