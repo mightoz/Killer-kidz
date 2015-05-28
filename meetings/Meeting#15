@@ -1,0 +1,43 @@
+Meeting Agenda
+
+  Date: 2015-05-28
+  Facilitator: Marie
+  Participants: Everyone
+
+1. Objectives 
+There is a bug in the code that makes the program unrunnable. We fix it before continuing with the meeting.
+
+2. Reports 
+¤ Marie: Has implemented the HowToPlay view and added things in MMController to handle it.     
+  Has been working with DizzyDoriz and RollingRascal, they are not finished yet though. 
+  Has used STAN and Findbugs to clean up her code.
+¤ Kim: Has used STAN and Findbugs to clean up the view and removed all circular dependencies. 
+  Has made the project runnable with LibGDX, so it works with all OS’s that it should.
+¤ Matilda: Has written levels and refactored to make STAN happy.
+¤ Oscar: Has refactored both the model and the timer to remove all circular relationships in 
+  STAN. Implemented candyFactory.
+  
+3. Discussion items 
+¤ We need to make a folder for tests, should this be done in some special way?
+¤ What happens when a level is finished?
+¤ How should the candy store look, and who implements the different parts of it?
+¤ Should we implement highscore?
+
+4. Outcomes and assignments
+Outcomes:
+¤ We figured out how the controller and view gets to know when a level is finished.
+¤ We decided how the candy shop should look and how to use it.
+¤ We will implement highscore in case of time.
+¤ When the code is finished, everyone will write at the RAD and SDD. 
+
+Assignments: 
+¤ Marie: Will finish the kids. Will write the controller and view part to candy shop.
+¤ Kim: Will finish the GUI elements.
+¤ Oscar: Will implement the model/controller part of candy shop.
+¤ Matilda: Will write candy classes and perhaps another level.
+¤ Everyone: Will refine their code and make tests for it. Will finish RAD and SDD.
+
+5. Wrap up
+Unresolved issues for next meeting: N.A.
+
+Time and place for next meeting: Will be Saturday the 30th of May, 11 am via Skype.
