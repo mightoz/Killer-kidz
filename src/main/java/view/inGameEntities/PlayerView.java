@@ -24,7 +24,7 @@ public class PlayerView extends VisibleObjects {
         // if we are creating the second player
         }else{
             x = player.getX();
-            y = (player.getY());
+            y = player.getY();
         }
 
         sr.setColor(1, 1, 1, 1);

@@ -64,7 +64,7 @@ public class PlayfieldView implements Screen {
 		money = new Money_Bar(cam, width, height);
 		level = new CurrentLevel_Bar(cam ,width, height);
 		
-		candy_bar = new Candy_Bar(gui);
+		candy_bar = new Candy_Bar(cam, gui);
 	}
 
 	/*
@@ -85,9 +85,14 @@ public class PlayfieldView implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		// Saved to an variable, so render don't read from the list while
-		// the model is removing an object.
-		objects = model.getEntitys();
+		/*
+		 *  Saved to an variable, so render don't read from the list while
+		 *  the model is removing an object. But first checks if model is 
+		 *  modifying the array.
+		 */
+		if(!model.getupdatingEntityArray()){
+			objects = model.getEntitys();
+		}
 		
 		for (Entity entity : objects) {
 			switch (entity.getId().substring(0, 1)) {
