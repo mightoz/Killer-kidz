@@ -36,10 +36,15 @@ public class Candy_Bar extends GUI_Super {
 	private float nbrBoxPosY;
 	private float nbrBoxSize;
 	
+	// Candy icon position
+	private float iconPosX;
+	private float iconPosY;
+	
 	// numberPos
 	private float nbrPosX;
 	private float nbrPosY;
 	
+	// used to get how many unlocked candies the user has.
 	private Player player;
 	
 	// Using this for getting the cam-position.
@@ -62,6 +67,9 @@ public class Candy_Bar extends GUI_Super {
 		squareSizeX = gui.getSquareSizeX();
 		squareSizeY = gui.getSquareSizeY();
 
+		iconPosX = x + (squareSizeX / 3) + 5;
+		iconPosY = y + (squareSizeY / 2);
+		
 		// The small box with corresponding number to candy.
 		nbrBoxSize = 20;
 		nbrBoxPosX = x + squareSizeX - nbrBoxSize;
@@ -75,8 +83,8 @@ public class Candy_Bar extends GUI_Super {
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 				Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
 		
-		textFont = gen.generateFont(20);
-		
+		textFont = gen.generateFont(16);
+		textFont.setColor(Color.YELLOW);
 	}
 
 	/*
@@ -85,28 +93,43 @@ public class Candy_Bar extends GUI_Super {
 	 * to unlocked candies.
 	 */
 	public void render(ShapeRenderer sr) {
-		
-		
+
 		// Start to draw strings.
 		batch.setProjectionMatrix(cam.combined);
-		batch.begin();
-		
-		sr.setColor(Color.GREEN);
-		
+
 		sr.begin(ShapeType.Line);
+		sr.setAutoShapeType(true);
 		
 		// Unlocked one candy, so paintorder: outerBox, number-box, number
 //		if(player.getCandyData().size() == 1){
 		if(true) {
 			
+			sr.setColor(Color.GRAY);
+			sr.set(ShapeType.Filled);
+			sr.circle(iconPosX, iconPosY, 11);
+			sr.triangle(iconPosX, iconPosY, iconPosX-25, iconPosY+5, iconPosX-5, iconPosY+25);
+			sr.triangle(iconPosX, iconPosY, iconPosX+25, iconPosY-5, iconPosX+5, iconPosY-25);
+			
+			sr.setColor(Color.GREEN);
+			sr.set(ShapeType.Line);
 			sr.rect(x, y, squareSizeX, squareSizeY);
 			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
+			
+			batch.begin();
 			textFont.draw(batch, "1", nbrPosX, nbrPosY);
+			batch.end();
 		}
 		
 		// unlocked two candies
 //		if(player.getCandyData().size() == 2){	
 		if(true) {
+
+			sr.setColor(Color.GRAY);
+			sr.set(ShapeType.Filled);
+			sr.circle(iconPosX + squareSizeX, iconPosY, 21);
+
+			sr.setColor(Color.GREEN);
+			sr.set(ShapeType.Line);
 			
 			sr.rect(x + squareSizeX, 
 					y, 
@@ -118,9 +141,11 @@ public class Candy_Bar extends GUI_Super {
 					nbrBoxSize, 
 					nbrBoxSize);
 			
+			batch.begin();
 			textFont.draw(batch, "2", 
 					nbrPosX + squareSizeX, 
 					nbrPosY);
+			batch.end();
 		}
 		
 		// unlocked three candies
@@ -134,45 +159,74 @@ public class Candy_Bar extends GUI_Super {
 					nbrBoxSize, 
 					nbrBoxSize);
 			
+			batch.begin();
 			textFont.draw(batch, "3", 
 					nbrPosX + squareSizeX*2, 
 					nbrPosY);
+			batch.end();
 		}
-
-
-		
-//		sr.end();
-		
-		textFont.setColor(Color.YELLOW);
-		
-		//
-		sr.setColor(Color.ORANGE);
-		
-//		sr.begin(ShapeType.Line);
 		
 		// determine which candy is selected, and show that.
 //		switch(player.getSelectedCandy()){
-		int one = 1;
+		int one = 2;
 		switch(one){
 		
 		// First candy
 		case 1:
+
+			sr.setColor(Color.CYAN);
+			sr.set(ShapeType.Filled);
+			
+			sr.circle(iconPosX, iconPosY, 11);
+			sr.triangle(iconPosX, iconPosY, iconPosX-25, iconPosY+5, iconPosX-5, iconPosY+25);
+			sr.triangle(iconPosX, iconPosY, iconPosX+25, iconPosY-5, iconPosX+5, iconPosY-25);
+
+			sr.setColor(Color.ORANGE);
+			sr.set(ShapeType.Line);			
+			
 			sr.rect(x, y, squareSizeX, squareSizeY);
 			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
 			break;
 			
 		// Second candy is selected
 		case (2):
-			System.out.println("test");
+			
+			// brown color
+			sr.setColor(0.40f,0.20f,0,1);
+			sr.set(ShapeType.Filled);
+			sr.circle(iconPosX + squareSizeX, iconPosY, 21);
+
+			sr.setColor(Color.WHITE);
+			sr.set(ShapeType.Line);
+			sr.circle(iconPosX + squareSizeX, iconPosY, 21);
+			sr.circle(iconPosX + squareSizeX, iconPosY, 14);
+
+			sr.set(ShapeType.Filled);
+			sr.circle(iconPosX + squareSizeX, iconPosY, 5);
+
+			sr.setColor(Color.ORANGE);
+			sr.set(ShapeType.Line);
 			sr.rect(x + squareSizeX, y, squareSizeX, squareSizeY);
-			sr.rect(nbrBoxPosX + squareSizeX*2, 
-					nbrBoxPosY + squareSizeY*2, 
+			sr.rect(nbrBoxPosX + squareSizeX, 
+					nbrBoxPosY, 
 					nbrBoxSize, 
 					nbrBoxSize);
+
 			break;
 			
 		// Third candy is selected
 		case 3:
+
+			sr.setColor(Color.ORANGE);
+			sr.set(ShapeType.Line);	
+			
+			sr.rect(x + squareSizeX * 2, y, squareSizeX, squareSizeY);
+			
+			sr.rect(nbrBoxPosX + squareSizeX*2, 
+					nbrBoxPosY, 
+					nbrBoxSize, 
+					nbrBoxSize);
+
 			break;
 			
 		default:
@@ -182,7 +236,7 @@ public class Candy_Bar extends GUI_Super {
 			break;
 		}
 		
-		batch.end();
+//		batch.end();
 		sr.end();
 	}
 
