@@ -1,5 +1,7 @@
 package controller;
 
+import core.GameManager;
+
 import java.util.concurrent.TimeUnit;
 
 import com.badlogic.gdx.Gdx;
@@ -7,7 +9,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
 import model.Model;
-import view.GameManager;
 
 /**
  * MainMenuController

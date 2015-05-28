@@ -32,7 +32,7 @@ public class HowToPlayView implements Screen {
 		batch = new SpriteBatch();
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
-			Gdx.files.internal("src/main/java/view/fonts/OpenSans-CondLight.ttf"));
+			Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
 		htpFont = gen.generateFont(15);
 		okFont = gen.generateFont(35);
 		htpFont.setColor(Color.WHITE);

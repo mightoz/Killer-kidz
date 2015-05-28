@@ -1,9 +1,9 @@
+package core;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import controller.MainMenuController;
 import model.Model;
-import view.GameManager;
 
 /**
  * Main
