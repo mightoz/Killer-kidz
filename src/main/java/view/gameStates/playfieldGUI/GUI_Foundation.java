@@ -17,9 +17,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class GUI_Foundation extends GUI_Super{
 	
 	// Original box-sizes for our menu.
-	float squareSizeX = 75f;
-	float squareSizeY = 60f;
-	float levelSizeX = 65f;
+	private float squareSizeX = 75f;
+	private float squareSizeY = 60f;
+	private float levelSizeX = 65f;
 	
 //	// arrays wich will represent a vector.
 	protected float[] shapeX;
@@ -92,7 +92,7 @@ public class GUI_Foundation extends GUI_Super{
 		shapeX[6] = width - squareSizeX * 1.2f;
 		shapeY[6] = y - squareSizeY;
 		
-		// Then the Current-Level box
+		// Then the Current-Level right side of the box.
 		shapeX[7] = x + levelSizeX;
 		shapeY[7] = y - squareSizeY;
 		
@@ -117,5 +117,8 @@ public class GUI_Foundation extends GUI_Super{
 		// repeat for future candys....
 	}
 	
-	public float getGUISizeY() { return squareSizeY; }
+	public float getSquareSizeX() { return squareSizeX; }
+	public float getSquareSizeY() { return squareSizeY; }
+	public float getCandyBarStartPointX() { return (x + levelSizeX); }
+	public float getCandyBarStartPointY() { return (y - squareSizeY); }
 }
