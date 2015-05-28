@@ -14,12 +14,18 @@ public abstract class CandyFactory {
     public static ArrayList<Candy> throwCandy(int selectedCandy, ArrayList<int[]> candyData, float xPos, float yPos){
         ArrayList<Candy> candyList = new ArrayList();
         switch(selectedCandy){
-            case 1:
+            case 0:
                 int[] candyStatus = candyData.get(0);
                 int[] tmpStatus = candyStatus;
                 switch (candyStatus[2]){
                     case 0:
-                        candyList.add(new JellyBean(xPos, yPos, tmpStatus));
+                        candyList.add(new JellyBean(xPos, yPos + 5, tmpStatus));
+                        candyList.add(new JellyBean(xPos, yPos - 5, tmpStatus));
+                        if(tmpStatus[0]>0)
+                            tmpStatus[0]--;
+                        candyList.add(new JellyBean(xPos - 10, yPos + 5, tmpStatus));
+                        candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
+//                        candyList.add(new JellyBean(xPos, yPos, tmpStatus));
                         break;
                     case 1:
                         candyList.add(new JellyBean(xPos, yPos, tmpStatus));
@@ -39,11 +45,11 @@ public abstract class CandyFactory {
                         break;
                 }
                 break;
+            case 1:
+                break;
             case 2:
                 break;
             case 3:
-                break;
-            case 4:
                 break;
 
         }
