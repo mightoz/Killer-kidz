@@ -21,7 +21,7 @@ public class Player extends Entity {
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
     private boolean downKeyPressed;
-    private int selectedCandy;
+    private int selectedCandy = 1;
     private static int pIdGenerator;
     private final String pId;
     private ArrayList<Candy> activeCandies;

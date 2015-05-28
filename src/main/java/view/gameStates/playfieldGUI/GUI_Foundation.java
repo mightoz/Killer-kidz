@@ -34,8 +34,8 @@ public class GUI_Foundation extends GUI_Super{
 		x = 1;
 		y = height - 1;
 
-		shapeX = new float[13];
-		shapeY = new float[13];
+		shapeX = new float[9];
+		shapeY = new float[9];
 	}
 
 	public void render(ShapeRenderer sr) {
@@ -98,21 +98,6 @@ public class GUI_Foundation extends GUI_Super{
 		
 		shapeX[8] = x + levelSizeX;
 		shapeY[8] = y;
-		
-		// Then the candies starting from upper-right corner of Level-Box.
-		// Candy One
-		shapeX[9] = x + levelSizeX + squareSizeX;
-		shapeY[9] = y;
-		
-		shapeX[10] = x + levelSizeX + squareSizeX;
-		shapeY[10] = y - squareSizeY;
-		
-		// Candy Two
-		shapeX[11] = x + levelSizeX + squareSizeX * 2;
-		shapeY[11] = y - squareSizeY;
-		
-		shapeX[12] = x + levelSizeX + squareSizeX * 2;
-		shapeY[12] = y;
 		
 		// repeat for future candys....
 	}
