@@ -20,7 +20,7 @@ class CandyShopController {
 	}
 	
 	boolean isFinished() {
-		return finished;
+		return true; //finished;
 	}
 	
 }
