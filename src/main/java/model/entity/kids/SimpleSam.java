@@ -37,7 +37,7 @@ public class SimpleSam extends Kid {
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
 		case "JellyBean":		// favorite candy
-			hp = 0;
+			hp -= 2*damage;
 			break;
 		case "candy2":			// killer instinct triggering candy
 			hp += 200;
