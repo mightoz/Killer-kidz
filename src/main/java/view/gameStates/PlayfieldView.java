@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.entity.Entity;
 import model.Model;
+import view.gameStates.playfieldGUI.Candy_Bar;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
 import view.gameStates.playfieldGUI.GUI_Foundation;
 import view.gameStates.playfieldGUI.Money_Bar;
@@ -38,15 +39,14 @@ public class PlayfieldView implements Screen {
     private CandyView candyView;
 	private KidView kidView;
     private PlayerView playerView;
-
-	private float width;
-	private float height;
 	
 	private GUI_Foundation gui;
 	private ShopToProtect shop;
 	
 	private Money_Bar money;
 	private CurrentLevel_Bar level;
+	
+	private Candy_Bar candy_bar;
 
 	
 	public PlayfieldView(OrthographicCamera cam, Model model, float width, float height) {
@@ -63,6 +63,8 @@ public class PlayfieldView implements Screen {
 
 		money = new Money_Bar(cam, width, height);
 		level = new CurrentLevel_Bar(cam ,width, height);
+		
+		candy_bar = new Candy_Bar(cam, gui);
 	}
 
 	/*
@@ -79,13 +81,18 @@ public class PlayfieldView implements Screen {
 	 */
 	@Override
 	public void render(float delta) {
-;
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		// Saved to an variable, so render don't read from the list while
-		// the model is removing an object.
-		objects = model.getEntitys();
+		/*
+		 *  Saved to an variable, so render don't read from the list while
+		 *  the model is removing an object. But first checks if model is 
+		 *  modifying the array.
+		 */
+		if(!model.getupdatingEntityArray()){
+			objects = model.getEntitys();
+		}
 		
 		for (Entity entity : objects) {
 			switch (entity.getId().substring(0, 1)) {
@@ -112,6 +119,8 @@ public class PlayfieldView implements Screen {
 		
 		money.render();
 		level.render();
+		
+		candy_bar.render(sr);
 	}
 
 	

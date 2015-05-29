@@ -33,13 +33,11 @@ public class KidView extends VisibleObjects{
 
         sr.end();
 
-		// TODO - description below fields.
+		// TODO - description at begining of class.
 //		sr.setColor(0, 0, 0, 1);
+//        sr.arc(iconPosX + squareSizeX, iconPosY, 21, 5, 45);
 //		sr.circle(x, y, radius-1, segments);
-
-        // TODO - description above fields.
 //		radius = (float)kid.getBodyRadius();
-//
 //		hungerPoint = kid.getHpRatio();
 //		segment = (int) (2 * hungerPoint);
 
