@@ -56,6 +56,9 @@ public class CandyShop {
         return cs;
     }
 
+    public Player getBrowsingPlayer(){
+        return player;
+    }
 
 
 }

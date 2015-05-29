@@ -214,6 +214,13 @@ public class Model {
         return CandyShop.getInstance();
     }
 
+    public int getSelectedCandy(Player player){
+        return player.getSelectedCandy();
+    }
+
+    public void changePlayer(String dir){
+
+    }
 
 
 }
