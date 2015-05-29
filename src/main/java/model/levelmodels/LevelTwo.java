@@ -24,7 +24,7 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
-                        if(spawnKidType < 20){
+                        if(spawnKidType < 80){
                             activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
                         }else{
                             activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
@@ -34,6 +34,7 @@ public class LevelTwo extends Level{
                     }
                 }else if(kidsRemoved == 15){
                     changeWave();
+                    System.out.println(currentWave);
                 }
                 break;
             case 2:
@@ -74,7 +75,7 @@ public class LevelTwo extends Level{
     protected void changeWave(){
         currentWave++;
         spawnedKids = 0;
-        nextSpawnTime = random.nextDouble()*4;
+        nextSpawnTime = timePassed + random.nextDouble()*4;
     }
 
     @Override
