@@ -44,6 +44,8 @@ public abstract class Kid extends Entity {
 		return ID;
 	}
 	
+	public abstract String getName();
+	
 	public double getHeadY() {
 		return yPos + radius + rHead;
 	}
@@ -58,8 +60,8 @@ public abstract class Kid extends Entity {
 	}
 	
 	// return the ratio of the hp that is left
-	public double getHpRatio() {
-		return (double)hp/startHP;
+	public float getHpRatio() {
+		return (float)hp/startHP;
 	}
 	
 	@Override

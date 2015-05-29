@@ -24,6 +24,9 @@ public class RollingRascal extends Kid {
 		startHP = 50;
 		hp = startHP;
 	}
+	
+	@Override
+	public String getName() { return "Rascal";}
 
 	@Override
 	public void update(double dt) {

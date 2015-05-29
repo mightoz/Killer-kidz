@@ -19,6 +19,9 @@ public class DizzyDoriz extends Kid {
 		startHP = 200;
 		hp = startHP;
 	}
+	
+	@Override
+	public String getName() { return "Doriz";}
 
 	@Override
 	public void update(double dt) {
@@ -58,6 +61,7 @@ public class DizzyDoriz extends Kid {
 			hp = 0;
 			break;
 		case "candy4":			// killer instinct triggering candy
+			hp = startHP;
 			// TODO: stop for a second, then race
 			inKillerMode = true;
 			break;

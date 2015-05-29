@@ -22,6 +22,9 @@ public class SimpleSam extends Kid {
 		startHP = 50;
 		hp = startHP;
 	}
+	
+	@Override
+	public String getName() { return "Sam";}
 
 	@Override
 	public void update(double dt) {
@@ -40,6 +43,7 @@ public class SimpleSam extends Kid {
 			hp = 0;
 			break;
 		case "candy2":			// killer instinct triggering candy
+			hp = startHP;
 			// TODO: become immune for two seconds
 			inKillerMode = true;
 			break;
