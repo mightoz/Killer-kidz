@@ -18,16 +18,16 @@ public class JellyBean extends Candy {
         generateId();
         switch (candyStatus[0]) {
             case 0:
-                damage = 40;
+                damage = 10;
                 break;
             case 1:
-                damage = 60;
+                damage = 20;
                 break;
             case 2:
-                damage = 100;
+                damage = 40;
                 break;
             case 3:
-                damage = 160;
+                damage = 80;
                 break;
         }
 
