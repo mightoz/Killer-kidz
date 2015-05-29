@@ -27,6 +27,8 @@ public class SinEster extends Kid {
 		hp = startHP;
 	}
 
+	@Override
+	public String getName() { return "Ester";}
 
 	@Override
 	public void update(double dt) {
@@ -44,12 +46,14 @@ public class SinEster extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
-		case "candy2":			// favorite candy
+		case "candy2":			// favourite candy
 			hp = 0;
 			break;
 		case "candy3":			// killer instinct triggering candy
-			hp += 200;
+			hp = startHP;
 			vx *= 2;
+			inKillerMode = true;
+			visible = false;
 			break;
 		default:
 			hp -= damage;	
