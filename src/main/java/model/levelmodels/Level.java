@@ -39,12 +39,12 @@ public abstract class Level {
         kidsRemoved++;
     }
 
-    private void enteredStore(){
+    public void enteredStore(){
         kidsInStore++;
         kidRemoved();
     }
 
-    private void killedByCandy(){
+    public void killedByCandy(){
         kidsKilled++;
         kidRemoved();
     }
@@ -52,6 +52,12 @@ public abstract class Level {
     public int getKills(){
         return kidsKilled;
     }
+
+
+    public int getKidsInStore(){
+        return kidsInStore;
+    }
+
     /**
      * Updates the positions of all the kids in the game
      */

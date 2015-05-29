@@ -1,5 +1,8 @@
 package levelTests;
 
+import model.levelmodels.Level;
+import model.levelmodels.LevelOne;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
@@ -7,23 +10,55 @@ import static org.junit.Assert.*;
  */
 public class LevelOneTest {
 
-    @org.junit.Test
-    public void testUpdateLevel() throws Exception {
+    @Test
+    public void testUpdateLevel(){
+
+//        //Ska kolla om kids läggs till, och kanske om man byter wave
+//        Level level = new LevelOne();
+//        int initialKids = level.getActiveKids().size();
+//
+//        for(int i = 0; i < 10; i++) {
+//            level.updateLevel(1.0);
+//        }
+//
+//        assertTrue("Kids are not added in list correctly", initialKids < level.getActiveKids().size());
 
     }
 
-    @org.junit.Test
-    public void testChangeWave() throws Exception {
+
+    @Test
+    public void testLevelDone(){
+        Level level = new LevelOne();
+        int counter = 0;
+
+        boolean initialStatus = level.levelDone();
+
+        for(int i = 0; i < 20; i++){
+            if(counter < 18){
+                level.enteredStore();
+            }else{
+                level.killedByCandy();
+            }
+            counter++;
+        }
+
+        boolean status = level.levelDone();
+
+        assertTrue("levelDone() error", status != initialStatus);
 
     }
 
-    @org.junit.Test
-    public void testLevelDone() throws Exception {
+    @Test
+    public void testLevelFailed(){
+        Level level = new LevelOne();
 
-    }
+        for(int i = 0; i < 5; i++){
+            level.enteredStore();
+        }
 
-    @org.junit.Test
-    public void testLevelFailed() throws Exception {
+        boolean status = level.levelFailed();
+
+        assertTrue("levelFailed() error", status == true);
 
     }
 }
