@@ -26,13 +26,10 @@ public class Model {
 
     private Level level;
     private int currentLevel;
-    
-    // boolean used to make view wait until model is done modyfing the EntityArray.
-    private boolean updatingEntityArray = true;
 
 
     public Model(int width, int height) {
-        objects = new ArrayList<Entity>();
+        objects = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
         currentLevel = 1;
@@ -48,11 +45,8 @@ public class Model {
     public Model(String playerName, int width, int height) {
         this(width, height);
         player1 = new Player(100, 250, playerName);
-        
-        updatingEntityArray = true;
+
         objects.add(player1);
-        updatingEntityArray = false;
-        
         startLevel(currentLevel);
     }
 
@@ -66,11 +60,9 @@ public class Model {
         this(width, height);
         player1 = new Player(400, 500, player1Name);
         player2 = new Player(400, 800, player2Name);
-        
-        updatingEntityArray = true;
+
         objects.add(player1);
         objects.add(player2);
-        updatingEntityArray = false;
     }
 
     /**
@@ -80,7 +72,6 @@ public class Model {
      * @param directions the new directions
      */
     public void movePlayer(int player, boolean[] directions) {
-        System.out.println("directinos updated");
         if (player == 1) {
             player1.updateDir(directions);
         } else {
@@ -116,7 +107,6 @@ public class Model {
      * @param levelNbr
      */
     public void startLevel(int levelNbr) {
-        //    kids.clear();
         switch (levelNbr) {
             case 1:
                 level = new LevelOne();
@@ -136,31 +126,30 @@ public class Model {
     public void updateGame(double delta) {
 
         ArrayList<Candy> candyList = player1.getActiveCandies();
-        for (Candy candy : candyList) {
-            if (candy != null) {
-                if (!candy.isExpired()) {
-                    candy.update(delta);
+        for (int i = 0; i < candyList.size(); i++) {
+            if (candyList.get(i) != null) {
+                if (!candyList.get(i).isExpired()) {
+                    candyList.get(i).update(delta);
                     ArrayList<Kid> kidList = level.getActiveKids();
-                    for (Kid kid : kidList) {
-                        float deltaX = kid.getX() - candy.getX();
-                        float deltaY = kid.getY() - candy.getY();
-                        float combinedR = kid.getRadius() + candy.getRadius();
+                    for (int j = 0; j < kidList.size(); j++) {
+                        float deltaX = kidList.get(j).getX() - candyList.get(i).getX();
+                        float deltaY = kidList.get(j).getY() - candyList.get(i).getY();
+                        float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
                         if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                            kid.hitByCandy(candy.getType(), candy.getDamage());
-                            candyList.remove(candy);
+                            int kills = level.getKills();
+                            kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage());
+                            if (level.getKills() > kills && j>0)j--;
+                            candyList.remove(candyList.get(i));
+                            if(i>0)i--;
                         }
                     }
                 }
             }
         }
 
-        updatingEntityArray = true;
-
         player1.update(delta);
         level.update(delta);
         updateObjectList();
-        
-        updatingEntityArray = false;
 
         if (level.levelFailed()) {
             System.out.println("Level failed");
@@ -179,7 +168,6 @@ public class Model {
     }
 
     private void updateObjectList() {
-    	updatingEntityArray = true;
         ArrayList<Entity> newEntities = new ArrayList<>();
 
         for (Candy candy : player1.getActiveCandies()) {
@@ -190,13 +178,13 @@ public class Model {
             newEntities.add(kid);
         }
         newEntities.add(player1);
-        
+
         objects = newEntities;
-        
-        updatingEntityArray = false;
+
     }
-    
-    public ArrayList<Entity> getEntitys() { return objects; }
-    public boolean getupdatingEntityArray() { return updatingEntityArray; }
+
+    public ArrayList<Entity> getEntities() {
+        return objects;
+    }
 
 }

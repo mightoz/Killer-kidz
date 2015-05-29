@@ -39,31 +39,35 @@ public abstract class Level {
         kidsRemoved++;
     }
 
-    public void enteredStore(){
+    private void enteredStore(){
         kidsInStore++;
         kidRemoved();
     }
 
-    public void killedByCandy(){
+    private void killedByCandy(){
         kidsKilled++;
         kidRemoved();
     }
 
+    public int getKills(){
+        return kidsKilled;
+    }
     /**
      * Updates the positions of all the kids in the game
      */
     public void update(double delta){
 
-        for(Kid kid: activeKids){
-            if(!kid.isExpired()){
-                kid.update(delta);
+        for(int i = 0; i < activeKids.size();i++){
+            if(!activeKids.get(i).isExpired()){
+                activeKids.get(i).update(delta);
             }else{
-                if(kid.enteredStore()){
+                if(activeKids.get(i).enteredStore()){
                     enteredStore();
                 }else{
                     killedByCandy();
                 }
-                activeKids.remove(kid);
+                activeKids.remove(activeKids.get(i));
+                if(i>0)i--;
             }
 
         }
