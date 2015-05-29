@@ -1,4 +1,4 @@
-package model.levelmodels;
+package levelTests;
 
 import static org.junit.Assert.*;
 
