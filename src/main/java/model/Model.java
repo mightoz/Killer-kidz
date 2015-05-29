@@ -21,8 +21,7 @@ public class Model {
     public static float width;
     public static float height;
 
-    private Player player1;
-    private Player player2;
+    private ArrayList<Player> players;
 
     private Level level;
     private int currentLevel;
@@ -30,6 +29,7 @@ public class Model {
 
     public Model(int width, int height) {
         objects = new ArrayList();
+        players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
         currentLevel = 1;
@@ -44,9 +44,11 @@ public class Model {
 
     public Model(String playerName, int width, int height) {
         this(width, height);
-        player1 = new Player(100, 250, playerName);
-
-        objects.add(player1);
+        Player player1 = new Player(100, 250, playerName);
+        players.add(player1);
+        for(Player player: players){
+            objects.add(player);
+        }
         startLevel(currentLevel);
     }
 
@@ -58,24 +60,33 @@ public class Model {
      */
     public Model(String player1Name, String player2Name, int width, int height) {
         this(width, height);
-        player1 = new Player(400, 500, player1Name);
-        player2 = new Player(400, 800, player2Name);
-
-        objects.add(player1);
-        objects.add(player2);
+        Player player1 = new Player(400, 500, player1Name);
+        Player player2 = new Player(400, 800, player2Name);
+        players.add(player1);
+        players.add(player2);
+        for(Player player: players){
+            objects.add(player);
+        }
+        startLevel(currentLevel);
     }
 
     /**
      * Updates the player's directions
      *
-     * @param player     what player to update
+     * @param playerNum     what player to update
      * @param directions the new directions
      */
-    public void movePlayer(int player, boolean[] directions) {
-        if (player == 1) {
-            player1.updateDir(directions);
-        } else {
-            player2.updateDir(directions);
+    public void movePlayer(int playerNum, boolean[] directions) {
+        boolean updated = false;
+        for(Player player: players){
+            if(player.getId().substring(1,2).equals(Integer.toString(playerNum))){
+                player.updateDir(directions);
+                updated = true;
+                break;
+            }
+        }
+        if(!updated){
+            throw new IllegalArgumentException("Illegal player number");
         }
     }
 
@@ -86,16 +97,19 @@ public class Model {
     /**
      * Creates the currently selected candy for the specified player.
      *
-     * @param player which player to throw the candy
+     * @param playerNum which player to throw the candy
      */
-    public void throwCandy(int player) {
-        switch (player) {
-            case 1:
-                player1.throwCandy();
+    public void throwCandy(int playerNum) {
+        boolean candyThrown = false;
+        for(Player player: players){
+            if(player.getId().substring(1,2).equals(Integer.toString(playerNum))){
+                player.throwCandy();
+                candyThrown = true;
                 break;
-            case 2:
-                player2.throwCandy();
-                break;
+            }
+        }
+        if(!candyThrown){
+            throw new IllegalArgumentException("Illegal player number");
         }
 
     }
@@ -125,29 +139,33 @@ public class Model {
      */
     public void updateGame(double delta) {
 
-        ArrayList<Candy> candyList = player1.getActiveCandies();
-        for (int i = 0; i < candyList.size(); i++) {
-            if (candyList.get(i) != null) {
-                if (!candyList.get(i).isExpired()) {
-                    candyList.get(i).update(delta);
-                    ArrayList<Kid> kidList = level.getActiveKids();
-                    for (int j = 0; j < kidList.size(); j++) {
-                        float deltaX = kidList.get(j).getX() - candyList.get(i).getX();
-                        float deltaY = kidList.get(j).getY() - candyList.get(i).getY();
-                        float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
-                        if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                            int kills = level.getKills();
-                            kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage());
-                            if (level.getKills() > kills && j>0)j--;
-                            candyList.remove(candyList.get(i));
-                            if(i>0)i--;
+        for(int x = 0; x < players.size(); x++) {
+            ArrayList<Candy> candyList = players.get(x).getActiveCandies();
+            for (int i = 0; i < candyList.size(); i++) {
+                if (candyList.get(i) != null) {
+                    if (!candyList.get(i).isExpired()) {
+                        candyList.get(i).update(delta);
+                        ArrayList<Kid> kidList = level.getActiveKids();
+                        for (int j = 0; j < kidList.size(); j++) {
+                            float deltaX = kidList.get(j).getX() - candyList.get(i).getX();
+                            float deltaY = kidList.get(j).getY() - candyList.get(i).getY();
+                            float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
+                            if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
+                                int kills = level.getKills();
+                                kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage());
+                                if (level.getKills() > kills && j > 0) j--;
+                                candyList.remove(candyList.get(i));
+                                if (i > 0) i--;
+                            }
                         }
                     }
                 }
             }
         }
 
-        player1.update(delta);
+        for(int z = 0; z < players.size(); z++) {
+            players.get(z).update(delta);
+        }
         level.update(delta);
         updateObjectList();
 
@@ -170,14 +188,19 @@ public class Model {
     private void updateObjectList() {
         ArrayList<Entity> newEntities = new ArrayList<>();
 
-        for (Candy candy : player1.getActiveCandies()) {
-            newEntities.add(candy);
+        for(int i = 0; i < players.size(); i++) {
+            for(int j = 0; j < players.get(i).getActiveCandies().size(); j++){
+                newEntities.add(players.get(i).getActiveCandies().get(j));
+            }
         }
 
         for (Kid kid : level.getActiveKids()) {
             newEntities.add(kid);
         }
-        newEntities.add(player1);
+
+        for(int j = 0; j < players.size(); j++) {
+            newEntities.add(players.get(j));
+        }
 
         objects = newEntities;
 

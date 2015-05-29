@@ -192,6 +192,8 @@ public class Player extends Entity {
 
     @Override
     public String generateId() {
+
+        if(pIdGenerator==0)pIdGenerator = 1;
         int tmp = pIdGenerator;
         pIdGenerator++;
         return "p"+tmp;

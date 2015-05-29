@@ -37,5 +37,16 @@ public class CandyShop {
 	 * choose()				that buys the upgrade if an upgrade is marked, and sets info if property is marked				
 	 * 
 	 */
-	
+    private static CandyShop cs;
+
+	private CandyShop(){
+
+    }
+
+    public static CandyShop getInstance(){
+        return cs;
+    }
+
+
+
 }
