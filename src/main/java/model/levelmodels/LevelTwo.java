@@ -80,12 +80,12 @@ public class LevelTwo extends Level{
 
     @Override
     public boolean levelDone() {
-        return kidsRemoved == 55;
+        return kidsRemoved == 55 && kidsInStore < 8;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 10;
+        return kidsInStore == 8;
     }
 
 }

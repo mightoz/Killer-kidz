@@ -52,12 +52,12 @@ public class LevelOne extends Level {
     //
     @Override
     public boolean levelDone(){
-        return kidsRemoved == 20;
+        return kidsRemoved == 20 && kidsInStore < 5;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 5;
+        return kidsInStore == 5 || kidsInStore > 5;
     }
 
 }

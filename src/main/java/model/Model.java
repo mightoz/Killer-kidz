@@ -32,7 +32,7 @@ public class Model {
         objects = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 2;
+        currentLevel = 3;
         Entity.setBoundaries(45, this.width, this.height, 0);
     }
 
