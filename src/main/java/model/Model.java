@@ -32,7 +32,7 @@ public class Model {
         players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 1;
+        currentLevel = 2;
         Entity.setBoundaries(45, this.width, this.height, 0);
     }
 
@@ -209,5 +209,11 @@ public class Model {
     public ArrayList<Entity> getEntities() {
         return objects;
     }
+
+    public CandyShop getCandyShop(){
+        return CandyShop.getInstance();
+    }
+
+
 
 }

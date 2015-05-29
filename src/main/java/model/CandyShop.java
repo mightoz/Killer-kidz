@@ -1,5 +1,7 @@
 package model;
 
+import model.entity.players.Player;
+
 public class CandyShop {
 
 	/*
@@ -39,11 +41,18 @@ public class CandyShop {
 	 */
     private static CandyShop cs;
 
+    private Player player;
+
 	private CandyShop(){
 
     }
+    public void changePlayer(Player p){
+        player = p;
+    }
 
     public static CandyShop getInstance(){
+        if(cs== null)
+            cs = new CandyShop();
         return cs;
     }
 
