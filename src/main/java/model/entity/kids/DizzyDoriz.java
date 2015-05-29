@@ -58,8 +58,8 @@ public class DizzyDoriz extends Kid {
 			hp = 0;
 			break;
 		case "candy4":			// killer instinct triggering candy
-			hp += 200;
-			vx *= 2;
+			// TODO: stop for a second, then race
+			inKillerMode = true;
 			break;
 		default:
 			hp -= 100;	

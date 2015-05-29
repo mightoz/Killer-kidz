@@ -48,8 +48,9 @@ public class SinEster extends Kid {
 			hp = 0;
 			break;
 		case "candy3":			// killer instinct triggering candy
-			hp += 200;
 			vx *= 2;
+			inKillerMode = true;
+			visible = false;
 			break;
 		default:
 			hp -= damage;	

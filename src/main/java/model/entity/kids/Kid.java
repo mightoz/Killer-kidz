@@ -18,6 +18,8 @@ public abstract class Kid extends Entity {
 	protected int startHP;
 	protected int hp;
 	protected boolean expired;
+	protected boolean inKillerMode;
+	protected boolean visible;
 
 	protected float rHead;				// head radius
 	
@@ -28,6 +30,8 @@ public abstract class Kid extends Entity {
 		
 		ID = generateId();
 		expired = false;
+		inKillerMode = false;
+		visible = true;
 	}
 	
 	@Override
@@ -70,6 +74,14 @@ public abstract class Kid extends Entity {
 	@Override
 	public boolean isExpired() {
 		return expired;
+	}
+	
+	public boolean isKillerKid() {
+		return inKillerMode;
+	}
+	
+	public boolean isVisible() {
+		return visible;
 	}
 
 }
