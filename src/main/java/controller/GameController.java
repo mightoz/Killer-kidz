@@ -36,7 +36,7 @@ class GameController extends InputAdapter {
         this.model = model;
     	this.nbrOfPlayers = nbrOfPlayers;
     	inCandyShop = false;
-    	csc = new CandyShopController(this.gm, this.model);
+    	csc = new CandyShopController(this.model);
 
     	switch (this.nbrOfPlayers) {
     	case 1:

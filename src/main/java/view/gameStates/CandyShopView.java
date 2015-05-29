@@ -36,10 +36,11 @@ public class CandyShopView implements Screen {
 	private BitmapFont infoFont;
 	
 	private Color[] infoColours = new Color[3];
+	private Color marker;
 
 	private String title;
 	private String[] colourGuide = new String[3];
-	private String[] propertyNames = new String[4];				// Remove if candies have different properties
+	private String[] propertyNames = new String[4];		// Remove if different candies have different properties
 	
 	@SuppressWarnings("deprecation")
 	public CandyShopView (OrthographicCamera cam, Model model, float width, float height) {
@@ -55,18 +56,19 @@ public class CandyShopView implements Screen {
 		candyFont = gen.generateFont(30);
 		propertyFont = gen.generateFont(25);
 		infoFont = gen.generateFont(15);
-		titleFont.setColor(Color.WHITE);
+		titleFont.setColor(Color.PURPLE);
 		moneyFont.setColor(Color.YELLOW);
 		
 		infoColours[0] = Color.GREEN;
 		infoColours[1] = Color.YELLOW;
 		infoColours[2] = Color.RED;
+		marker = Color.BLUE;
 		
 		title = "Candy Shop";
 		colourGuide[0] = "You already have this upgrade";
 		colourGuide[1] = "You can buy this upgrade";
 		colourGuide[2] = "You can't buy this upgrade";
-		propertyNames[0] = "Speed";	
+		propertyNames[0] = "Speed";						// Remove if different candies have different properties
 		propertyNames[1] = "Damage";
 		propertyNames[2] = "Spread";
 		propertyNames[3] = "Penetration";
@@ -77,14 +79,14 @@ public class CandyShopView implements Screen {
 	public void render(float delta) {		
 		drawUnselectableThings();
 		
-		int currentRow = 0; //cs.getCurrentRow();													// TODO
-		int currentCol = 2;	//cs.getCurrentCol();													// TODO
+		int currentRow = -1; //cs.getCurrentRow();													// TODO
+		int currentCol = 3;	//cs.getCurrentCol();													// TODO
 		
 		// Draw selected candy
 		String candy = "Jelly Bean";	//cs.getSelectedCandy();									// TODO
 		layout.setText(candyFont, candy);
 		layoutWidth = layout.width;
-		if (currentRow == -1) { candyFont.setColor(Color.GRAY); }
+		if (currentRow == -1) { candyFont.setColor(marker); }
 		else { candyFont.setColor(Color.WHITE); }
 		candyFont.draw(batch, candy, (width - layoutWidth)/2, height-100);
 		
@@ -94,10 +96,54 @@ public class CandyShopView implements Screen {
 			prop = propertyNames[col-1];
 			layout.setText(propertyFont, prop);
 			layoutWidth = layout.width;
-			if (currentRow == 0 && currentCol == col) { propertyFont.setColor(Color.GRAY); }
+			if (currentRow == 0 && currentCol == col) { propertyFont.setColor(marker); }
 			else { propertyFont.setColor(Color.WHITE); }
 			propertyFont.draw(batch, prop, (col-1)*width/4 + (width/4-layoutWidth)/2, height-150);
 		}
+		
+		// Draw candy upgrade statuses
+		String[][] statuses = {{"have", "have", "have", "not"}, 								// Remove later
+							   {"have", "buy", "buy", "not"},
+							   {"buy", "not", "not", "not"},
+							   {"not", "not", "not", "not"}};
+		String status;
+		String upgradeName;
+		for (int row = 1; row <= 4; row++) {
+			for (int col = 1; col <= 4; col++) {
+				if (currentRow == row && currentCol == col) { 
+					propertyFont.setColor(marker); 
+				}
+				else {
+					status = statuses[row-1][col-1]; //cs.getStatus(row, col);							// TODO
+					switch (status) {
+					case "have": 
+						propertyFont.setColor(Color.GREEN);
+						break;
+					case "buy": 
+						propertyFont.setColor(Color.YELLOW);
+						break;
+					case "not": 
+						propertyFont.setColor(Color.RED);
+						break;
+					default: 
+						System.out.println("Invalid status");
+					}
+				}
+				upgradeName = row + "";		// cs.getUpgradeName(row, col);								// TODO
+				layout.setText(propertyFont, upgradeName);
+				layoutWidth = layout.width;
+				propertyFont.draw(batch, upgradeName, 
+						(col-1)*width/4 + (width/4-layoutWidth)/2, height-150-30*row);
+			}
+		}
+		
+		// Draw Start Next Level
+		String text = "Start Next Level";
+		layout.setText(candyFont, text);
+		layoutWidth = layout.width;
+		if (currentRow == 5) { candyFont.setColor(marker); }
+		else { candyFont.setColor(Color.WHITE); }
+		candyFont.draw(batch, text, (width - layoutWidth)/2, height-350);
 		
 		batch.end();
 	}
@@ -118,19 +164,28 @@ public class CandyShopView implements Screen {
 		
 		// Draw colour guide
 		infoFont.setColor(Color.WHITE);
-		infoFont.draw(batch, "Colour Guide:", 20, height-50);
+		infoFont.draw(batch, "Colour Guide:", 20, height-30);
 		for (int i = 0; i < 3; i++) {
 			infoFont.setColor(infoColours[i]);
-			infoFont.draw(batch, colourGuide[i], 20, height-70-20*i);			
+			infoFont.draw(batch, colourGuide[i], 20, height-50-20*i);			
 		}
 		
 		// Draw money status
-		moneyFont.draw(batch, "$: " + "1000" /* cs.getMoney() */, width-100, height-50);			// TODO
+		moneyFont.draw(batch, "$: " + "1000" /* cs.getMoney() */, width-100, height-70);			// TODO
 		
 		// Draw arrows around candy
 		candyFont.setColor(Color.WHITE);
 		candyFont.draw(batch, "<", width/2 - 80, height-100);
 		candyFont.draw(batch, ">", width/2 + 80, height-100);
+		
+		// Draw info
+		String info = "Welcome to the candy shop! Move around with arrow keys and press enter while marking an \n"
+					+ "upgrade to purchase it. Press enter while marking a candy property to view info about it.";
+		//String info = cs.getInfo();																// TODO
+		layout.setText(infoFont, info);
+		layoutWidth = layout.width;
+		infoFont.setColor(Color.WHITE);
+		infoFont.draw(batch, info, (width - layoutWidth)/2, height-420);
 	}
 	
 	@Override
