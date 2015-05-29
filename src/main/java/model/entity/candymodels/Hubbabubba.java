@@ -69,6 +69,8 @@ public class Hubbabubba extends Candy {
         if(travelledLength < maxTravelLength){
             xPos += 4 * delta;
             travelledLength += 4 * delta;
+        }else{
+            expired = true;
         }
 
     }
@@ -76,5 +78,13 @@ public class Hubbabubba extends Candy {
     @Override
     public boolean isExpired() {
         return expired;
+    }
+
+    public double getSlowRate(){
+        return slowRate;
+    }
+
+    public int getDamage(){
+        return damage;
     }
 }
