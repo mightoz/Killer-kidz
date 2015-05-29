@@ -36,7 +36,7 @@ public class SimpleSam extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
-		case "JellyBean":		// favorite candy
+		case "JellyBean":		// favourite candy
 			hp -= 2*damage;
 			break;
 		case "candy2":			// killer instinct triggering candy

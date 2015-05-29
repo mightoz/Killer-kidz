@@ -39,7 +39,7 @@ public class RollingRascal extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
-		case "candy4":		// favorite candy
+		case "candy4":		// favourite candy
 			hp = 0;
 			break;
 		case "JellyBean":	// killer instinct triggering candy

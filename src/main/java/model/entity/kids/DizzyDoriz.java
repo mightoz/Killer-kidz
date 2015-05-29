@@ -22,10 +22,10 @@ public class DizzyDoriz extends Kid {
 
 	@Override
 	public void update(double dt) {
-		// Velocity is changed every 1000th update
-		updatesLeft %= 1000;
+		// Velocity is changed every 200th update
+		updatesLeft %= 200;
 		if (updatesLeft == 0) {
-			vx = 50 - randGen.nextInt(151);		// in [-100, 50]
+			vx = 50 - randGen.nextInt(131);		// in [-80, 50]
 			vy = 50 - randGen.nextInt(101);		// in [-50, 50]
 		}
 		xPos += vx*dt;
@@ -54,7 +54,7 @@ public class DizzyDoriz extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
-		case "candy3":			// favorite candy
+		case "candy3":			// favourite candy
 			hp = 0;
 			break;
 		case "candy4":			// killer instinct triggering candy
