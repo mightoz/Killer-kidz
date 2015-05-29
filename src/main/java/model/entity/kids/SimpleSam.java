@@ -22,6 +22,9 @@ public class SimpleSam extends Kid {
 		startHP = 50;
 		hp = startHP;
 	}
+	
+	@Override
+	public String getName() { return "Sam";}
 
 	@Override
 	public void update(double dt) {
@@ -36,11 +39,13 @@ public class SimpleSam extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage) {
 		switch (candyType) {
-		case "JellyBean":		// favorite candy
-			hp -= 2*damage;
+		case "JellyBean":		// favourite candy
+			hp = 0;
 			break;
 		case "candy2":			// killer instinct triggering candy
-			hp += 200;
+			hp = startHP;
+			// TODO: become immune for two seconds
+			inKillerMode = true;
 			break;
 		default:
 			hp -= damage;	
