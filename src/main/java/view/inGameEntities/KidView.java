@@ -1,6 +1,8 @@
 package view.inGameEntities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -26,48 +28,88 @@ public class KidView extends VisibleObjects{
 //	private int segments = 3;
 //	private Kid kid;
 
-    public void render(Entity ent, ShapeRenderer sr){
+	public void render(Entity ent, ShapeRenderer sr) {
 
-    	Kid kid = (Kid) ent;
-    	
-    	if (kid.isVisible()) {
-    		float x = kid.getX();
-            float y = kid.getY();
-            float r = kid.getRadius();
-    		
-    		// Draw body
-    		if (kid.isKillerKid()) {
-    			sr.setColor(1, 0, 0, kid.getHpRatio());					// red
-    		}
-    		else {
-	    		switch (kid.getName()) {
-	    		case "Sam":
-	    			sr.setColor((float)0.75, 0, 1, kid.getHpRatio());	// purple
-	    			break;
-	    		case "Ester":
-	    			sr.setColor(0, 1, 0, kid.getHpRatio());				// green
-	    			break;
-	    		case "Doriz":
-	    			sr.setColor(1, (float)0.5, 0, kid.getHpRatio());	// orange
-	    			break;
-	    		case "Rascal":
-	    			sr.setColor(1, 1, 1, kid.getHpRatio());				// white
-	    			break;
-	    		default:
-	    			System.out.println("Not a valid child");
-	    		}
-    		}
-    		sr.begin(ShapeType.Filled);
-    		sr.circle(x, y, r);
+		 Gdx.gl.glEnable(GL20.GL_BLEND);
+	    Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	    
+		Kid kid = (Kid) ent;
 
-    		// Draw face
+		float x = kid.getX();
+		float y = kid.getY();
+		float r = kid.getRadius();
+		
+		sr.begin(ShapeType.Filled);
+		sr.setAutoShapeType(true);
+		
+		// Draw body
+		if (kid.isKillerKid()) {
+			
+			switch (kid.getName()) {
+			
+			case "Sam":
+				sr.setColor(Color.PURPLE);
+				sr.circle(x, y, r);
+				
+				sr.set(ShapeType.Line);
+				sr.setColor(Color.WHITE);
+				sr.circle(x, y, r);
+				break;
+				
+			case "Ester":
+				sr.set(ShapeType.Filled);
+				sr.setColor(0, 1, 0, kid.getHpRatio());
+				sr.circle(x, y, r);
+				break;
+				
+			case "Doriz":
+				sr.setColor(Color.RED);
+				break;
+				
+			case "Gregory":
+				sr.setColor(Color.WHITE);
+				break;
+				
+			default:
+				System.out.println("Not a valid child");
+				break;
+				
+			}
+			
+		} else {
+			switch (kid.getName()) {
+			case "Sam":
+				sr.setColor(Color.PURPLE);
+				break;
+				
+			case "Ester":
+				sr.setColor(Color.GREEN);
+				break;
+				
+			case "Doriz":
+				sr.setColor(Color.ORANGE);
+				break;
+				
+			case "Rascal":
+				sr.setColor(Color.WHITE);
+				break;
+				
+			default:
+				System.out.println("Not a valid child");
+			}
+			
+			sr.set(ShapeType.Filled);
+			sr.circle(x, y, r);
+		}
+			// Draw face
 			sr.setColor(Color.BLACK);
 			sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
 			sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
 			sr.circle(x, y+r/10-r/2, (float)(0.45*r));						// mouth
     		
             sr.end();
-    	}
+            
+            Gdx.gl.glDisable(GL20.GL_BLEND);
 
 		// TODO - description at begining of class.
 //		sr.setColor(0, 0, 0, 1);
@@ -77,5 +119,5 @@ public class KidView extends VisibleObjects{
 //		hungerPoint = kid.getHpRatio();
 //		segment = (int) (2 * hungerPoint);
 
-    }
+	}
 }
