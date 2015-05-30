@@ -43,6 +43,7 @@ public class GrandalfTheGrey extends Kid {
 
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
+
 		switch (candyType) {
 		case "candy4":		// favourite candy
 			if (inKillerMode) { 

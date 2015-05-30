@@ -26,6 +26,7 @@ public class JellyBean extends Candy {
         super(x,y);
         expired = false;
         radius = 5;
+        slowRate = 0.0;
         type = "JellyBean";
         generateId();
         switch (candyStatus[0]) {
@@ -57,10 +58,26 @@ public class JellyBean extends Candy {
                 maxTravelRange = 600;
                 break;
         }
+
+        switch (candyStatus[3]){
+            case 0:
+                penCapacity = 0;
+                break;
+            case 1:
+                penCapacity = 1;
+                break;
+            case 2:
+                penCapacity = 2;
+                break;
+            case 3:
+                penCapacity = 3;
+                break;
+        }
 		
 		Random rnd = new Random();
 		color = colorPallet[rnd.nextInt(10)];
     }
+
 
     /**
      * returns the damage of the thrown candy.
