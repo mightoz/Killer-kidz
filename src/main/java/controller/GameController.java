@@ -93,7 +93,7 @@ class GameController extends InputAdapter {
     @Override
 	public boolean keyUp(int keycode) {
     	// Go to candy shop if model is ready
-    	if (keycode == Keys.ENTER && !inCandyShop /*&& model.goToCandyShop()*/) {
+    	if (keycode == Keys.ENTER && !inCandyShop && model.levelCompleted()) {
     		gm.dispose();
     		gm.setScreen(gm.getCandyShopView());
     		inCandyShop = true;

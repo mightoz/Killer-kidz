@@ -23,13 +23,13 @@ class CandyShopController {
 				return true;
 			}
 		}
-			
 		if (keycode == Keys.ENTER) {
-            if (model.getStatusInShop().equals("Next level")) { 
-            	finished = true;
-            	return true;
+            if (model.getStatusInShop().equals("Next level")){
+                model.choose();
+                finished = true;
+            }else{
+                model.choose();
             }
-            model.choose();
 			return true;
 		}
 			

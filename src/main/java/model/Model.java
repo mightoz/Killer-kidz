@@ -26,14 +26,17 @@ public class Model {
     private Level level;
     private int currentLevel;
 
+    private boolean levelCompleted;
+
 
     public Model(int width, int height) {
         objects = new ArrayList();
         players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 2;
+        currentLevel = 1;
         Entity.setBoundaries(45, this.width, this.height, 0);
+        levelCompleted = false;
     }
 
     /**
@@ -124,6 +127,7 @@ public class Model {
      * @param levelNbr
      */
     public void startLevel(int levelNbr) {
+        levelCompleted = false;
         switch (levelNbr) {
             case 1:
                 currentLevel=1;
@@ -180,10 +184,14 @@ public class Model {
         updateObjectList();
 
         if (level.levelFailed()) {
-            System.out.println("Level failed");
+            startLevel(currentLevel);
         } else if (level.levelDone()) {
-            System.out.println("Level done");
+            levelCompleted = true;
         }
+    }
+
+    public boolean levelCompleted(){
+        return levelCompleted;
     }
 
 
@@ -317,6 +325,10 @@ public class Model {
         if(getCandyShop().getStatus().equals("buy")){
             getCandyShop().buyUpgrade();
         }else if(getCandyShop().getStatus().equals("Next level")){
+            int[] data = {0,0,0,0};
+            if(players.get(0).getCandyData().size() == currentLevel) {
+                players.get(0).addCandy(currentLevel, data);
+            }
             startLevel(currentLevel+1);
         }
     }
@@ -324,6 +336,5 @@ public class Model {
     public String getStatusInShop(){
         return getCandyShop().getStatus();
     }
-
 
 }

@@ -52,7 +52,7 @@ public class LevelOne extends Level {
     //
     @Override
     public boolean levelDone(){
-        return kidsRemoved == 20;
+        return kidsRemoved == 25;
     }
 
     @Override

@@ -108,7 +108,7 @@ public class CandyShop {
     }
 
     public String getStatus(int row, int col) {
-        if (row == 6) return "Next game";
+        if (row == 5) return "Next level";
         ArrayList<int[]> candyData = player.getCandyData();
         int[] data;
         switch (selectedCandyInShop) {
