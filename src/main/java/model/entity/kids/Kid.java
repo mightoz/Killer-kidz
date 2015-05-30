@@ -33,10 +33,7 @@ public abstract class Kid extends Entity {
 		expired = false;
 		inKillerMode = false;
 		visible = true;
-
-		//Test level
 		inStore = false;
-		//Test level
 	}
 	
 	@Override

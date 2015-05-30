@@ -51,6 +51,7 @@ public class DizzyDoriz extends Kid {
 		
 		if (xPos - radius <= leftBoundary) {
 			expired = true;
+			inStore = true;
 		}
 	}
 

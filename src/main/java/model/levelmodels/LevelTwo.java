@@ -25,10 +25,11 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if(spawnKidType < 80){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
@@ -42,15 +43,16 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if(spawnKidType < 50){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
                     }
-                }else if(spawnedKids == 20){
+                }else if(kidsRemoved == 35){
                     changeWave();
                 }
                 break;
@@ -58,10 +60,11 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if(spawnKidType < 70){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;

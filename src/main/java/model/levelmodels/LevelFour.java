@@ -41,19 +41,17 @@ public class LevelFour extends Level {
                 if(spawnedKids < 30){
                     if(timePassed >= nextSpawnTime){
                         int kidToSpawn = random.nextInt(99);
-                        float spawnPos = random.nextFloat()*Entity.getUpperBoundary()-10;
-                        while(spawnPos < Entity.getLowerBoundary()+10){
-                            spawnPos = random.nextFloat()*Entity.getUpperBoundary()-10;
-                        }
                         if(kidToSpawn < 80){
+                            float spawnPos = generateSpawnPos(10);
                             activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }else{
+                            float spawnPos = generateSpawnPos(30);
                             activeKids.add(createKid(KidTypes.ROLLING_RASCAL, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
                     }
-                }else if(kidsRemoved == 30){
+                }else if(kidsRemoved == 46){
                     changeWave();
                 }
                 break;
@@ -68,7 +66,6 @@ public class LevelFour extends Level {
                 }
                 break;
         }
-
     }
 
 

@@ -38,6 +38,7 @@ public class RollingRascal extends Kid {
 		if (xPos-radius <= leftBoundary) {
 			System.out.println("HP: " + hp);
 			expired = true;
+			inStore= true;
 		}
 	}
 

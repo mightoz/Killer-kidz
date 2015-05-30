@@ -40,6 +40,7 @@ public class SinEster extends Kid {
 		
 		if (xPos-radius <= leftBoundary) {
 			expired = true;
+			inStore = true;
 		}
 	}
 

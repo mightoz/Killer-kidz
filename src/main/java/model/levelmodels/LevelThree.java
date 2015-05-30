@@ -24,17 +24,18 @@ public class LevelThree extends Level {
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime) {
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if (spawnKidType < 45) {
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         } else if (spawnKidType < 90) {
-                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         } else {
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble() * 3;
                     }
-                }else{
+                }else if(kidsRemoved == 15){
                     changeWave();
                 }
                 break;
@@ -42,17 +43,18 @@ public class LevelThree extends Level {
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime) {
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if (spawnKidType < 30) {
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         } else if (spawnKidType < 50) {
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         } else {
-                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble() * 5;
                     }
-                }else{
+                }else if(kidsRemoved == 35){
                     changeWave();
                 }
                 break;
@@ -60,12 +62,13 @@ public class LevelThree extends Level {
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime) {
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if (spawnKidType < 30) {
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         } else if (spawnKidType < 60) {
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         } else {
-                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat() * Entity.getUpperBoundary()-10));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
                     }
                 }

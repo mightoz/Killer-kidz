@@ -1,5 +1,6 @@
 package model.levelmodels;
 
+import model.entity.Entity;
 import model.entity.kids.Kid;
 
 import java.util.ArrayList;
@@ -88,6 +89,13 @@ public abstract class Level {
 
     }
 
+    protected float generateSpawnPos(int distance){
+        float pos = random.nextFloat()* Entity.getUpperBoundary()-distance;
+        while(pos < Entity.getLowerBoundary()+10){
+            pos = random.nextFloat()*Entity.getUpperBoundary()-distance;
+        }
+        return pos;
+    }
 
     public ArrayList<Kid> getActiveKids(){
         return activeKids;
