@@ -40,7 +40,7 @@ public class SinEster extends Kid {
 		
 		transparency+=dTransp*dt;
 		
-		if (xPos-radius <= leftBoundary) {
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
 		}
 	}

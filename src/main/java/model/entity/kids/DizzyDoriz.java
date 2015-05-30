@@ -48,7 +48,7 @@ public class DizzyDoriz extends Kid {
 		}
 		updatesLeft--;
 		
-		if (xPos - radius <= leftBoundary) {
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
 		}
 	}

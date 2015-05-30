@@ -35,30 +35,28 @@ public class SimpleSam extends Kid {
 		
 		immuneTimeLeft -= dt;
 		
-		if (xPos-radius <= leftBoundary) {
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
 		}
 	}
 
 	@Override
 	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
-		System.out.println("ITL: " + immuneTimeLeft);
 		if (immuneTimeLeft <= 0) {
 			inKillerMode = false;
 			
 			switch (candyType) {
-			case "acndy2":		// favourite candy
+			case "JellyBean":			// favourite candy
 				hp = 0;
 				break;
-			case "JellyBean":			// killer instinct triggering candy
+			case "candy2":				// killer instinct triggering candy
 				hp = startHP;
 				immuneTimeLeft = 1;
 				inKillerMode = true;
 				break;
 			case "HubbaBubba":
-				// This candy slows down the kid
 				hp -= damage;
-				//vx *= (1-slowRate);
+				//vx *= (1-slowRate);	// slows down the kid
 			default:
 				hp -= damage;	
 			}

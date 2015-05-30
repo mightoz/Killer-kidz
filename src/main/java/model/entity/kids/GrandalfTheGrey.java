@@ -34,7 +34,7 @@ public class GrandalfTheGrey extends Kid {
 		xPos += vx*dt;
 		hp += DHP_DT*dt;
 		
-		if (xPos-radius <= leftBoundary) {
+		if (xPos+radius <= leftBoundary) {
 			System.out.println("HP: " + hp);
 			expired = true;
 		}
