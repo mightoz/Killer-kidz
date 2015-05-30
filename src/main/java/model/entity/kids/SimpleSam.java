@@ -8,19 +8,21 @@ package model.entity.kids;
  */
 public class SimpleSam extends Kid {
 
-	private double vx;			// velocity
-	private double ax;			// acceleration
+	private float vx;			// velocity
+	private float ax;			// acceleration
+	
+	private double immuneTimeLeft;
 	
 	public SimpleSam(float x, float y) {
 		super(x, y);
-        rHead = 5;
 		radius = 10;
 
 		vx = -40;
 		ax = -5;
 
-		startHP = 50;
-		hp = startHP;
+		immuneTimeLeft = 0;
+		maxHP = 50;
+		hp = maxHP;
 	}
 	
 	@Override
@@ -31,28 +33,43 @@ public class SimpleSam extends Kid {
 		vx += ax*dt;
 		xPos += vx*dt;
 		
-		if (xPos-radius <= leftBoundary) {
+		immuneTimeLeft -= dt;
+		if (immuneTimeLeft <= 0) {
+			inKillerMode = false;
+		}
+		
+		// Entered toy store
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
+			inStore = true;
 		}
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage) {
-		switch (candyType) {
-		case "JellyBean":		// favourite candy
-			hp = 0;
-			break;
-		case "candy2":			// killer instinct triggering candy
-			hp = startHP;
-			// TODO: become immune for two seconds
-			inKillerMode = true;
-			break;
-		default:
-			hp -= damage;	
-		}
+	public void hitByCandy(String candyType, int damage, double slowRate) {
+		if (immuneTimeLeft <= 0) {
+			inKillerMode = false;
+			
+			switch (candyType) {
+			case "JellyBean":			// favourite candy
+				hp = 0;
+				break;
+			case "Chocolate":			// killer instinct triggering candy
+				hp = maxHP;
+				immuneTimeLeft = 1;
+				inKillerMode = true;
+				break;
+			case "Hubbabubba":
+				hp -= damage;
+				vx *= (1-slowRate);	// slows down the kid
 
-		if (hp <= 0) {
-			expired = true;
+			default:
+				hp -= damage;	
+			}
+
+			if (hp <= 0) {
+				expired = true;
+			}
 		}
 	}
 }

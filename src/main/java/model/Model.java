@@ -4,10 +4,7 @@ import model.entity.players.Player;
 import model.entity.candymodels.Candy;
 import model.entity.kids.Kid;
 import model.entity.Entity;
-import model.levelmodels.Level;
-import model.levelmodels.LevelOne;
-import model.levelmodels.LevelThree;
-import model.levelmodels.LevelTwo;
+import model.levelmodels.*;
 
 import java.util.ArrayList;
 
@@ -141,6 +138,8 @@ public class Model {
                 currentLevel=3;
                 level = new LevelThree();
                 break;
+            case 4:
+                level = new LevelFour();
         }
     }
 
@@ -162,9 +161,20 @@ public class Model {
                             float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
                             if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
                                 int kills = level.getKills();
-                                kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage());
+                                kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage(), candyList.get(i).getSlowRate());
                                 if (level.getKills() > kills && j > 0) j--;
-                                candyList.remove(candyList.get(i));
+
+                                //Kollar om det är en JellyBean och penCapacity
+                                if(candyList.get(i).getType() == "JellyBean") {
+                                    if(candyList.get(i).getPenCapacity() > 0) {
+                                        candyList.get(i).decPenCapacity();
+                                    }else{
+                                        candyList.remove(candyList.get(i));
+                                    }
+                                }else{
+                                    candyList.remove(candyList.get(i));
+                                }
+
                                 if (i > 0) i--;
                                 break;
                             }

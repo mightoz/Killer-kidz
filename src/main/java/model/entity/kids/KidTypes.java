@@ -8,7 +8,7 @@ package model.entity.kids;
  */
 public enum KidTypes {
 	SIMPLE_SAM,
-	SINESTER,
 	DIZZY_DORIZ,
-	ROLLING_RASCAL;
+	SINESTER,
+	GRANDALF_THE_GREY;
 }

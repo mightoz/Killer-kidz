@@ -11,17 +11,19 @@ import model.entity.Entity;
  * @version 1.0
  */
 public abstract class Kid extends Entity {
-	
+
 	private static int idCounter = 0;
 	private final String ID;
 	
-	protected int startHP;
+	protected int maxHP;
 	protected int hp;
 	protected boolean expired;
 	protected boolean inKillerMode;
-	protected boolean visible;
 
-	protected float rHead;				// head radius
+	protected float transparency;
+
+	protected boolean inStore;
+
 	
 	protected static final Random randGen = new Random();
 	
@@ -31,7 +33,9 @@ public abstract class Kid extends Entity {
 		ID = generateId();
 		expired = false;
 		inKillerMode = false;
-		visible = true;
+
+		transparency = 1;
+		inStore = false;
 	}
 	
 	@Override
@@ -46,14 +50,6 @@ public abstract class Kid extends Entity {
 	
 	public abstract String getName();
 	
-	public double getHeadY() {
-		return yPos + radius + rHead;
-	}
-	
-	public float getHeadRadius() {
-		return rHead;
-	}
-	
 	@Override
 	public float getRadius() {
 		return radius;
@@ -61,16 +57,16 @@ public abstract class Kid extends Entity {
 	
 	// return the ratio of the hp that is left
 	public float getHpRatio() {
-		return (float)hp/startHP;
+		return (float)hp/maxHP;
 	}
 	
 	@Override
 	public abstract void update(double dt);
 	
-	public abstract void hitByCandy(String candyType, int damage);
+	public abstract void hitByCandy(String candyType, int damage, double slowRate);
 	
 	public boolean enteredStore() {
-		return xPos <= leftBoundary;
+		return inStore;
 	}
 	
 	@Override
@@ -78,12 +74,12 @@ public abstract class Kid extends Entity {
 		return expired;
 	}
 	
-	public boolean isKillerKid() {
+	public boolean enraged() {
 		return inKillerMode;
 	}
 	
-	public boolean isVisible() {
-		return visible;
+	public float getTransparency() {
+		return transparency;
 	}
 
 }

@@ -80,10 +80,12 @@ public class Player extends Entity {
     }
 
     public void throwCandy(){
+
         ArrayList<Candy> tmp = CandyFactory.throwCandy(selectedCandy, candyData, xPos, yPos);
         for(Candy candies: tmp){
             activeCandies.add(candies);
         }
+
     }
 
 

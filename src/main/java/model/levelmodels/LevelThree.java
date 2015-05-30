@@ -12,53 +12,64 @@ public class LevelThree extends Level {
 
     public LevelThree(){
         super();
-        nextSpawnTime = 2;
+        nextSpawnTime = 3;
+        maxKidsInStore = 10;
     }
 
     @Override
     protected void updateLevel(double delta) {
+        timePassed += delta;
         switch (currentWave){
             case 1:
                 if(spawnedKids < 15){
-                    int spawnKidType = random.nextInt(99);
-                    if(spawnKidType < 45){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else if(spawnKidType < 90){
-                        activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else{
-                        activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                    if(timePassed >= nextSpawnTime) {
+                        int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
+                        if (spawnKidType < 45) {
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
+                        } else if (spawnKidType < 90) {
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
+                        } else {
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                        }
+                        spawnedKids++;
+                        nextSpawnTime += random.nextDouble() * 3;
                     }
-                    spawnedKids++;
-                    nextSpawnTime += random.nextDouble()*5;
-                }else{
+                }else if(kidsRemoved == 15){
                     changeWave();
                 }
                 break;
             case 2:
                 if(spawnedKids < 20){
-                    int spawnKidType = random.nextInt(99);
-                    if(spawnKidType < 30){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else if(spawnKidType < 80){
-                        activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else{
-                        activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                    if(timePassed >= nextSpawnTime) {
+                        int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
+                        if (spawnKidType < 30) {
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
+                        } else if (spawnKidType < 50) {
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                        } else {
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
+                        }
+                        spawnedKids++;
+                        nextSpawnTime += random.nextDouble() * 5;
                     }
-                    spawnedKids++;
-                    nextSpawnTime += random.nextDouble()*4;
-                }else{
+                }else if(kidsRemoved == 35){
                     changeWave();
                 }
                 break;
             case 3:
                 if(spawnedKids < 15){
-                    int spawnKidType = random.nextInt(99);
-                    if(spawnKidType < 30){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else if(spawnKidType < 70){
-                        activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
-                    }else{
-                        activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                    if(timePassed >= nextSpawnTime) {
+                        int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
+                        if (spawnKidType < 30) {
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
+                        } else if (spawnKidType < 60) {
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                        } else {
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
+                        }
                     }
                 }
                 spawnedKids++;
@@ -71,16 +82,16 @@ public class LevelThree extends Level {
     protected void changeWave() {
         currentWave++;
         spawnedKids = 0;
-        nextSpawnTime = random.nextDouble()*2;
+        nextSpawnTime = timePassed + 2;
     }
 
     @Override
     public boolean levelDone() {
-        return kidsRemoved == 50;
+        return kidsRemoved == 50 && kidsInStore < 10;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 8;
+        return kidsInStore == 10;
     }
 }
