@@ -14,17 +14,18 @@ import model.entity.Entity;
  */
 public class PlayerView extends VisibleObjects {
 
-	public void render(Entity player, ShapeRenderer sr) {
+    public void render(Entity player, ShapeRenderer sr){
 
-		x = player.getX();
-		y = player.getY();
+        x = player.getX();
+        y = player.getY();
 
-		sr.setColor(1, 1, 1, 1f);
+        sr.setColor(1, 1, 1, 1f);
+        
+        sr.begin(ShapeType.Filled);
+        
+        sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
 
-		sr.begin(ShapeType.Filled);
+        sr.end();
+    }
 
-		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
-
-		sr.end();
-	}
 }

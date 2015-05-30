@@ -19,13 +19,7 @@ public abstract class CandyFactory {
                 int[] tmpStatus = candyStatus;
                 switch (candyStatus[2]){
                     case 0:
-                        candyList.add(new JellyBean(xPos, yPos + 5, tmpStatus));
-                        candyList.add(new JellyBean(xPos, yPos - 5, tmpStatus));
-                        if(tmpStatus[0]>0)
-                            tmpStatus[0]--;
-                        candyList.add(new JellyBean(xPos - 10, yPos + 5, tmpStatus));
-                        candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
-//                        candyList.add(new JellyBean(xPos, yPos, tmpStatus));
+                        candyList.add(new JellyBean(xPos, yPos, tmpStatus));
                         break;
                     case 1:
                         candyList.add(new JellyBean(xPos, yPos, tmpStatus));
