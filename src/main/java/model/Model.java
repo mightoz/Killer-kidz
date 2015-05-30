@@ -161,6 +161,7 @@ public class Model {
                                 if (level.getKills() > kills && j > 0) j--;
                                 candyList.remove(candyList.get(i));
                                 if (i > 0) i--;
+                                break;
                             }
                         }
                     }else {
