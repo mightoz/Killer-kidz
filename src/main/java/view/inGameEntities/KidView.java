@@ -57,7 +57,7 @@ public class KidView extends VisibleObjects{
 				break;
 				
 			case "Ester":
-				sr.setColor(0, 1, 0, kid.getHpRatio());
+				sr.setColor(0, 1, 0, kid.getTransparency());
 				break;
 				
 			case "Doriz":
@@ -77,7 +77,7 @@ public class KidView extends VisibleObjects{
 			sr.circle(x, y, r);
 			
 			// Angry eyes
-			sr.setColor(Color.BLACK);
+			sr.setColor(0, 0, 0, kid.getTransparency());
 			sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
 			sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
 			
@@ -114,6 +114,7 @@ public class KidView extends VisibleObjects{
 		}
 		
 		// Mouth
+		sr.setColor(0, 0, 0, kid.getTransparency());
 		sr.circle(x, y+r/10-r/2, (float)(0.45*r));
 		
         sr.end();

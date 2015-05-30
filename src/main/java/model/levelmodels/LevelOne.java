@@ -21,7 +21,7 @@ public class LevelOne extends Level {
             case 1:
                 if(spawnedKids < 10) {
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
+                        activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }

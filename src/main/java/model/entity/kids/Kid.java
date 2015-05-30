@@ -29,6 +29,7 @@ public abstract class Kid extends Entity {
 		ID = generateId();
 		expired = false;
 		inKillerMode = false;
+		transparency = 1;
 	}
 	
 	@Override
@@ -59,7 +60,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(String candyType, int damage/*, double slowRate*/);
 	
 	public boolean enteredStore() {
-		return xPos <= leftBoundary;
+		return xPos+radius <= leftBoundary;
 	}
 	
 	@Override
@@ -71,7 +72,7 @@ public abstract class Kid extends Entity {
 		return inKillerMode;
 	}
 	
-	public float getTransparancy() {
+	public float getTransparency() {
 		return transparency;
 	}
 
