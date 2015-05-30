@@ -46,7 +46,7 @@ public class LevelFour extends Level {
                             activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }else{
                             float spawnPos = generateSpawnPos(30);
-                            activeKids.add(createKid(KidTypes.ROLLING_RASCAL, Entity.getRightBoundary(), spawnPos));
+                            activeKids.add(createKid(KidTypes.GRANDALF_THE_GREY, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
