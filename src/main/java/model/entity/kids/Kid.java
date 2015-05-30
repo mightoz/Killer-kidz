@@ -20,8 +20,6 @@ public abstract class Kid extends Entity {
 	protected boolean expired;
 	protected boolean inKillerMode;
 	protected float transparency;
-
-	protected float rHead;				// head radius
 	
 	protected static final Random randGen = new Random();
 	

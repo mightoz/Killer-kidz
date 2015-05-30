@@ -13,7 +13,6 @@ public class DizzyDoriz extends Kid {
 	
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
-		rHead = 5;
 		radius = 10;
 
 		startHP = 200;

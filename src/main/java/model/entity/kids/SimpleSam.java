@@ -13,7 +13,6 @@ public class SimpleSam extends Kid {
 	
 	public SimpleSam(float x, float y) {
 		super(x, y);
-        rHead = 5;
 		radius = 10;
 
 		vx = -40;

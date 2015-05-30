@@ -18,7 +18,6 @@ public class SinEster extends Kid {
 	
 	public SinEster (float x, float y) {
 		super(x, y);
-		rHead = 5;
 		radius = 10;
 		
 		vx = -50;
