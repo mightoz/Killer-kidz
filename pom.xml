@@ -8,6 +8,7 @@
     <name>KillerKidz</name>
 
     <properties>
+        <mainClass>Main</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -35,14 +36,6 @@
             <version>2.0.3</version>
         </dependency>
 
-        <!-- 
-        <dependency>
-        	<groupId>org.jacoco</groupId>
-        	<artifactId>jacoco</artifactId>
-        	<version>0.7.4.201502262128</version>
-        	<type>pom</type>
-        </dependency>
-         -->
 
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
@@ -75,6 +68,12 @@
         	<version>1.6.0</version>
         	<classifier>natives-desktop</classifier>
         </dependency>
+        <dependency>
+        	<groupId>org.jacoco</groupId>
+        	<artifactId>jacoco-maven-plugin</artifactId>
+        	<version>0.7.4.201502262128</version>
+        	<type>maven-plugin</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,34 +99,6 @@
                 </configuration>
        
             </plugin>
-            
-            <!-- 
-            <plugin>
-                
-                
-                The JaCoCo Maven plug-in provides the JaCoCo runtime agent
-                to your tests and allows basic report creation.
-                http://www.eclemma.org/jacoco/trunk/doc/maven.html
-               
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.2.201409121644</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-             -->
             
             <plugin>
                 <!--
