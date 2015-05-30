@@ -35,37 +35,40 @@
             <version>2.0.3</version>
         </dependency>
 
-        <!--<dependency>-->
-        	<!--<groupId>org.jacoco</groupId>-->
-        	<!--<artifactId>jacoco</artifactId>-->
-        	<!--<version>0.7.4.201502262128</version>-->
-        	<!--<type>pom</type>-->
-        <!--</dependency>-->
-
-        
-        
+        <!-- 
+        <dependency>
+        	<groupId>org.jacoco</groupId>
+        	<artifactId>jacoco</artifactId>
+        	<version>0.7.4.201502262128</version>
+        	<type>pom</type>
+        </dependency>
+         -->
 
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx</artifactId>
         	<version>1.6.0</version>
         </dependency>
+        
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx-backend-lwjgl</artifactId>
         	<version>1.6.0</version>
         </dependency>
+        
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx-freetype</artifactId>
         	<version>1.6.0</version>
         </dependency>
+        
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx-platform</artifactId>
         	<version>1.6.0</version>
         	<classifier>natives-desktop</classifier>
         </dependency>
+        
         <dependency>
         	<groupId>com.badlogicgames.gdx</groupId>
         	<artifactId>gdx-freetype-platform</artifactId>
@@ -98,12 +101,14 @@
        
             </plugin>
             
-
+            <!-- 
             <plugin>
-
-                <!--The JaCoCo Maven plug-in provides the JaCoCo runtime agent-->
-                <!--to your tests and allows basic report creation.-->
-                <!--http://www.eclemma.org/jacoco/trunk/doc/maven.html-->
+                
+                
+                The JaCoCo Maven plug-in provides the JaCoCo runtime agent
+                to your tests and allows basic report creation.
+                http://www.eclemma.org/jacoco/trunk/doc/maven.html
+               
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.2.201409121644</version>
@@ -122,7 +127,8 @@
                     </execution>
                 </executions>
             </plugin>
-
+             -->
+            
             <plugin>
                 <!--
                 FindBugs looks for bugs in Java programs. It is based on 

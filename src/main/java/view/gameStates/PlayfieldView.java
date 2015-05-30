@@ -88,12 +88,10 @@ public class PlayfieldView implements Screen {
      */
     @Override
     public void render(float delta) {
-
+    	
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         
-
         for (Entity entity : model.getEntities()) {
             switch (entity.getId().substring(0, 1)) {
                 // Player objects
@@ -121,7 +119,7 @@ public class PlayfieldView implements Screen {
         level.render();
 
         // wait to render candy_bar until the playerObject is set.
-        if(playerObject != null){
+        if(playerObject != null) {
         	candy_bar.render(sr);
         }
     }
