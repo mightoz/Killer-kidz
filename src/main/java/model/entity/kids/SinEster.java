@@ -13,7 +13,7 @@ public class SinEster extends Kid {
 	
 	private float vx, vy;			// velocities
 	private final int MAX_A;		// maximum amplitude of the sine wave
-	private final float K = 0.02f;	// the wavenumber of the sine wave
+	private final float K = 0.01f;	// the wavenumber of the sine wave
 	private float dTransp = 0.9f;   // dTransp/dt
 	private double invTimeLeft;		// invisibility time left
 	
@@ -21,7 +21,7 @@ public class SinEster extends Kid {
 		super(x, y);
 		radius = 10;
 		
-		vx = -50;
+		vx = -30;
 		MAX_A = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
 		
 		invTimeLeft = 0;
