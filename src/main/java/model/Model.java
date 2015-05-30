@@ -4,10 +4,7 @@ import model.entity.players.Player;
 import model.entity.candymodels.Candy;
 import model.entity.kids.Kid;
 import model.entity.Entity;
-import model.levelmodels.Level;
-import model.levelmodels.LevelOne;
-import model.levelmodels.LevelThree;
-import model.levelmodels.LevelTwo;
+import model.levelmodels.*;
 
 import java.util.ArrayList;
 
@@ -32,7 +29,7 @@ public class Model {
         objects = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 3;
+        currentLevel = 1;
         Entity.setBoundaries(45, this.width, this.height, 0);
     }
 
@@ -117,6 +114,8 @@ public class Model {
             case 3:
                 level = new LevelThree();
                 break;
+            case 4:
+                level = new LevelFour();
         }
     }
 
