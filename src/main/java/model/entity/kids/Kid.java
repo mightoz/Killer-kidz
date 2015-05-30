@@ -63,7 +63,7 @@ public abstract class Kid extends Entity {
 	@Override
 	public abstract void update(double dt);
 	
-	public abstract void hitByCandy(String candyType, int damage/*, double slowRate*/);
+	public abstract void hitByCandy(String candyType, int damage, double slowRate);
 	
 	public boolean enteredStore() {
 		return inStore;
