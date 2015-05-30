@@ -18,7 +18,6 @@ public class CandyView extends VisibleObjects{
     	case "JellyBean":
     		sr.setColor(((JellyBean)candy).getColor());
     		sr.ellipse(candy.getX(), candy.getY(), candy.getRadius()*1.70f, candy.getRadius());
-//    		sr.ellipse(x, y, width, height); 
     		break;
     	
     	case "Hubbabubba":

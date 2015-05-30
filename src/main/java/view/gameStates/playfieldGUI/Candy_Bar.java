@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import view.gameStates.playfieldGUI.GUI_Foundation;
+import model.entity.candymodels.JellyBean;
 import model.entity.players.Player;
 
 
@@ -103,15 +104,12 @@ public class Candy_Bar extends GUI_Super {
 
 		// Unlocked one candy, so paintorder: outerBox, number-box, number
 		if (player.getCandyData().size() == 1) {
-			// if(true) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
-			sr.circle(iconPosX, iconPosY, 11);
-			sr.triangle(iconPosX, iconPosY, iconPosX - 25, iconPosY + 5,
-					iconPosX - 5, iconPosY + 25);
-			sr.triangle(iconPosX, iconPosY, iconPosX + 25, iconPosY - 5,
-					iconPosX + 5, iconPosY - 25);
+			sr.circle(iconPosX-3, iconPosY-3, 17);
+			sr.circle(iconPosX-8, iconPosY+7, 15);
+			sr.circle(iconPosX+9, iconPosY-7, 15);
 
 			sr.setColor(Color.GREEN);
 			sr.set(ShapeType.Line);
@@ -125,7 +123,6 @@ public class Candy_Bar extends GUI_Super {
 
 		// unlocked two candies
 		if (player.getCandyData().size() == 2) {
-			// if (true) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
@@ -147,7 +144,19 @@ public class Candy_Bar extends GUI_Super {
 
 		// unlocked three candies
 		if (player.getCandyData().size() == 3) {
-			// if (true) {
+
+			sr.setColor(Color.GRAY);
+			sr.set(ShapeType.Filled);
+			sr.circle(iconPosX, iconPosY, 11);
+			sr.triangle(iconPosX, iconPosY, iconPosX - 25, iconPosY + 5,
+					iconPosX - 5, iconPosY + 25);
+			sr.triangle(iconPosX, iconPosY, iconPosX + 25, iconPosY - 5,
+					iconPosX + 5, iconPosY - 25);
+
+			sr.setColor(Color.GREEN);
+			sr.set(ShapeType.Line);
+			sr.rect(x, y, squareSizeX, squareSizeY);
+			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
 			
 			// use +4 in this case, to avoid getting lines overlapping eachother.	
 			sr.rect(x + 4 + squareSizeX * 2, y, squareSizeX, squareSizeY);
@@ -170,12 +179,9 @@ public class Candy_Bar extends GUI_Super {
 
 			sr.setColor(Color.CYAN);
 			sr.set(ShapeType.Filled);
-
-			sr.circle(iconPosX, iconPosY, 11);
-			sr.triangle(iconPosX, iconPosY, iconPosX - 25, iconPosY + 5,
-					iconPosX - 5, iconPosY + 25);
-			sr.triangle(iconPosX, iconPosY, iconPosX + 25, iconPosY - 5,
-					iconPosX + 5, iconPosY - 25);
+			sr.circle(iconPosX-3, iconPosY-3, 17);
+			sr.circle(iconPosX-8, iconPosY+7, 15);
+			sr.circle(iconPosX+9, iconPosY-7, 15);
 
 			sr.setColor(Color.ORANGE);
 			sr.set(ShapeType.Line);
