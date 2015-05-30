@@ -11,9 +11,10 @@ import java.lang.Math;
  */
 public class SinEster extends Kid {
 	
-	private double vx, vy;		// velocities
+	private float vx, vy;		// velocities
 	private int maxA;			// maximum amplitude of the sine wave
-	private double k = 0.1;		// the wavenumber of the sine wave
+	private float k = 0.1f;		// the wavenumber of the sine wave
+	private float dTransp;		// dTransp/dt
 	
 	public SinEster (float x, float y) {
 		super(x, y);
@@ -34,9 +35,11 @@ public class SinEster extends Kid {
 	public void update(double dt) {
 		// y(x) = A * sin(k*x)
 		int A = randGen.nextInt(maxA);
-		vy = A*k*Math.cos(k*(rightBoundary - xPos));	// vy = dy/dx (old x)
+		vy = (float) (A*k*Math.cos(k*(rightBoundary - xPos)));	// vy = dy/dx (old x)
 		xPos += vx*dt;									// vx = dx/dt
 		yPos += vy*vx*dt;								// dy/dt = dy/dx * dx/dt
+		
+		transparency+=dTransp*dt;
 		
 		if (xPos-radius <= leftBoundary) {
 			expired = true;
@@ -53,7 +56,7 @@ public class SinEster extends Kid {
 			hp = startHP;
 			vx *= 2;
 			inKillerMode = true;
-			visible = false;
+			dTransp = -0.2f;
 			break;
 		default:
 			hp -= damage;	

@@ -19,7 +19,7 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 	protected boolean inKillerMode;
-	protected boolean visible;
+	protected float transparency;
 
 	protected float rHead;				// head radius
 	
@@ -31,7 +31,6 @@ public abstract class Kid extends Entity {
 		ID = generateId();
 		expired = false;
 		inKillerMode = false;
-		visible = true;
 	}
 	
 	@Override
@@ -45,14 +44,6 @@ public abstract class Kid extends Entity {
 	}
 	
 	public abstract String getName();
-	
-	public double getHeadY() {
-		return yPos + radius + rHead;
-	}
-	
-	public float getHeadRadius() {
-		return rHead;
-	}
 	
 	@Override
 	public float getRadius() {
@@ -78,12 +69,12 @@ public abstract class Kid extends Entity {
 		return expired;
 	}
 	
-	public boolean isKillerKid() {
+	public boolean enraged() {
 		return inKillerMode;
 	}
 	
-	public boolean isVisible() {
-		return visible;
+	public float getTransparancy() {
+		return transparency;
 	}
 
 }

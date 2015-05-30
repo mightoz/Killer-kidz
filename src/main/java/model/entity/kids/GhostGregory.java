@@ -7,14 +7,14 @@ package model.entity.kids;
  * @author  MarieKlevedal
  * @version 1.0
  */
-public class RollingRascal extends Kid {
+public class GhostGregory extends Kid {
 
 	private static final double DR_DT = 1.8;		// dr/dt - the derivative of radius per second
 	private double vx;								// velocity
 	private static final double AX = 5;				// acceleration
 	private static final double DHP_DT = 2;			// dHP/dt - the derivative of hp per second
 	
-	public RollingRascal(float x, float y) {
+	public GhostGregory(float x, float y) {
 		super(x, y);
 		rHead = 2;
 		radius = 5;
