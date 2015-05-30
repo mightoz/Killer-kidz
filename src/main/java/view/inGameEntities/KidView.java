@@ -48,18 +48,16 @@ public class KidView extends VisibleObjects{
 			switch (kid.getName()) {
 			
 			case "Sam":
-				sr.setColor(Color.PURPLE);
-				sr.circle(x, y, r);
-				
 				sr.set(ShapeType.Line);
 				sr.setColor(Color.WHITE);
-				//sr.circle(x, y, r);
+				sr.circle(x, y, r);
+				
+				sr.set(ShapeType.Filled);
+				sr.setColor(Color.PURPLE);
 				break;
 				
 			case "Ester":
-				sr.set(ShapeType.Filled);
 				sr.setColor(0, 1, 0, kid.getHpRatio());
-				//sr.circle(x, y, r);
 				break;
 				
 			case "Doriz":
@@ -75,6 +73,13 @@ public class KidView extends VisibleObjects{
 				break;
 				
 			}
+			
+			sr.circle(x, y, r);
+			
+			// Angry eyes
+			sr.setColor(Color.BLACK);
+			sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
+			sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
 			
 		} else {
 			switch (kid.getName()) {
@@ -98,18 +103,18 @@ public class KidView extends VisibleObjects{
 				System.out.println("Not a valid child");
 			}
 			
-			//sr.set(ShapeType.Filled);
-			//sr.circle(x, y, r);
+			sr.set(ShapeType.Filled);
+			sr.circle(x, y, r);
+			
+			// Normal eyes
+			sr.setColor(Color.BLACK);
+			sr.circle(x+0.4f*r, y+0.4f*r, r/4);		// right
+			sr.circle(x-0.4f*r, y+0.4f*r, r/4);		// left
+			
 		}
 		
-		sr.set(ShapeType.Filled);
-		sr.circle(x, y, r);
-		
-		// Draw face
-		sr.setColor(Color.BLACK);
-		sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
-		sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
-		sr.circle(x, y+r/10-r/2, (float)(0.45*r));						// mouth
+		// Mouth
+		sr.circle(x, y+r/10-r/2, (float)(0.45*r));
 		
         sr.end();
         

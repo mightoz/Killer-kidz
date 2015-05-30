@@ -42,6 +42,7 @@ public class SimpleSam extends Kid {
 
 	@Override
 	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
+		System.out.println("ITL: " + immuneTimeLeft);
 		if (immuneTimeLeft <= 0) {
 			inKillerMode = false;
 			
@@ -51,7 +52,7 @@ public class SimpleSam extends Kid {
 				break;
 			case "JellyBean":			// killer instinct triggering candy
 				hp = startHP;
-				immuneTimeLeft = 2;
+				immuneTimeLeft = 1;
 				inKillerMode = true;
 				break;
 			case "HubbaBubba":
