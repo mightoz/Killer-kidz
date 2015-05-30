@@ -6,7 +6,6 @@ package model.entity.candymodels;
 public class Hubbabubba extends Candy {
 
     private boolean expired;
-    private double slowRate;
     private double maxTravelLength;
     private double travelledLength;
 
@@ -61,6 +60,20 @@ public class Hubbabubba extends Candy {
                 radius = 13;
                 break;
         }
+
+        //Fjärde uppgraderingen: Cooldown
+        switch(candyStatus[3]){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+
+
     }
 
 

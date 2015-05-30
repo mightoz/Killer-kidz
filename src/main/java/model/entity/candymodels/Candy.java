@@ -11,6 +11,7 @@ public abstract class Candy extends Entity{
     protected String type;
     protected int damage;
     protected double slowRate;
+    protected int penCapacity;
 
     private final String cId;
 
@@ -40,6 +41,14 @@ public abstract class Candy extends Entity{
     }
     public double getSlowRate(){
         return slowRate;
+    }
+    public int getPenCapacity(){
+        return penCapacity;
+    }
+    public void decPenCapacity(){
+        if(penCapacity > 0){
+            penCapacity--;
+        }
     }
 
 }
