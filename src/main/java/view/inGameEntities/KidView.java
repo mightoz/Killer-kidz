@@ -30,7 +30,7 @@ public class KidView extends VisibleObjects{
 
 	public void render(Entity ent, ShapeRenderer sr) {
 
-		 Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glEnable(GL20.GL_BLEND);
 	    Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 	    
 		Kid kid = (Kid) ent;
@@ -43,30 +43,28 @@ public class KidView extends VisibleObjects{
 		sr.setAutoShapeType(true);
 		
 		// Draw body
-		if (kid.isKillerKid()) {
+		if (kid.enraged()) {
 			
 			switch (kid.getName()) {
 			
 			case "Sam":
-				sr.setColor(Color.PURPLE);
-				sr.circle(x, y, r);
-				
 				sr.set(ShapeType.Line);
 				sr.setColor(Color.WHITE);
 				sr.circle(x, y, r);
+				
+				sr.set(ShapeType.Filled);
+				sr.setColor(Color.PURPLE);
 				break;
 				
 			case "Ester":
-				sr.set(ShapeType.Filled);
-				sr.setColor(0, 1, 0, kid.getHpRatio());
-				sr.circle(x, y, r);
+				sr.setColor(0, 1, 0, kid.getTransparency());
 				break;
 				
 			case "Doriz":
 				sr.setColor(Color.RED);
 				break;
 				
-			case "Gregory":
+			case "Grandalf":
 				sr.setColor(Color.WHITE);
 				break;
 				
@@ -75,6 +73,13 @@ public class KidView extends VisibleObjects{
 				break;
 				
 			}
+			
+			sr.circle(x, y, r);
+			
+			// Angry eyes
+			sr.setColor(0, 0, 0, kid.getTransparency());
+			sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
+			sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
 			
 		} else {
 			switch (kid.getName()) {
@@ -90,8 +95,8 @@ public class KidView extends VisibleObjects{
 				sr.setColor(Color.ORANGE);
 				break;
 				
-			case "Rascal":
-				sr.setColor(Color.WHITE);
+			case "Grandalf":
+				sr.setColor(Color.GRAY);
 				break;
 				
 			default:
@@ -100,16 +105,21 @@ public class KidView extends VisibleObjects{
 			
 			sr.set(ShapeType.Filled);
 			sr.circle(x, y, r);
-		}
-			// Draw face
+			
+			// Normal eyes
 			sr.setColor(Color.BLACK);
-			sr.triangle(x+r/8, y+r/8, x+2*r/3, y+r/8, x+2*r/3, y+2*r/3);	// right eye
-			sr.triangle(x-r/8, y+r/8, x-2*r/3, y+r/8, x-2*r/3, y+2*r/3);	// left eye
-			sr.circle(x, y+r/10-r/2, (float)(0.45*r));						// mouth
-    		
-            sr.end();
-            
-            Gdx.gl.glDisable(GL20.GL_BLEND);
+			sr.circle(x+0.4f*r, y+0.4f*r, r/4);		// right
+			sr.circle(x-0.4f*r, y+0.4f*r, r/4);		// left
+			
+		}
+		
+		// Mouth
+		sr.setColor(0, 0, 0, kid.getTransparency());
+		sr.circle(x, y+r/10-r/2, (float)(0.45*r));
+		
+        sr.end();
+        
+        Gdx.gl.glDisable(GL20.GL_BLEND);
 
 		// TODO - description at begining of class.
 //		sr.setColor(0, 0, 0, 1);

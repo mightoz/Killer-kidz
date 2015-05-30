@@ -11,18 +11,21 @@ import java.lang.Math;
  */
 public class SinEster extends Kid {
 	
-	private double vx, vy;		// velocities
-	private int maxA;			// maximum amplitude of the sine wave
-	private double k = 0.1;		// the wavenumber of the sine wave
+	private float vx, vy;			// velocities
+	private final int MAX_A;		// maximum amplitude of the sine wave
+	private final float K = 0.02f;	// the wavenumber of the sine wave
+	private float dTransp = 0.9f;   // dTransp/dt
+	private double invTimeLeft;		// invisibility time left
 	
 	public SinEster (float x, float y) {
 		super(x, y);
-		rHead = 5;
 		radius = 10;
 		
-		vx = -50;
-		maxA = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
-
+		vx = -40;
+		MAX_A = (int)Math.min(Math.min(upperBoundary - yPos, yPos - lowerBoundary), 0);
+		
+		invTimeLeft = 0;
+		
 		startHP = 200;
 		hp = startHP;
 	}
@@ -32,29 +35,40 @@ public class SinEster extends Kid {
 
 	@Override
 	public void update(double dt) {
-		// y(x) = A * sin(k*x)
-		int A = randGen.nextInt(maxA);
-		vy = A*k*Math.cos(k*(rightBoundary - xPos));	// vy = dy/dx (old x)
-		xPos += vx*dt;									// vx = dx/dt
-		yPos += vy*vx*dt;								// dy/dt = dy/dx * dx/dt
+		// y(x) = A * sin(K*x)
+		int A = randGen.nextInt(MAX_A);	//************************************************ERROR************************
+		vy = (float) (A*K*Math.cos(K*(rightBoundary - xPos)));	// vy = dy/dx (old x)
+		xPos += vx*dt;											// vx = dx/dt
+		yPos += vy*vx*dt;										// dy/dt = dy/dx * dx/dt
 		
-		if (xPos-radius <= leftBoundary) {
+		if (invTimeLeft > 0 && transparency > 0) {
+			transparency -= dTransp*dt;
+			invTimeLeft -= dt;
+		}
+		else if (transparency < 1) {
+			transparency += dTransp*dt;
+		}
+		else {
+			inKillerMode = false; 
+		}
+		
+		// Entered toy store
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
 			inStore = true;
 		}
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage) {
+	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
 		switch (candyType) {
-		case "candy2":			// favourite candy
+		case "Hubbabubba":			// favourite candy
 			hp = 0;
 			break;
-		case "candy3":			// killer instinct triggering candy
+		case "JellyBean":				// killer instinct triggering candy
 			hp = startHP;
-			vx *= 2;
 			inKillerMode = true;
-			visible = false;
+			invTimeLeft = 1.5;
 			break;
 		default:
 			hp -= damage;	

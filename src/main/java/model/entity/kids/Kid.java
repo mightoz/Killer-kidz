@@ -19,10 +19,11 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 	protected boolean inKillerMode;
-	protected boolean visible;
+
+	protected float transparency;
+
 	protected boolean inStore;
 
-	protected float rHead;				// head radius
 	
 	protected static final Random randGen = new Random();
 	
@@ -32,7 +33,8 @@ public abstract class Kid extends Entity {
 		ID = generateId();
 		expired = false;
 		inKillerMode = false;
-		visible = true;
+
+		transparency = 1;
 		inStore = false;
 	}
 	
@@ -48,14 +50,6 @@ public abstract class Kid extends Entity {
 	
 	public abstract String getName();
 	
-	public double getHeadY() {
-		return yPos + radius + rHead;
-	}
-	
-	public float getHeadRadius() {
-		return rHead;
-	}
-	
 	@Override
 	public float getRadius() {
 		return radius;
@@ -69,7 +63,7 @@ public abstract class Kid extends Entity {
 	@Override
 	public abstract void update(double dt);
 	
-	public abstract void hitByCandy(String candyType, int damage);
+	public abstract void hitByCandy(String candyType, int damage/*, double slowRate*/);
 	
 	public boolean enteredStore() {
 		return inStore;
@@ -80,12 +74,12 @@ public abstract class Kid extends Entity {
 		return expired;
 	}
 	
-	public boolean isKillerKid() {
+	public boolean enraged() {
 		return inKillerMode;
 	}
 	
-	public boolean isVisible() {
-		return visible;
+	public float getTransparency() {
+		return transparency;
 	}
 
 }

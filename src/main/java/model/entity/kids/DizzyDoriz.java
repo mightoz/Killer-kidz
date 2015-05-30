@@ -11,11 +11,14 @@ public class DizzyDoriz extends Kid {
 	private double vx, vy;		// velocities
 	private int updatesLeft;	// remaining updates before next change of velocity
 	
+	private double stopTimeLeft;
+	
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
-		rHead = 5;
 		radius = 10;
 
+		stopTimeLeft = 0;
+		
 		startHP = 200;
 		hp = startHP;
 	}
@@ -25,6 +28,24 @@ public class DizzyDoriz extends Kid {
 
 	@Override
 	public void update(double dt) {
+		
+		if (inKillerMode) {
+			if (stopTimeLeft > 0) {
+				stopTimeLeft -= dt;
+				return;
+			}
+			else {
+				xPos -= 200*dt;
+				
+				// Entered toy store
+				if (xPos+radius <= leftBoundary) {
+					expired = true;
+				}
+				return;
+			}
+			
+		}
+		
 		// Velocity is changed every 200th update
 		updatesLeft %= 200;
 		if (updatesLeft == 0) {
@@ -49,23 +70,27 @@ public class DizzyDoriz extends Kid {
 		}
 		updatesLeft--;
 		
-		if (xPos - radius <= leftBoundary) {
+		// Entered toy store
+		if (xPos+radius <= leftBoundary) {
 			expired = true;
 			inStore = true;
 		}
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage) {
+	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
 		switch (candyType) {
 		case "candy3":			// favourite candy
 			hp = 0;
 			break;
-		case "candy4":			// killer instinct triggering candy
+		case "JellyBean":		// killer instinct triggering candy
 			hp = startHP;
-			// TODO: stop for a second, then race
 			inKillerMode = true;
+			stopTimeLeft = 2;
 			break;
+		case "Hubbabubba":
+			hp -= damage;
+			//vx *= (1-slowRate);	// slows down the kid
 		default:
 			hp -= 100;	
 		}
