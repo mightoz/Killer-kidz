@@ -46,7 +46,7 @@ public class SimpleSam extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
+	public void hitByCandy(String candyType, int damage, double slowRate) {
 		if (immuneTimeLeft <= 0) {
 			inKillerMode = false;
 			
@@ -61,7 +61,7 @@ public class SimpleSam extends Kid {
 				break;
 			case "Hubbabubba":
 				hp -= damage;
-				//vx *= (1-slowRate);	// slows down the kid
+				vx *= (1-slowRate);	// slows down the kid
 			default:
 				hp -= damage;	
 			}

@@ -157,7 +157,7 @@ public class Model {
                             float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
                             if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
                                 int kills = level.getKills();
-                                kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage());
+                                kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage(), candyList.get(i).getSlowRate());
                                 if (level.getKills() > kills && j > 0) j--;
                                 candyList.remove(candyList.get(i));
                                 if (i > 0) i--;

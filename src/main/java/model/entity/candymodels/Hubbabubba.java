@@ -81,10 +81,6 @@ public class Hubbabubba extends Candy {
         return expired;
     }
 
-    public double getSlowRate(){
-        return slowRate;
-    }
-
     public int getDamage(){
         return damage;
     }
