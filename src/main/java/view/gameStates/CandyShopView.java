@@ -43,7 +43,6 @@ public class CandyShopView implements Screen {
 
 	private String title;
 	private String[] colourGuide = new String[3];
-	private String[] propertyNames = new String[4];		// Remove if different candies have different properties
 	
 	@SuppressWarnings("deprecation")
 	public CandyShopView (OrthographicCamera cam, Model model, float width, float height) {
@@ -74,10 +73,6 @@ public class CandyShopView implements Screen {
 		colourGuide[0] = "You already have this upgrade";
 		colourGuide[1] = "You can buy this upgrade";
 		colourGuide[2] = "You can't buy this upgrade";
-		propertyNames[0] = "Speed";						// Remove if different candies have different properties
-		propertyNames[1] = "Damage";
-		propertyNames[2] = "Spread";
-		propertyNames[3] = "Penetration";
 		
 	}
 	
@@ -107,7 +102,7 @@ public class CandyShopView implements Screen {
 		// Draw candy property names
 		String prop;
 		for (int col = 1; col <= 4; col++) {
-			prop = propertyNames[col-1];
+			prop = "Property " + col; 	//cs.getPropName(col);										// TODO
 			layout.setText(propertyFont, prop);
 			layoutWidth = layout.width;
 			if (currentRow == 0 && currentCol == col) { propertyFont.setColor(marker); }
@@ -116,10 +111,6 @@ public class CandyShopView implements Screen {
 		}
 		
 		// Draw candy upgrade statuses
-//		String[][] statuses = {{"have", "have", "have", "not"}, 								// Remove later
-//							   {"have", "buy", "buy", "not"},
-//							   {"buy", "not", "not", "not"},
-//							   {"not", "not", "not", "not"}};
 		String status;
 		String upgradeName;
 		for (int row = 1; row <= 4; row++) {
@@ -128,7 +119,7 @@ public class CandyShopView implements Screen {
 					propertyFont.setColor(marker); 
 				}
 				else {
-					status = cs.getStatus(row, col);							// TODO
+					status = cs.getStatus(row, col);
 					switch (status) {
 					case "have": 
 						propertyFont.setColor(Color.GREEN);
@@ -143,7 +134,7 @@ public class CandyShopView implements Screen {
 						System.out.println("Invalid status");
 					}
 				}
-				upgradeName = row + "";		// cs.getUpgradeName(row, col);								// TODO
+				upgradeName = row + "";
 				layout.setText(propertyFont, upgradeName);
 				layoutWidth = layout.width;
 				propertyFont.draw(batch, upgradeName, 
@@ -185,7 +176,7 @@ public class CandyShopView implements Screen {
 		}
 		
 		// Draw money status
-		moneyFont.draw(batch, "$: " + cs.getMoney() , width-120, height-70);			// TODO
+		moneyFont.draw(batch, "$: " + cs.getMoney() , width-120, height-70);
 		
 		// Draw arrows around player
 		playerFont.setColor(Color.WHITE);
