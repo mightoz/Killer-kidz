@@ -1,5 +1,8 @@
 package model.entity.candymodels;
 
+import java.util.Random;
+import com.badlogic.gdx.graphics.Color;
+
 
 /**
  * Created by Oscar on 28/04/15.
@@ -9,6 +12,15 @@ public class JellyBean extends Candy {
     private float travelledLength;
     private float maxTravelRange;
     private boolean expired;
+    
+    // used for beans to 
+    private Color color;
+    private final Color[] colorPallet = new Color[] 
+			{ 
+			Color.RED,    Color.GREEN,  Color.BLUE, Color.YELLOW,
+			Color.ORANGE, Color.CYAN,   Color.MAGENTA, 
+			Color.WHITE,  Color.PURPLE, Color.BLACK 
+			};
 
     public JellyBean(float x, float y, int[] candyStatus) {
         super(x,y);
@@ -45,7 +57,9 @@ public class JellyBean extends Candy {
                 maxTravelRange = 600;
                 break;
         }
-
+		
+		Random rnd = new Random();
+		color = colorPallet[rnd.nextInt(10)];
     }
 
     /**
@@ -78,5 +92,7 @@ public class JellyBean extends Candy {
             expired = true;
         }
     }
+    
+    public Color getColor() { return color; }
 
 }

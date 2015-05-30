@@ -2,14 +2,13 @@ package controller;
 
 import com.badlogic.gdx.Input.Keys;
 
-import core.GameManager;
 import model.Model;
 
 class CandyShopController {
 	
 	//private CandyShop cs;
 	private static final int[] LURD = {Keys.LEFT, Keys.UP, Keys.RIGHT, Keys.DOWN};
-	private boolean finished;		// will be set true when user presses StartNextLevel
+	private boolean finished;
 
 	CandyShopController(Model model) {
 		//cs = model.getCandyShop();
@@ -26,7 +25,7 @@ class CandyShopController {
 		}
 			
 		if (keycode == Keys.ENTER) {
-			finished = true; // cs.getCurrentRow() == 5;
+			finished = true; // cs.getCurrentRow() == 6;
 			if (!finished) {
 				//cs.choose();
 			}

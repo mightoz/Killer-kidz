@@ -2,6 +2,7 @@ package view.gameStates;
 
 
 import model.Model;
+import model.CandyShop;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -20,7 +21,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  */
 public class CandyShopView implements Screen {
 
-	//private CandyShop cs;																			// TODO
+	private CandyShop cs;
 	
 	private OrthographicCamera cam;
 	private float width;
@@ -33,6 +34,8 @@ public class CandyShopView implements Screen {
 	private BitmapFont moneyFont;
 	private BitmapFont candyFont;
 	private BitmapFont propertyFont;
+	private BitmapFont playerFont;
+	private BitmapFont finishFont;
 	private BitmapFont infoFont;
 	
 	private Color[] infoColours = new Color[3];
@@ -55,7 +58,10 @@ public class CandyShopView implements Screen {
 		moneyFont = gen.generateFont(25);
 		candyFont = gen.generateFont(30);
 		propertyFont = gen.generateFont(25);
+		playerFont = gen.generateFont(25);
+		finishFont = gen.generateFont(25);
 		infoFont = gen.generateFont(15);
+		
 		titleFont.setColor(Color.PURPLE);
 		moneyFont.setColor(Color.YELLOW);
 		
@@ -137,13 +143,21 @@ public class CandyShopView implements Screen {
 			}
 		}
 		
+		// Draw Player name
+		String player = "Player 1";	// cs.getPlayerName();											// TODO
+		layout.setText(candyFont, player);
+		layoutWidth = layout.width;
+		if (currentRow == 5) { playerFont.setColor(marker); }
+		else { playerFont.setColor(Color.WHITE); }
+		playerFont.draw(batch, player, (width - layoutWidth)/2, height-330);
+		
 		// Draw Start Next Level
 		String text = "Start Next Level";
 		layout.setText(candyFont, text);
 		layoutWidth = layout.width;
-		if (currentRow == 5) { candyFont.setColor(marker); }
-		else { candyFont.setColor(Color.WHITE); }
-		candyFont.draw(batch, text, (width - layoutWidth)/2, height-350);
+		if (currentRow == 6) { finishFont.setColor(marker); }
+		else { finishFont.setColor(Color.WHITE); }
+		finishFont.draw(batch, text, (width - layoutWidth)/2, height-370);
 		
 		batch.end();
 	}
@@ -177,6 +191,11 @@ public class CandyShopView implements Screen {
 		candyFont.setColor(Color.WHITE);
 		candyFont.draw(batch, "<", width/2 - 80, height-100);
 		candyFont.draw(batch, ">", width/2 + 80, height-100);
+		
+		// Draw arrows around candy
+		propertyFont.setColor(Color.WHITE);
+		propertyFont.draw(batch, "<", width/2 - 70, height-330);
+		propertyFont.draw(batch, ">", width/2 + 70, height-330);
 		
 		// Draw info
 		String info = "Welcome to the candy shop! Move around with arrow keys and press enter while marking an \n"

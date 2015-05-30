@@ -40,6 +40,8 @@ public abstract class CandyFactory {
                 }
                 break;
             case 1:
+                int [] hubbaStatus = candyData.get(1);
+                candyList.add(new Hubbabubba(xPos, yPos, hubbaStatus));
                 break;
             case 2:
                 break;

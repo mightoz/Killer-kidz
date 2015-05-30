@@ -165,6 +165,9 @@ public class Model {
                             }
                         }
                     }
+                }else{
+                    candyList.remove(candyList.get(i));
+                    if(i > 0) i--;
                 }
             }
         }

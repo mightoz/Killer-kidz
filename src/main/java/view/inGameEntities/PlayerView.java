@@ -19,7 +19,7 @@ public class PlayerView extends VisibleObjects {
         x = player.getX();
         y = player.getY();
 
-        sr.setColor(1, 1, 1, 1);
+        sr.setColor(1, 1, 1, 1f);
         
         sr.begin(ShapeType.Filled);
         
@@ -27,4 +27,5 @@ public class PlayerView extends VisibleObjects {
 
         sr.end();
     }
+
 }
