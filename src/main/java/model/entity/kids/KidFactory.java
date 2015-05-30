@@ -13,10 +13,10 @@ public abstract class KidFactory {
 		switch(type) {
 		case SIMPLE_SAM:
 			return new SimpleSam(x, y);
-		case SINESTER:
-			return new SinEster(x, y);
 		case DIZZY_DORIZ:
 			return new DizzyDoriz(x, y);
+		case SINESTER:
+			return new SinEster(x, y);
 		case GRANDALF_THE_GREY:
 			return new GrandalfTheGrey(x, y);
 		}
