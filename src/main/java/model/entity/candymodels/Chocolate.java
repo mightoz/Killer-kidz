@@ -17,16 +17,16 @@ public class Chocolate extends Candy {
 
         switch(candyStatus[0]){
             case 0:
-                damage = 1;
+                damage = 20;
                 break;
             case 1:
-                damage = 2;
+                damage = 40;
                 break;
             case 2:
-                damage = 3;
+                damage = 70;
                 break;
             case 3:
-                damage = 4;
+                damage = 90;
                 break;
         }
 
@@ -48,12 +48,19 @@ public class Chocolate extends Candy {
     }
 
     @Override
+    public void update(double deltaTime) {
+        double delta = deltaTime*150;
+        if(travelledLength < maxTravelLength){
+            xPos += 3 * delta;
+            travelledLength += 3 * delta;
+        }else{
+            expired = true;
+        }
+    }
+
+    @Override
     public boolean isExpired() {
         return expired;
     }
 
-    @Override
-    public void update(double delta) {
-
-    }
 }
