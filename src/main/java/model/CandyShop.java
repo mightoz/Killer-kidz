@@ -138,4 +138,31 @@ public class CandyShop {
         return player.getMoney();
     }
 
+    public void buyUpgrade() {
+        ArrayList<int[]> candyData = player.getCandyData();
+        int[] data;
+        switch (selectedCandyInShop) {
+            case "Jellybean":
+                data = candyData.get(0);
+                data[currentCol-1]=(currentRow-1);
+                player.upgradeCandy(0,data);
+                player.spendMoney((currentRow-1)*1000);
+                break;
+            case "Hubbabubba":
+                data = candyData.get(1);
+                data[currentCol-1]=(currentRow-1);
+                player.upgradeCandy(1,data);
+                player.spendMoney((currentRow-1)*1000);
+                break;
+            case "Chocolate":
+                data = candyData.get(2);
+                data[currentCol-1]=(currentRow-1);
+                player.upgradeCandy(2,data);
+                player.spendMoney((currentRow-1)*1000);
+                break;
+            default:
+                throw new IllegalArgumentException("No candy selected");
+        }
+    }
+
 }

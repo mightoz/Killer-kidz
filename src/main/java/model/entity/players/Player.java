@@ -214,4 +214,8 @@ public class Player extends Entity {
     public int getMoney(){
         return money;
     }
+
+    public void spendMoney(int cost){
+        money -= cost;
+    }
 }
