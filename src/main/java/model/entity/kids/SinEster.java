@@ -26,8 +26,8 @@ public class SinEster extends Kid {
 		
 		invTimeLeft = 0;
 		
-		startHP = 200;
-		hp = startHP;
+		maxHP = 200;
+		hp = maxHP;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class SinEster extends Kid {
 			hp = 0;
 			break;
 		case "JellyBean":				// killer instinct triggering candy
-			hp = startHP;
+			hp = maxHP;
 			inKillerMode = true;
 			invTimeLeft = 1.5;
 			break;
