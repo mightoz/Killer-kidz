@@ -134,6 +134,10 @@ public class CandyShop {
         }
     }
 
+    public String getStatus(){
+        return getStatus(currentRow, currentCol);
+    }
+
     public int getMoney() {
         return player.getMoney();
     }

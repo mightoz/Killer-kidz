@@ -114,6 +114,9 @@ public class Model {
 
     }
 
+    public int getCurrentLevel(){
+        return currentLevel;
+    }
 
     /**
      * Starts a new level
@@ -123,12 +126,15 @@ public class Model {
     public void startLevel(int levelNbr) {
         switch (levelNbr) {
             case 1:
+                currentLevel=1;
                 level = new LevelOne();
                 break;
             case 2:
+                currentLevel=2;
                 level = new LevelTwo();
                 break;
             case 3:
+                currentLevel=3;
                 level = new LevelThree();
                 break;
         }
@@ -219,7 +225,7 @@ public class Model {
     }
 
     public String getSelectedCandy(){
-        return CandyShop.getInstance().getSelectedCandyInShop();
+        return getCandyShop().getSelectedCandyInShop();
     }
 
     /**
@@ -300,5 +306,12 @@ public class Model {
                 break;
         }
     }
+
+    public void choose(){
+        if(getCandyShop().getStatus().equals("buy")){
+            getCandyShop().buyUpgrade();
+        }
+    }
+
 
 }
