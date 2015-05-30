@@ -24,7 +24,7 @@ public class Player extends Entity {
     private static int pIdGenerator;
     private final String pId;
     private ArrayList<Candy> activeCandies;
-
+    private int money;
 
     public Player(float x, float y, String name){
         super(x,y);
@@ -51,6 +51,7 @@ public class Player extends Entity {
         selectedCandy = 0;
 
         radius = 10;
+        money = 0;
 
     }
 
@@ -208,5 +209,9 @@ public class Player extends Entity {
 
     public String getId(){
         return pId;
+    }
+
+    public int getMoney(){
+        return money;
     }
 }

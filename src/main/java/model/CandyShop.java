@@ -100,4 +100,12 @@ public class CandyShop {
         return selectedCandyInShop;
     }
 
+    public String getStatus(){
+        return "0";
+    }
+
+    public int getMoney(){
+        return player.getMoney();
+    }
+
 }
