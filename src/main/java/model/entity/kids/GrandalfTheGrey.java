@@ -7,16 +7,15 @@ package model.entity.kids;
  * @author  MarieKlevedal
  * @version 1.0
  */
-public class GhostGregory extends Kid {
+public class GrandalfTheGrey extends Kid {
 
 	private static final double DR_DT = 1.8;		// dr/dt - the derivative of radius per second
 	private double vx;								// velocity
 	private static final double AX = 5;				// acceleration
 	private static final double DHP_DT = 2;			// dHP/dt - the derivative of hp per second
 	
-	public GhostGregory(float x, float y) {
+	public GrandalfTheGrey(float x, float y) {
 		super(x, y);
-		rHead = 2;
 		radius = 5;
 		
 		vx = -80;
@@ -26,7 +25,7 @@ public class GhostGregory extends Kid {
 	}
 	
 	@Override
-	public String getName() { return "Rascal";}
+	public String getName() { return "Grandalf";}
 
 	@Override
 	public void update(double dt) {
@@ -42,7 +41,7 @@ public class GhostGregory extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage) {
+	public void hitByCandy(String candyType, int damage/*, double SlowRate*/) {
 		switch (candyType) {
 		case "candy4":		// favourite candy
 			if (inKillerMode) { 

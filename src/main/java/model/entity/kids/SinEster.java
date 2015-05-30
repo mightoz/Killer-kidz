@@ -46,7 +46,7 @@ public class SinEster extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage) {
+	public void hitByCandy(String candyType, int damage/*, double slowRate*/) {
 		switch (candyType) {
 		case "candy2":			// favourite candy
 			hp = 0;
