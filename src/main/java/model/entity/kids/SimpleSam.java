@@ -51,10 +51,10 @@ public class SimpleSam extends Kid {
 			inKillerMode = false;
 			
 			switch (candyType) {
-			case "aaa":			// favourite candy
+			case "JellyBean":			// favourite candy
 				hp = 0;
 				break;
-			case "JellyBean":				// killer instinct triggering candy
+			case "Chocolate":			// killer instinct triggering candy
 				hp = maxHP;
 				immuneTimeLeft = 1;
 				inKillerMode = true;
