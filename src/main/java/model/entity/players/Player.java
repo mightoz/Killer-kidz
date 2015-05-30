@@ -21,7 +21,7 @@ public class Player extends Entity {
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
     private boolean downKeyPressed;
-    private int selectedCandy = 1;
+    private int selectedCandy;
     private static int pIdGenerator;
     private final String pId;
     private int money;
@@ -77,6 +77,10 @@ public class Player extends Entity {
 
     public ArrayList getCandyData(){
         return candyData;
+    }
+
+    public void setSelectedCandy(int candy){
+        selectedCandy = candy;
     }
 
     public void throwCandy(){

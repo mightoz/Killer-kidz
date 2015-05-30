@@ -90,8 +90,14 @@ public class Model {
         }
     }
 
-    public void changeCandy(int player, int candy) {
-        System.out.println("Player" + player + " changed candy to " + candy);
+    public void changeCandy(int playerNum, int candy) {
+        System.out.println("Player" + playerNum + " changed candy to " + candy);
+        for(Player player: players) {
+            if(player.getId().substring(1,2).equals(Integer.toString(playerNum))) {
+                player.setSelectedCandy(candy - 1);
+                break;
+            }
+        }
     }
 
     /**
