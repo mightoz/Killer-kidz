@@ -1,0 +1,41 @@
+Meeting Agenda
+
+  Date: 2015-05-30
+  Facilitator: Matilda
+  Participants: Everyone
+
+1. Objectives 
+NA.
+2. Reports 
+
+Matilda has made the tests work with Maven, fixed bugs in levels and added a new candy
+Oscar has removed concurrent modification errors, started working on the candy shop model, 
+added multiplayer compability in model
+Kim has implemented the candybar, made candy pics, cleared bugs discovered by findbugs.
+Marie has made the view and controller for the candyshop, finished the kids movement patterns, 
+changed kid view, started testing the kids classes.
+
+3. Discussion items 
+Need getters for currentLevel and money
+Test coverage
+New candy
+Candyshop
+
+4. Outcomes and assignments
+Outcomes:
+Kids shouldn’t dissappear until when they have walked into the shop completely.
+We will add an acceleration as parameter to hitByCandy()
+Need to fix jacoco
+
+Assignments: 
+Oscar: Finish candy shop and make it work. Add background pictures.
+Kim: Make candies pretty, make jacoco work correctly
+Marie: Add some characteristics to kids, continue writing tests
+Matilda: Continue working on tests, add a candy
+We will work together on completing the RAD and the SDD.
+
+5. Wrap up
+Unresolved issues for next meeting: N.A.
+
+This was the last meeting.
+

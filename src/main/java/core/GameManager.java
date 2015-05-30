@@ -49,7 +49,6 @@ public class GameManager extends Game {
 	
 	@Override
 	public void create() {
-		
 		/*
 		 * default cam look at origo with a box: (-1, -1) to (1, 1) so we make
 		 * it our resolution-size with parameters, and then move camera to
