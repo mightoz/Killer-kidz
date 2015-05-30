@@ -1,7 +1,6 @@
 package model.entity.players;
 
 
-import model.Model;
 import model.entity.candymodels.Candy;
 import model.entity.candymodels.CandyFactory;
 import model.entity.Entity;

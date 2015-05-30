@@ -214,13 +214,48 @@ public class Model {
         return CandyShop.getInstance();
     }
 
-    public int getSelectedCandy(Player player){
-        return player.getSelectedCandy();
+    public String getSelectedCandy(){
+        return CandyShop.getInstance().getSelectedCandyInShop();
     }
 
-    public void changePlayer(String dir){
+    /**
+     * Moves marker in store. If the marker is targetting player, and left or right is pressed, switches to next/previous
+     * player if that player exists.
+     * @param step what direction marker should move.
+     */
+    public void moveMarkerInStore(int step){
+        switch(step) {
+            case 0:
+                if(CandyShop.getInstance().getCurrentRow() == -2){
+                    for(int i = 0; i < players.size(); i++){
+                        if(players.get(i)==CandyShop.getInstance().getBrowsingPlayer() && players.get(i-1)!=null)
+                            CandyShop.getInstance().changePlayer(players.get(i-1));
+                    }
+                }else if(CandyShop.getInstance().getCurrentCol() > 1) {
+                    CandyShop.getInstance().move(step);
+                }
+                break;
+            case 1:
+                if (CandyShop.getInstance().getCurrentRow() > -2)
+                    CandyShop.getInstance().move(step);
+                break;
+            case 2:
+                if(CandyShop.getInstance().getCurrentRow() == -2) {
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i + 1) != null)
+                            CandyShop.getInstance().changePlayer(players.get(i + 1));
+                    }
+                }else if (CandyShop.getInstance().getCurrentCol() < 4) {
+                    CandyShop.getInstance().move(step);
+                }
+                break;
+            case 3:
+                if (CandyShop.getInstance().getCurrentRow() < 5)
+                    CandyShop.getInstance().move(step);
 
+                break;
+
+        }
     }
-
 
 }

@@ -43,8 +43,14 @@ public class CandyShop {
 
     private Player player;
 
-	private CandyShop(){
+    private int currentRow;
+    private int currentCol;
+    private String selectedCandyInShop;
 
+	private CandyShop(){
+        currentRow = 1;
+        currentCol = 1;
+        selectedCandyInShop = "Jellybean";
     }
     public void changePlayer(Player p){
         player = p;
@@ -60,5 +66,38 @@ public class CandyShop {
         return player;
     }
 
+    public void move(int step){
+        switch(step) {
+            case 0:
+                if (currentCol > 1)
+                    currentCol--;
+                break;
+            case 1:
+                if (currentRow > -2)
+                    currentRow--;
+                break;
+            case 2:
+                if (currentCol < 4)
+                    currentCol++;
+                break;
+            case 3:
+                if (currentRow < 5)
+                    currentRow++;
+                break;
+
+        }
+    }
+
+    public int getCurrentRow(){
+        return currentRow;
+    }
+
+    public int getCurrentCol(){
+        return currentCol;
+    }
+
+    public String getSelectedCandyInShop(){
+        return selectedCandyInShop;
+    }
 
 }
