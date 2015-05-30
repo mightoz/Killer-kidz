@@ -1,7 +1,6 @@
 package model.entity.players;
 
 
-import model.Model;
 import model.entity.candymodels.Candy;
 import model.entity.candymodels.CandyFactory;
 import model.entity.Entity;
@@ -16,7 +15,8 @@ public class Player extends Entity {
 
 
     private String name;
-    private ArrayList candyData;
+    private ArrayList<int[]> candyData;
+    private ArrayList<Candy> activeCandies;
     private boolean leftKeyPressed;
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
@@ -24,8 +24,7 @@ public class Player extends Entity {
     private int selectedCandy = 1;
     private static int pIdGenerator;
     private final String pId;
-    private ArrayList<Candy> activeCandies;
-
+    private int money;
 
     public Player(float x, float y, String name){
         super(x,y);
@@ -36,14 +35,14 @@ public class Player extends Entity {
         yPos = y;
         this.name = name;
 
-        candyData = new ArrayList<int[]>();
+        candyData = new ArrayList();
         int[] startCandy = new int[4];
         for(int i = 0; i < 4; i++){
             startCandy[i] = 0;
         }
         candyData.add(0,startCandy);
 
-        activeCandies = new ArrayList<>();
+        activeCandies = new ArrayList();
 
         leftKeyPressed = false;
         upKeyPressed = false;
@@ -52,6 +51,7 @@ public class Player extends Entity {
         selectedCandy = 0;
 
         radius = 10;
+        money = 0;
 
     }
 
@@ -192,6 +192,8 @@ public class Player extends Entity {
 
     @Override
     public String generateId() {
+
+        if(pIdGenerator==0)pIdGenerator = 1;
         int tmp = pIdGenerator;
         pIdGenerator++;
         return "p"+tmp;
@@ -207,5 +209,13 @@ public class Player extends Entity {
 
     public String getId(){
         return pId;
+    }
+
+    public int getMoney(){
+        return money;
+    }
+
+    public void spendMoney(int cost){
+        money -= cost;
     }
 }
