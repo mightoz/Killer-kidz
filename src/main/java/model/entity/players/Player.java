@@ -15,7 +15,8 @@ public class Player extends Entity {
 
 
     private String name;
-    private ArrayList candyData;
+    private ArrayList<int[]> candyData;
+    private ArrayList<Candy> activeCandies;
     private boolean leftKeyPressed;
     private boolean upKeyPressed;
     private boolean rightKeyPressed;
@@ -23,7 +24,6 @@ public class Player extends Entity {
     private int selectedCandy = 1;
     private static int pIdGenerator;
     private final String pId;
-    private ArrayList<Candy> activeCandies;
     private int money;
 
     public Player(float x, float y, String name){
@@ -35,14 +35,14 @@ public class Player extends Entity {
         yPos = y;
         this.name = name;
 
-        candyData = new ArrayList<int[]>();
+        candyData = new ArrayList();
         int[] startCandy = new int[4];
         for(int i = 0; i < 4; i++){
             startCandy[i] = 0;
         }
         candyData.add(0,startCandy);
 
-        activeCandies = new ArrayList<>();
+        activeCandies = new ArrayList();
 
         leftKeyPressed = false;
         upKeyPressed = false;

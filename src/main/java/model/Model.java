@@ -158,7 +158,11 @@ public class Model {
                                 if (i > 0) i--;
                             }
                         }
+                    }else{
+                        candyList.remove(candyList.get(i));
+                        if(i > 0) i--;
                     }
+
                 }
             }
         }
@@ -226,35 +230,74 @@ public class Model {
     public void moveMarkerInStore(int step){
         switch(step) {
             case 0:
-                if(CandyShop.getInstance().getCurrentRow() == -2){
-                    for(int i = 0; i < players.size(); i++){
-                        if(players.get(i)==CandyShop.getInstance().getBrowsingPlayer() && players.get(i-1)!=null)
-                            CandyShop.getInstance().changePlayer(players.get(i-1));
+                /**
+                 * If marker is targeting player and left is pressed, switches to previous player if there exists one.
+                 */
+                if(CandyShop.getInstance().getCurrentRow() == -2) {
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i - 1) != null)
+                            CandyShop.getInstance().changePlayer(players.get(i - 1));
+                    }
+                    /**
+                     * If marker is targetting candy and left is pressed, switches to previous candy if there exists one.
+                     */
+                }else if(CandyShop.getInstance().getCurrentRow() == -1){
+                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                        case "Jellybean":
+                            break;
+                        case "Hubbabubba":
+                            CandyShop.getInstance().changeSelectedCandy("Jellybean");
+                            break;
+                        case "Chocolate":
+                            CandyShop.getInstance().changeSelectedCandy("Hubbabubba");
+                            break;
+                        default:
+                            break;
                     }
                 }else if(CandyShop.getInstance().getCurrentCol() > 1) {
                     CandyShop.getInstance().move(step);
                 }
                 break;
             case 1:
+                /**
+                 * If marker is not on the top row and up key is pressed, move marker up one step.
+                 */
                 if (CandyShop.getInstance().getCurrentRow() > -2)
                     CandyShop.getInstance().move(step);
                 break;
             case 2:
+                /**
+                 * If marker is targeting player and right is pressed, switches to next player if there exists one.
+                 */
                 if(CandyShop.getInstance().getCurrentRow() == -2) {
                     for (int i = 0; i < players.size(); i++) {
                         if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i + 1) != null)
                             CandyShop.getInstance().changePlayer(players.get(i + 1));
+                    }
+                }else if(CandyShop.getInstance().getCurrentRow() == -1){
+                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                        case "Jellybean":
+                            CandyShop.getInstance().changeSelectedCandy("Hubbabubba");
+                            break;
+                        case "Hubbabubba":
+                            CandyShop.getInstance().changeSelectedCandy("Chocolate");
+                            break;
+                        case "Chocolate":
+                            break;
+                        default:
+                            break;
                     }
                 }else if (CandyShop.getInstance().getCurrentCol() < 4) {
                     CandyShop.getInstance().move(step);
                 }
                 break;
             case 3:
+                /**
+                 * If marker is not on the bottom row and down key is pressed, move marker down one step.
+                 */
                 if (CandyShop.getInstance().getCurrentRow() < 5)
                     CandyShop.getInstance().move(step);
-
                 break;
-
         }
     }
 

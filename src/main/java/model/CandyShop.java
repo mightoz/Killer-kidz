@@ -2,10 +2,12 @@ package model;
 
 import model.entity.players.Player;
 
+import java.util.ArrayList;
+
 public class CandyShop {
 
 	/*
-	 * No data in view, so info about what item in the shop that is marked (currentRow/Col) must be here.
+     * No data in view, so info about what item in the shop that is marked (currentRow/Col) must be here.
 	 * Use the following rows/cols in view:
 	 * 				JellyBean						row = -1
 	 * Speed	Damage	Spread	Penetration			row = 0
@@ -16,29 +18,29 @@ public class CandyShop {
 	 *   		  StartNewLevel 					row = 5
 	 * col=1   col=2    col=3    col=4
 	 */
-	
-	/*
-	 * Wishlist on methods
-	 * 
-	 * getCandyShop()		in Model, that returns reference to this object
-	 * 
-	 * int getCurrentRow()
-	 * int getCurrentCol()
-	 * String getSelectedCandy()
-	 * 
-	 * String getStatus(int row, int col)	is only called for row=1-4 (i.e. upgrades), returns a String 
-	 * 										("have"/"buy"/"not") depending on the status of the upgrade
-	 * String getUpgradeName(int row, int col)	returns the name of the row:th upgrade for property col
-	 * 
-	 * int getMoney()		returns the amount of money that the player has
-	 * 
-	 * String getInfo()		returns info (e.g. info about a candy). Should return a welcome message (see hard coded 
-	 * 						info in view) before user chooses to view info about something else.
-	 * 
-	 * move(int)			that takes 0-3 representing LURD, and changes currentRow/Col (if row = -1, it changes candy)
-	 * choose()				that buys the upgrade if an upgrade is marked, and sets info if property is marked				
-	 * 
-	 */
+
+    /*
+     * Wishlist on methods
+     *
+     * getCandyShop()		in Model, that returns reference to this object
+     *
+     * int getCurrentRow()
+     * int getCurrentCol()
+     * String getSelectedCandy()
+     *
+     * String getStatus(int row, int col)	is only called for row=1-4 (i.e. upgrades), returns a String
+     * 										("have"/"buy"/"not") depending on the status of the upgrade
+     * String getUpgradeName(int row, int col)	returns the name of the row:th upgrade for property col
+     *
+     * int getMoney()		returns the amount of money that the player has
+     *
+     * String getInfo()		returns info (e.g. info about a candy). Should return a welcome message (see hard coded
+     * 						info in view) before user chooses to view info about something else.
+     *
+     * move(int)			that takes 0-3 representing LURD, and changes currentRow/Col (if row = -1, it changes candy)
+     * choose()				that buys the upgrade if an upgrade is marked, and sets info if property is marked
+     *
+     */
     private static CandyShop cs;
 
     private Player player;
@@ -47,27 +49,32 @@ public class CandyShop {
     private int currentCol;
     private String selectedCandyInShop;
 
-	private CandyShop(){
+    private CandyShop() {
         currentRow = 1;
         currentCol = 1;
         selectedCandyInShop = "Jellybean";
     }
-    public void changePlayer(Player p){
+
+    public void changePlayer(Player p) {
         player = p;
     }
 
-    public static CandyShop getInstance(){
-        if(cs== null)
+    public void changeSelectedCandy(String c) {
+        selectedCandyInShop = c;
+    }
+
+    public static CandyShop getInstance() {
+        if (cs == null)
             cs = new CandyShop();
         return cs;
     }
 
-    public Player getBrowsingPlayer(){
+    public Player getBrowsingPlayer() {
         return player;
     }
 
-    public void move(int step){
-        switch(step) {
+    public void move(int step) {
+        switch (step) {
             case 0:
                 if (currentCol > 1)
                     currentCol--;
@@ -88,23 +95,46 @@ public class CandyShop {
         }
     }
 
-    public int getCurrentRow(){
+    public int getCurrentRow() {
         return currentRow;
     }
 
-    public int getCurrentCol(){
+    public int getCurrentCol() {
         return currentCol;
     }
 
-    public String getSelectedCandyInShop(){
+    public String getSelectedCandyInShop() {
         return selectedCandyInShop;
     }
 
-    public String getStatus(){
-        return "0";
+    public String getStatus(int row, int col) {
+        ArrayList<int[]> candyData = player.getCandyData();
+        int[] data;
+        switch (selectedCandyInShop) {
+            case "Jellybean":
+                data = candyData.get(0);
+                break;
+            case "Hubbabubba":
+                data = candyData.get(1);
+                break;
+            case "Chocolate":
+                data = candyData.get(2);
+                break;
+            default:
+                data = candyData.get(0);
+                break;
+        }
+
+        if (data[col - 1] >= (row - 1)) {
+            return "have";
+        } else if (getMoney() >= row * 1000) {
+            return "buy";
+        } else {
+            return "not";
+        }
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return player.getMoney();
     }
 
