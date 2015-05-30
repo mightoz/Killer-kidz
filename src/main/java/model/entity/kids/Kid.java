@@ -15,7 +15,7 @@ public abstract class Kid extends Entity {
 	private static int idCounter = 0;
 	private final String ID;
 	
-	protected int startHP;
+	protected int maxHP;
 	protected int hp;
 	protected boolean expired;
 	protected boolean inKillerMode;
@@ -57,7 +57,7 @@ public abstract class Kid extends Entity {
 	
 	// return the ratio of the hp that is left
 	public float getHpRatio() {
-		return (float)hp/startHP;
+		return (float)hp/maxHP;
 	}
 	
 	@Override

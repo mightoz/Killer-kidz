@@ -19,8 +19,8 @@ public class DizzyDoriz extends Kid {
 
 		stopTimeLeft = 0;
 		
-		startHP = 200;
-		hp = startHP;
+		maxHP = 200;
+		hp = maxHP;
 	}
 	
 	@Override
@@ -83,8 +83,8 @@ public class DizzyDoriz extends Kid {
 		case "candy3":			// favourite candy
 			hp = 0;
 			break;
-		case "JellyBean":		// killer instinct triggering candy
-			hp = startHP;
+		case "candy4":			// killer instinct triggering candy
+			hp = maxHP;
 			inKillerMode = true;
 			stopTimeLeft = 2;
 			break;

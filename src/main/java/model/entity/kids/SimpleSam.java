@@ -21,8 +21,8 @@ public class SimpleSam extends Kid {
 		ax = -5;
 
 		immuneTimeLeft = 0;
-		startHP = 50;
-		hp = startHP;
+		maxHP = 50;
+		hp = maxHP;
 	}
 	
 	@Override
@@ -51,17 +51,18 @@ public class SimpleSam extends Kid {
 			inKillerMode = false;
 			
 			switch (candyType) {
-			case "JellyBean":			// favourite candy
+			case "aaa":			// favourite candy
 				hp = 0;
 				break;
-			case "candy2":				// killer instinct triggering candy
-				hp = startHP;
+			case "JellyBean":				// killer instinct triggering candy
+				hp = maxHP;
 				immuneTimeLeft = 1;
 				inKillerMode = true;
 				break;
 			case "Hubbabubba":
 				hp -= damage;
 				vx *= (1-slowRate);	// slows down the kid
+
 			default:
 				hp -= damage;	
 			}

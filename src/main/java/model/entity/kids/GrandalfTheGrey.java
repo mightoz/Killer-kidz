@@ -8,11 +8,12 @@ package model.entity.kids;
  * @version 1.0
  */
 public class GrandalfTheGrey extends Kid {
-
-	private static final double DR_DT = 1.8;		// dr/dt - the derivative of radius per second
+	
+	private static final float MAX_R = 30;			// maximum possible radius
+	private static final float DR_DT = 1.8f;		// dr/dt - the derivative of radius per second
 	private double vx;								// velocity
-	private static final double AX = 5;				// acceleration
-	private static final double DHP_DT = 2;			// dHP/dt - the derivative of hp per second
+	private static final float AX = 5;				// acceleration
+	private static final float DHP_DT = 400;		// dHP/dt - the derivative of hp per second
 	
 	public GrandalfTheGrey(float x, float y) {
 		super(x, y);
@@ -20,8 +21,8 @@ public class GrandalfTheGrey extends Kid {
 		
 		vx = -80;
 
-		startHP = 50;
-		hp = startHP;
+		maxHP = 500;
+		hp = 200;
 	}
 	
 	@Override
@@ -29,20 +30,20 @@ public class GrandalfTheGrey extends Kid {
 
 	@Override
 	public void update(double dt) {
-		radius += DR_DT*dt;
+		radius = (float) Math.min(radius + DR_DT*dt, MAX_R);
 		vx += AX*dt;
 		xPos += vx*dt;
-		hp += DHP_DT*dt;
+		hp = (int) Math.min(hp + DHP_DT*dt, maxHP);
 		
 		if (xPos+radius <= leftBoundary) {
-			System.out.println("HP: " + hp);
 			expired = true;
 			inStore= true;
 		}
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage, double SlowRate) {
+	public void hitByCandy(String candyType, int damage, double slowRate) {
+
 		switch (candyType) {
 		case "candy4":		// favourite candy
 			if (inKillerMode) { 
@@ -51,9 +52,9 @@ public class GrandalfTheGrey extends Kid {
 				hp = 0;
 			}
 			break;
-		case "JellyBean":	// killer instinct triggering candy
-			radius = 30;
-			hp = 1000;
+		case "Hubbabubba":	// killer instinct triggering candy
+			radius = MAX_R;
+			hp = maxHP;
 			inKillerMode = true;
 			break;
 		default:
