@@ -42,7 +42,7 @@ public class GrandalfTheGrey extends Kid {
 	}
 
 	@Override
-	public void hitByCandy(String candyType, int damage/*, double SlowRate*/) {
+	public void hitByCandy(String candyType, int damage, double SlowRate) {
 		switch (candyType) {
 		case "candy4":		// favourite candy
 			if (inKillerMode) { 
@@ -51,7 +51,7 @@ public class GrandalfTheGrey extends Kid {
 				hp = 0;
 			}
 			break;
-		case "JellyBean":	// killer instinct triggering candy
+		case "Hubbabubba":	// killer instinct triggering candy
 			radius = 30;
 			hp = 1000;
 			inKillerMode = true;
