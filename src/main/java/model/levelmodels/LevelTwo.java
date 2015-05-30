@@ -13,6 +13,7 @@ public class LevelTwo extends Level{
     public LevelTwo(){
         super();
         nextSpawnTime = 1;
+        maxKidsInStore = 8;
     }
 
     @Override
@@ -24,31 +25,34 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
-                        if(spawnKidType < 20){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                        float spawnPos = generateSpawnPos(10);
+                        if(spawnKidType < 80){
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
                 }else if(kidsRemoved == 15){
                     changeWave();
+                    System.out.println(currentWave);
                 }
                 break;
             case 2:
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if(spawnKidType < 50){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
                     }
-                }else if(spawnedKids == 20){
+                }else if(kidsRemoved == 35){
                     changeWave();
                 }
                 break;
@@ -56,10 +60,11 @@ public class LevelTwo extends Level{
                 if(spawnedKids < 20){
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
+                        float spawnPos = generateSpawnPos(10);
                         if(spawnKidType < 70){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
@@ -74,17 +79,17 @@ public class LevelTwo extends Level{
     protected void changeWave(){
         currentWave++;
         spawnedKids = 0;
-        nextSpawnTime = random.nextDouble()*4;
+        nextSpawnTime = timePassed + random.nextDouble()*4;
     }
 
     @Override
     public boolean levelDone() {
-        return kidsRemoved == 55;
+        return kidsRemoved == 55 && kidsInStore < 8;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 10;
+        return kidsInStore == 8;
     }
 
 }

@@ -13,6 +13,7 @@ public class LevelOne extends Level {
     public LevelOne() {
         super();
         nextSpawnTime = 3;
+        maxKidsInStore = 5;
     }
 
     public void updateLevel(double delta){
@@ -21,7 +22,8 @@ public class LevelOne extends Level {
             case 1:
                 if(spawnedKids < 10) {
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
+                        float spawnPos = generateSpawnPos(10);
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -32,7 +34,8 @@ public class LevelOne extends Level {
             case 2:
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
+                        float spawnPos = generateSpawnPos(10);
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -52,12 +55,12 @@ public class LevelOne extends Level {
     //
     @Override
     public boolean levelDone(){
-        return kidsRemoved == 20;
+        return kidsRemoved == 25 && kidsInStore < 5;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 5;
+        return kidsInStore >= 5;
     }
 
 }

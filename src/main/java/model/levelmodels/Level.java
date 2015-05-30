@@ -1,5 +1,6 @@
 package model.levelmodels;
 
+import model.entity.Entity;
 import model.entity.kids.Kid;
 
 import java.util.ArrayList;
@@ -23,7 +24,9 @@ public abstract class Level {
     protected int kidsInStore;
     protected int kidsKilled;
     protected int kidsRemoved;
+    protected int maxKidsInStore;
     protected Random random;
+
 
 
     public Level(){
@@ -39,12 +42,12 @@ public abstract class Level {
         kidsRemoved++;
     }
 
-    private void enteredStore(){
+    public void enteredStore(){
         kidsInStore++;
         kidRemoved();
     }
 
-    private void killedByCandy(){
+    public void killedByCandy(){
         kidsKilled++;
         kidRemoved();
     }
@@ -52,6 +55,16 @@ public abstract class Level {
     public int getKills(){
         return kidsKilled;
     }
+
+
+    public int getKidsInStore(){
+        return kidsInStore;
+    }
+
+    public int getMaxKidsInStore(){
+        return maxKidsInStore;
+    }
+
     /**
      * Updates the positions of all the kids in the game
      */
@@ -76,6 +89,13 @@ public abstract class Level {
 
     }
 
+    protected float generateSpawnPos(int distance){
+        float pos = random.nextFloat()* Entity.getUpperBoundary()-distance;
+        while(pos < Entity.getLowerBoundary()+10){
+            pos = random.nextFloat()*Entity.getUpperBoundary()-distance;
+        }
+        return pos;
+    }
 
     public ArrayList<Kid> getActiveKids(){
         return activeKids;

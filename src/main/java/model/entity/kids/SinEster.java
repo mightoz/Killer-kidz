@@ -55,6 +55,7 @@ public class SinEster extends Kid {
 		// Entered toy store
 		if (xPos+radius <= leftBoundary) {
 			expired = true;
+			inStore = true;
 		}
 	}
 

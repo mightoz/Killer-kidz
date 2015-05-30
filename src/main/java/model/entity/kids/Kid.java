@@ -11,7 +11,7 @@ import model.entity.Entity;
  * @version 1.0
  */
 public abstract class Kid extends Entity {
-	
+
 	private static int idCounter = 0;
 	private final String ID;
 	
@@ -19,7 +19,11 @@ public abstract class Kid extends Entity {
 	protected int hp;
 	protected boolean expired;
 	protected boolean inKillerMode;
+
 	protected float transparency;
+
+	protected boolean inStore;
+
 	
 	protected static final Random randGen = new Random();
 	
@@ -29,7 +33,9 @@ public abstract class Kid extends Entity {
 		ID = generateId();
 		expired = false;
 		inKillerMode = false;
+
 		transparency = 1;
+		inStore = false;
 	}
 	
 	@Override
@@ -60,7 +66,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(String candyType, int damage/*, double slowRate*/);
 	
 	public boolean enteredStore() {
-		return xPos+radius <= leftBoundary;
+		return inStore;
 	}
 	
 	@Override
