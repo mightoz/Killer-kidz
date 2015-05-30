@@ -108,7 +108,6 @@ public class CandyShop {
     }
 
     public String getStatus(int row, int col) {
-        System.out.println(player.getId());
         if(row == 6)return "Next game";
         ArrayList<int[]> candyData = player.getCandyData();
         int[] data;
@@ -117,10 +116,18 @@ public class CandyShop {
                 data = candyData.get(0);
                 break;
             case "Hubbabubba":
-                data = candyData.get(1);
+                if(candyData.size() >1) {
+                    data = candyData.get(1);
+                }else{
+                    return "not";
+                }
                 break;
             case "Chocolate":
-                data = candyData.get(2);
+                if(candyData.size() >2) {
+                    data = candyData.get(2);
+                }else{
+                    return "not";
+                }
                 break;
             default:
                 data = candyData.get(0);

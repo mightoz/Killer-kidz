@@ -106,12 +106,8 @@ public class CandyShopView implements Screen {
 			else { propertyFont.setColor(Color.WHITE); }
 			propertyFont.draw(batch, prop, (col-1)*width/4 + (width/4-layoutWidth)/2, height-150);
 		}
-		
-		// Draw candy upgrade statuses
-//		String[][] statuses = {{"have", "have", "have", "not"}, 								// Remove later
-//							   {"have", "buy", "buy", "not"},
-//							   {"buy", "not", "not", "not"},
-//							   {"not", "not", "not", "not"}};
+
+
 		String status;
 		String upgradeName;
 		for (int row = 1; row <= 4; row++) {

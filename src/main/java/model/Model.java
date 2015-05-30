@@ -252,6 +252,7 @@ public class Model {
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
                     switch(CandyShop.getInstance().getSelectedCandy()) {
                         case "Jellybean":
+                            CandyShop.getInstance().changeSelectedCandy("Chocolate");
                             break;
                         case "Hubbabubba":
                             CandyShop.getInstance().changeSelectedCandy("Jellybean");
@@ -291,6 +292,7 @@ public class Model {
                             CandyShop.getInstance().changeSelectedCandy("Chocolate");
                             break;
                         case "Chocolate":
+                            CandyShop.getInstance().changeSelectedCandy("Jellybean");
                             break;
                         default:
                             break;
