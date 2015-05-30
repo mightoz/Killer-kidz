@@ -14,25 +14,17 @@ import model.entity.Entity;
  */
 public class PlayerView extends VisibleObjects {
 
-    public void render(Entity player, ShapeRenderer sr){
+	public void render(Entity player, ShapeRenderer sr) {
 
-    	// startposition for player 1.
-        if(player.getId().substring(1,2).equals("0")){
-            x = player.getX();
-            y = player.getY();
-        
-        // if we are creating the second player
-        }else{
-            x = player.getX();
-            y = player.getY();
-        }
+		x = player.getX();
+		y = player.getY();
 
-        sr.setColor(1, 1, 1, 1);
-        
-        sr.begin(ShapeType.Filled);
-        
-        sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
+		sr.setColor(1, 1, 1, 1f);
 
-        sr.end();
-    }
+		sr.begin(ShapeType.Filled);
+
+		sr.triangle(x - 10, y - 10, x, y + 15, x + 10, y - 10);
+
+		sr.end();
+	}
 }
