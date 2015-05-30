@@ -43,7 +43,6 @@ public class CandyShopView implements Screen {
 
 	private String title;
 	private String[] colourGuide = new String[3];
-	private String[] propertyNames = new String[4];		// Remove if different candies have different properties
 	
 	@SuppressWarnings("deprecation")
 	public CandyShopView (OrthographicCamera cam, Model model, float width, float height) {
@@ -74,10 +73,6 @@ public class CandyShopView implements Screen {
 		colourGuide[0] = "You already have this upgrade";
 		colourGuide[1] = "You can buy this upgrade";
 		colourGuide[2] = "You can't buy this upgrade";
-		propertyNames[0] = "Speed";						// Remove if different candies have different properties
-		propertyNames[1] = "Damage";
-		propertyNames[2] = "Spread";
-		propertyNames[3] = "Penetration";
 		
 	}
 	
@@ -88,25 +83,32 @@ public class CandyShopView implements Screen {
 		int currentRow = cs.getCurrentRow();
 		int currentCol = cs.getCurrentCol();
 
+		// Draw Player name
+		String player = "Player 1";	// cs.getPlayerName();											// TODO
+		layout.setText(candyFont, player);
+		layoutWidth = layout.width;
+		if (currentRow == -2) { playerFont.setColor(marker); }
+		else { playerFont.setColor(Color.WHITE); }
+		playerFont.draw(batch, player, (width - layoutWidth)/2, height-100);
+		
 		// Draw selected candy
 		String candy = cs.getSelectedCandy();
 		layout.setText(candyFont, candy);
 		layoutWidth = layout.width;
 		if (currentRow == -1) { candyFont.setColor(marker); }
 		else { candyFont.setColor(Color.WHITE); }
-		candyFont.draw(batch, candy, (width - layoutWidth)/2, height-100);
+		candyFont.draw(batch, candy, (width - layoutWidth)/2, height-140);
 		
 		// Draw candy property names
 		String prop;
 		for (int col = 1; col <= 4; col++) {
-			prop = propertyNames[col-1];
+			prop = "Property " + col; 	//cs.getPropName(col);										// TODO
 			layout.setText(propertyFont, prop);
 			layoutWidth = layout.width;
 			if (currentRow == 0 && currentCol == col) { propertyFont.setColor(marker); }
 			else { propertyFont.setColor(Color.WHITE); }
-			propertyFont.draw(batch, prop, (col-1)*width/4 + (width/4-layoutWidth)/2, height-150);
+			propertyFont.draw(batch, prop, (col-1)*width/4 + (width/4-layoutWidth)/2, height-190);
 		}
-
 
 		String status;
 		String upgradeName;
@@ -116,7 +118,7 @@ public class CandyShopView implements Screen {
 					propertyFont.setColor(marker); 
 				}
 				else {
-					status = cs.getStatus(row, col);							// TODO
+					status = cs.getStatus(row, col);
 					switch (status) {
 					case "have": 
 						propertyFont.setColor(Color.GREEN);
@@ -131,27 +133,19 @@ public class CandyShopView implements Screen {
 						System.out.println("Invalid status");
 					}
 				}
-				upgradeName = row + "";		// cs.getUpgradeName(row, col);								// TODO
+				upgradeName = row + "";
 				layout.setText(propertyFont, upgradeName);
 				layoutWidth = layout.width;
 				propertyFont.draw(batch, upgradeName, 
-						(col-1)*width/4 + (width/4-layoutWidth)/2, height-150-30*row);
+						(col-1)*width/4 + (width/4-layoutWidth)/2, height-190-30*row);
 			}
 		}
-		
-		// Draw Player name
-		String player = "Player 1";	// cs.getPlayerName();											// TODO
-		layout.setText(candyFont, player);
-		layoutWidth = layout.width;
-		if (currentRow == 5) { playerFont.setColor(marker); }
-		else { playerFont.setColor(Color.WHITE); }
-		playerFont.draw(batch, player, (width - layoutWidth)/2, height-330);
 		
 		// Draw Start Next Level
 		String text = "Start Next Level";
 		layout.setText(candyFont, text);
 		layoutWidth = layout.width;
-		if (currentRow == 6) { finishFont.setColor(marker); }
+		if (currentRow == 5) { finishFont.setColor(marker); }
 		else { finishFont.setColor(Color.WHITE); }
 		finishFont.draw(batch, text, (width - layoutWidth)/2, height-370);
 		
@@ -181,17 +175,17 @@ public class CandyShopView implements Screen {
 		}
 		
 		// Draw money status
-		moneyFont.draw(batch, "$: " + cs.getMoney() , width-100, height-70);			// TODO
+		moneyFont.draw(batch, "$: " + cs.getMoney() , width-120, height-70);
+		
+		// Draw arrows around player
+		playerFont.setColor(Color.WHITE);
+		playerFont.draw(batch, "<", width/2 - 70, height-100);
+		playerFont.draw(batch, ">", width/2 + 70, height-100);
 		
 		// Draw arrows around candy
 		candyFont.setColor(Color.WHITE);
-		candyFont.draw(batch, "<", width/2 - 80, height-100);
-		candyFont.draw(batch, ">", width/2 + 80, height-100);
-		
-		// Draw arrows around candy
-		propertyFont.setColor(Color.WHITE);
-		propertyFont.draw(batch, "<", width/2 - 70, height-330);
-		propertyFont.draw(batch, ">", width/2 + 70, height-330);
+		candyFont.draw(batch, "<", width/2 - 80, height-140);
+		candyFont.draw(batch, ">", width/2 + 80, height-140);
 		
 		// Draw info
 		String info = "Welcome to the candy shop! Move around with arrow keys and press enter while marking an \n"

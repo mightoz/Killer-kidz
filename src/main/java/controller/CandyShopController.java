@@ -25,7 +25,10 @@ class CandyShopController {
 		}
 			
 		if (keycode == Keys.ENTER) {
-            if(model.getStatusInShop().equals("Next level")) finished = true;
+            if (model.getStatusInShop().equals("Next level")) { 
+            	finished = true;
+            	return true;
+            }
             model.choose();
 			return true;
 		}
