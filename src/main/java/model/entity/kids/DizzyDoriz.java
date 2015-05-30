@@ -80,7 +80,7 @@ public class DizzyDoriz extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
 		switch (candyType) {
-		case "candy3":			// favourite candy
+		case "Chocolate":		// favourite candy
 			hp = 0;
 			break;
 		case "candy4":			// killer instinct triggering candy
