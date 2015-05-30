@@ -14,6 +14,7 @@ public class Hubbabubba extends Candy {
         super(x, y);
         type = "Hubbabubba";
         expired = false;
+        radius = 10;
         maxTravelLength = 400;
 
         switch(candyStatus[0]){
