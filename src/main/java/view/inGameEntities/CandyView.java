@@ -10,22 +10,18 @@ import model.entity.candymodels.JellyBean;
 
 public class CandyView extends VisibleObjects{
 
-	Candy candy;
-	
     public void render(Entity candy, ShapeRenderer sr){
 
-    	this.candy = (Candy)candy;
-    	
     	sr.begin(ShapeType.Filled);
     	
-    	switch(this.candy.getType()){
+    	switch(((Candy)candy).getType()){
     	case "JellyBean":
     		sr.setColor(((JellyBean)candy).getColor());
     		sr.ellipse(candy.getX(), candy.getY(), candy.getRadius()*1.70f, candy.getRadius());
 //    		sr.ellipse(x, y, width, height); 
     		break;
     	
-    	case "BubbleGum":
+    	case "Hubbabubba":
     		sr.setColor(Color.PINK);
     		sr.circle(candy.getX(),candy.getY(),candy.getRadius());
     		break;

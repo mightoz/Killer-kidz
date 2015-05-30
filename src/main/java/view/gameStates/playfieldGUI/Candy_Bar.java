@@ -165,7 +165,7 @@ public class Candy_Bar extends GUI_Super {
 		// int one = 2;
 		// switch (one) {
 
-		// First candy
+		// First candy is selected (JellyBeans)
 		case 0:
 
 			sr.setColor(Color.CYAN);
@@ -184,11 +184,10 @@ public class Candy_Bar extends GUI_Super {
 			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
 			break;
 
-		// Second candy is selected
+		// Second candy is selected (BubbleGum)
 		case 1:
 
-			// brown color
-			sr.setColor(0.40f, 0.20f, 0, 1);
+			sr.setColor(Color.PINK);
 			sr.set(ShapeType.Filled);
 			
 			// use +2 in this case, to avoid getting lines overlapping eachother.		
