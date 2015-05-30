@@ -38,6 +38,7 @@ public class SimpleSam extends Kid {
 			inKillerMode = false;
 		}
 		
+		// Entered toy store
 		if (xPos+radius <= leftBoundary) {
 			expired = true;
 		}

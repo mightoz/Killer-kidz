@@ -1,7 +1,7 @@
 package model.entity.kids;
 
 /**
- * Name:	RollingRascal
+ * Name:	GrandalfTheGrey
  * About:	A kid moving straightly forward, with decreasing velocity but
  * 			increasing size and hp.
  * @author  MarieKlevedal
