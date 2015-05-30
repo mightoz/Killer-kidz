@@ -103,11 +103,13 @@ public class CandyShop {
         return currentCol;
     }
 
-    public String getSelectedCandyInShop() {
+    public String getSelectedCandy() {
         return selectedCandyInShop;
     }
 
     public String getStatus(int row, int col) {
+        System.out.println(player.getId());
+        if(row == 6)return "Next game";
         ArrayList<int[]> candyData = player.getCandyData();
         int[] data;
         switch (selectedCandyInShop) {
@@ -127,7 +129,7 @@ public class CandyShop {
 
         if (data[col - 1] >= (row - 1)) {
             return "have";
-        } else if (getMoney() >= row * 1000) {
+        } else if (getMoney() >= row * 1000 && data[col - 1] >= (row - 2)) {
             return "buy";
         } else {
             return "not";

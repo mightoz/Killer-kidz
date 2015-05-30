@@ -48,7 +48,7 @@ public class CandyShopView implements Screen {
 	@SuppressWarnings("deprecation")
 	public CandyShopView (OrthographicCamera cam, Model model, float width, float height) {
 		this.cam = cam;
-		// this.cs = model.getCandyShop();																// TODO
+		this.cs = model.getCandyShop();
 		this.width = width;
 		this.height = height;
 		
@@ -85,11 +85,11 @@ public class CandyShopView implements Screen {
 	public void render(float delta) {		
 		drawUnselectableThings();
 		
-		int currentRow = -1; //cs.getCurrentRow();													// TODO
-		int currentCol = 3;	//cs.getCurrentCol();													// TODO
-		
+		int currentRow = cs.getCurrentRow();
+		int currentCol = cs.getCurrentCol();
+
 		// Draw selected candy
-		String candy = "Jelly Bean";	//cs.getSelectedCandy();									// TODO
+		String candy = cs.getSelectedCandy();
 		layout.setText(candyFont, candy);
 		layoutWidth = layout.width;
 		if (currentRow == -1) { candyFont.setColor(marker); }
@@ -108,10 +108,10 @@ public class CandyShopView implements Screen {
 		}
 		
 		// Draw candy upgrade statuses
-		String[][] statuses = {{"have", "have", "have", "not"}, 								// Remove later
-							   {"have", "buy", "buy", "not"},
-							   {"buy", "not", "not", "not"},
-							   {"not", "not", "not", "not"}};
+//		String[][] statuses = {{"have", "have", "have", "not"}, 								// Remove later
+//							   {"have", "buy", "buy", "not"},
+//							   {"buy", "not", "not", "not"},
+//							   {"not", "not", "not", "not"}};
 		String status;
 		String upgradeName;
 		for (int row = 1; row <= 4; row++) {
@@ -120,7 +120,7 @@ public class CandyShopView implements Screen {
 					propertyFont.setColor(marker); 
 				}
 				else {
-					status = statuses[row-1][col-1]; //cs.getStatus(row, col);							// TODO
+					status = cs.getStatus(row, col);							// TODO
 					switch (status) {
 					case "have": 
 						propertyFont.setColor(Color.GREEN);
@@ -185,7 +185,7 @@ public class CandyShopView implements Screen {
 		}
 		
 		// Draw money status
-		moneyFont.draw(batch, "$: " + "1000" /* cs.getMoney() */, width-100, height-70);			// TODO
+		moneyFont.draw(batch, "$: " + cs.getMoney() , width-100, height-70);			// TODO
 		
 		// Draw arrows around candy
 		candyFont.setColor(Color.WHITE);

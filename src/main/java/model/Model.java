@@ -221,12 +221,14 @@ public class Model {
     }
 
     public CandyShop getCandyShop(){
+        if(CandyShop.getInstance().getBrowsingPlayer()==null)
+            CandyShop.getInstance().changePlayer(players.get(0));
         return CandyShop.getInstance();
     }
 
-    public String getSelectedCandy(){
-        return getCandyShop().getSelectedCandyInShop();
-    }
+//    public String getSelectedCandy(){
+//        return getCandyShop().getSelectedCandyInShop();
+//    }
 
     /**
      * Moves marker in store. If the marker is targetting player, and left or right is pressed, switches to next/previous
@@ -248,7 +250,7 @@ public class Model {
                      * If marker is targetting candy and left is pressed, switches to previous candy if there exists one.
                      */
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
-                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                    switch(CandyShop.getInstance().getSelectedCandy()) {
                         case "Jellybean":
                             break;
                         case "Hubbabubba":
@@ -281,7 +283,7 @@ public class Model {
                             CandyShop.getInstance().changePlayer(players.get(i + 1));
                     }
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
-                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                    switch(CandyShop.getInstance().getSelectedCandy()) {
                         case "Jellybean":
                             CandyShop.getInstance().changeSelectedCandy("Hubbabubba");
                             break;
@@ -310,7 +312,13 @@ public class Model {
     public void choose(){
         if(getCandyShop().getStatus().equals("buy")){
             getCandyShop().buyUpgrade();
+        }else if(getCandyShop().getStatus().equals("Next level")){
+            startLevel(currentLevel+1);
         }
+    }
+
+    public String getStatusInShop(){
+        return getCandyShop().getStatus();
     }
 
 

@@ -36,11 +36,11 @@ public class Player extends Entity {
         this.name = name;
 
         candyData = new ArrayList();
-        int[] startCandy = new int[4];
+        int[] jellyBean = new int[4];
         for(int i = 0; i < 4; i++){
-            startCandy[i] = 0;
+            jellyBean[i] = 0;
         }
-        candyData.add(0,startCandy);
+        candyData.add(0,jellyBean);
 
         activeCandies = new ArrayList();
 
@@ -51,7 +51,7 @@ public class Player extends Entity {
         selectedCandy = 0;
 
         radius = 10;
-        money = 0;
+        money = 5000;
 
     }
 
