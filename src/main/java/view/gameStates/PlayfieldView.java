@@ -2,6 +2,7 @@ package view.gameStates;
 
 
 import model.entity.Entity;
+import model.entity.players.Player;
 import model.Model;
 import view.gameStates.playfieldGUI.Candy_Bar;
 import view.gameStates.playfieldGUI.CurrentLevel_Bar;
@@ -37,6 +38,7 @@ public class PlayfieldView implements Screen {
     private CandyView candyView;
     private KidView kidView;
     private PlayerView playerView;
+    private Player playerObject;
 
     private GUI_Foundation gui;
     private ShopToProtect shop;
@@ -62,7 +64,14 @@ public class PlayfieldView implements Screen {
         money = new Money_Bar(cam, width, height);
         level = new CurrentLevel_Bar(cam, width, height);
 
-        candy_bar = new Candy_Bar(cam, gui);
+    	// Gets the reference to our playerObject, to be used in Candy_Bar.
+        for (Entity entity : model.getEntities()) {
+            if (entity.getId().substring(0, 1).equals("p")) {
+                playerObject = (Player)entity;
+            }
+        }
+
+        candy_bar = new Candy_Bar(cam, gui, playerObject);
     }
 
     /*
@@ -83,11 +92,13 @@ public class PlayfieldView implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        
 
         for (Entity entity : model.getEntities()) {
             switch (entity.getId().substring(0, 1)) {
                 // Player objects
                 case "p":
+                	playerObject = (Player)entity;
                     playerView.render(entity, sr);
                     break;
 
@@ -109,7 +120,10 @@ public class PlayfieldView implements Screen {
         money.render();
         level.render();
 
-        candy_bar.render(sr);
+        // wait to render candy_bar until the playerObject is set.
+        if(playerObject != null){
+        	candy_bar.render(sr);
+        }
     }
 
 

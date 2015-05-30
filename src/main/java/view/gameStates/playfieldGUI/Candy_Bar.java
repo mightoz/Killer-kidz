@@ -55,12 +55,13 @@ public class Candy_Bar extends GUI_Super {
 	private BitmapFont textFont;
 
 	@SuppressWarnings("deprecation")
-	public Candy_Bar(OrthographicCamera cam, GUI_Foundation gui) {
+	public Candy_Bar(OrthographicCamera cam, GUI_Foundation gui, Player player) {
 		
 		this.cam = cam;
+		this.player = player;
 		
 		// Startpoint lower-left corner on the "candy-part" of the bar.
-		x = gui.getCandyBarStartPointX();
+		x = gui.getCandyBarStartPointX() +2;
 		y = gui.getCandyBarStartPointY();
 		
 		// size of the square we will draw (same as GUI_Foundation).
@@ -99,30 +100,32 @@ public class Candy_Bar extends GUI_Super {
 
 		sr.begin(ShapeType.Line);
 		sr.setAutoShapeType(true);
-		
+
 		// Unlocked one candy, so paintorder: outerBox, number-box, number
-//		if(player.getCandyData().size() == 1){
-		if(true) {
-			
+		if (player.getCandyData().size() == 1) {
+			// if(true) {
+
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
 			sr.circle(iconPosX, iconPosY, 11);
-			sr.triangle(iconPosX, iconPosY, iconPosX-25, iconPosY+5, iconPosX-5, iconPosY+25);
-			sr.triangle(iconPosX, iconPosY, iconPosX+25, iconPosY-5, iconPosX+5, iconPosY-25);
-			
+			sr.triangle(iconPosX, iconPosY, iconPosX - 25, iconPosY + 5,
+					iconPosX - 5, iconPosY + 25);
+			sr.triangle(iconPosX, iconPosY, iconPosX + 25, iconPosY - 5,
+					iconPosX + 5, iconPosY - 25);
+
 			sr.setColor(Color.GREEN);
 			sr.set(ShapeType.Line);
 			sr.rect(x, y, squareSizeX, squareSizeY);
 			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
-			
+
 			batch.begin();
 			textFont.draw(batch, "1", nbrPosX, nbrPosY);
 			batch.end();
 		}
-		
+
 		// unlocked two candies
-//		if(player.getCandyData().size() == 2){	
-		if(true) {
+		if (player.getCandyData().size() == 2) {
+			// if (true) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
@@ -130,114 +133,105 @@ public class Candy_Bar extends GUI_Super {
 
 			sr.setColor(Color.GREEN);
 			sr.set(ShapeType.Line);
-			
-			sr.rect(x + squareSizeX, 
-					y, 
-					squareSizeX, 
-					squareSizeY);
-			
-			sr.rect(nbrBoxPosX + squareSizeX, 
-					nbrBoxPosY, 
-					nbrBoxSize, 
-					nbrBoxSize);
-			
-			batch.begin();
-			textFont.draw(batch, "2", 
-					nbrPosX + squareSizeX, 
-					nbrPosY);
-			batch.end();
-		}
-		
-		// unlocked three candies
-//		if (player.getCandyData().size() == 3) {
-		if(true) {
 
-			sr.rect(x + squareSizeX * 2, y, squareSizeX, squareSizeY);
-			
-			sr.rect(nbrBoxPosX + squareSizeX*2, 
-					nbrBoxPosY, 
-					nbrBoxSize, 
+			// use +2 in this case, to avoid getting lines overlapping eachother.	
+			sr.rect(x + 2 + squareSizeX, y, squareSizeX, squareSizeY);
+
+			sr.rect(nbrBoxPosX + 2 + squareSizeX, nbrBoxPosY, nbrBoxSize,
 					nbrBoxSize);
-			
+
 			batch.begin();
-			textFont.draw(batch, "3", 
-					nbrPosX + squareSizeX*2, 
-					nbrPosY);
+			textFont.draw(batch, "2", nbrPosX + 2 + squareSizeX, nbrPosY);
 			batch.end();
 		}
-		
+
+		// unlocked three candies
+		if (player.getCandyData().size() == 3) {
+			// if (true) {
+			
+			// use +4 in this case, to avoid getting lines overlapping eachother.	
+			sr.rect(x + 4 + squareSizeX * 2, y, squareSizeX, squareSizeY);
+
+			sr.rect(nbrBoxPosX + 4 + squareSizeX * 2, nbrBoxPosY, nbrBoxSize,
+					nbrBoxSize);
+
+			batch.begin();
+			textFont.draw(batch, "3", nbrPosX + 4 + squareSizeX * 2, nbrPosY);
+			batch.end();
+		}
+//		System.out.println(player.getSelectedCandy());
 		// determine which candy is selected, and show that.
-//		switch(player.getSelectedCandy()){
-		int one = 2;
-		switch(one){
-		
+		switch (player.getSelectedCandy()) {
+		// int one = 2;
+		// switch (one) {
+
 		// First candy
-		case 1:
+		case 0:
 
 			sr.setColor(Color.CYAN);
 			sr.set(ShapeType.Filled);
-			
+
 			sr.circle(iconPosX, iconPosY, 11);
-			sr.triangle(iconPosX, iconPosY, iconPosX-25, iconPosY+5, iconPosX-5, iconPosY+25);
-			sr.triangle(iconPosX, iconPosY, iconPosX+25, iconPosY-5, iconPosX+5, iconPosY-25);
+			sr.triangle(iconPosX, iconPosY, iconPosX - 25, iconPosY + 5,
+					iconPosX - 5, iconPosY + 25);
+			sr.triangle(iconPosX, iconPosY, iconPosX + 25, iconPosY - 5,
+					iconPosX + 5, iconPosY - 25);
 
 			sr.setColor(Color.ORANGE);
-			sr.set(ShapeType.Line);			
-			
+			sr.set(ShapeType.Line);
+
 			sr.rect(x, y, squareSizeX, squareSizeY);
 			sr.rect(nbrBoxPosX, nbrBoxPosY, nbrBoxSize, nbrBoxSize);
 			break;
-			
+
 		// Second candy is selected
-		case (2):
-			
+		case 1:
+
 			// brown color
-			sr.setColor(0.40f,0.20f,0,1);
+			sr.setColor(0.40f, 0.20f, 0, 1);
 			sr.set(ShapeType.Filled);
-			sr.circle(iconPosX + squareSizeX, iconPosY, 21);
+			
+			// use +2 in this case, to avoid getting lines overlapping eachother.		
+			sr.circle(iconPosX + 2 + squareSizeX, iconPosY, 21);
 
 			sr.setColor(Color.WHITE);
 			sr.set(ShapeType.Line);
-			sr.circle(iconPosX + squareSizeX, iconPosY, 21);
-			sr.circle(iconPosX + squareSizeX, iconPosY, 14);
+			sr.circle(iconPosX + 2 + squareSizeX, iconPosY, 21);
+			sr.circle(iconPosX + 2 + squareSizeX, iconPosY, 14);
 
 			sr.set(ShapeType.Filled);
-			sr.circle(iconPosX + squareSizeX, iconPosY, 5);
+			sr.circle(iconPosX + 2 + squareSizeX, iconPosY, 5);
 
 			sr.setColor(Color.ORANGE);
 			sr.set(ShapeType.Line);
-			sr.rect(x + squareSizeX, y, squareSizeX, squareSizeY);
-			sr.rect(nbrBoxPosX + squareSizeX, 
-					nbrBoxPosY, 
-					nbrBoxSize, 
+			sr.rect(x + 2 + squareSizeX, y, squareSizeX, squareSizeY);
+			sr.rect(nbrBoxPosX + 2 + squareSizeX, nbrBoxPosY, nbrBoxSize,
 					nbrBoxSize);
 
 			break;
-			
+
 		// Third candy is selected
-		case 3:
+		case 2:
 
 			sr.setColor(Color.ORANGE);
-			sr.set(ShapeType.Line);	
-			
-			sr.rect(x + squareSizeX * 2, y, squareSizeX, squareSizeY);
-			
-			sr.rect(nbrBoxPosX + squareSizeX*2, 
-					nbrBoxPosY, 
-					nbrBoxSize, 
+			sr.set(ShapeType.Line);
+
+			// use +4 in this case, to avoid getting lines overlapping eachother.	
+			sr.rect(x + 4 + squareSizeX * 2, y, squareSizeX, squareSizeY);
+
+			sr.rect(nbrBoxPosX + 4 + squareSizeX * 2, nbrBoxPosY, nbrBoxSize,
 					nbrBoxSize);
 
 			break;
-			
+
 		default:
-//			System.out.println("Candy_Bar.render: "
-//					+ "tried to select a candy which don't exists, number: " 
-//					+ player.getSelectedCandy());
+			 System.out.println("Candy_Bar.render: "
+			 + "tried to select a candy which don't exists, number: "
+			 + player.getSelectedCandy());
 			break;
 		}
-		
-//		batch.end();
+
+		// batch.end();
 		sr.end();
 	}
-
 }

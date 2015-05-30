@@ -102,12 +102,11 @@ public class MainMenu implements Screen {
 		this.currentItem = currentItem;
 	}
 	
+	// Returns a copy of the array, so the original array is not exposed to 
+	// external untrusted code.
 	public String[] getMenuItems() {
-		return menuItemsList;
-	}
-
-	public void setMenuItems(String[] menuItems) {
-		this.menuItemsList = menuItems;
+		String[] menuItemsListCopy = menuItemsList;
+		return menuItemsListCopy;
 	}
 
 	@Override
