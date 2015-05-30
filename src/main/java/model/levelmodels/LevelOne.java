@@ -22,7 +22,7 @@ public class LevelOne extends Level {
             case 1:
                 if(spawnedKids < 10) {
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()-10));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }
@@ -33,7 +33,7 @@ public class LevelOne extends Level {
             case 2:
                 if(spawnedKids < 15){
                     if(timePassed >= nextSpawnTime){
-                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()));
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()* Entity.getUpperBoundary()-10));
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
                     }

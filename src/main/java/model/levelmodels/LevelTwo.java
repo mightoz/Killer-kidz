@@ -26,9 +26,9 @@ public class LevelTwo extends Level{
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
                         if(spawnKidType < 80){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*4;
@@ -43,9 +43,9 @@ public class LevelTwo extends Level{
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
                         if(spawnKidType < 50){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
@@ -59,9 +59,9 @@ public class LevelTwo extends Level{
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
                         if(spawnKidType < 70){
-                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()));
+                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), random.nextFloat()*Entity.getUpperBoundary()-10));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
