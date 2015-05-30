@@ -164,10 +164,10 @@ public class Model {
                                 if (i > 0) i--;
                             }
                         }
+                    }else {
+                        candyList.remove(candyList.get(i));
+                        if (i > 0) i--;
                     }
-                }else{
-                    candyList.remove(candyList.get(i));
-                    if(i > 0) i--;
                 }
             }
         }
