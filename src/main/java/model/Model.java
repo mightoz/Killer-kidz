@@ -242,9 +242,10 @@ public class Model {
                  * If marker is targeting player and left is pressed, switches to previous player if there exists one.
                  */
                 if(CandyShop.getInstance().getCurrentRow() == -2) {
-                    for (int i = 0; i < players.size(); i++) {
-                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i - 1) != null)
-                            CandyShop.getInstance().changePlayer(players.get(i - 1));
+                    if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p1")){
+                        getCandyShop().changePlayer(players.get(1));
+                    }else if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p2")){
+                        getCandyShop().changePlayer(players.get(0));
                     }
                     /**
                      * If marker is targetting candy and left is pressed, switches to previous candy if there exists one.
@@ -279,9 +280,10 @@ public class Model {
                  * If marker is targeting player and right is pressed, switches to next player if there exists one.
                  */
                 if(CandyShop.getInstance().getCurrentRow() == -2) {
-                    for (int i = 0; i < players.size(); i++) {
-                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i + 1) != null)
-                            CandyShop.getInstance().changePlayer(players.get(i + 1));
+                    if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p1")){
+                        getCandyShop().changePlayer(players.get(1));
+                    }else if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p2")){
+                        getCandyShop().changePlayer(players.get(0));
                     }
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
                     switch(CandyShop.getInstance().getSelectedCandy()) {
