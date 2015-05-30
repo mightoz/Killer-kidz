@@ -22,7 +22,7 @@ public class SinEster extends Kid {
 		radius = 10;
 		
 		vx = -40;
-		MAX_A = (int)Math.min(upperBoundary - yPos, yPos - lowerBoundary);
+		MAX_A = (int)Math.min(Math.min(upperBoundary - yPos, yPos - lowerBoundary), 0);
 		
 		invTimeLeft = 0;
 		
@@ -36,7 +36,7 @@ public class SinEster extends Kid {
 	@Override
 	public void update(double dt) {
 		// y(x) = A * sin(K*x)
-		int A = randGen.nextInt(MAX_A);
+		int A = randGen.nextInt(MAX_A);	//************************************************ERROR************************
 		vy = (float) (A*K*Math.cos(K*(rightBoundary - xPos)));	// vy = dy/dx (old x)
 		xPos += vx*dt;											// vx = dx/dt
 		yPos += vy*vx*dt;										// dy/dt = dy/dx * dx/dt
@@ -64,7 +64,7 @@ public class SinEster extends Kid {
 		case "Hubbabubba":			// favourite candy
 			hp = 0;
 			break;
-		case "candy3":				// killer instinct triggering candy
+		case "JellyBean":				// killer instinct triggering candy
 			hp = startHP;
 			inKillerMode = true;
 			invTimeLeft = 1.5;

@@ -29,9 +29,21 @@ public class DizzyDoriz extends Kid {
 	@Override
 	public void update(double dt) {
 		
-		if (stopTimeLeft > 0) {
-			stopTimeLeft -= dt;
-			return;
+		if (inKillerMode) {
+			if (stopTimeLeft > 0) {
+				stopTimeLeft -= dt;
+				return;
+			}
+			else {
+				xPos -= 200*dt;
+				
+				// Entered toy store
+				if (xPos+radius <= leftBoundary) {
+					expired = true;
+				}
+				return;
+			}
+			
 		}
 		
 		// Velocity is changed every 200th update
@@ -70,7 +82,7 @@ public class DizzyDoriz extends Kid {
 		case "candy3":			// favourite candy
 			hp = 0;
 			break;
-		case "candy4":			// killer instinct triggering candy
+		case "JellyBean":		// killer instinct triggering candy
 			hp = startHP;
 			inKillerMode = true;
 			stopTimeLeft = 2;
