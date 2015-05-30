@@ -11,7 +11,7 @@ import model.entity.Entity;
  * @version 1.0
  */
 public abstract class Kid extends Entity {
-	
+
 	private static int idCounter = 0;
 	private final String ID;
 	
@@ -20,6 +20,7 @@ public abstract class Kid extends Entity {
 	protected boolean expired;
 	protected boolean inKillerMode;
 	protected boolean visible;
+	protected boolean inStore;
 
 	protected float rHead;				// head radius
 	
@@ -32,6 +33,10 @@ public abstract class Kid extends Entity {
 		expired = false;
 		inKillerMode = false;
 		visible = true;
+
+		//Test level
+		inStore = false;
+		//Test level
 	}
 	
 	@Override
@@ -70,7 +75,7 @@ public abstract class Kid extends Entity {
 	public abstract void hitByCandy(String candyType, int damage);
 	
 	public boolean enteredStore() {
-		return xPos <= leftBoundary;
+		return inStore;
 	}
 	
 	@Override

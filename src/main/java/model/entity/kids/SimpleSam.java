@@ -33,6 +33,7 @@ public class SimpleSam extends Kid {
 		
 		if (xPos-radius <= leftBoundary) {
 			expired = true;
+			inStore = true;
 		}
 	}
 

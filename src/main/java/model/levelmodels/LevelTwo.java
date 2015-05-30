@@ -13,6 +13,7 @@ public class LevelTwo extends Level{
     public LevelTwo(){
         super();
         nextSpawnTime = 1;
+        maxKidsInStore = 8;
     }
 
     @Override

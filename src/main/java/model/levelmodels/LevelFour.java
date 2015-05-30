@@ -16,6 +16,7 @@ public class LevelFour extends Level {
     public LevelFour(){
         super();
         nextSpawnTime = 2;
+        maxKidsInStore = 8;
         nextSpawnPos = Entity.getUpperBoundary()-10;
         spawnDir= 0;
     }
@@ -25,19 +26,19 @@ public class LevelFour extends Level {
         timePassed += delta;
         switch(currentWave){
             case 1:
-                if(spawnedKids < 35){
+                if(spawnedKids < 16){
                     if(timePassed >= nextSpawnTime){
                         activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), nextSpawnPos));
-                        changeSpawnPos();
+                        nextSpawnPos -= 25;
                         spawnedKids++;
                         nextSpawnTime += 1;
                     }
-                }else if(kidsRemoved == 35){
+                }else if(kidsRemoved == 16){
                     changeWave();
                 }
                 break;
             case 2:
-                if(spawnedKids < 25){
+                if(spawnedKids < 30){
                     if(timePassed >= nextSpawnTime){
                         int kidToSpawn = random.nextInt(99);
                         if(kidToSpawn < 80){
@@ -48,46 +49,40 @@ public class LevelFour extends Level {
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
                     }
-                }else{
+                }else if(kidsRemoved == 30){
                     changeWave();
                 }
                 break;
             case 3:
+                if(spawnedKids < 16) {
+                    if (timePassed >= nextSpawnTime) {
+                        activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), nextSpawnPos));
+                        nextSpawnPos -= 25;
+                        spawnedKids++;
+                        nextSpawnTime += 1;
+                    }
+                }
                 break;
         }
 
     }
 
-    private void changeSpawnPos(){
-        if(nextSpawnPos <= Entity.getLowerBoundary()){
-            spawnDir = 1;
-        }else if(nextSpawnPos >= Entity.getUpperBoundary()){
-            spawnDir = 0;
-        }
-        switch (spawnDir){
-            case 0:
-                nextSpawnPos -= 25;
-                break;
-            case 1:
-                nextSpawnPos += 25;
-                break;
-        }
-    }
 
     @Override
     protected void changeWave() {
         currentWave++;
         spawnedKids = 0;
         nextSpawnTime = timePassed + 3;
+        nextSpawnPos = Entity.getUpperBoundary()-10;
     }
 
     @Override
     public boolean levelDone() {
-        return kidsRemoved == 35 && kidsInStore < 10;
+        return kidsRemoved == 62 && kidsInStore < 8;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 10;
+        return kidsInStore == 8;
     }
 }

@@ -23,7 +23,9 @@ public abstract class Level {
     protected int kidsInStore;
     protected int kidsKilled;
     protected int kidsRemoved;
+    protected int maxKidsInStore;
     protected Random random;
+
 
 
     public Level(){
@@ -56,6 +58,10 @@ public abstract class Level {
 
     public int getKidsInStore(){
         return kidsInStore;
+    }
+
+    public int getMaxKidsInStore(){
+        return maxKidsInStore;
     }
 
     /**
