@@ -1,5 +1,7 @@
 package view.gameStates.playfieldGUI;
 
+import model.Model;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -19,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 public class CurrentLevel_Bar extends GUI_Super {
 
 	private OrthographicCamera cam;
+	private Model model;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
@@ -26,7 +29,7 @@ public class CurrentLevel_Bar extends GUI_Super {
 	private String currentLevel;
 	
 	@SuppressWarnings("deprecation")
-	public CurrentLevel_Bar(OrthographicCamera cam, float width, float height) {
+	public CurrentLevel_Bar(OrthographicCamera cam, Model model, float width, float height) {
 
 		this.cam = cam;
 		this.width = width;
@@ -40,7 +43,8 @@ public class CurrentLevel_Bar extends GUI_Super {
 		textFont = gen.generateFont(22);
 		textFont.setColor(Color.GREEN);
 		
-		currentLevel = "Level\n   1"; //+ Model.getCurrentLevel();
+		currentLevel = "Level\n   "; //+ Model.getCurrentLevel();
+		currentLevel += Integer.toString(model.getCurrentLevelNumber());
 	}
 		
 	public void render() {

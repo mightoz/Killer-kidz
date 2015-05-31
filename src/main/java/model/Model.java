@@ -126,8 +126,12 @@ public class Model {
 
     }
 
-    public int getCurrentLevel(){
+    public int getCurrentLevelNumber(){
         return currentLevel;
+    }
+    
+    public Level getLevel() {
+    	return level;
     }
 
     /**

@@ -1,5 +1,7 @@
 package view.gameStates.playfieldGUI;
 
+import model.entity.players.Player;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,6 +20,7 @@ public class Money_Bar extends GUI_Super{
 	
 	// Using this for getting the cam-position.
 	private OrthographicCamera cam;
+	private Player player;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
@@ -26,7 +29,7 @@ public class Money_Bar extends GUI_Super{
 	private String money;
 	
 	@SuppressWarnings("deprecation")
-	public Money_Bar(OrthographicCamera cam, float width, float height) {
+	public Money_Bar(OrthographicCamera cam, Player player, float width, float height) {
 
 		this.width = width;
 		this.height = height;
@@ -40,7 +43,7 @@ public class Money_Bar extends GUI_Super{
 		textFont = gen.generateFont(24);
 		textFont.setColor(Color.YELLOW);
 		
-		money = "$$$$$$"; //player.getMoney();
+		money = Integer.toString(player.getMoney());
 	}
 		
 	public void render() {

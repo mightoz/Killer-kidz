@@ -1,5 +1,7 @@
 package view.gameStates.playfieldGUI;
 
+import model.Model;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,16 +25,20 @@ public class ShopToProtect extends GUI_Super {
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
 	private BitmapFont textFont;
+	
+	private Model model;
 
 	private OrthographicCamera cam;
 	
+	private int remainingLives;
 	private String lives;
 	private String shopText;
 	
 	@SuppressWarnings("deprecation")
-	public ShopToProtect(OrthographicCamera cam, GUI_Foundation gui, float height) {
+	public ShopToProtect(OrthographicCamera cam, Model model, GUI_Foundation gui, float height) {
 
 		this.cam = cam;
+		this.model = model;
 		
 		batch = new SpriteBatch();
 		
@@ -46,19 +52,24 @@ public class ShopToProtect extends GUI_Super {
 		x = 45;
 		y = height - gui.getSquareSizeY() + 1;
 		
-		lives = "5";
-		shopText = "T\no\ny\ns\n \nR\n \nu\ns";
+		remainingLives = 5;
+
+		shopText = "T\no\ny \n \n \nS\nt\no\nr\ne";
 
 	}
 
 	// Draw an box "shop" from bottomleft to the GUI border at top.
 	public void render(ShapeRenderer sr) {
-
+		
 		sr.setColor(Color.MAROON);
 		
 		sr.begin(ShapeType.Filled);
 		sr.box(0, 0, 0, x, y, 0);
 		sr.end();
+		
+		// Update remainingLives.
+		remainingLives = 5 - model.getLevel().getKidsInStore();
+		lives = Integer.toString(remainingLives);
 
 		// Start to draw strings.
 		batch.setProjectionMatrix(cam.combined);
