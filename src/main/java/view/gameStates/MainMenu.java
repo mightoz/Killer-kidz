@@ -33,7 +33,7 @@ public class MainMenu implements Screen {
 	// so the text will be centered in the menu).
 	GlyphLayout layout = new GlyphLayout();
 	
-	private static final String title = "KillerKids";
+	private static final String title = "KillerKidz";
 	private int currentItem;
 	private String[] menuItemsList;
 
@@ -56,8 +56,6 @@ public class MainMenu implements Screen {
 		
 		menuItemsList = new String[] {
 				"Play",
-				"Settings",
-				"HighScore",
 				"HowToPlay",
 				"Quit"
 		};
@@ -88,7 +86,7 @@ public class MainMenu implements Screen {
 			layoutWidth = layout.width;
 			if(currentItem == i) textFont.setColor(Color.RED);
 			else textFont.setColor(Color.WHITE);
-			textFont.draw(batch, menuItemsList[i], (width - layoutWidth) / 2, 350-(i*50));
+			textFont.draw(batch, menuItemsList[i], (width - layoutWidth) / 2, 330-(i*90));
 		}
 		
 		batch.end();
