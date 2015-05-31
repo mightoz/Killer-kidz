@@ -1,6 +1,8 @@
 package view.gameStates;
 
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import model.entity.Entity;
 import model.entity.players.Player;
 import model.Model;
@@ -15,7 +17,6 @@ import view.inGameEntities.PlayerView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -30,6 +31,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * @version 1.0
  */
 public class PlayfieldView implements Screen {
+
+    private Texture background;
+    private SpriteBatch spriteBatch;
 
     private ShapeRenderer sr;
 
@@ -71,8 +75,17 @@ public class PlayfieldView implements Screen {
         money = new Money_Bar(cam, playerObject, width, height);
         level = new CurrentLevel_Bar(cam, model, width, height);
         candy_bar = new Candy_Bar(cam, gui, playerObject);
+        spriteBatch = new SpriteBatch();
+        loadTextures();
     }
 
+    private void loadTextures(){
+        background = new Texture(Gdx.files.internal("images/background.png"));
+    }
+
+    private void drawBackground(){
+        spriteBatch.draw(background,0,0, 640, 480);
+    }
     /*
      * Order of painting:
      * Background
@@ -87,9 +100,13 @@ public class PlayfieldView implements Screen {
      */
     @Override
     public void render(float delta) {
-    	
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        spriteBatch.begin();
+        drawBackground();
+        spriteBatch.end();
+
+//        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         for (Entity entity : model.getEntities()) {
             switch (entity.getId().substring(0, 1)) {

@@ -1,6 +1,7 @@
 package view.gameStates;
 
 
+import com.badlogic.gdx.graphics.Texture;
 import model.Model;
 import model.CandyShop;
 
@@ -20,6 +21,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  * @version 1.0
  */
 public class CandyShopView implements Screen {
+
+    private Texture candyShop;
+    private SpriteBatch spriteBatch;
 
 	private CandyShop cs;
 	
@@ -53,6 +57,7 @@ public class CandyShopView implements Screen {
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 			Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
+        
 		titleFont = gen.generateFont(50);
 		moneyFont = gen.generateFont(25);
 		candyFont = gen.generateFont(30);
@@ -60,7 +65,7 @@ public class CandyShopView implements Screen {
 		playerFont = gen.generateFont(25);
 		finishFont = gen.generateFont(25);
 		infoFont = gen.generateFont(15);
-		
+
 		titleFont.setColor(Color.PURPLE);
 		moneyFont.setColor(Color.YELLOW);
 		
@@ -73,9 +78,17 @@ public class CandyShopView implements Screen {
 		colourGuide[0] = "You already have this upgrade";
 		colourGuide[1] = "You can buy this upgrade";
 		colourGuide[2] = "You can't buy this upgrade";
-		
+
+        spriteBatch = new SpriteBatch();
+        loadTextures();
 	}
-	
+    private void loadTextures(){
+        candyShop = new Texture(Gdx.files.internal("images/candyshop.png"));
+    }
+
+    private void drawCandyshop(){
+        spriteBatch.draw(candyShop,0,0, 640, 480);
+    }
 	@Override
 	public void render(float delta) {		
 		drawUnselectableThings();
@@ -154,9 +167,12 @@ public class CandyShopView implements Screen {
 	
 	private void drawUnselectableThings() {
 		// Clear the screen
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+//		Gdx.gl.glClearColor(0, 0, 0, 1);
+//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        spriteBatch.begin();
+        drawCandyshop();
+        spriteBatch.end();
+
 		// Start drawing
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
