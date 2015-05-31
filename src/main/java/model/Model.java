@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public class Model {
 
-    private static ArrayList<Entity> objects;
-    public static float width;
-    public static float height;
+    private ArrayList<Entity> objects;
+    public float width;
+    public float height;
 
     private ArrayList<Player> players;
 
@@ -27,8 +27,8 @@ public class Model {
 
 
     public Model(int width, int height) {
-        objects = new ArrayList();
-        players = new ArrayList();
+        objects = new ArrayList<>();
+        players = new ArrayList<>();
         this.width = (float) width;
         this.height = (float) height - 62;
         currentLevel = 1;
