@@ -75,7 +75,7 @@ public class ShopToProtect extends GUI_Super {
         spriteBatch.end();
 		
 		// Update remainingLives.
-		remainingLives = 5 - model.getLevel().getKidsInStore();
+		remainingLives = model.getLevel().getMaxKidsInStore() - model.getLevel().getKidsInStore();
 		lives = Integer.toString(remainingLives);
 
 		// Start to draw strings.
