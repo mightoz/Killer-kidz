@@ -70,9 +70,6 @@ public class PlayfieldView implements Screen {
 
         money = new Money_Bar(cam, playerObject, width, height);
         level = new CurrentLevel_Bar(cam, model, width, height);
-
-    	
-
         candy_bar = new Candy_Bar(cam, gui, playerObject);
     }
 

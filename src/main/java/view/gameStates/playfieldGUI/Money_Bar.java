@@ -26,14 +26,13 @@ public class Money_Bar extends GUI_Super{
 	private SpriteBatch batch;
 	private BitmapFont textFont;
 	
-	private String money;
-	
 	@SuppressWarnings("deprecation")
 	public Money_Bar(OrthographicCamera cam, Player player, float width, float height) {
 
 		this.width = width;
 		this.height = height;
 		this.cam = cam;
+		this.player = player;
 		
 		batch = new SpriteBatch();
 
@@ -41,9 +40,7 @@ public class Money_Bar extends GUI_Super{
 				Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
 		
 		textFont = gen.generateFont(24);
-		textFont.setColor(Color.YELLOW);
-		
-		money = Integer.toString(player.getMoney());
+		textFont.setColor(Color.YELLOW);		
 	}
 		
 	public void render() {
@@ -53,8 +50,11 @@ public class Money_Bar extends GUI_Super{
 		batch.begin();
 		
 		// Draw title
-		textFont.draw(batch, money, (width / 128) * 111, (height / 24) * 23);
-//		textFont.draw(batch, money, (width - layoutWidth) / 2, 450);
+		textFont.draw(batch,
+				Integer.toString(player.getMoney()),
+				(width / 128) * 111,
+				(height / 24) * 23);
+		
 		batch.end();
 	}
 }
