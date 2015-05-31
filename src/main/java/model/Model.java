@@ -345,12 +345,19 @@ public class Model {
             if(players.get(0).getCandyData().size() == currentLevel) {
                 players.get(0).addCandy(currentLevel, data);
             }
+            for(int i = 0; i< players.size(); i++){
+                players.get(i).resetPos();
+            }
             startLevel(currentLevel+1);
         }
     }
 
     public String getStatusInShop(){
         return getCandyShop().getStatus();
+    }
+
+    public int getMoney(Player p){
+        return p.getMoney();
     }
 
 }
