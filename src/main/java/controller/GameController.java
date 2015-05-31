@@ -40,21 +40,12 @@ class GameController extends InputAdapter {
 
     	switch (this.nbrOfPlayers) {
     	case 1:
-    	    P1_LURD[0] = Keys.LEFT;
-    	    P1_LURD[1] = Keys.UP;
-    	    P1_LURD[2] = Keys.RIGHT;
-    	    P1_LURD[3] = Keys.DOWN;
+    	    P1_LURD[0] = Keys.LEFT; P1_LURD[1] = Keys.UP; P1_LURD[2] = Keys.RIGHT; P1_LURD[3] = Keys.DOWN;
     	    break;
    
     	case 2:
-    	    P1_LURD[0] = Keys.A;
-    	    P1_LURD[1] = Keys.W;
-    	    P1_LURD[2] = Keys.D;
-    	    P1_LURD[3] = Keys.S;
-    	    P2_LURD[0] = Keys.LEFT;
-    	    P2_LURD[1] = Keys.UP;
-    	    P2_LURD[2] = Keys.RIGHT;
-    	    P2_LURD[3] = Keys.DOWN;
+    	    P1_LURD[0] = Keys.A; P1_LURD[1] = Keys.W; P1_LURD[2] = Keys.D; P1_LURD[3] = Keys.S;
+    	    P2_LURD[0] = Keys.LEFT; P2_LURD[1] = Keys.UP; P2_LURD[2] = Keys.RIGHT; P2_LURD[3] = Keys.DOWN;
     	    break;
     	    
     	default:
@@ -109,6 +100,7 @@ class GameController extends InputAdapter {
     		if (csc.isFinished()) {
     			gm.dispose();
         		gm.setScreen(gm.getPlayfieldView());
+        		
         		inCandyShop = false;
     		}
     		return true;

@@ -29,7 +29,7 @@ public class CandyShopView implements Screen {
 	private static final GlyphLayout layout = new GlyphLayout();
 	private float layoutWidth;
 	
-	private static final SpriteBatch batch = new SpriteBatch();;
+	private static final SpriteBatch batch = new SpriteBatch();
 	private BitmapFont titleFont;
 	private BitmapFont moneyFont;
 	private BitmapFont candyFont;
@@ -189,7 +189,7 @@ public class CandyShopView implements Screen {
 		
 		// Draw info
 		String info = "Welcome to the candy shop! Move around with arrow keys and press enter while marking an \n"
-					+ "upgrade to purchase it. Press enter while marking a candy property to view info about it.";
+					+ "upgrade to purchase it.";
 		//String info = cs.getInfo();																// TODO
 		layout.setText(infoFont, info);
 		layoutWidth = layout.width;
