@@ -167,7 +167,10 @@ public class Model {
                 }
                 level = new LevelFour();
                 break;
-
+            default:
+                currentLevel=1;
+                level = new LevelOne();
+                break;
         }
     }
 
@@ -190,8 +193,8 @@ public class Model {
                             //Detects collision between candy and kid.
                             if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
                                 kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage(), candyList.get(i).getSlowRate());
-                                //Kollar om det är en JellyBean och penCapacity
-                                if(candyList.get(i).getType() == "JellyBean") {
+                                //Check if jellybean and penCapacity
+                                if(candyList.get(i).getType().equals("Jellybean")) {
                                     if(candyList.get(i).getPenCapacity() > 0) {
                                         candyList.get(i).decPenCapacity();
                                     }else{
@@ -356,6 +359,8 @@ public class Model {
                  */
                 if (CandyShop.getInstance().getCurrentRow() < 5)
                     CandyShop.getInstance().move(step);
+                break;
+            default:
                 break;
         }
     }
