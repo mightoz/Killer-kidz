@@ -32,7 +32,7 @@ public class JellyBeanTest {
         float initialX = candy.getX();
         candy.update(1.0);
         float newX = candy.getX();
-        assertTrue("candy is not updated correctly", initialX > newX);
+        assertTrue("candy is not updated correctly", initialX < newX);
     }
 
     @Test
