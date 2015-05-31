@@ -13,7 +13,7 @@ public class Chocolate extends Candy {
         super(x, y);
         type = "Chocolate";
         expired = false;
-        radius = 8;
+        radius = 7;
 
         switch(candyStatus[0]){
             case 0:

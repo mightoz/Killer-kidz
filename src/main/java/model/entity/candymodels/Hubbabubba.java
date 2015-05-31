@@ -13,8 +13,6 @@ public class Hubbabubba extends Candy {
         super(x, y);
         type = "Hubbabubba";
         expired = false;
-        radius = 10;
-        maxTravelLength = 400;
 
         switch(candyStatus[0]){
             case 0:
@@ -61,19 +59,20 @@ public class Hubbabubba extends Candy {
                 break;
         }
 
-        //Fjärde uppgraderingen: Cooldown
         switch(candyStatus[3]){
             case 0:
+                maxTravelLength = 400;
                 break;
             case 1:
+                maxTravelLength = 450;
                 break;
             case 2:
+                maxTravelLength = 500;
                 break;
             case 3:
+                maxTravelLength = 600;
                 break;
         }
-
-
     }
 
 

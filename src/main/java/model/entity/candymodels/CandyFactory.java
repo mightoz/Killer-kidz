@@ -36,6 +36,12 @@ public abstract class CandyFactory {
                         candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
                         break;
                     case 3:
+                        candyList.add(new JellyBean(xPos, yPos + 5, tmpStatus));
+                        candyList.add(new JellyBean(xPos, yPos - 5, tmpStatus));
+                        if(tmpStatus[0]>0)
+                            tmpStatus[0]--;
+                        candyList.add(new JellyBean(xPos - 10, yPos + 5, tmpStatus));
+                        candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
                         break;
                 }
                 break;
