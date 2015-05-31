@@ -104,9 +104,6 @@ public class PlayfieldView implements Screen {
         spriteBatch.begin();
         drawBackground();
         spriteBatch.end();
-
-//        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         for (Entity entity : model.getEntities()) {
             switch (entity.getId().substring(0, 1)) {
