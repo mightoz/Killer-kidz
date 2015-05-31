@@ -175,7 +175,7 @@ public class Model {
      * Updates the list of active objects and notifies view. Removes objects that have expired.
      */
     public void updateGame(double delta) {
-
+        int kills = level.getKills();
         for(int x = 0; x < players.size(); x++) {
             ArrayList<Candy> candyList = players.get(x).getActiveCandies();
             for (int i = 0; i < candyList.size(); i++) {
@@ -187,11 +187,9 @@ public class Model {
                             float deltaX = kidList.get(j).getX() - candyList.get(i).getX();
                             float deltaY = kidList.get(j).getY() - candyList.get(i).getY();
                             float combinedR = kidList.get(j).getRadius() + candyList.get(i).getRadius();
+                            //Detects collision between candy and kid.
                             if (Math.pow(deltaX, 2) + Math.pow(deltaY, 2) <= Math.pow(combinedR, 2)) {
-                                int kills = level.getKills();
                                 kidList.get(j).hitByCandy(candyList.get(i).getType(), candyList.get(i).getDamage(), candyList.get(i).getSlowRate());
-                                if (level.getKills() > kills && j > 0) j--;
-
                                 //Kollar om det är en JellyBean och penCapacity
                                 if(candyList.get(i).getType() == "JellyBean") {
                                     if(candyList.get(i).getPenCapacity() > 0) {
@@ -207,7 +205,7 @@ public class Model {
                                 break;
                             }
                         }
-                    }else {
+                    } else {
                         candyList.remove(candyList.get(i));
                         if (i > 0) i--;
                     }
@@ -219,6 +217,9 @@ public class Model {
             players.get(z).update(delta);
         }
         level.update(delta);
+        //if a kid is "killed", award player with 50 bitcoin.
+        if(level.getKills()>kills)
+            players.get(0).cashIn(50);
         updateObjectList();
 
         if (level.levelFailed()) {
@@ -372,10 +373,6 @@ public class Model {
 
     public String getStatusInShop(){
         return getCandyShop().getStatus();
-    }
-
-    public int getMoney(Player p){
-        return p.getMoney();
     }
 
 }
