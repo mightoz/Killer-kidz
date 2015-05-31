@@ -45,6 +45,36 @@ public class Chocolate extends Candy {
                 break;
         }
 
+        switch(candyStatus[2]){
+            case 0:
+                damage *= 1.1;
+                break;
+            case 1:
+                damage *= 1.2;
+                break;
+            case 2:
+                damage *= 1.3;
+                break;
+            case 3:
+                damage *= 1.4;
+                break;
+        }
+
+        switch(candyStatus[3]){
+            case 0:
+                maxTravelLength *= 1.1;
+                break;
+            case 1:
+                maxTravelLength *= 1.2;
+                break;
+            case 2:
+                maxTravelLength *= 1.3;
+                break;
+            case 3:
+                maxTravelLength *= 1.4;
+                break;
+        }
+
     }
 
     @Override
