@@ -44,10 +44,6 @@ public class MainMenuController extends InputAdapter {
 		switch(state) {
 		case MENU:
 			return mainController(keycode);
-		case SETTINGS:
-			return settingsController(keycode);
-		case HIGHSCORE:
-			return highscoreController(keycode);
 		case HOW_TO_PLAY:
 			return howToPlayController(keycode);
 		}
@@ -71,12 +67,6 @@ public class MainMenuController extends InputAdapter {
 				gm.setScreen(gm.getPlayfieldView());
 				new GameController(gm, model, 1);
 				return true;
-			case "Settings":
-				//state = MainMenuStates.SETTINGS;
-				return false;
-			case "HighScore":
-				//state = MainMenuStates.HIGHSCORE;
-				return false;
 			case "HowToPlay":
 				gm.dispose();
 				gm.setScreen(gm.getHowToPlayView());
@@ -87,14 +77,6 @@ public class MainMenuController extends InputAdapter {
 				return true;
 			}
 		}
-		return false;
-	}
-	
-	private boolean settingsController(int keycode) {
-		return false;
-	}
-	
-	private boolean highscoreController(int keycode) {
 		return false;
 	}
 	

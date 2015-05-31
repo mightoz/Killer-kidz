@@ -1,9 +1,7 @@
-******** One  player ********
 Move: ARROW KEYS
 Change candy: NUMERIC KEYS
 Throw candy: SPACE
-
-******** Two players ********
+SPLIT
 Player 1						
 Move: A, W, D, S			
 Change candy: NUMERIC KEYS		
@@ -13,3 +11,5 @@ Player 2
 Move: ARROW KEYS
 Change candy: NUMPAD KEYS
 Throw candy: ENTER
+SPLIT
+After completing a level, press ENTER to go to candy shop.
