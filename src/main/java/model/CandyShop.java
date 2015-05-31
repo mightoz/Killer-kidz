@@ -91,7 +91,8 @@ public class CandyShop {
                 if (currentRow < 5)
                     currentRow++;
                 break;
-
+            default:
+                throw new IllegalArgumentException("Invalid key");
         }
     }
 
