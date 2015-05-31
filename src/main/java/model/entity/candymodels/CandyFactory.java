@@ -38,8 +38,10 @@ public abstract class CandyFactory {
                     case 3:
                         candyList.add(new JellyBean(xPos, yPos + 5, tmpStatus));
                         candyList.add(new JellyBean(xPos, yPos - 5, tmpStatus));
-                        if(tmpStatus[0]>0)
-                            tmpStatus[0]--;
+                        candyList.add(new JellyBean(xPos+5, yPos, tmpStatus));
+                        candyList.add(new JellyBean(xPos-5, yPos + 10, tmpStatus));
+                        candyList.add(new JellyBean(xPos-5, yPos - 10, tmpStatus));
+                        candyList.add(new JellyBean(xPos-15, yPos - 10, tmpStatus));
                         candyList.add(new JellyBean(xPos - 10, yPos + 5, tmpStatus));
                         candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
                         break;
