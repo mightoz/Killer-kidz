@@ -43,6 +43,8 @@ public abstract class CandyFactory {
                         candyList.add(new JellyBean(xPos - 10, yPos + 5, tmpStatus));
                         candyList.add(new JellyBean(xPos - 10, yPos - 5, tmpStatus));
                         break;
+                    default:
+                        throw new IndexOutOfBoundsException("Invalid upgrade");
                 }
                 break;
             case 1:
@@ -53,6 +55,8 @@ public abstract class CandyFactory {
                 int [] chokoStatus = candyData.get(2);
                 candyList.add(new Chocolate(xPos, yPos, chokoStatus));
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Not a valid candy");
         }
         return candyList;
     }

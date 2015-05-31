@@ -28,6 +28,8 @@ public class Chocolate extends Candy {
             case 3:
                 damage = 90;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch(candyStatus[1]){
@@ -43,6 +45,8 @@ public class Chocolate extends Candy {
             case 3:
                 maxTravelLength = 300;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch(candyStatus[2]){
@@ -58,6 +62,8 @@ public class Chocolate extends Candy {
             case 3:
                 damage *= 1.4;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch(candyStatus[3]){
@@ -73,6 +79,8 @@ public class Chocolate extends Candy {
             case 3:
                 maxTravelLength *= 1.4;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
     }

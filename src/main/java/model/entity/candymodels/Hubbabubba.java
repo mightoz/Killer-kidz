@@ -27,39 +27,11 @@ public class Hubbabubba extends Candy {
             case 3:
                 damage = 25;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch(candyStatus[1]){
-            case 0:
-                slowRate = 0.8;
-                break;
-            case 1:
-                slowRate = 0.6;
-                break;
-            case 2:
-                slowRate = 0.4;
-                break;
-            case 3:
-                slowRate = 0.2;
-                break;
-        }
-
-        switch(candyStatus[2]){
-            case 0:
-                radius = 4;
-                break;
-            case 1:
-                radius = 7;
-                break;
-            case 2:
-                radius =10;
-                break;
-            case 3:
-                radius = 13;
-                break;
-        }
-
-        switch(candyStatus[3]){
             case 0:
                 maxTravelLength = 400;
                 break;
@@ -72,6 +44,42 @@ public class Hubbabubba extends Candy {
             case 3:
                 maxTravelLength = 600;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
+        }
+
+        switch(candyStatus[2]){
+            case 0:
+                slowRate = 0.8;
+                break;
+            case 1:
+                slowRate = 0.6;
+                break;
+            case 2:
+                slowRate = 0.4;
+                break;
+            case 3:
+                slowRate = 0.2;
+                break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
+        }
+
+        switch(candyStatus[3]){
+            case 0:
+                radius = 4;
+                break;
+            case 1:
+                radius = 7;
+                break;
+            case 2:
+                radius = 10;
+                break;
+            case 3:
+                radius = 13;
+                break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
     }
 
