@@ -2,7 +2,6 @@ package levelTests;
 
 import model.levelmodels.Level;
 import model.levelmodels.LevelThree;
-import model.levelmodels.LevelTwo;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -33,7 +32,7 @@ public class LevelThreeTest {
     public void testLevelFailed(){
         Level level = new LevelThree();
         boolean initialStatus = level.levelFailed();
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < level.getMaxKidsInStore(); i++){
             level.enteredStore();
         }
         boolean status = level.levelFailed();

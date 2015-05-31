@@ -32,7 +32,7 @@ public class LevelTwoTest {
     public void testLevelFailed(){
         Level level = new LevelTwo();
         boolean initialStatus = level.levelFailed();
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < level.getMaxKidsInStore(); i++){
             level.enteredStore();
         }
         boolean status = level.levelFailed();
