@@ -5,12 +5,13 @@ import model.entity.kids.SinEster;
 
 import org.junit.Test;
 
+/**
+ * Testing methods in SinEster
+ * @author MarieKlevedal
+ * @version 1.0
+ */
 public class SinEsterTest {
 
-	/*
-	 * Methods implemented in SinEster
-	 */
-	
 	@Test
 	public void testSinEster() {
 		SinEster ester = new SinEster(500, 300);
@@ -36,63 +37,25 @@ public class SinEsterTest {
 	@Test
 	public void testHitByCandy() {
 		SinEster ester = new SinEster(500, 300);
+		
+		// Favourite candy
 		ester.hitByCandy("Hubbabubba", 50, 0);
 		assertEquals("Ester dies of Hubbahubba", 0f, ester.getHpRatio(), 1e-16);
 		
+		// Killer instinct triggering candy
 		ester.hitByCandy("JellyBean", 50, 0);
 		assertTrue("Ester becomes killer kid of JellyBean", ester.enraged());
 		assertEquals("Ester gets full hp when becoming killer", 1.0f, ester.getHpRatio(), 1e-16);
+		
+		// Chocolate and candy4 make Ester weaker
+		float hpRat1 = ester.getHpRatio();
+		ester.hitByCandy("Chocolate", 30, 0);
+		float hpRat2 = ester.getHpRatio();
+		assertTrue("Ester gets weaker by Chocolate", hpRat2 < hpRat1);
+		ester.hitByCandy("candy4", 30, 0);
+		float hpRat3 = ester.getHpRatio();
+		assertTrue("Ester gets weaker by candy4", hpRat3 < hpRat2);
+		
 	}
-
-	/*
-	 * Methods implemented in Kid
-	 */
-	
-	/*
-	@Test
-	public void testGenerateId() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testIsExpired() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetId() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetRadius() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testKid() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetHpRatio() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testEnteredStore() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testEnraged() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	public void testGetTransparency() {
-		fail("Not yet implemented"); // TODO
-	}
-*/
 
 }

@@ -21,7 +21,7 @@ public class SimpleSam extends Kid {
 		ax = -5;
 
 		immuneTimeLeft = 0;
-		maxHP = 50;
+		maxHP = 100;
 		hp = maxHP;
 	}
 	

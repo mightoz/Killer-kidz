@@ -18,12 +18,10 @@ public abstract class Kid extends Entity {
 	protected int maxHP;
 	protected int hp;
 	protected boolean expired;
-	protected boolean inKillerMode;
-
-	protected float transparency;
-
 	protected boolean inStore;
-
+	
+	protected boolean inKillerMode;
+	protected float transparency;
 	
 	protected static final Random randGen = new Random();
 	
@@ -31,13 +29,16 @@ public abstract class Kid extends Entity {
 		super(x, y);					// initiate body position
 		
 		ID = generateId();
+		
 		expired = false;
-		inKillerMode = false;
-
-		transparency = 1;
 		inStore = false;
+		
+		inKillerMode = false;
+		transparency = 1;
+		
 	}
 	
+	// All kids are given an unique id starting with letter k
 	@Override
 	protected String generateId() {
 		return "k" + (++idCounter);
@@ -50,20 +51,12 @@ public abstract class Kid extends Entity {
 	
 	public abstract String getName();
 	
-	@Override
-	public float getRadius() {
-		return radius;
-	}
+	public abstract void hitByCandy(String candyType, int damage, double slowRate);
 	
-	// return the ratio of the hp that is left
+	// An indicator of how "weak" the kid is, can be used by view.
 	public float getHpRatio() {
 		return (float)hp/maxHP;
 	}
-	
-	@Override
-	public abstract void update(double dt);
-	
-	public abstract void hitByCandy(String candyType, int damage, double slowRate);
 	
 	public boolean enteredStore() {
 		return inStore;

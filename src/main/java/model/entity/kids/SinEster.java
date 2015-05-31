@@ -36,7 +36,9 @@ public class SinEster extends Kid {
 
 	@Override
 	public void update(double dt) {
+		
 		// y(x) = A * sin(K*x)
+		
 		int A = 0;
 		if (MAX_A > 0) { 
 			A = randGen.nextInt(MAX_A); 
