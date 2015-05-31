@@ -31,7 +31,7 @@ public class Model {
         players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 1;
+        currentLevel = 3;
         Entity.setBoundaries(45, this.width, this.height, 0);
         levelCompleted = false;
     }
@@ -96,14 +96,22 @@ public class Model {
      * @param candy
      */
     public void changeCandy(int playerNum, int candy) {
-        if(candy <= currentLevel) {
-            for (Player player : players) {
-                if (player.getId().substring(1, 2).equals(Integer.toString(playerNum))) {
-                    player.setSelectedCandy(candy - 1);
-                    break;
-                }
-            }
+        try {
+            Player tmp = players.get(playerNum - 1);
+            if (tmp.getCandyData().size() >= candy)
+                tmp.setSelectedCandy(candy-1);
+        }catch (IndexOutOfBoundsException e){
+
         }
+
+//        if(players.get(playerNum-1).) {
+//            for (Player player : players) {
+//                if (player.getId().substring(1, 2).equals(Integer.toString(playerNum))) {
+//                    player.setSelectedCandy(candy - 1);
+//                    break;
+//                }
+//            }
+//        }
     }
 
     /**
