@@ -2,7 +2,6 @@ package model.levelmodels;
 
 import model.entity.Entity;
 import model.entity.kids.KidTypes;
-
 import static model.entity.kids.KidFactory.createKid;
 
 /**
@@ -70,6 +69,8 @@ public class LevelTwo extends Level{
                     }
                 }
                 break;
+            default:
+            	throw new IllegalArgumentException("Not an existing wave");
         }
 
     }

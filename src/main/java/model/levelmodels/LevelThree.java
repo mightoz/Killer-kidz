@@ -2,7 +2,6 @@ package model.levelmodels;
 
 import model.entity.Entity;
 import model.entity.kids.KidTypes;
-
 import static model.entity.kids.KidFactory.createKid;
 
 /**
@@ -74,8 +73,9 @@ public class LevelThree extends Level {
                         nextSpawnTime += random.nextDouble()*4;
                     }
                 }
-
                 break;
+            default:
+                throw new IllegalArgumentException("Not an existing wave");
         }
     }
 

@@ -2,7 +2,6 @@ package model.levelmodels;
 
 import model.entity.Entity;
 import model.entity.kids.KidTypes;
-
 import static model.entity.kids.KidFactory.createKid;
 
 /**
@@ -11,14 +10,12 @@ import static model.entity.kids.KidFactory.createKid;
 public class LevelFour extends Level {
 
     float nextSpawnPos;
-    int spawnDir;
 
     public LevelFour(){
         super();
         nextSpawnTime = 2;
         maxKidsInStore = 8;
         nextSpawnPos = Entity.getUpperBoundary()-10;
-        spawnDir= 0;
     }
 
     @Override
@@ -65,6 +62,8 @@ public class LevelFour extends Level {
                     }
                 }
                 break;
+            default:
+            	throw new IllegalArgumentException("Not an existing wave");
         }
     }
 
