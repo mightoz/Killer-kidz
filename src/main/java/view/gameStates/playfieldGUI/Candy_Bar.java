@@ -103,7 +103,7 @@ public class Candy_Bar extends GUI_Super {
 		sr.setAutoShapeType(true);
 
 		// Unlocked one candy, so paintorder: outerBox, number-box, number
-		if (player.getCandyData().size() == 1) {
+		if (player.getCandyData().size() > 0) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
@@ -122,7 +122,7 @@ public class Candy_Bar extends GUI_Super {
 		}
 
 		// unlocked two candies
-		if (player.getCandyData().size() == 2) {
+		if (player.getCandyData().size() > 1) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
@@ -143,7 +143,7 @@ public class Candy_Bar extends GUI_Super {
 		}
 
 		// unlocked three candies
-		if (player.getCandyData().size() == 3) {
+		if (player.getCandyData().size() > 2) {
 
 			sr.setColor(Color.GRAY);
 			sr.set(ShapeType.Filled);
