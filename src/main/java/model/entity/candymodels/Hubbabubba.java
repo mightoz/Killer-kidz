@@ -13,8 +13,6 @@ public class Hubbabubba extends Candy {
         super(x, y);
         type = "Hubbabubba";
         expired = false;
-        radius = 10;
-        maxTravelLength = 400;
 
         switch(candyStatus[0]){
             case 0:
@@ -29,9 +27,28 @@ public class Hubbabubba extends Candy {
             case 3:
                 damage = 25;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch(candyStatus[1]){
+            case 0:
+                maxTravelLength = 400;
+                break;
+            case 1:
+                maxTravelLength = 450;
+                break;
+            case 2:
+                maxTravelLength = 500;
+                break;
+            case 3:
+                maxTravelLength = 600;
+                break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
+        }
+
+        switch(candyStatus[2]){
             case 0:
                 slowRate = 0.8;
                 break;
@@ -44,9 +61,11 @@ public class Hubbabubba extends Candy {
             case 3:
                 slowRate = 0.2;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
-        switch(candyStatus[2]){
+        switch(candyStatus[3]){
             case 0:
                 radius = 4;
                 break;
@@ -54,26 +73,14 @@ public class Hubbabubba extends Candy {
                 radius = 7;
                 break;
             case 2:
-                radius =10;
+                radius = 10;
                 break;
             case 3:
                 radius = 13;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
-
-        //Fjärde uppgraderingen: Cooldown
-        switch(candyStatus[3]){
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-
-
     }
 
 

@@ -42,6 +42,8 @@ public class JellyBean extends Candy {
             case 3:
                 damage = 80;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch (candyStatus[1]) {
@@ -57,6 +59,8 @@ public class JellyBean extends Candy {
             case 3:
                 maxTravelRange = 600;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 
         switch (candyStatus[3]){
@@ -72,6 +76,8 @@ public class JellyBean extends Candy {
             case 3:
                 penCapacity = 3;
                 break;
+            default:
+                throw new IndexOutOfBoundsException("Invalid upgrade");
         }
 		
 		Random rnd = new Random();

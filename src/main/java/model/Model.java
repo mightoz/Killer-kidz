@@ -90,12 +90,18 @@ public class Model {
         }
     }
 
+    /**
+     * Change a player's selected candy
+     * @param playerNum
+     * @param candy
+     */
     public void changeCandy(int playerNum, int candy) {
-        System.out.println("Player" + playerNum + " changed candy to " + candy);
-        for(Player player: players) {
-            if(player.getId().substring(1,2).equals(Integer.toString(playerNum))) {
-                player.setSelectedCandy(candy - 1);
-                break;
+        if(candy <= currentLevel) {
+            for (Player player : players) {
+                if (player.getId().substring(1, 2).equals(Integer.toString(playerNum))) {
+                    player.setSelectedCandy(candy - 1);
+                    break;
+                }
             }
         }
     }

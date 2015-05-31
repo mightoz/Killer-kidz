@@ -26,7 +26,7 @@ public class CandyView extends VisibleObjects{
     		break;
 
 			case "Chocolate":
-				sr.setColor(Color.MAROON);
+				sr.setColor(0.25f, 0.1f, 0f, 1f);
 				sr.circle(candy.getX(), candy.getY(), candy.getRadius());
 				break;
     	default:
