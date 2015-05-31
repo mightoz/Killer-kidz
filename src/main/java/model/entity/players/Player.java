@@ -61,11 +61,10 @@ public class Player extends Entity {
     /**
      * Add a new throwable candy to a players kit.
      *
-     * @param index what candy should be added.
      * @param data the upgrades of the candy added.
      */
-    public void addCandy(int index, int[] data){
-        candyData.add(index, data);
+    public void addCandy(int[] data){
+        candyData.add(data);
     }
 
     /**
