@@ -1,5 +1,6 @@
 package view.gameStates.playfieldGUI;
 
+import com.badlogic.gdx.graphics.Texture;
 import model.Model;
 
 import com.badlogic.gdx.Gdx;
@@ -21,6 +22,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  * @version 1.0
  */
 public class ShopToProtect extends GUI_Super {
+
+    private Texture shopToProtect;
+    private SpriteBatch spriteBatch;
 	
 	// Used for having strings on-screen.
 	private SpriteBatch batch;
@@ -32,7 +36,7 @@ public class ShopToProtect extends GUI_Super {
 	
 	private int remainingLives;
 	private String lives;
-	private String shopText;
+	private String livesLeft;
 	
 	@SuppressWarnings("deprecation")
 	public ShopToProtect(OrthographicCamera cam, Model model, GUI_Foundation gui, float height) {
@@ -52,18 +56,23 @@ public class ShopToProtect extends GUI_Super {
 		x = 45;
 		y = height - gui.getSquareSizeY() + 1;
 
-		shopText = "T\no\ny \n \n \nS\nt\no\nr\ne";
+		livesLeft = "Lives left:";
+
+        spriteBatch = new SpriteBatch();
+        loadTextures();
 
 	}
 
-	// Draw an box "shop" from bottomleft to the GUI border at top.
+    private void loadTextures() {
+        shopToProtect = new Texture(Gdx.files.internal("images/toystore.png"));
+    }
+
+    // Draw an box "shop" from bottomleft to the GUI border at top.
 	public void render(ShapeRenderer sr) {
-		
-		sr.setColor(Color.MAROON);
-		
-		sr.begin(ShapeType.Filled);
-		sr.box(0, 0, 0, x, y, 0);
-		sr.end();
+
+        spriteBatch.begin();
+        drawShopToProtect();
+        spriteBatch.end();
 		
 		// Update remainingLives.
 		remainingLives = 5 - model.getLevel().getKidsInStore();
@@ -74,18 +83,20 @@ public class ShopToProtect extends GUI_Super {
 		batch.begin();
 
 		// Draw title
-		textFont.draw(batch, lives, (x / 2) - 6, (y / 30) * 29);
-		textFont.draw(batch, shopText, (x / 2) - 6, (y / 30) * 24);
+		textFont.draw(batch, lives, (x / 2) + 100, (y / 30) * 29);
+		textFont.draw(batch, livesLeft, (x / 2) + 30, (y / 30) * 29);
 
 		batch.end();
 		
 		// Draw the line to easier see lives for themself.
 		sr.setColor(1, 1, 1, 1);
 		sr.begin(ShapeType.Line);
-		
-		sr.line(0, (y / 30) * 27, x, (y / 30) * 27);;
-		
+
 		sr.end();
 	}
+
+    private void drawShopToProtect() {
+        spriteBatch.draw(shopToProtect,0,0, 45, 420);
+    }
 
 }

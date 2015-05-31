@@ -1,13 +1,13 @@
 package view.gameStates;
 
 
+import com.badlogic.gdx.graphics.Texture;
 import model.Model;
 import model.CandyShop;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -20,6 +20,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  * @version 1.0
  */
 public class CandyShopView implements Screen {
+
+    private Texture candyShop;
+    private SpriteBatch spriteBatch;
 
 	private CandyShop cs;
 	
@@ -53,14 +56,23 @@ public class CandyShopView implements Screen {
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 			Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
-		titleFont = gen.generateFont(50);
-		moneyFont = gen.generateFont(25);
-		candyFont = gen.generateFont(30);
-		propertyFont = gen.generateFont(25);
-		playerFont = gen.generateFont(25);
-		finishFont = gen.generateFont(25);
-		infoFont = gen.generateFont(15);
-		
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 2;
+        parameter.size = 50;
+		titleFont = gen.generateFont(parameter);
+        parameter.size = 30;
+		candyFont = gen.generateFont(parameter);
+        parameter.size = 25;
+        moneyFont = gen.generateFont(parameter);
+		propertyFont = gen.generateFont(parameter);
+		playerFont = gen.generateFont(parameter);
+		finishFont = gen.generateFont(parameter);
+        parameter.size = 15;
+        parameter.borderWidth = 1;
+		infoFont = gen.generateFont(parameter);
+
 		titleFont.setColor(Color.PURPLE);
 		moneyFont.setColor(Color.YELLOW);
 		
@@ -73,9 +85,17 @@ public class CandyShopView implements Screen {
 		colourGuide[0] = "You already have this upgrade";
 		colourGuide[1] = "You can buy this upgrade";
 		colourGuide[2] = "You can't buy this upgrade";
-		
+
+        spriteBatch = new SpriteBatch();
+        loadTextures();
 	}
-	
+    private void loadTextures(){
+        candyShop = new Texture(Gdx.files.internal("images/candyshop.png"));
+    }
+
+    private void drawCandyshop(){
+        spriteBatch.draw(candyShop,0,0, 640, 480);
+    }
 	@Override
 	public void render(float delta) {		
 		drawUnselectableThings();
@@ -153,10 +173,11 @@ public class CandyShopView implements Screen {
 	}
 	
 	private void drawUnselectableThings() {
-		// Clear the screen
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+        //render background
+        spriteBatch.begin();
+        drawCandyshop();
+        spriteBatch.end();
+
 		// Start drawing
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
