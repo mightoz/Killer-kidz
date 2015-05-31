@@ -11,18 +11,19 @@ import java.lang.Math;
  */
 public class SinEster extends Kid {
 	
-	private float vx, vy;			// velocities
-	private final int MAX_A;		// maximum amplitude of the sine wave
-	private final float K = 0.02f;	// the wavenumber of the sine wave
-	private float dTransp = 0.9f;   // dTransp/dt
-	private double invTimeLeft;		// invisibility time left
+	private float vx, vy;							// velocities
+	private final int MAX_A;						// maximum amplitude of the sine wave
+	private static final float K = 0.02f;			// the wavenumber of the sine wave
+	
+	private static final float D_TRANSP = 0.9f;  	// dTransp/dt
+	private double invTimeLeft;						// invisibility time left
 	
 	public SinEster (float x, float y) {
 		super(x, y);
 		radius = 10;
 		
 		vx = -40;
-		MAX_A = (int)Math.min(Math.min(upperBoundary - yPos, yPos - lowerBoundary), 0);
+		MAX_A = (int)(Math.min(upperBoundary - yPos, yPos - lowerBoundary));
 		
 		invTimeLeft = 0;
 		
@@ -35,19 +36,28 @@ public class SinEster extends Kid {
 
 	@Override
 	public void update(double dt) {
+		
 		// y(x) = A * sin(K*x)
-		int A = randGen.nextInt(MAX_A);	//************************************************ERROR************************
+		
+		int A = 0;
+		if (MAX_A > 0) { 
+			A = randGen.nextInt(MAX_A); 
+		}
+		
 		vy = (float) (A*K*Math.cos(K*(rightBoundary - xPos)));	// vy = dy/dx (old x)
 		xPos += vx*dt;											// vx = dx/dt
 		yPos += vy*vx*dt;										// dy/dt = dy/dx * dx/dt
 		
+		// Getting invisible
 		if (invTimeLeft > 0 && transparency > 0) {
-			transparency -= dTransp*dt;
+			transparency -= D_TRANSP*dt;
 			invTimeLeft -= dt;
 		}
+		// Getting visible again
 		else if (transparency < 1) {
-			transparency += dTransp*dt;
+			transparency += D_TRANSP*dt;
 		}
+		// Is completely visible
 		else {
 			inKillerMode = false; 
 		}
@@ -62,7 +72,7 @@ public class SinEster extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
 		switch (candyType) {
-		case "Hubbabubba":			// favourite candy
+		case "Hubbabubba":				// favourite candy
 			hp = 0;
 			break;
 		case "JellyBean":				// killer instinct triggering candy

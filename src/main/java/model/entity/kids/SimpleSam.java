@@ -21,7 +21,7 @@ public class SimpleSam extends Kid {
 		ax = -5;
 
 		immuneTimeLeft = 0;
-		maxHP = 50;
+		maxHP = 100;
 		hp = maxHP;
 	}
 	
@@ -61,7 +61,7 @@ public class SimpleSam extends Kid {
 				break;
 			case "Hubbabubba":
 				hp -= damage;
-				vx *= (1-slowRate);	// slows down the kid
+				vx *= (1-slowRate);		// slows down the kid
 
 			default:
 				hp -= damage;	

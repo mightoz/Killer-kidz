@@ -8,17 +8,17 @@ package model.entity.kids;
  */
 public class DizzyDoriz extends Kid {
 	
-	private double vx, vy;		// velocities
-	private int updatesLeft;	// remaining updates before next change of velocity
+	private double vx, vy;			// velocities
+	private int updatesLeft;		// remaining updates before next change of velocity
 	
-	private double stopTimeLeft;
+	private double stopTimeLeft;	// remaining time before starting to move
 	
 	public DizzyDoriz (float x, float y) {
 		super(x, y);
 		radius = 10;
-
-		stopTimeLeft = 0;
+		updatesLeft = 0;
 		
+		stopTimeLeft = 0;	
 		maxHP = 200;
 		hp = maxHP;
 	}
@@ -30,10 +30,12 @@ public class DizzyDoriz extends Kid {
 	public void update(double dt) {
 		
 		if (inKillerMode) {
+			
+			// Stand still
 			if (stopTimeLeft > 0) {
 				stopTimeLeft -= dt;
-				return;
 			}
+			// Race towards toy store
 			else {
 				xPos -= 200*dt;
 				
@@ -41,9 +43,9 @@ public class DizzyDoriz extends Kid {
 				if (xPos+radius <= leftBoundary) {
 					expired = true;
 				}
-				return;
 			}
 			
+			return;
 		}
 		
 		// Velocity is changed every 200th update
@@ -80,17 +82,17 @@ public class DizzyDoriz extends Kid {
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
 		switch (candyType) {
-		case "Chocolate":		// favourite candy
+		case "Chocolate":			// favourite candy
 			hp = 0;
 			break;
-		case "candy4":			// killer instinct triggering candy
+		case "candy4":				// killer instinct triggering candy
 			hp = maxHP;
 			inKillerMode = true;
 			stopTimeLeft = 2;
 			break;
 		case "Hubbabubba":
 			hp -= damage;
-			vx *= (1-slowRate);	// slows down the kid
+			vx *= (1-slowRate);		// slows down the kid
 		default:
 			hp -= 100;	
 		}
