@@ -88,11 +88,11 @@ public class LevelThree extends Level {
 
     @Override
     public boolean levelDone() {
-        return kidsRemoved == 50 && kidsInStore < 10;
+        return kidsRemoved == 50 && kidsInStore < maxKidsInStore;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore == 10;
+        return kidsInStore == maxKidsInStore;
     }
 }

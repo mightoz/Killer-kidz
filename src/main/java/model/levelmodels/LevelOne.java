@@ -16,7 +16,7 @@ public class LevelOne extends Level {
         maxKidsInStore = 5;
     }
 
-    public void updateLevel(double delta){
+    protected void updateLevel(double delta){
         timePassed+=delta;
         switch(currentWave){
             case 1:
@@ -41,6 +41,8 @@ public class LevelOne extends Level {
                     }
                 }
                 break;
+            default:
+                throw new IllegalArgumentException("Not an existing wave");
         }
 
     }
@@ -52,15 +54,14 @@ public class LevelOne extends Level {
         nextSpawnTime = timePassed + 3;
     }
 
-    //
     @Override
     public boolean levelDone(){
-        return kidsRemoved == 25 && kidsInStore < 5;
+        return kidsRemoved == 25 && kidsInStore < maxKidsInStore;
     }
 
     @Override
     public boolean levelFailed() {
-        return kidsInStore >= 5;
+        return kidsInStore >= maxKidsInStore;
     }
 
 }
