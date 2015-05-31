@@ -30,10 +30,13 @@ public class DizzyDoriz extends Kid {
 	public void update(double dt) {
 		
 		if (inKillerMode) {
+			
+			// Stand still
 			if (stopTimeLeft > 0) {
 				stopTimeLeft -= dt;
 				return;
 			}
+			// Race towards toy store
 			else {
 				xPos -= 200*dt;
 				
