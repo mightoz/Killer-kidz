@@ -17,6 +17,8 @@ public class LevelTest {
 
     @Test
     public void testUpdate(){
+        //Ska testa om kidsen flyttar på sigoch om kidsen läggs till som dom ska,
+        // helst om det byts wave efter 10 st också
 
         Level level = new LevelOne();
 
@@ -25,9 +27,31 @@ public class LevelTest {
         int kidsInList = level.getActiveKids().size();
 
         for(int i = 0; i < 65; i++){
-            level.update(10.0);
+            level.update(1.0);
         }
 
-        assertTrue("Kids tas inte bort ur listan", level.getActiveKids().size() < kidsInList);
+
+        assertTrue("Kids are not deleted from list correctly", level.getActiveKids().size() < kidsInList);
     }
+
+    @Test
+    public void testGetKills(){
+        Level level = new LevelOne();
+        for( int i = 0; i < 3; i++){
+            level.killedByCandy();
+        }
+        int kills = level.getKills();
+        assertTrue("Returns wrong number", kills == 3);
+    }
+
+    @Test
+    public void testGetKidsInStore(){
+        Level level = new LevelOne();
+        for( int i = 0; i < 3; i++){
+            level.enteredStore();
+        }
+        int kidsInStore = level.getKidsInStore();
+        assertTrue("Returns wrong number", kidsInStore == 3);
+    }
+
 }

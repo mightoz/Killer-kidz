@@ -11,54 +11,30 @@ import static org.junit.Assert.*;
 public class LevelOneTest {
 
     @Test
-    public void testUpdateLevel(){
-
-//        //Ska kolla om kids läggs till, och kanske om man byter wave
-//        Level level = new LevelOne();
-//        int initialKids = level.getActiveKids().size();
-//
-//        for(int i = 0; i < 10; i++) {
-//            level.updateLevel(1.0);
-//        }
-//
-//        assertTrue("Kids are not added in list correctly", initialKids < level.getActiveKids().size());
-
+    public void testLevelOne(){
+        Level level = new LevelOne();
+        assertTrue("Level one is not created", level != null);
     }
-
 
     @Test
     public void testLevelDone(){
         Level level = new LevelOne();
-        int counter = 0;
-
         boolean initialStatus = level.levelDone();
-
-        for(int i = 0; i < 20; i++){
-            if(counter < 18){
-                level.enteredStore();
-            }else{
-                level.killedByCandy();
-            }
-            counter++;
+        for(int i = 0; i < 25; i++){
+            level.killedByCandy();
         }
-
         boolean status = level.levelDone();
-
         assertTrue("levelDone() error", status != initialStatus);
-
     }
 
     @Test
     public void testLevelFailed(){
         Level level = new LevelOne();
-
+        boolean initialStatus = level.levelFailed();
         for(int i = 0; i < 5; i++){
             level.enteredStore();
         }
-
         boolean status = level.levelFailed();
-
-        assertTrue("levelFailed() error", status == true);
-
+        assertTrue("levelFailed() error", status != initialStatus);
     }
 }
