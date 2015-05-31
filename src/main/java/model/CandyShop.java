@@ -182,4 +182,50 @@ public class CandyShop {
         }
     }
 
+    public String getPropName(int row){
+        switch(selectedCandyInShop) {
+            case "Jellybean":
+                switch (row) {
+                    case 1:
+                        return "Damage";
+                    case 2:
+                        return "Distance";
+                    case 3:
+                        return "Multiplier";
+                    case 4:
+                        return "Penetration";
+                    default:
+                        throw new IllegalArgumentException("Illegal row");
+                }
+            case "Hubbabubba":
+                switch (row) {
+                    case 1:
+                        return "Damage";
+                    case 2:
+                        return "Distance";
+                    case 3:
+                        return "Slow";
+                    case 4:
+                        return "Size";
+                    default:
+                        throw new IllegalArgumentException("Illegal row");
+                }
+            case "Chocolate":
+                switch (row) {
+                    case 1:
+                        return "Damage";
+                    case 2:
+                        return "Distance";
+                    case 3:
+                        return "Damage multiplier";
+                    case 4:
+                        return "Distance multiplier";
+                    default:
+                        throw new IllegalArgumentException("Illegal row");
+                }
+            default:
+                throw new IllegalArgumentException("Candy does not exist");
+        }
+    }
+
 }
