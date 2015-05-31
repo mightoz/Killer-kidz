@@ -70,10 +70,11 @@ public class LevelThree extends Level {
                         } else {
                             activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
+                        spawnedKids++;
+                        nextSpawnTime += random.nextDouble()*4;
                     }
                 }
-                spawnedKids++;
-                nextSpawnTime += random.nextDouble()*4;
+
                 break;
         }
     }

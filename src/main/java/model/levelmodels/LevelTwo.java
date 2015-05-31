@@ -29,14 +29,13 @@ public class LevelTwo extends Level{
                         if(spawnKidType < 80){
                             activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
-                        nextSpawnTime += random.nextDouble()*4;
+                        nextSpawnTime += random.nextDouble()*3;
                     }
                 }else if(kidsRemoved == 15){
                     changeWave();
-                    System.out.println(currentWave);
                 }
                 break;
             case 2:
@@ -47,7 +46,7 @@ public class LevelTwo extends Level{
                         if(spawnKidType < 50){
                             activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
                         nextSpawnTime += random.nextDouble()*3;
@@ -61,13 +60,13 @@ public class LevelTwo extends Level{
                     if(timePassed >= nextSpawnTime){
                         int spawnKidType = random.nextInt(99);
                         float spawnPos = generateSpawnPos(10);
-                        if(spawnKidType < 70){
+                        if(spawnKidType < 40){
                             activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         }else{
-                            activeKids.add(createKid(KidTypes.SINESTER, Entity.getRightBoundary(), spawnPos));
+                            activeKids.add(createKid(KidTypes.DIZZY_DORIZ, Entity.getRightBoundary(), spawnPos));
                         }
                         spawnedKids++;
-                        nextSpawnTime += random.nextDouble()*3;
+                        nextSpawnTime += random.nextDouble()*2;
                     }
                 }
                 break;
@@ -79,7 +78,7 @@ public class LevelTwo extends Level{
     protected void changeWave(){
         currentWave++;
         spawnedKids = 0;
-        nextSpawnTime = timePassed + random.nextDouble()*4;
+        nextSpawnTime = timePassed + 2;
     }
 
     @Override

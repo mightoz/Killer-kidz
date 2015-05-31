@@ -25,7 +25,7 @@ public class LevelOne extends Level {
                         float spawnPos = generateSpawnPos(10);
                         activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         spawnedKids++;
-                        nextSpawnTime += random.nextDouble()*4;
+                        nextSpawnTime += random.nextDouble()*2;
                     }
                 }else if(kidsRemoved == 10){
                     changeWave();
@@ -37,7 +37,7 @@ public class LevelOne extends Level {
                         float spawnPos = generateSpawnPos(10);
                         activeKids.add(createKid(KidTypes.SIMPLE_SAM, Entity.getRightBoundary(), spawnPos));
                         spawnedKids++;
-                        nextSpawnTime += random.nextDouble()*4;
+                        nextSpawnTime += random.nextDouble()*2;
                     }
                 }
                 break;
@@ -49,7 +49,7 @@ public class LevelOne extends Level {
     protected void changeWave() {
         spawnedKids = 0;
         currentWave++;
-        nextSpawnTime = timePassed + 4;
+        nextSpawnTime = timePassed + 3;
     }
 
     //
