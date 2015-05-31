@@ -8,7 +8,6 @@ import model.CandyShop;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -57,14 +56,22 @@ public class CandyShopView implements Screen {
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 			Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
-        
-		titleFont = gen.generateFont(50);
-		moneyFont = gen.generateFont(25);
-		candyFont = gen.generateFont(30);
-		propertyFont = gen.generateFont(25);
-		playerFont = gen.generateFont(25);
-		finishFont = gen.generateFont(25);
-		infoFont = gen.generateFont(15);
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 2;
+        parameter.size = 50;
+		titleFont = gen.generateFont(parameter);
+        parameter.size = 30;
+		candyFont = gen.generateFont(parameter);
+        parameter.size = 25;
+        moneyFont = gen.generateFont(parameter);
+		propertyFont = gen.generateFont(parameter);
+		playerFont = gen.generateFont(parameter);
+		finishFont = gen.generateFont(parameter);
+        parameter.size = 15;
+        parameter.borderWidth = 1;
+		infoFont = gen.generateFont(parameter);
 
 		titleFont.setColor(Color.PURPLE);
 		moneyFont.setColor(Color.YELLOW);
