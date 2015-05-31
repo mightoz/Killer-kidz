@@ -23,7 +23,7 @@ public class PlayerTest {
         Player player = new Player(200, 200, "Pelle");
         int[] data = {0,0,0,0};
         int initialSize = player.getCandyData().size();
-        player.addCandy(0, data);
+        player.addCandy(data);
         int size = player.getCandyData().size();
         assertTrue("Candy is not added correctly", initialSize < size);
     }
