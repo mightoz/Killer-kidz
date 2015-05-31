@@ -51,8 +51,6 @@ public class ShopToProtect extends GUI_Super {
 		// endpoint for box (upper right corner)
 		x = 45;
 		y = height - gui.getSquareSizeY() + 1;
-		
-		remainingLives = 5;
 
 		shopText = "T\no\ny \n \n \nS\nt\no\nr\ne";
 
