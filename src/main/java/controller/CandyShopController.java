@@ -15,6 +15,10 @@ class CandyShopController {
 		finished = false;
 	}
 	
+	void enterCandyShop() {
+		finished = false;
+	}
+	
 	boolean keyUp(int keycode) {
 		// Move marker
 		for (int i = 0; i < 4; i++) {
@@ -24,11 +28,9 @@ class CandyShopController {
 			}
 		}
 		if (keycode == Keys.ENTER) {
-            if (model.getStatusInShop().equals("Next level")){
-                model.choose();
+			model.choose();
+            if (model.getStatusInShop().equals("Next level")){   
                 finished = true;
-            }else{
-                model.choose();
             }
 			return true;
 		}
