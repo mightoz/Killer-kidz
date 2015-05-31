@@ -102,7 +102,7 @@ public class CandyShopView implements Screen {
 		// Draw candy property names
 		String prop;
 		for (int col = 1; col <= 4; col++) {
-			prop = "Property " + col; 	//cs.getPropName(col);										// TODO
+			prop = cs.getPropName(col);
 			layout.setText(propertyFont, prop);
 			layoutWidth = layout.width;
 			if (currentRow == 0 && currentCol == col) { propertyFont.setColor(marker); }

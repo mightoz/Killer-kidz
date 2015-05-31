@@ -53,24 +53,23 @@ public class PlayfieldView implements Screen {
 
         sr = new ShapeRenderer();
         this.model = model;
-
-        kidView = new KidView();
-        candyView = new CandyView();
-        playerView = new PlayerView();
-
-        gui = new GUI_Foundation(width, height);
-        shop = new ShopToProtect(cam, gui, height);
-
-        money = new Money_Bar(cam, width, height);
-        level = new CurrentLevel_Bar(cam, width, height);
-
-    	// Gets the reference to our playerObject, to be used in Candy_Bar.
+        
+     // Gets the reference to our playerObject, to be used in Candy_Bar.
         for (Entity entity : model.getEntities()) {
             if (entity.getId().substring(0, 1).equals("p")) {
                 playerObject = (Player)entity;
             }
         }
 
+        kidView = new KidView();
+        candyView = new CandyView();
+        playerView = new PlayerView();
+
+        gui = new GUI_Foundation(width, height);
+        shop = new ShopToProtect(cam, model, gui, height);
+
+        money = new Money_Bar(cam, playerObject, width, height);
+        level = new CurrentLevel_Bar(cam, model, width, height);
         candy_bar = new Candy_Bar(cam, gui, playerObject);
     }
 

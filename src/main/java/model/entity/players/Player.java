@@ -25,12 +25,15 @@ public class Player extends Entity {
     private static int pIdGenerator;
     private final String pId;
     private int money;
+    private float defaultXPos;
+    private float defaultYPos;
 
     public Player(float x, float y, String name){
         super(x,y);
 
         pId = generateId();
-
+        defaultXPos = x;
+        defaultYPos = y;
         xPos = x;
         yPos = y;
         this.name = name;
@@ -58,11 +61,10 @@ public class Player extends Entity {
     /**
      * Add a new throwable candy to a players kit.
      *
-     * @param index what candy should be added.
      * @param data the upgrades of the candy added.
      */
-    public void addCandy(int index, int[] data){
-        candyData.add(index, data);
+    public void addCandy(int[] data){
+        candyData.add(data);
     }
 
     /**
@@ -221,5 +223,12 @@ public class Player extends Entity {
 
     public void spendMoney(int cost){
         money -= cost;
+    }
+
+    public void resetPos(){
+        boolean[] dir = {false, false, false, false};
+        updateDir(dir);
+        xPos = defaultXPos;
+        yPos = defaultYPos;
     }
 }
