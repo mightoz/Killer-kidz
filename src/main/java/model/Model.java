@@ -31,7 +31,7 @@ public class Model {
         players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel = 2;
+        currentLevel = 1;
         Entity.setBoundaries(45, this.width, this.height, 0);
         levelCompleted = false;
     }
