@@ -48,15 +48,6 @@ public class PlayerTest {
     }
 
     @Test
-    public void testThrowCandy(){
-        Player player= new Player(200, 200, "Pelle");
-        ArrayList<Candy> initialCandies = player.getActiveCandies();
-        player.throwCandy();
-        ArrayList<Candy> newCandies = player.getActiveCandies();
-        assertTrue("Candies are not added to list correctly", initialCandies.size() < newCandies.size());
-    }
-
-    @Test
     public void testUpdateDir(){
         Player player= new Player(200, 200, "Pelle");
         boolean[] directions = {false, false, true, false};
