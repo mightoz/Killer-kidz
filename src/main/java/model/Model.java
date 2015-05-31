@@ -101,17 +101,7 @@ public class Model {
             if (tmp.getCandyData().size() >= candy)
                 tmp.setSelectedCandy(candy-1);
         }catch (IndexOutOfBoundsException e){
-
         }
-
-//        if(players.get(playerNum-1).) {
-//            for (Player player : players) {
-//                if (player.getId().substring(1, 2).equals(Integer.toString(playerNum))) {
-//                    player.setSelectedCandy(candy - 1);
-//                    break;
-//                }
-//            }
-//        }
     }
 
     /**
@@ -146,6 +136,7 @@ public class Model {
     public void startLevel(int levelNbr) {
         levelCompleted = false;
         int[] data = {0,0,0,0};
+        int size = players.get(0).getCandyData().size();
         switch (levelNbr) {
             case 1:
                 currentLevel=1;
@@ -153,21 +144,21 @@ public class Model {
                 break;
             case 2:
                 currentLevel=2;
-                for(int i = 0; i <currentLevel-players.get(0).getCandyData().size(); i++){
+                for(int i = 0; i <currentLevel-size; i++){
                     players.get(0).addCandy(data);
                 }
                 level = new LevelTwo();
                 break;
             case 3:
                 currentLevel=3;
-                for(int i = 0; i <currentLevel-players.get(0).getCandyData().size(); i++){
+                for(int i = 0; i <currentLevel-size; i++){
                     players.get(0).addCandy(data);
                 }
                 level = new LevelThree();
                 break;
             case 4:
                 currentLevel=4;
-                for(int i = 0; i <currentLevel-players.get(0).getCandyData().size(); i++){
+                for(int i = 0; i <3-size; i++){
                     players.get(0).addCandy(data);
                 }
                 level = new LevelFour();
