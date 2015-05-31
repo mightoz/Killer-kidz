@@ -40,7 +40,6 @@ public class MainMenu implements Screen {
 	private int currentItem;
 	private String[] menuItemsList;
 
-	@SuppressWarnings("deprecation")
 	public MainMenu(OrthographicCamera cam, float width) {
 		
 		this.cam = cam;

@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import view.gameStates.playfieldGUI.GUI_Foundation;
-import model.entity.candymodels.JellyBean;
 import model.entity.players.Player;
 
 

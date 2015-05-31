@@ -20,6 +20,7 @@ class CandyShopController {
 	}
 	
 	boolean keyUp(int keycode) {
+		
 		// Move marker
 		for (int i = 0; i < 4; i++) {
 			if (keycode == LURD[i]) {
@@ -27,6 +28,8 @@ class CandyShopController {
 				return true;
 			}
 		}
+		
+		// Choose marked item
 		if (keycode == Keys.ENTER) {
 			model.choose();
             if (model.getStatusInShop().equals("Next level")){   

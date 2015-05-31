@@ -14,18 +14,19 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
  * HowToPlayView
+ * This screen tells you how to play the game.
  * @author  MarieKlevedal
  * @version 1.0
  */
 public class HowToPlayView implements Screen {
 
 	private OrthographicCamera cam;
-	private float width;
-	private float height;
+	private final float WIDTH;
+	private final float HIGHT;
 	
-	private static final GlyphLayout layout = new GlyphLayout();
+	private static final GlyphLayout LAYOUT = new GlyphLayout();
 	private float layoutWidth;
-	private SpriteBatch batch = new SpriteBatch();
+	private static final SpriteBatch BATCH = new SpriteBatch();
 	
 	private BitmapFont titleFont;
 	private BitmapFont headerFont;
@@ -36,10 +37,10 @@ public class HowToPlayView implements Screen {
 	private String[] instructions;
 	
 	@SuppressWarnings("deprecation")
-	public HowToPlayView (OrthographicCamera cam, float width, float height) {
+	public HowToPlayView (OrthographicCamera cam, float WIDTH, float HIGHT) {
 		this.cam = cam;
-		this.width = width;
-		this.height = height;
+		this.WIDTH = WIDTH;
+		this.HIGHT = HIGHT;
 		
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 			Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
@@ -65,55 +66,55 @@ public class HowToPlayView implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		// Start drawing
-		batch.setProjectionMatrix(cam.combined);
-		batch.begin();
+		BATCH.setProjectionMatrix(cam.combined);
+		BATCH.begin();
 		
 		// Draw title
-		layout.setText(titleFont, title);
-		layoutWidth = layout.width;
-		titleFont.draw(batch, title, (width-layoutWidth)/2, height-30);
+		LAYOUT.setText(titleFont, title);
+		layoutWidth = LAYOUT.width;
+		titleFont.draw(BATCH, title, (WIDTH-layoutWidth)/2, HIGHT-30);
 		
 		// Draw instructions for one player
 		String str = "One player";
-		layout.setText(headerFont, str);
-		layoutWidth = layout.width;
-		headerFont.draw(batch, str, width/4 - layoutWidth/2, height-100);
+		LAYOUT.setText(headerFont, str);
+		layoutWidth = LAYOUT.width;
+		headerFont.draw(BATCH, str, WIDTH/4 - layoutWidth/2, HIGHT-100);
 		
 		String instr = instructions[0];
-		layout.setText(htpFont, instr);
-		layoutWidth = layout.width;
-		htpFont.draw(batch, instr, width/4 - layoutWidth/2, height-135);
+		LAYOUT.setText(htpFont, instr);
+		layoutWidth = LAYOUT.width;
+		htpFont.draw(BATCH, instr, WIDTH/4 - layoutWidth/2, HIGHT-135);
 		
 		// Draw instructions for two players
 		str = "Two players";
-		layout.setText(headerFont, str);
-		layoutWidth = layout.width;
-		headerFont.draw(batch, str, width/2 + width/4 - layoutWidth/2, height-100);
+		LAYOUT.setText(headerFont, str);
+		layoutWidth = LAYOUT.width;
+		headerFont.draw(BATCH, str, WIDTH/2 + WIDTH/4 - layoutWidth/2, HIGHT-100);
 		
 		instr = instructions[1];
-		layout.setText(htpFont, instr);
-		layoutWidth = layout.width;
-		htpFont.draw(batch, instr, width/2 + width/4 - layoutWidth/2, height-110);
+		LAYOUT.setText(htpFont, instr);
+		layoutWidth = LAYOUT.width;
+		htpFont.draw(BATCH, instr, WIDTH/2 + WIDTH/4 - layoutWidth/2, HIGHT-110);
 		
 		// Draw instructions for how to go to candy shop
 		instr = instructions[2];
-		layout.setText(htpFont, instr);
-		layoutWidth = layout.width;
-		htpFont.draw(batch, instr, (width-layoutWidth)/2, height-340);
+		LAYOUT.setText(htpFont, instr);
+		layoutWidth = LAYOUT.width;
+		htpFont.draw(BATCH, instr, (WIDTH-layoutWidth)/2, HIGHT-340);
 		
 		// Draw "I understand"
 		String ok = "I understand";
-		layout.setText(okFont, ok);
-		layoutWidth = layout.width;
-		okFont.draw(batch, ok, (width-layoutWidth)/2, height-410);
+		LAYOUT.setText(okFont, ok);
+		layoutWidth = LAYOUT.width;
+		okFont.draw(BATCH, ok, (WIDTH-layoutWidth)/2, HIGHT-410);
 		
-		batch.end();
+		BATCH.end();
 	}
 	
 	@Override
 	public void show() {}
 	@Override
-	public void resize(int width, int height) {}
+	public void resize(int WIDTH, int HIGHT) {}
 	@Override
 	public void pause() {}
 	@Override

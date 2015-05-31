@@ -81,18 +81,22 @@ public class DizzyDoriz extends Kid {
 
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
+		
 		switch (candyType) {
 		case "Chocolate":			// favourite candy
 			hp = 0;
 			break;
+			
 		case "candy4":				// killer instinct triggering candy
 			hp = maxHP;
 			inKillerMode = true;
 			stopTimeLeft = 2;
 			break;
+		
 		case "Hubbabubba":
 			hp -= damage;
 			vx *= (1-slowRate);		// slows down the kid
+			
 		default:
 			hp -= 100;	
 		}

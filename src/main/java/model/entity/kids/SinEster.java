@@ -15,7 +15,7 @@ public class SinEster extends Kid {
 	private final int MAX_A;						// maximum amplitude of the sine wave
 	private static final float K = 0.02f;			// the wavenumber of the sine wave
 	
-	private static final float D_TRANSP = 0.9f;  	// dTransp/dt
+	private static final float D_TRANSP = 0.9f;  	// dTransparency/dt
 	private double invTimeLeft;						// invisibility time left
 	
 	public SinEster (float x, float y) {
@@ -71,15 +71,18 @@ public class SinEster extends Kid {
 
 	@Override
 	public void hitByCandy(String candyType, int damage, double slowRate) {
+		
 		switch (candyType) {
 		case "Hubbabubba":				// favourite candy
 			hp = 0;
 			break;
+		
 		case "JellyBean":				// killer instinct triggering candy
 			hp = maxHP;
 			inKillerMode = true;
 			invTimeLeft = 1.5;
 			break;
+		
 		default:
 			hp -= damage;	
 		}

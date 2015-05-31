@@ -10,7 +10,7 @@ import core.GameManager;
 
 /**
  * GameController takes care of the key events during the play. If the player is
- * in the candy shop, it passes on the handling to CandyShopController
+ * in the candy shop, it passes on the handling to CandyShopController.
  * @author  MarieKlevedal
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class GameController extends InputAdapter {
     		System.out.println("Number of players must be 1 or 2");
     	}
         
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(this);				// this is the active controller class
         TimeController tc = new TimeController(model);
         tc.startLogic();
     }

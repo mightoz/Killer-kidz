@@ -10,10 +10,10 @@ package model.entity.kids;
 public class GrandalfTheGrey extends Kid {
 	
 	private static final float MAX_R = 30;			// maximum possible radius
-	private static final float DR_DT = 1.8f;		// dr/dt - the derivative of radius per second
+	private static final float DR_DT = 1.8f;		// dr/dt
 	private double vx;								// velocity
 	private static final float AX = 5;				// acceleration
-	private static final float DHP_DT = 400;		// dHP/dt - the derivative of hp per second
+	private static final float DHP_DT = 400;		// dHP/dt
 	
 	public GrandalfTheGrey(float x, float y) {
 		super(x, y);
@@ -45,18 +45,20 @@ public class GrandalfTheGrey extends Kid {
 	public void hitByCandy(String candyType, int damage, double slowRate) {
 
 		switch (candyType) {
-		case "candy4":		// favourite candy
+		case "candy4":				// favourite candy
 			if (inKillerMode) { 
 				hp -= 3*damage; 
 			} else {
 				hp = 0;
 			}
 			break;
-		case "Hubbabubba":	// killer instinct triggering candy
+			
+		case "Hubbabubba":			// killer instinct triggering candy
 			radius = MAX_R;
 			hp = maxHP;
 			inKillerMode = true;
 			break;
+			
 		default:
 			hp -= damage;
 		}

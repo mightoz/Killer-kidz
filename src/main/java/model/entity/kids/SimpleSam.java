@@ -8,10 +8,10 @@ package model.entity.kids;
  */
 public class SimpleSam extends Kid {
 
-	private float vx;			// velocity
-	private float ax;			// acceleration
+	private float vx;				// velocity
+	private float ax;				// acceleration
 	
-	private double immuneTimeLeft;
+	private double immuneTimeLeft;	// time left before Sam becomes un-immune
 	
 	public SimpleSam(float x, float y) {
 		super(x, y);
@@ -54,14 +54,16 @@ public class SimpleSam extends Kid {
 			case "JellyBean":			// favourite candy
 				hp = 0;
 				break;
+				
 			case "Chocolate":			// killer instinct triggering candy
 				hp = maxHP;
 				immuneTimeLeft = 1;
 				inKillerMode = true;
 				break;
+				
 			case "Hubbabubba":
 				hp -= damage;
-				vx *= (1-slowRate);		// slows down the kid
+				vx *= (1-slowRate);		// slows down Sam
 
 			default:
 				hp -= damage;	
