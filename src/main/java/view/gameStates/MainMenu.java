@@ -3,8 +3,8 @@ package view.gameStates;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +20,9 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
  */
 public class MainMenu implements Screen {
 
+    private Texture mainMenu;
+    private SpriteBatch spriteBatch;
+
 	// used to get cam which is needed to draw batches os strings.
 	private OrthographicCamera cam;
 	
@@ -33,7 +36,7 @@ public class MainMenu implements Screen {
 	// so the text will be centered in the menu).
 	GlyphLayout layout = new GlyphLayout();
 	
-	private static final String title = "KillerKids";
+	private static final String title = "KillerKidz";
 	private int currentItem;
 	private String[] menuItemsList;
 
@@ -47,28 +50,36 @@ public class MainMenu implements Screen {
 
 		FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
 				Gdx.files.internal("src/main/resources/fonts/OpenSans-CondLight.ttf"));
-		
-		titleFont = gen.generateFont(56);
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 2;
+        parameter.size = 56;
+		titleFont = gen.generateFont(parameter);
 		titleFont.setColor(Color.YELLOW);
-		
-		textFont = gen.generateFont(40);
+		parameter.size = 40;
+		textFont = gen.generateFont(parameter);
 		textFont.setColor(Color.WHITE);
 		
 		menuItemsList = new String[] {
 				"Play",
-				"Settings",
-				"HighScore",
 				"HowToPlay",
 				"Quit"
 		};
+
+        spriteBatch = new SpriteBatch();
+        loadTextures();
 	}
-	
-	@Override
+
+    private void loadTextures() {
+        mainMenu = new Texture(Gdx.files.internal("images/mainmenu.png"));
+    }
+
+    @Override
 	public void render(float delta) {
-		
-		// Clear the screen
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        spriteBatch.begin();
+        drawMainMenu();
+        spriteBatch.end();
 		
 		// Start to draw strings.
 		batch.setProjectionMatrix(cam.combined);
@@ -88,13 +99,17 @@ public class MainMenu implements Screen {
 			layoutWidth = layout.width;
 			if(currentItem == i) textFont.setColor(Color.RED);
 			else textFont.setColor(Color.WHITE);
-			textFont.draw(batch, menuItemsList[i], (width - layoutWidth) / 2, 350-(i*50));
+			textFont.draw(batch, menuItemsList[i], (width - layoutWidth) / 2, 330-(i*90));
 		}
 		
 		batch.end();
 	}
-	
-	public int getCurrentItem() {
+
+    private void drawMainMenu() {
+        spriteBatch.draw(mainMenu,0,0, 640, 480);
+    }
+
+    public int getCurrentItem() {
 		return currentItem;
 	}
 
