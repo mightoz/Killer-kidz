@@ -103,22 +103,35 @@ public class CandyShop {
         return currentCol;
     }
 
-    public String getSelectedCandyInShop() {
+    public String getSelectedCandy() {
         return selectedCandyInShop;
     }
 
     public String getStatus(int row, int col) {
+        if (row == 5) return "Next level";
         ArrayList<int[]> candyData = player.getCandyData();
         int[] data;
         switch (selectedCandyInShop) {
             case "Jellybean":
-                data = candyData.get(0);
+                if (candyData.size() > 0) {
+                    data = candyData.get(0);
+                } else {
+                    return "not";
+                }
                 break;
             case "Hubbabubba":
-                data = candyData.get(1);
+                if (candyData.size() > 1) {
+                    data = candyData.get(1);
+                } else {
+                    return "not";
+                }
                 break;
             case "Chocolate":
-                data = candyData.get(2);
+                if (candyData.size() > 2) {
+                    data = candyData.get(2);
+                } else {
+                    return "not";
+                }
                 break;
             default:
                 data = candyData.get(0);
@@ -127,14 +140,14 @@ public class CandyShop {
 
         if (data[col - 1] >= (row - 1)) {
             return "have";
-        } else if (getMoney() >= row * 1000) {
+        } else if (getMoney() >= row * 1000 && data[col - 1] >= (row - 2)) {
             return "buy";
         } else {
             return "not";
         }
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return getStatus(currentRow, currentCol);
     }
 
@@ -148,21 +161,21 @@ public class CandyShop {
         switch (selectedCandyInShop) {
             case "Jellybean":
                 data = candyData.get(0);
-                data[currentCol-1]=(currentRow-1);
-                player.upgradeCandy(0,data);
-                player.spendMoney((currentRow-1)*1000);
+                data[currentCol - 1] = (currentRow - 1);
+                player.upgradeCandy(0, data);
+                player.spendMoney((currentRow - 1) * 1000);
                 break;
             case "Hubbabubba":
                 data = candyData.get(1);
-                data[currentCol-1]=(currentRow-1);
-                player.upgradeCandy(1,data);
-                player.spendMoney((currentRow-1)*1000);
+                data[currentCol - 1] = (currentRow - 1);
+                player.upgradeCandy(1, data);
+                player.spendMoney((currentRow - 1) * 1000);
                 break;
             case "Chocolate":
                 data = candyData.get(2);
-                data[currentCol-1]=(currentRow-1);
-                player.upgradeCandy(2,data);
-                player.spendMoney((currentRow-1)*1000);
+                data[currentCol - 1] = (currentRow - 1);
+                player.upgradeCandy(2, data);
+                player.spendMoney((currentRow - 1) * 1000);
                 break;
             default:
                 throw new IllegalArgumentException("No candy selected");

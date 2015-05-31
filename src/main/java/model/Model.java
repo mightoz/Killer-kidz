@@ -1,6 +1,5 @@
 package model;
 
-import model.entity.candymodels.JellyBean;
 import model.entity.players.Player;
 import model.entity.candymodels.Candy;
 import model.entity.kids.Kid;
@@ -24,14 +23,17 @@ public class Model {
     private Level level;
     private int currentLevel;
 
+    private boolean levelCompleted;
+
 
     public Model(int width, int height) {
         objects = new ArrayList();
         players = new ArrayList();
         this.width = (float) width;
         this.height = (float) height - 62;
-        currentLevel= 1;
+        currentLevel = 1;
         Entity.setBoundaries(45, this.width, this.height, 0);
+        levelCompleted = false;
     }
 
     /**
@@ -122,6 +124,7 @@ public class Model {
      * @param levelNbr
      */
     public void startLevel(int levelNbr) {
+        levelCompleted = false;
         switch (levelNbr) {
             case 1:
                 currentLevel=1;
@@ -191,10 +194,14 @@ public class Model {
         updateObjectList();
 
         if (level.levelFailed()) {
-            System.out.println("Level failed");
+            startLevel(currentLevel);
         } else if (level.levelDone()) {
-            System.out.println("Level done");
+            levelCompleted = true;
         }
+    }
+
+    public boolean levelCompleted(){
+        return levelCompleted;
     }
 
 
@@ -232,12 +239,14 @@ public class Model {
     }
 
     public CandyShop getCandyShop(){
+        if(CandyShop.getInstance().getBrowsingPlayer()==null)
+            CandyShop.getInstance().changePlayer(players.get(0));
         return CandyShop.getInstance();
     }
 
-    public String getSelectedCandy(){
-        return getCandyShop().getSelectedCandyInShop();
-    }
+//    public String getSelectedCandy(){
+//        return getCandyShop().getSelectedCandyInShop();
+//    }
 
     /**
      * Moves marker in store. If the marker is targetting player, and left or right is pressed, switches to next/previous
@@ -251,16 +260,18 @@ public class Model {
                  * If marker is targeting player and left is pressed, switches to previous player if there exists one.
                  */
                 if(CandyShop.getInstance().getCurrentRow() == -2) {
-                    for (int i = 0; i < players.size(); i++) {
-                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i - 1) != null)
-                            CandyShop.getInstance().changePlayer(players.get(i - 1));
+                    if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p1")){
+                        getCandyShop().changePlayer(players.get(1));
+                    }else if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p2")){
+                        getCandyShop().changePlayer(players.get(0));
                     }
                     /**
                      * If marker is targetting candy and left is pressed, switches to previous candy if there exists one.
                      */
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
-                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                    switch(CandyShop.getInstance().getSelectedCandy()) {
                         case "Jellybean":
+                            CandyShop.getInstance().changeSelectedCandy("Chocolate");
                             break;
                         case "Hubbabubba":
                             CandyShop.getInstance().changeSelectedCandy("Jellybean");
@@ -287,12 +298,13 @@ public class Model {
                  * If marker is targeting player and right is pressed, switches to next player if there exists one.
                  */
                 if(CandyShop.getInstance().getCurrentRow() == -2) {
-                    for (int i = 0; i < players.size(); i++) {
-                        if (players.get(i) == CandyShop.getInstance().getBrowsingPlayer() && players.get(i + 1) != null)
-                            CandyShop.getInstance().changePlayer(players.get(i + 1));
+                    if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p1")){
+                        getCandyShop().changePlayer(players.get(1));
+                    }else if(players.size()>1 && getCandyShop().getBrowsingPlayer().getId().equals("p2")){
+                        getCandyShop().changePlayer(players.get(0));
                     }
                 }else if(CandyShop.getInstance().getCurrentRow() == -1){
-                    switch(CandyShop.getInstance().getSelectedCandyInShop()) {
+                    switch(CandyShop.getInstance().getSelectedCandy()) {
                         case "Jellybean":
                             CandyShop.getInstance().changeSelectedCandy("Hubbabubba");
                             break;
@@ -300,6 +312,7 @@ public class Model {
                             CandyShop.getInstance().changeSelectedCandy("Chocolate");
                             break;
                         case "Chocolate":
+                            CandyShop.getInstance().changeSelectedCandy("Jellybean");
                             break;
                         default:
                             break;
@@ -321,8 +334,17 @@ public class Model {
     public void choose(){
         if(getCandyShop().getStatus().equals("buy")){
             getCandyShop().buyUpgrade();
+        }else if(getCandyShop().getStatus().equals("Next level")){
+            int[] data = {0,0,0,0};
+            if(players.get(0).getCandyData().size() == currentLevel) {
+                players.get(0).addCandy(currentLevel, data);
+            }
+            startLevel(currentLevel+1);
         }
     }
 
+    public String getStatusInShop(){
+        return getCandyShop().getStatus();
+    }
 
 }

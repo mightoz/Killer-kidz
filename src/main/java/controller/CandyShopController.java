@@ -6,12 +6,12 @@ import model.Model;
 
 class CandyShopController {
 	
-	//private CandyShop cs;
+    private Model model;
 	private static final int[] LURD = {Keys.LEFT, Keys.UP, Keys.RIGHT, Keys.DOWN};
 	private boolean finished;
 
 	CandyShopController(Model model) {
-		//cs = model.getCandyShop();
+        this.model = model;
 		finished = false;
 	}
 	
@@ -19,16 +19,17 @@ class CandyShopController {
 		// Move marker
 		for (int i = 0; i < 4; i++) {
 			if (keycode == LURD[i]) {
-				//cs.move(i);
+                model.moveMarkerInStore(i);
 				return true;
 			}
 		}
-			
 		if (keycode == Keys.ENTER) {
-			finished = true; // cs.getCurrentRow() == 6;
-			if (!finished) {
-				//cs.choose();
-			}
+            if (model.getStatusInShop().equals("Next level")){
+                model.choose();
+                finished = true;
+            }else{
+                model.choose();
+            }
 			return true;
 		}
 			
