@@ -54,7 +54,7 @@ public class Player extends Entity {
         selectedCandy = 0;
 
         radius = 10;
-        money = 5000;
+        money = 4000;
 
     }
 
@@ -219,6 +219,10 @@ public class Player extends Entity {
 
     public int getMoney(){
         return money;
+    }
+
+    public void cashIn(int cash){
+        money += cash;
     }
 
     public void spendMoney(int cost){

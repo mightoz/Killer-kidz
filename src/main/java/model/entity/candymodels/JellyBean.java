@@ -18,8 +18,7 @@ public class JellyBean extends Candy {
     private final Color[] colorPallet = new Color[] 
 			{ 
 			Color.RED,    Color.GREEN,  Color.BLUE, Color.YELLOW,
-			Color.ORANGE, Color.CYAN,   Color.MAGENTA, 
-			Color.WHITE,  Color.PURPLE, Color.BLACK 
+			Color.ORANGE, Color.CYAN,   Color.MAGENTA, Color.PURPLE,
 			};
 
     public JellyBean(float x, float y, int[] candyStatus) {
@@ -81,7 +80,7 @@ public class JellyBean extends Candy {
         }
 		
 		Random rnd = new Random();
-		color = colorPallet[rnd.nextInt(10)];
+		color = colorPallet[rnd.nextInt(8)];
     }
 
 
