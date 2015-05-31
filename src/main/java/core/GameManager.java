@@ -63,7 +63,7 @@ public class GameManager extends Game {
 		mainMenuView = new MainMenu(cam, width);
 		playfieldView = new PlayfieldView(cam, model, width, height);
 		candyShopView = new CandyShopView(cam, model, width, height);
-		howToPlayView = new HowToPlayView(cam);
+		howToPlayView = new HowToPlayView(cam, width, height);
         
         currentItem = mainMenuView.getCurrentItem();
 		
