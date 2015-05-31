@@ -53,7 +53,7 @@ public class PlayerTest {
         ArrayList<Candy> initialCandies = player.getActiveCandies();
         player.throwCandy();
         ArrayList<Candy> newCandies = player.getActiveCandies();
-        assertTrue("Candies are not addedto list correctly", initialCandies.size() < newCandies.size());
+        assertTrue("Candies are not added to list correctly", initialCandies.size() < newCandies.size());
     }
 
     @Test
